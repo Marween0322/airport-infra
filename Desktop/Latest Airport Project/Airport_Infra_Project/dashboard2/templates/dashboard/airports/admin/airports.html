@@ -1,0 +1,105 @@
+{% extends "base_project.html" %}
+ 
+{% block header %}Airport Profile List{% endblock header %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Airport Profile</a></li>
+    <li class="breadcrumb-item active">
+        Aerodrome List
+    </li>
+</ol>
+{% endblock breadcrumb %}
+
+
+{% block content %}
+
+<a href="/dashboard/airport_add" class="btn btn-app" style="background-color:#43494D; color: white"><i class="fa fa-plus"></i> Aerodrome  </a>
+
+
+       <div class="card-body">
+                <table class="table table-bordered table-striped" style="background-color: #fff">
+                  <thead style="background-color: #1175B6; color: #fff; position: sticky;top: 0;">
+                  	
+                   <tr class="info">
+                    <th rowspan ="2">/</th>
+                    <th rowspan ="2"> Name</th>
+                    <th rowspan ="2">Category</th>
+                    <th rowspan ="2">Critical Aircraft</th>
+                    <th rowspan ="2">ICAO Code</th>
+                    <th rowspan ="2">Designation</th>
+                    <th rowspan ="2">Nearest Equivalent or Higher Category Airport</th>
+					<th colspan  ="4">Runway</th>
+                   	<th colspan ="4">Taxiway</th>
+                   	<th colspan ="3">Apron</th>
+                   	<th colspan ="3">Passenger Terminal Building</th>
+                    <th rowspan ="2">Tower</th>
+                    <th rowspan ="2">Commercial Flight Yes/No</th>
+                    <th rowspan ="2">Note</th>
+                    <th rowspan ="2">Airport photo</th>
+                    <th rowspan ="2">Airport Runway</th>
+                    <th rowspan ="2">Airport Apron</th>
+                    <th rowspan ="2">Airport PTB</th>
+                    <th rowspan ="2"></th>
+                   </tr>  
+
+                   <tr>
+                   	<th>Dimension</th>
+                   	<th>Surface</th>
+                   	<th>Obstacles along approach/ departure surface published on AIP</th>
+                   	<th>Remarks</th>
+                   	<th>Dimension (Length x Width)</th>
+                   	<th>Surface</th>
+                   	<th>No. Of Taxiway/s</th>
+                   	<th>Description</th>
+                   	<th>Dimension (Width x Depth)</th>
+                   	<th>Surface</th>
+                   	<th>No. Of Parking Bay (Stands)</th>
+                   	<th>Dimension (sq.m.)</th>
+                   	<th>Airconditioning Unit</th>
+                   	<th>Toilet Status </th>
+                   </tr>                 
+                  </thead>
+                  {% if airports %}
+        {% for airport in airports %}
+            <tbody style="background-color: #fff">
+                <tr style="background-color: #fff">
+                    <td> <a href="/dashboard/airportedit/{{ airport.id }}"><i class="fa fa-edit "></i> </a> </td> 
+                    <td> <b> {{ airport.name }} </b></td>
+                    <td> {{ airport.category }} </td>
+                    <td> {{ airport.crit_aircraft }} </td>
+                    <td> {{ airport.icao_code }} </td>
+                    <td> {{ airport.designation }} </td>
+                    <td> {{ airport.nehca }} </td>
+                    <td> {{ airport.runway_dimension }} </td>
+                    <td> {{ airport.runway_surface }} </td>
+                    <td> {{ airport.runway_obstacles }} </td>
+                    <td> {{ airport.runway_remarks }} </td>
+                    <td> {{ airport.taxiway_dimension }} </td>
+                    <td> {{ airport.taxiway_surface }} </td>
+                    <td> {{ airport.taxiway_num }} </td>
+                    <td> {{ airport.taxiway_description }} </td>
+                    <td> {{ airport.apron_dimension }} </td>
+                    <td> {{ airport.apron_surface }} </td>
+                    <td> {{ airport.apron_num }} </td>
+                    <td> {{ airport.ptb_dimension }} </td>
+                    <td> {{ airport.ptb_aircon }} </td>
+                    <td> {{ airport.ptb_toilet }} </td>
+                    <td> {{ airport.tower }} </td>
+                    <td> {{ airport.com_flight }} </td>
+                    <td> {{ airport.note }} </td>
+                    <td> {{ airport.profile_photo }} </td>
+                    <td> {{ airport.profile_runway }} </td>
+                    <td> {{ airport.profile_apron }} </td>
+                    <td> {{ airport.profile_ptb }} </td>
+                </tr>
+                    </tbody>
+                        {% endfor %}
+                {% else %}
+                    <p>No List</p>
+                {% endif %}
+            
+                </table>
+              </div>
+              <!-- /.card-body -->
+{% endblock content %}   

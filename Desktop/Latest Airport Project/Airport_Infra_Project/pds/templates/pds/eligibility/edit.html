@@ -1,0 +1,182 @@
+{% extends "base2.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+CIVIL SERVICE ELIGIBILITY Update Page
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">PDS</a></li>
+    <li class="breadcrumb-item active">CIVIL SERVICE ELIGIBILITYPage</li> 
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Personal Information -->
+  {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }} {{ field.name }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+<br>
+<form method="POST" class="post-form" action="/pds/eligibilityUpdate/{{eligible.id}}">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">IV.  CIVIL SERVICE ELIGIBILITY</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>CAREER SERVICE/ RA 1080 (BOARD/ BAR)UNDER SPECIAL LAWS/ CES/ CSEE</label>
+                  <select name="eligibility" class="form-control" required>
+                    <option value="{{ eligible.eligibility }}">{{ eligible.eligibility }}</option>
+                    <option> CS Professional Eligibility</option>
+                    <option> CS Sub-Professional Eligibility</option>
+                    <option> Professional Board Exam for Teachers</option>
+                    <option> Police Officer Examination</option>
+                    <option> Foreign Trade Service Officer Exam</option>
+                    <option> Teacher Examination</option>
+                    <option> First Grade Examination</option>
+                    <option> Second Grade Examination</option>
+                    <option> Third Grade Examination</option>
+                    <option> Senior Teacher Examination</option>
+                    <option> Junior Teacher Examination</option>
+                    <option> Agricultural Officer Examination</option>
+                    <option> Agriculture Extension Officer Exam</option>
+                    <option> Agronomist Examination</option>
+                    <option> Fishery Biologist Examination</option>
+                    <option> Fishery Technologist Examination</option>
+                    <option> Fishery Officer Examination</option>
+                    <option> Forestry Technician Examination</option>
+                    <option> Farm Management Technician Exam</option>
+                    <option> Real Property Assessing Officer Exam</option>
+                    <option> Superintendent Examination</option>
+                    <option> Drivers License</option>
+                    <option> Soil Technologist Examination </option>
+                    <option> Sanitarian Examination </option>
+                    <option> Meat Inspector Examination </option>
+                    <option> Home Economics Extension Officer Exam </option>
+                    <option> Municipal Treasurer Examination </option>
+                    <option> Local Treasury Officer Examination </option>
+                    <option> Management Analyst Examination </option>
+                    <option> Supervising Customs Appraiser Exam </option>
+                    <option> Custom Examiner Ent. Examination </option>
+                    <option> Food Technician Examination </option>
+                    <option> Statistical Aide Examination </option>
+                    <option> Statistician Examination </option>
+                    <option> Auditor Examination </option>
+                    <option> Postmaster Examination </option>
+                    <option> Money Counter Examination </option>
+                    <option> Manpower Development Officer Exam </option>
+                    <option> Career Service Executive Examination </option>
+                    <option> Foreign Service Officer Examination </option>
+                    <option> Police Officer I Entrance Examination </option>
+                    <option> Penology Officer Examination </option>
+                    <option> Penology Employee Examination </option>
+                    <option> Certified Public Accountant </option>
+                    <option> REPUBLIC ACT NO. 1080 </option>
+                    <option> Licensure Examination for Teachers </option>
+                    <option> NAPOLCOM Entrance Examination </option>
+                    <option> Barangay Official Eligibility </option>
+                    <option> Career Executive Service Officer </option>
+                    <option> Career Executive Service Eligibility </option>
+                    <option> RA 6850 </option>
+                    <option> Cultural Community Employee </option>
+                    <option> Cultural Community Officer </option>
+                    <option> PD 907 </option>
+                    <option> RA 4670 </option>
+                    <option> PD 997 </option>
+                    <option> PD 1408 </option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Rating</label>
+                  <input type="text" class="form-control" name="rating" maxlength="100" value="{{ eligible.rating }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>DATE OF EXAMINATION / CONFERMENT</label>
+                  <input type="date" class="form-control" name="exam_date" value="{{ eligible.exam_date|date:"Y-m-d" }}"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              
+            </div>
+            <!-- /.row -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Place of Exam/Conferment</label>
+                  <input type="text" class="form-control" name="place" maxlength="100" value="{{ eligible.place }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>License Number (If Applicable)</label>
+                  <input type="text" class="form-control" name="lic_number" maxlength="100" value="{{ eligible.lic_number }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Date of Validity</label>
+                  <input type="date" class="form-control" name="validity" value="{{ eligible.validity|date:"Y-m-d" }}"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->              
+            </div>
+            <!-- /.row -->
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Childre information -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">Update</button> | 
+    <a href="/pds/personalinfo2" class="btn btn-danger">Back</a> 
+    </div>  
+  </div>
+</div>
+
+  <br><br><br>
+</form>  
+{% endblock %}

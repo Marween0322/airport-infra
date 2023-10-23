@@ -1,0 +1,1469 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAAP Airports</title>
+  <link rel="stylesheet" href="{% static 'dist/css/styles_airports_area.css' %}">
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    <script src="https://kit.fontawesome.com/51a06d85cb.js" crossorigin="anonymous"></script>
+</head>
+<body style="background-color:#92B5F3;"> 
+  <div class="backg">
+  <div class="content">   
+    <img src="/media/areas/visayas.png">
+  </div>
+  <div class="links">
+
+    <div id="Home">
+      <a href="/dashboard/airportmap" class="btn btn-app" style='font-size:15px'><i class="fa fa-map" aria-hidden="true" style='font-size:20px'></i> Home </a>
+    </div>
+    
+    <div id="Panglao">
+      <a href="#" data-toggle="modal" data-target="#modal-bohol" style='font-size:15px'><i class="fas fa-plane-departure" aria-hidden="true" style='font-size:20px'></i> Bohol Panglao International Airport (BPIA)  </a>
+    </div>
+
+    <div id="Ubay">
+      <a href="#" data-toggle="modal" data-target="#modal-ubay" style='font-size:15px'>Ubay Airport <i class="fas fa-plane-departure" aria-hidden="true" style='font-size:20px'></i></a>
+    </div>
+
+    <div id="Bantayan">
+      <a href="#" data-toggle="modal" data-target="#modal-bantayan" style='font-size:15px'>Bantayan Airport   <i class="fa-solid fa-plane-departure" aria-hidden="true" style='font-size:20px'></i></a>
+    </div>
+
+    <div id="Dumaguete">
+      <a href="#" data-toggle="modal" data-target="#modal-dumaguete" style='font-size:15px'>Dumaguete (Sibulan) Airport  <i class="fas fa-plane-departure" aria-hidden="true" style='font-size:20px'></i></a>
+    </div>
+
+    <div id="Siquijor">
+      <a href="#" data-toggle="modal" data-target="#modal-siquijor" style='font-size:15px'><i class="fas fa-plane-departure" aria-hidden="true" style='font-size:20px'></i> Siquijor Airport  </a>
+    </div>
+
+  
+  </div>
+
+  <div class="modal fade" id="modal-bohol">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">{{ bohol.name }}</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <!-- Image and Ribbon -->
+                <div class="col-sm-4">
+                  <div class="position-relative">
+                    <img src="/media/{{ bohol.profile_photo }}" alt="bohol" class="img-fluid">
+                      <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-primary text-lg">
+                         
+                          {{ bohol.category }}
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <!--end Image and Ribbon -->
+
+                <!-- Airport Detail --> 
+                <div class="col-sm-8" style="font-size: 15px;">
+                  <div class="row">
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa fa-plane"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Critical Aircraft</span>
+                              <span class="info-box-number">{{ bohol.crit_aircraft }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa fa-globe"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">ICAO Code</span>
+                              <span class="info-box-number">{{ bohol.icao_code }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                  </div>  
+
+                  <div class="row">
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa-solid fa-building-circle-check"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Designation</span>
+                              <span class="info-box-number">{{ bohol.designation }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fas fa-plane-departure"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Nearest Equivalent or Higher Category Airport</span>
+                              <span class="info-box-number">{{ bohol.nehca }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                  </div>  
+
+                <a href="/dashboard/airportproject/{{ bohol.name }}" class="btn btn-primary" target="_parent"> <i class="fa fa-folder"></i> View projects of {{ bohol.name }} Airport </a> &nbsp;&nbsp;&nbsp;<b>Updated by: &nbsp;</b> {{ bohol.edited_by }} - <b>Date updated:</b> {{ bohol.date_edited}}
+                </div>                
+                <!--end Airport Detail -->
+              </div>
+
+              <!-- Information -->
+                <div class="col-sm-12 mt-4">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> Airport Details </b> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Airport Manager/Contact</th>
+                              <th>Operation Hours</th>
+                              <th>Number of Firetruck</th>
+                              <th>Night Rating</th>
+                              <th>Commercial Flight</th>                              
+                              <th>Category</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ bohol.airport_contact }} </td>
+                              <td>{{ bohol.operation_hours }}</td>
+                              <td>{{ bohol.firetruck }}</td>
+                              <td>{{ bohol.night_rating }}</td>                              
+                              <td>{{ bohol.com_flight|title }}</td>                                                     
+                              <td><strong> {{ bohol.category }}</strong></td>
+                            </tr>
+                          </tbody>
+                           <thead>
+                            <tr>
+                              <th colspan="2">Navigational aids</th>
+                              <th colspan="4">Notes/Remarks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td colspan="2">{{ bohol.nav_iads }} </td>
+                              <td colspan="4">{{ bohol.note }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Information -->
+
+                <!-- runway -->
+                <div class="col-sm-12 mt-4">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> RUNWAY </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ bohol.profile_runway }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension</th>
+                              <th>Surface</th>
+                              <th>Obstacles along approach/ departure surface published on AIP</th>
+                              <th>Remarks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ bohol.runway_dimension }} </td>
+                              <td>{{ bohol.runway_surface }}</td>
+                              <td>{{ bohol.runway_obstacles }}</td>
+                              <td>{{ bohol.runway_remarks }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end runway -->
+
+                <!-- Taxiway -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> TAXIWAY </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ bohol.profile_runway }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (Length x Width)</th>
+                              <th>Surface</th>
+                              <th>No. Of Taxiway/s</th>
+                              <th>Description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ bohol.taxiway_dimension }}</td>
+                              <td>{{ bohol.taxiway_surface }}</td>
+                              <td>{{ bohol.taxiway_num }}</td>
+                              <td>{{ bohol.taxiway_description }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Taxiway -->
+
+                <!-- Apron -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> APRON </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ bohol.profile_apron }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (Width x Depth)</th>
+                              <th>Surface</th>
+                              <th>No. Of Parking Bay (Stands)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ bohol.apron_dimension }}</td>
+                              <td>{{ bohol.apron_surface }}</td>
+                              <td>{{ bohol.apron_num }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Apron -->
+
+                <!-- PTB -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> PASSENGER TERMINANL BUILDING</b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ bohol.profile_ptb }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (sq.m.)</th>
+                              <th>Airconditioning Unit</th>
+                              <th>Toilet Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ bohol.ptb_dimension }}</td>
+                              <td>{{ bohol.ptb_aircon }}</td>
+                              <td>{{ bohol.ptb_toilet }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end PTB -->
+            </div>
+
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default bg-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+  <div class="modal fade" id="modal-dumaguete">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">{{ dumaguete.name }}</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <!-- Image and Ribbon -->
+                <div class="col-sm-4">
+                  <div class="position-relative">
+                    <img src="/media/{{ dumaguete.profile_photo }}" alt="dumaguete" class="img-fluid">
+                      <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-primary text-lg">
+                         
+                          {{ dumaguete.category }}
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <!--end Image and Ribbon -->
+
+                <!-- Airport Detail --> 
+                <div class="col-sm-8" style="font-size: 15px;">
+                  <div class="row">
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa fa-plane"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Critical Aircraft</span>
+                              <span class="info-box-number">{{ dumaguete.crit_aircraft }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa fa-globe"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">ICAO Code</span>
+                              <span class="info-box-number">{{ dumaguete.icao_code }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                  </div>  
+
+                  <div class="row">
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa-solid fa-building-circle-check"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Designation</span>
+                              <span class="info-box-number">{{ dumaguete.designation }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fas fa-plane-departure"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Nearest Equivalent or Higher Category Airport</span>
+                              <span class="info-box-number">{{ dumaguete.nehca }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                  </div>  
+
+                <a href="/dashboard/airportproject/{{ dumaguete.name }}" class="btn btn-primary" target="_parent"> <i class="fa fa-folder"></i> View projects of {{ dumaguete.name }} Airport </a> &nbsp;&nbsp;&nbsp;<b>Updated by: &nbsp;</b> {{ dumaguete.edited_by }} - <b>Date updated:</b> {{ dumaguete.date_edited}}
+                </div>                
+                <!--end Airport Detail -->
+              </div>
+
+              <!-- Information -->
+                <div class="col-sm-12 mt-4">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> Airport Details </b> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Airport Manager/Contact</th>
+                              <th>Operation Hours</th>
+                              <th>Number of Firetruck</th>
+                              <th>Night Rating</th>
+                              <th>Commercial Flight</th>                              
+                              <th>Category</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ dumaguete.airport_contact }} </td>
+                              <td>{{ dumaguete.operation_hours }}</td>
+                              <td>{{ dumaguete.firetruck }}</td>
+                              <td>{{ dumaguete.night_rating }}</td>                              
+                              <td>{{ dumaguete.com_flight|title }}</td>                                                     
+                              <td><strong> {{ dumaguete.category }}</strong></td>
+                            </tr>
+                          </tbody>
+                           <thead>
+                            <tr>
+                              <th colspan="2">Navigational aids</th>
+                              <th colspan="4">Notes/Remarks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td colspan="2">{{ dumaguete.nav_iads }} </td>
+                              <td colspan="4">{{ dumaguete.note }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Information -->
+
+                <!-- runway -->
+                <div class="col-sm-12 mt-4">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> RUNWAY </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ dumaguete.profile_runway }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension</th>
+                              <th>Surface</th>
+                              <th>Obstacles along approach/ departure surface published on AIP</th>
+                              <th>Remarks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ dumaguete.runway_dimension }} </td>
+                              <td>{{ dumaguete.runway_surface }}</td>
+                              <td>{{ dumaguete.runway_obstacles }}</td>
+                              <td>{{ dumaguete.runway_remarks }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end runway -->
+
+                <!-- Taxiway -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> TAXIWAY </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ dumaguete.profile_runway }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (Length x Width)</th>
+                              <th>Surface</th>
+                              <th>No. Of Taxiway/s</th>
+                              <th>Description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ dumaguete.taxiway_dimension }}</td>
+                              <td>{{ dumaguete.taxiway_surface }}</td>
+                              <td>{{ dumaguete.taxiway_num }}</td>
+                              <td>{{ dumaguete.taxiway_description }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Taxiway -->
+
+                <!-- Apron -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> APRON </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ dumaguete.profile_apron }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (Width x Depth)</th>
+                              <th>Surface</th>
+                              <th>No. Of Parking Bay (Stands)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ dumaguete.apron_dimension }}</td>
+                              <td>{{ dumaguete.apron_surface }}</td>
+                              <td>{{ dumaguete.apron_num }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Apron -->
+
+                <!-- PTB -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> PASSENGER TERMINANL BUILDING</b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ dumaguete.profile_ptb }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (sq.m.)</th>
+                              <th>Airconditioning Unit</th>
+                              <th>Toilet Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ dumaguete.ptb_dimension }}</td>
+                              <td>{{ dumaguete.ptb_aircon }}</td>
+                              <td>{{ dumaguete.ptb_toilet }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end PTB -->
+            </div>
+
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default bg-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+  <div class="modal fade" id="modal-siquijor">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">{{ siquijor.name }}</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <!-- Image and Ribbon -->
+                <div class="col-sm-4">
+                  <div class="position-relative">
+                    <img src="/media/{{ siquijor.profile_photo }}" alt="siquijor" class="img-fluid">
+                      <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-primary text-lg">
+                         
+                          {{ siquijor.category }}
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <!--end Image and Ribbon -->
+
+                <!-- Airport Detail --> 
+                <div class="col-sm-8" style="font-size: 15px;">
+                  <div class="row">
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa fa-plane"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Critical Aircraft</span>
+                              <span class="info-box-number">{{ siquijor.crit_aircraft }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa fa-globe"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">ICAO Code</span>
+                              <span class="info-box-number">{{ siquijor.icao_code }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                  </div>  
+
+                  <div class="row">
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa-solid fa-building-circle-check"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Designation</span>
+                              <span class="info-box-number">{{ siquijor.designation }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fas fa-plane-departure"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Nearest Equivalent or Higher Category Airport</span>
+                              <span class="info-box-number">{{ siquijor.nehca }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                  </div>  
+
+                <a href="/dashboard/airportproject/{{ siquijor.name }}" class="btn btn-primary" target="_parent"> <i class="fa fa-folder"></i> View projects of {{ siquijor.name }} Airport </a> &nbsp;&nbsp;&nbsp;<b>Updated by: &nbsp;</b> {{ siquijor.edited_by }} - <b>Date updated:</b> {{ siquijor.date_edited}}
+                </div>                
+                <!--end Airport Detail -->
+              </div>
+
+              <!-- Information -->
+                <div class="col-sm-12 mt-4">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> Airport Details </b> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Airport Manager/Contact</th>
+                              <th>Operation Hours</th>
+                              <th>Number of Firetruck</th>
+                              <th>Night Rating</th>
+                              <th>Commercial Flight</th>                              
+                              <th>Category</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ siquijor.airport_contact }} </td>
+                              <td>{{ siquijor.operation_hours }}</td>
+                              <td>{{ siquijor.firetruck }}</td>
+                              <td>{{ siquijor.night_rating }}</td>                              
+                              <td>{{ siquijor.com_flight|title }}</td>                                                     
+                              <td><strong> {{ siquijor.category }}</strong></td>
+                            </tr>
+                          </tbody>
+                           <thead>
+                            <tr>
+                              <th colspan="2">Navigational aids</th>
+                              <th colspan="4">Notes/Remarks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td colspan="2">{{ siquijor.nav_iads }} </td>
+                              <td colspan="4">{{ siquijor.note }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Information -->
+
+                <!-- runway -->
+                <div class="col-sm-12 mt-4">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> RUNWAY </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ siquijor.profile_runway }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension</th>
+                              <th>Surface</th>
+                              <th>Obstacles along approach/ departure surface published on AIP</th>
+                              <th>Remarks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ siquijor.runway_dimension }} </td>
+                              <td>{{ siquijor.runway_surface }}</td>
+                              <td>{{ siquijor.runway_obstacles }}</td>
+                              <td>{{ siquijor.runway_remarks }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end runway -->
+
+                <!-- Taxiway -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> TAXIWAY </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ siquijor.profile_runway }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (Length x Width)</th>
+                              <th>Surface</th>
+                              <th>No. Of Taxiway/s</th>
+                              <th>Description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ siquijor.taxiway_dimension }}</td>
+                              <td>{{ siquijor.taxiway_surface }}</td>
+                              <td>{{ siquijor.taxiway_num }}</td>
+                              <td>{{ siquijor.taxiway_description }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Taxiway -->
+
+                <!-- Apron -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> APRON </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ siquijor.profile_apron }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (Width x Depth)</th>
+                              <th>Surface</th>
+                              <th>No. Of Parking Bay (Stands)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ siquijor.apron_dimension }}</td>
+                              <td>{{ siquijor.apron_surface }}</td>
+                              <td>{{ siquijor.apron_num }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Apron -->
+
+                <!-- PTB -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> PASSENGER TERMINANL BUILDING</b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ siquijor.profile_ptb }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (sq.m.)</th>
+                              <th>Airconditioning Unit</th>
+                              <th>Toilet Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ siquijor.ptb_dimension }}</td>
+                              <td>{{ siquijor.ptb_aircon }}</td>
+                              <td>{{ siquijor.ptb_toilet }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end PTB -->
+            </div>
+
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default bg-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+  <div class="modal fade" id="modal-ubay">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">{{ ubay.name }}</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <!-- Image and Ribbon -->
+                <div class="col-sm-4">
+                  <div class="position-relative">
+                    <img src="/media/{{ ubay.profile_photo }}" alt="ubay" class="img-fluid">
+                      <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-primary text-lg">
+                         
+                          {{ ubay.category }}
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <!--end Image and Ribbon -->
+
+                <!-- Airport Detail --> 
+                <div class="col-sm-8" style="font-size: 15px;">
+                  <div class="row">
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa fa-plane"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Critical Aircraft</span>
+                              <span class="info-box-number">{{ ubay.crit_aircraft }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa fa-globe"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">ICAO Code</span>
+                              <span class="info-box-number">{{ ubay.icao_code }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                  </div>  
+
+                  <div class="row">
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa-solid fa-building-circle-check"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Designation</span>
+                              <span class="info-box-number">{{ ubay.designation }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fas fa-plane-departure"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Nearest Equivalent or Higher Category Airport</span>
+                              <span class="info-box-number">{{ ubay.nehca }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                  </div>  
+
+                <a href="/dashboard/airportproject/{{ ubay.name }}" class="btn btn-primary" target="_parent"> <i class="fa fa-folder"></i> View projects of {{ ubay.name }} Airport </a> &nbsp;&nbsp;&nbsp;<b>Updated by: &nbsp;</b> {{ ubay.edited_by }} - <b>Date updated:</b> {{ ubay.date_edited}}
+                </div>                
+                <!--end Airport Detail -->
+              </div>
+
+              <!-- Information -->
+                <div class="col-sm-12 mt-4">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> Airport Details </b> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Airport Manager/Contact</th>
+                              <th>Operation Hours</th>
+                              <th>Number of Firetruck</th>
+                              <th>Night Rating</th>
+                              <th>Commercial Flight</th>                              
+                              <th>Category</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ ubay.airport_contact }} </td>
+                              <td>{{ ubay.operation_hours }}</td>
+                              <td>{{ ubay.firetruck }}</td>
+                              <td>{{ ubay.night_rating }}</td>                              
+                              <td>{{ ubay.com_flight|title }}</td>                                                     
+                              <td><strong> {{ ubay.category }}</strong></td>
+                            </tr>
+                          </tbody>
+                           <thead>
+                            <tr>
+                              <th colspan="2">Navigational aids</th>
+                              <th colspan="4">Notes/Remarks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td colspan="2">{{ ubay.nav_iads }} </td>
+                              <td colspan="4">{{ ubay.note }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Information -->
+
+                <!-- runway -->
+                <div class="col-sm-12 mt-4">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> RUNWAY </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ ubay.profile_runway }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension</th>
+                              <th>Surface</th>
+                              <th>Obstacles along approach/ departure surface published on AIP</th>
+                              <th>Remarks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ ubay.runway_dimension }} </td>
+                              <td>{{ ubay.runway_surface }}</td>
+                              <td>{{ ubay.runway_obstacles }}</td>
+                              <td>{{ ubay.runway_remarks }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end runway -->
+
+                <!-- Taxiway -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> TAXIWAY </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ ubay.profile_runway }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (Length x Width)</th>
+                              <th>Surface</th>
+                              <th>No. Of Taxiway/s</th>
+                              <th>Description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ ubay.taxiway_dimension }}</td>
+                              <td>{{ ubay.taxiway_surface }}</td>
+                              <td>{{ ubay.taxiway_num }}</td>
+                              <td>{{ ubay.taxiway_description }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Taxiway -->
+
+                <!-- Apron -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> APRON </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ ubay.profile_apron }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (Width x Depth)</th>
+                              <th>Surface</th>
+                              <th>No. Of Parking Bay (Stands)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ ubay.apron_dimension }}</td>
+                              <td>{{ ubay.apron_surface }}</td>
+                              <td>{{ ubay.apron_num }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Apron -->
+
+                <!-- PTB -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> PASSENGER TERMINANL BUILDING</b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ ubay.profile_ptb }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (sq.m.)</th>
+                              <th>Airconditioning Unit</th>
+                              <th>Toilet Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ ubay.ptb_dimension }}</td>
+                              <td>{{ ubay.ptb_aircon }}</td>
+                              <td>{{ ubay.ptb_toilet }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end PTB -->
+            </div>
+
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default bg-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      
+  <div class="modal fade" id="modal-bantayan">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">{{ bantayan.name }}</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <!-- Image and Ribbon -->
+                <div class="col-sm-4">
+                  <div class="position-relative">
+                    <img src="/media/{{ bantayan.profile_photo }}" alt="bantayan" class="img-fluid">
+                      <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-primary text-lg">
+                         
+                          {{ bantayan.category }}
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <!--end Image and Ribbon -->
+
+                <!-- Airport Detail --> 
+                <div class="col-sm-8" style="font-size: 15px;">
+                  <div class="row">
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa fa-plane"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Critical Aircraft</span>
+                              <span class="info-box-number">{{ bantayan.crit_aircraft }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa fa-globe"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">ICAO Code</span>
+                              <span class="info-box-number">{{ bantayan.icao_code }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                  </div>  
+
+                  <div class="row">
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa-solid fa-building-circle-check"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Designation</span>
+                              <span class="info-box-number">{{ bantayan.designation }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fas fa-plane-departure"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Nearest Equivalent or Higher Category Airport</span>
+                              <span class="info-box-number">{{ bantayan.nehca }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                  </div>  
+
+                <a href="/dashboard/airportproject/{{ bantayan.name }}" class="btn btn-primary" target="_parent"> <i class="fa fa-folder"></i> View projects of {{ bantayan.name }} Airport </a> &nbsp;&nbsp;&nbsp;<b>Updated by: &nbsp;</b> {{ bantayan.edited_by }} - <b>Date updated:</b> {{ bantayan.date_edited}}
+                </div>                
+                <!--end Airport Detail -->
+              </div>
+
+              <!-- Information -->
+                <div class="col-sm-12 mt-4">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> Airport Details </b> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Airport Manager/Contact</th>
+                              <th>Operation Hours</th>
+                              <th>Number of Firetruck</th>
+                              <th>Night Rating</th>
+                              <th>Commercial Flight</th>                              
+                              <th>Category</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ bantayan.airport_contact }} </td>
+                              <td>{{ bantayan.operation_hours }}</td>
+                              <td>{{ bantayan.firetruck }}</td>
+                              <td>{{ bantayan.night_rating }}</td>                              
+                              <td>{{ bantayan.com_flight|title }}</td>                                                     
+                              <td><strong> {{ bantayan.category }}</strong></td>
+                            </tr>
+                          </tbody>
+                           <thead>
+                            <tr>
+                              <th colspan="2">Navigational aids</th>
+                              <th colspan="4">Notes/Remarks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td colspan="2">{{ bantayan.nav_iads }} </td>
+                              <td colspan="4">{{ bantayan.note }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Information -->
+
+                <!-- runway -->
+                <div class="col-sm-12 mt-4">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> RUNWAY </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ bantayan.profile_runway }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension</th>
+                              <th>Surface</th>
+                              <th>Obstacles along approach/ departure surface published on AIP</th>
+                              <th>Remarks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ bantayan.runway_dimension }} </td>
+                              <td>{{ bantayan.runway_surface }}</td>
+                              <td>{{ bantayan.runway_obstacles }}</td>
+                              <td>{{ bantayan.runway_remarks }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end runway -->
+
+                <!-- Taxiway -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> TAXIWAY </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ bantayan.profile_runway }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (Length x Width)</th>
+                              <th>Surface</th>
+                              <th>No. Of Taxiway/s</th>
+                              <th>Description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ bantayan.taxiway_dimension }}</td>
+                              <td>{{ bantayan.taxiway_surface }}</td>
+                              <td>{{ bantayan.taxiway_num }}</td>
+                              <td>{{ bantayan.taxiway_description }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Taxiway -->
+
+                <!-- Apron -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> APRON </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ bantayan.profile_apron }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (Width x Depth)</th>
+                              <th>Surface</th>
+                              <th>No. Of Parking Bay (Stands)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ bantayan.apron_dimension }}</td>
+                              <td>{{ bantayan.apron_surface }}</td>
+                              <td>{{ bantayan.apron_num }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Apron -->
+
+                <!-- PTB -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> PASSENGER TERMINANL BUILDING</b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ bantayan.profile_ptb }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 15px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (sq.m.)</th>
+                              <th>Airconditioning Unit</th>
+                              <th>Toilet Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ bantayan.ptb_dimension }}</td>
+                              <td>{{ bantayan.ptb_aircon }}</td>
+                              <td>{{ bantayan.ptb_toilet }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end PTB -->
+            </div>
+
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default bg-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+  <!-- jQuery -->
+  <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+  
+</html>

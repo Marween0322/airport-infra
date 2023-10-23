@@ -1,0 +1,177 @@
+{% extends "base2.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+TRAINING PROGRAMS Create Page
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">PDS</a></li>
+    <li class="breadcrumb-item active">TRAINING PROGRAMS Page</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Personal Information -->
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+          <div class="alert alert-success">
+            <strong><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></strong>
+          </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+<br>
+<form method="POST" class="post-form" action="/pds/learningCreate" enctype="multipart/form-data">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Training Record Form</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Title of Learning and Development Interventions/Training Programs</label>
+                  <input type="text" class="form-control" name="title" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Venue</label>
+                  <input type="text" class="form-control" name="venue" required "/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Conducted/ Sponsored By</label>
+                  <input type="text" class="form-control" name="conducted_by"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->              
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Inclusive Dates of Attendance From</label>
+                  <input type="date" class="form-control" name="date_from"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Inclusive Dates of Attendance To</label>
+                  <input type="date" class="form-control" name="date_to"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->              
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Type of Learning and Development</label>
+                  <select class="form-control" name="learning_type">
+                    <option>Supervisory</option>
+                    <option>Management</option>
+                    <option>Technical</option>
+                    <option>Others</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Classification</label>
+                  <select class="form-control" name="classification">
+                    <option>Local</option>
+                    <option>International</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->              
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Number of Hours</label>
+                  <input type="number" class="form-control" name="training_hours"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Course Fee</label>
+                  <input type="text" class="form-control" name="fee"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->              
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="file" name="file">
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Item -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">SAVE</button>  | 
+    <a href="/pds/personalinfo3" class="btn btn-danger">Back</a> 
+    </div>  
+  </div>
+</div>
+   <div class="card-footer">
+   </div>
+ </div>
+
+  <br><br><br>
+</form>  
+{% endblock %}

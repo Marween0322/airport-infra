@@ -1,0 +1,26 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: bretmichael13@gmail.com
+Date: Fri, 08 Oct 2021 07:52:48 -0000
+Message-ID: 
+ <163367956807.16976.10360349725493380166@DESKTOP-JMD6QKH.caap.gov.ph>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/reset/MQ/au7irz-df21a3c0cef3e7aa3b0303f1abcae33d/
+
+Your username, in case you’ve forgotten: bmarx13
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------

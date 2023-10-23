@@ -1,0 +1,199 @@
+{% extends "base_admin.html" %}
+{% load humanize %}
+
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+<!-- Page title goes here -->
+{% block header %}
+Create Bonus
+{% endblock %}
+
+
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Personnel</a></li>
+    <li class="breadcrumb-item active">Create Bonus</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Training Create Page -->
+  {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }} for {{ field.name}}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+<br>
+<form action="" method="POST" class="post-form">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Bonus Form</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>User ID (Ex. 123)</label>
+                  <input value="{{bonus.bonus.id }} " type="text" class="form-control" name="bonus" required maxlength="100" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Status </label>
+                  <select class="form-control" name="status">
+                    <option>ACTIVE</option>
+                    <option>INACTIVE</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Surname </label>
+                  <input type="text" class="form-control" name="surname" required maxlength="100" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>First Name </label>
+                  <input  type="text" class="form-control" name="first_name" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Office </label>
+                  <select class="form-control" name="office">
+                    <option>ELS</option>
+                    <option>OFSAM</option>
+                    <option>IAS</option>
+                    <option>ODG</option>
+                    <option>FD</option>
+                    <option>FSIS</option>
+                    <option>CSIS</option>
+                    <option>CATC</option>
+                    <option>ATS</option>
+                    <option>ANS</option>
+                    <option>ADMS</option>
+                    <option>ADMIN</option>
+                    <option>AANSOO</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-4 ">
+                <div class="form-group">
+                  <label>Mid Year Bonus</label>
+                  <input value="0.00" type="text" class="form-control" name="mid_year_bonus" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4 ">
+                <div class="form-group">
+                  <label>Year end Bonus</label>
+                  <input value="0.00" type="text" class="form-control" name="year_end_bonus" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4 ">
+                <div class="form-group">
+                  <label>Cash Gift</label>
+                  <input value="0.00" type="text" class="form-control" name="cash_gift" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-4 ">
+                <div class="form-group">
+                  <label>Tax</label>
+                  <input value="0.00" type="text" class="form-control" name="tax" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4 ">
+                <div class="form-group">
+                  <label>PATCOMC</label>
+                  <input value="0.00" type="text" class="form-control" name="patcomc" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4 ">
+                <div class="form-group">
+                  <label>Liquidation</label>
+                  <input value="0.00" type="text" class="form-control" name="liquidation" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Remarks </label>
+                  <textarea class="form-control" name="remarks" rows="6"></textarea>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->          
+
+
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Item -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">SAVE</button>  
+    </div>  
+  </div>
+</div>
+   <div class="card-footer">
+   </div>
+ </div>
+<!-- End family Background -->
+
+  <br><br><br>
+</form>  
+{% endblock %}

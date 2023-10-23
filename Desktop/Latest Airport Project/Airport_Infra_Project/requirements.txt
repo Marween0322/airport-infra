@@ -1,0 +1,7 @@
+pip install django-bootstrap-form
+pip install django-wkhtmltopdf
+pip install sendmail
+pip install qrcode
+pip install Pillow
+pip install xlwt
+pip install xhtml2pdf

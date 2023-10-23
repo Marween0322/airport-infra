@@ -1,0 +1,320 @@
+{% extends "base_project.html" %}
+ 
+{% block header %}Airport Profile List{% endblock header %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Airport Profile</a></li>
+    <li class="breadcrumb-item active">
+        Airport List
+    </li>
+</ol>
+{% endblock breadcrumb %}
+
+
+{% block content %}
+<form method="POST" action="/dashboard/aerodrome_search_dashboard">
+    {% csrf_token %}  
+      <div class="row">
+        <!-- Aerodrome Search -->    
+        <div class="col-3">
+            <div class="form-group">
+              <label>Area Center:</label>
+              <select name="search_area" class="select2 form-control form-control-lg" style="width: 100%;">
+                <option value="">-- Area Center --</option>
+                <option>Area Center 1</option>
+                <option>Area Center 2</option>
+                <option>Area Center 3</option>
+                <option>Area Center 4</option>
+                <option>Area Center 5</option>
+                <option>Area Center 6</option>
+                <option>Area Center 7</option>
+                <option>Area Center 8</option>
+                <option>Area Center 9</option>
+                <option>Area Center 10</option>
+                <option>Area Center 11</option>
+                <option>Area Center 12</option>
+              </select>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-7">
+            <div class="form-group">               
+              <label>Airport Name:</label>
+              <div class="input-group input-group-lg"> 
+                <input type="search" name="search_airport" class="form-control form-control-lg" placeholder="Type Airport name here" >
+              <div class="input-group-append">
+                  <button type="submit" class="btn btn-lg btn-default">
+                      <i class="fa fa-search"></i>
+                  </button>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->          
+        </div>
+      </div>
+    </form>
+<!-- /.row -->  
+<hr><br>  
+              <div class="row">
+                <!-- Image and Ribbon -->
+                <div class="col-sm-4">
+                  <div class="position-relative">
+                    <img src="/media/{{ data.profile_photo }}" alt="data" class="img-fluid">
+                      <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-primary text-lg">
+                         
+                          {{ data.category }}
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <!--end Image and Ribbon -->
+
+                <!-- Airport Detail --> 
+                <div class="col-sm-8" style="font-size: 24px;">
+                  <div class="row">
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa fa-plane"></i></span>
+
+                            <div class="info-box-content" >
+                              <span class="info-box-text">Critical Aircraft</span>
+                              <span class="info-box-number">{{ data.crit_aircraft }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa fa-globe"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">ICAO Code</span>
+                              <span class="info-box-number">{{ data.icao_code }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                  </div>  
+
+                  <div class="row">
+                        <div class=" col-sm-6 col-12" >
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fa-solid fa-building-circle-check"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Designation</span>
+                              <span class="info-box-number">{{ data.designation }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class=" col-sm-6 col-12">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fas fa-plane-departure"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Nearest Equivalent or Higher Category Airport</span>
+                              <span class="info-box-number">{{ data.nehca }}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                  </div>  
+
+                <a href="/dashboard/airportproject/{{ data.name }}" class="btn btn-primary" target="_parent"> <i class="fa fa-folder"></i> View projects of {{ data.name }} Airport </a> &nbsp;&nbsp;&nbsp;<b>Updated by: &nbsp;</b> {{ data.edited_by }} - <b>Date updated:</b> {{ data.date_edited}}
+                </div>                
+                <!--end Airport Detail -->
+              </div>
+
+              <!-- Information -->
+                <div class="col-sm-12 mt-4">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> Airport Details </b> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 24px;">
+                          <thead>
+                            <tr>
+                              <th>Airport Manager/Contact</th>
+                              <th>Operation Hours</th>
+                              <th>Number of Firetruck</th>
+                              <th>Night Rating</th>
+                              <th>Commercial Flight</th>                              
+                              <th>Category</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ data.airport_contact }} </td>
+                              <td>{{ data.operation_hours }}</td>
+                              <td>{{ data.firetruck }}</td>
+                              <td>{{ data.night_rating }}</td>                              
+                              <td>{{ data.com_flight|title }}</td>                                                     
+                              <td><strong> {{ data.category }}</strong></td>
+                            </tr>
+                          </tbody>
+                           <thead>
+                            <tr>
+                              <th colspan="2">Navigational aids</th>
+                              <th colspan="4">Notes/Remarks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td colspan="2">{{ data.nav_iads }} </td>
+                              <td colspan="4">{{ data.note }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Information -->
+
+                <!-- runway -->
+                <div class="col-sm-12 mt-4" >
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> RUNWAY </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ data.profile_runway }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2" >
+                        <table class="table" style="font-size: 24px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension</th>
+                              <th>Surface</th>
+                              <th>Obstacles along approach/ departure surface published on AIP</th>
+                              <th>Remarks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ data.runway_dimension }} </td>
+                              <td>{{ data.runway_surface }}</td>
+                              <td>{{ data.runway_obstacles }}</td>
+                              <td>{{ data.runway_remarks }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end runway -->
+
+                <!-- Taxiway -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> TAXIWAY </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ data.profile_runway }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 24px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (Length x Width)</th>
+                              <th>Surface</th>
+                              <th>No. Of Taxiway/s</th>
+                              <th>Description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ data.taxiway_dimension }}</td>
+                              <td>{{ data.taxiway_surface }}</td>
+                              <td>{{ data.taxiway_num }}</td>
+                              <td>{{ data.taxiway_description }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Taxiway -->
+
+                <!-- Apron -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> APRON </b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ data.profile_apron }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 24px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (Width x Depth)</th>
+                              <th>Surface</th>
+                              <th>No. Of Parking Bay (Stands)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ data.apron_dimension }}</td>
+                              <td>{{ data.apron_surface }}</td>
+                              <td>{{ data.apron_num }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end Apron -->
+
+                <!-- PTB -->
+                
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: #1F618D; color: #fff;">
+                        <h3 class="card-title"> <b> PASSENGER TERMINANL BUILDING</b> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/media/{{ data.profile_ptb }}" style="color: #fff;"target="_blank"> <i class="fa fa-picture-o"></i> view</a> </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body mt-2">
+                        <table class="table" style="font-size: 24px;">
+                          <thead>
+                            <tr>
+                              <th>Dimension (sq.m.)</th>
+                              <th>Airconditioning Unit</th>
+                              <th>Toilet Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ data.ptb_dimension }}</td>
+                              <td>{{ data.ptb_aircon }}</td>
+                              <td>{{ data.ptb_toilet }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                <!--end PTB -->
+{% endblock content %}   

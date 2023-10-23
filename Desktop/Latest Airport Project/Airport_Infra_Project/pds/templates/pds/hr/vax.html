@@ -1,0 +1,79 @@
+{% extends "base_admin.html" %}
+
+<!-- Page title goes here -->
+{% block header %}
+Vaccine Page
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Vaccine</a></li>
+    <li class="breadcrumb-item active">List</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+            <form class="form-inline" method="POST" class="post-form" action="/pds/vax_show">
+            {% csrf_token %}
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" name="search" type="search" placeholder="Enter Last Name" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+
+<table class="table table-striped">
+            <thead>
+                <tr>
+                    <th colspan="5">First Dose</th>
+                    <th colspan="4">Second Dose</th>
+                    <th colspan="4">Booster</th>
+                </tr>
+                <tr class="info">
+                    <th>Vaccine Manufacturer</th>
+                    <th>Name</th>    
+                    <th>Date of Vaccine</th>
+                    <th>Place of Vaccine</th>
+                    <th>Uploaded Image</th>
+                    <th>Vaccine Manufacturer</th>
+                    <th>Date of Vaccine</th>
+                    <th>Place of Vaccine</th>
+                    <th>Uploaded Image</th>
+                    <th>Vaccine Manufacturer</th>
+                    <th>Date of Vaccine</th>
+                    <th>Place of Vaccine</th>
+                    <th>Uploaded Image</th>
+                </tr>
+            </thead>
+
+        {% if vaccine %}
+        {% for vac in vaccine %}
+            <tbody>
+                <tr>
+                    <td> {{ vac.name1 }} </td>
+                    <td> {{ vac.vax.first_name }} &nbsp;&nbsp; {{ vac.vax.last_name }} </td>
+                    <td> {{ vac.date1 }} </td>
+                    <td> {{ vac.place1 }} </td>
+                    <td><a href="media/{{ vac.file1 }}" target="_blank">{{ vac.file1 }}</a> </td>
+                    <td> {{ vac.name2 }} </td>
+                    <td> {{ vac.date2 }} </td>
+                    <td> {{ vac.place2 }} </td>
+                    <td><a href="media/{{ vac.file2 }}" target="_blank">{{ vac.file2 }}</a> </td>
+                    <td> {{ vac.name3 }} </td>
+                    <td> {{ vac.date3 }} </td>
+                    <td> {{ vac.place3 }} </td>
+                    <td><a href="media/{{ vac.file3 }}" target="_blank">{{ vac.file3 }}</a> </td>
+                </tr>
+            </tbody>
+                {% endfor %}
+        {% else %}
+            <p>No List</p>
+        {% endif %}
+        </table>
+
+{% endblock %}

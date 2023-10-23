@@ -1,0 +1,215 @@
+{% extends "base_admin2.html" %}
+{% load bootstrap %} 
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+Leave Credits
+{% endblock header %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">{{employee.surname|title}} , {{employee.first_name|title}} {{employee.middle_name|title}}</a></li>
+    <li class="breadcrumb-item active">
+        Leave
+    </li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+
+<a href="/pds/createLeave/{{employee.pk }}" class="btn btn-app" style="background-color:#058C07; color: white"><i class="fa fa-plus"></i> Leave</a>
+
+<a href="/pds/createSPFLeave/{{employee.pk }}" class="btn btn-app" style="background-color:#05598C; color: white"><i class="fa fa-plus"></i> SPL / FL</a>
+
+<table class="table table-bordered" style="background-color: white" width="30%">
+    <tr>
+        <td width="23%">VL: &nbsp;&nbsp;&nbsp; <b>{{vacation.vacation_balance}}</b></td>
+        <td width="23%">SL: &nbsp;&nbsp;&nbsp; <b>{{vacation.sick_balance}}</b></td>
+        <td width="23%">SPL:&nbsp;&nbsp;&nbsp; <b>{{spfleave.special}}</b></td>
+        <td width="23%">FL: &nbsp;&nbsp;&nbsp; <b>{{spfleave.force}}</b></td>
+        <td width="8%">
+        {% if spfleave.special %}
+            <a href="/pds/updateSPFLeave/{{employee.pk}}" ><i class="fas fa-edit" style="color: #E85D02 ">
+            </i>Update</a>
+        {% endif %}
+    </td>
+    </tr>
+</table>
+
+<table class="table table-bordered" style="background-color: white">
+
+    <thead>
+        <tr>
+            <td width="15%" colspan="1" align="center">
+                <img src="/static/media/photo/caap_logo.png" alt="caap_logo" width="100%">
+            </td>
+            <td colspan="7">
+                <h6 align="center"> REPUBLIC OF THE PHILIPPINES <br>
+                       Department of Transportation </h6>
+                <h4 align="center">Civil Aviation Authority of the Philippines</h4>
+                <h3 align="center"><strong>Employee's Leave Card</strong></h3>
+            </td>
+            <td width="35%" colspan="3" align="center">
+                <p>
+                    CERTIFIED CORRECT <br><br>
+
+                    <b>WILMAR JONES N. MONTERO</b> <br>
+                    Human Resource Management Officer III <br>
+                    {{ today }}
+                </p>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="6">Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{employee.surname|title}} , {{employee.first_name|title}} {{employee.middle_name|title}}</td>
+            <td colspan="5">Date of Original Appointment: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{employee.original_appointment}}</td>
+        </tr>
+        <tr>
+            <td colspan="6">Designation: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{employee.position_title}}</td>
+            <td colspan="5">Cause and Date of Separation: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{employee.mode_separate}}</td>
+        </tr>
+        <tr>
+            <td colspan="6"> </td>
+            <td colspan="5">from the Service: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% if employee.mode_separate %}
+             {{employee.separate_date}}</td>
+            {% else %}
+                
+            {% endif %}
+        </tr>
+
+        <tr>
+            <th rowspan="2">PERIOD</th>
+            <th rowspan="2">PARTICULARS</th>
+            <th colspan="4"><h5 align="center"><strong>VACATION LEAVE</strong></h5></th>
+            <th colspan="4"><h5 align="center"><strong>SICK LEAVE</strong></h5></th>
+            <th rowspan="2">REMARKS</th>
+        </tr>
+        <tr>
+            <th>EARNED</th>
+            <th>ABSENCE <br> UNDERTIME <br> W/ PAY</th>
+            <th>BALANCE</th>
+            <th>ABSENCE <br> UNDERTIME <br> W/O PAY</th>
+            <th>EARNED</th>
+            <th>ABSENCE <br> UNDERTIME <br> W/ PAY</th>
+            <th>BALANCE</th>
+            <th>ABSENCE <br> UNDERTIME <br> W/O PAY</th>
+        </tr>
+    </thead>  
+
+    <tbody>
+    {% if leaves %}
+        {% for leave in leaves %}
+        <tr>
+            <td>{% if leave.period == None %}    
+            {% else %}
+                {{ leave.period }}
+            {% endif %}
+            </td>
+            <td>
+            {% if leave.particulars == None %}    
+            {% else %}
+                {{ leave.particulars }}
+            {% endif %}
+            </td>
+            <td>
+            {% if leave.vacation_earned == 0.000 %}    
+            {% else %}
+                {{ leave.vacation_earned }}
+            {% endif %}
+            </td>
+            <td>
+            {% if leave.vacation_wpay == 0.000 %}    
+            {% else %}
+                {{ leave.vacation_wpay }}
+            {% endif %}
+            </td>
+            <td>
+            {% if leave.vacation_balance == 0.000 %}    
+            {% else %}
+                {{ leave.vacation_balance }}
+            {% endif %}
+            </td>
+            <td>
+            {% if leave.vacation_wopay == 0.000 %}    
+            {% else %}
+                {{ leave.vacation_wopay }}
+            {% endif %}
+            </td>
+            <td>
+            {% if leave.sick_earned == 0.000 %}    
+            {% else %}
+                {{ leave.sick_earned }}
+            {% endif %}
+            </td>
+            <td>
+            {% if leave.sick_wpay == 0.000 %}    
+            {% else %}
+                {{ leave.sick_wpay }}
+            {% endif %}
+            </td>
+            <td>
+            {% if leave.sick_balance == 0.000 %}    
+            {% else %}
+                {{ leave.sick_balance }}
+            {% endif %}
+            </td>
+            <td>
+            {% if leave.sick_wopay == 0.000 %}    
+            {% else %}
+                {{ leave.sick_wopay }}
+            {% endif %}
+            </td>
+            <td>{% if leave.remarks == None %}    
+            {% else %}
+                {{ leave.remarks }}
+            {% endif %}
+            </td>
+            <td> 
+                <!-- <a href="/pds/updateLeave/{{leave.pk}}"><i class="fas fa-edit" style="color: #E85D02 "></i></a>| -->
+                <a href="/pds/deleteLeave/{{leave.pk}}" onclick="return confirm('Are you sure you want to delete ');"><i class="fas fa-trash" style="color: #E7666A "></i></a> </td>
+        </tr>        
+        {% endfor %}
+        <tr>
+            <td colspan="11"><p align="center"> ****** Nothing Follows ****** </p></td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="11"><b style="color: red;">No Leave Credit Record</b></td>
+        </tr>
+    {% endif %}
+    </tbody>
+
+</table>
+
+{% endblock content %}
+
+{% block script %}
+{% if messages %}
+        {% for message in messages %}
+            <script>
+              $(function() {
+                var Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  showConfirmButton: false,
+                  timer: 9000
+                });
+
+                
+                $('.swalDefaultInfo').ready(function() {
+                  Toast.fire({
+                    icon: 'info',
+                    title: '{{message}}'
+                  })
+                });
+              });
+            </script>
+        {% endfor %}
+    
+    {% endif %}
+{% endblock script %}

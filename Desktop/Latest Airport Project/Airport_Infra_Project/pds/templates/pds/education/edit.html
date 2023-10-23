@@ -1,0 +1,147 @@
+{% extends "base2.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+EDUCATIONAL BACKGROUND Update Page
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">PDS</a></li>
+    <li class="breadcrumb-item active">EDUCATIONAL BACKGROUND Page</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Personal Information -->
+  {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+<br>
+<form method="POST" class="post-form" action="/pds/educationUpdate/{{educ.id}}">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">III.  EDUCATIONAL BACKGROUND</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Level</label>
+                    <select class="form-control" name="level"  required>
+                      <option value="{{ educ.level }}">{{ educ.level }}</option>
+                      <option>ELEMENTARY</option>
+                      <option>SECONDARY</option>
+                      <option>VOCATIONAL / TRADE COURSE</option>
+                      <option>COLLEGE</option>
+                      <option>GRADUATE STUDIES</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Name of School</label>
+                  <input type="text" class="form-control" name="school" required maxlength="100" value="{{ educ.school }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>BASIC EDUCATION/DEGREE/COURSE  </label>
+                  <input type="text" class="form-control" name="course" required maxlength="100" value="{{ educ.course }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              
+            </div>
+            <!-- /.row -->
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Period of Attendance From (ex. 1998)</label>
+                  <input type="text" class="form-control" name="date_from" value="{{ educ.date_from }}"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Period of Attendance To (ex. 2001)</label>
+                  <input type="text" class="form-control" name="date_to" value="{{ educ.date_to }}"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>HIGHEST LEVEL/UNITS EARNED  </label>
+                  <input type="text" class="form-control" name="units" required maxlength="100" value="{{ educ.units }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>YEAR GRADUATED       </label>
+                  <input type="text" class="form-control" name="grad_year" required maxlength="100" value="{{ educ.grad_year }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>SCHOLARSHIP/ ACADEMIC HONORS RECEIVED  </label>
+                  <input type="text" class="form-control" name="honors" required maxlength="100" value="{{ educ.honors }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              
+            </div>
+            <!-- /.row -->
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Childre information -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">Submit</button>   | 
+    <a href="/pds/personalinfo" class="btn btn-danger">Back</a>
+    </div>  
+  </div>
+</div>
+
+  <br><br><br>
+</form>  
+{% endblock %}

@@ -1,0 +1,1128 @@
+{% extends "base3.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="/pds">PDS</a></li> 
+    <li class="breadcrumb-item active">PAGE 4</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<a href="/pds/sheet4" class="btn btn-app" style="background-color:#059528; color: white"><i class="fa fa-print" aria-hidden="true"></i> Print View</a>
+<!-- VOLUNTARY -->
+    <div class="row" >
+      
+      {% if otherinfo %}
+         <a href="/pds/otherinfoEdit/{{otherinfo.pk}}" class="btn btn-primary btn-block"><h4><b><u>Click to Update Other Info</u></b></h4></a>
+      <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>34. Are you related by consanguinity or affinity to the appointing or recommending authority, or to the
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; chief of bureau or office or to the person who has immediate supervision over you in the Office, 
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bureau or Department where you will be apppointed,
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a. within the third degree?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b. within the fourth degree (for Local Government Unit - Career Employees)?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;"> 
+        <br>
+             <!-- within the third degree? -->
+            {% if  otherinfo.related_third == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}
+              <br>If YES, give details <br>
+              <input type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.related_detail_3}}" value="{{otherinfo.related_detail_3}}">
+              <!-- within the fourth degree? -->
+              <br>
+            {% if  otherinfo.related_fourth == "Yes"  %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}
+              <br>If YES, give details <br>
+              <input type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.related_detail_4}}" value="{{otherinfo.related_detail_4}}">
+        </div>
+        
+    </div>
+    
+    <div class="row" >
+      <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>35. a. Have you ever been found guilty of any administrative offense?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. Have you been criminally charged before any court?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;"> 
+        <!-- Have you ever been found guilty of any administrative offense? -->
+        {% if  otherinfo.admin_offense == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}
+              <br>If YES, give details<br>
+              <input type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.admin_offense_detail}}" value="{{otherinfo.admin_offense_detail}}">
+              <br>
+              <!-- Have you been criminally charged before any court? -->
+              {% if  otherinfo.crime == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}
+              <br>If YES, give details Date Filed and Status of Case/s: <br>
+              <input type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.crime_detail}}" value="{{otherinfo.crime_detail}}"><br><br>
+      </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>36. Have you ever been convicted of any crime or violation of any law, decree, ordinance or
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; regulation by any court or tribunal?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;">
+        <!-- Have you ever been convicted of any crime or violation of any law, decree, ordinance or regulation by any court or tribunal? -->
+        {% if  otherinfo.convic == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}
+              <br>If YES, give details <br>
+              <input type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.convic_detail}}" value="{{otherinfo.convic_detail}}">              
+      </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>37. Have you ever been separated from the service in any of the following modes: resignation,
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retirement, dropped from the rolls, dismissal, termination, end of term, finished contract or phased out
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (abolition) in the public or private sector?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;">
+        <!-- Have you ever been separated from the service -->
+        {% if  otherinfo.seperated == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}
+              <br>If YES, give details <br>
+              <input type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.seperated_detail}}" value="{{otherinfo.seperated_detail}}">  
+      </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>38. a. Have you ever been a candidate in a national or local election held within the last year (except
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Barangay election)?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. Have you resigned from the government service during the three (3)-month period before the
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;last election to promote/actively campaign for a national or local candidate?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;"> 
+         <!-- Have you ever been a candidate in a national or local election held within the last year -->
+              {% if  otherinfo.candidate == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}<br><br>
+              <input type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.candidate_detail}}" value="{{otherinfo.candidate_detail}}"> 
+              <br>
+
+              <!-- Have you resigned from the government service during the three (3)-month period  -->
+              {% if  otherinfo.resigned == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}<br><br>
+              <input type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.resigned_detail}}" value="{{otherinfo.resigned_detail}}"> 
+        </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>39. Have you acquired the status of an immigrant or permanent resident of another country?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;"> 
+        <!-- Have you acquired the status of an immigrant or permanent resident of another country? -->
+        {% if  otherinfo.immigrant == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}
+              <br>If YES, give details (Country) :<br>
+              <input type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.immigrant_detail}}" value="{{otherinfo.immigrant_detail}}"> 
+      </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>40. Pursuant to: (a) Indigenous People's Act (RA 8371); (b) Magna Carta for Disabled Persons (RA
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7277); and (c) Solo Parents Welfare Act of 2000 (RA 8972), please answer the following items:
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. Are you a member of any indigenous group?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. Are you a person with disability?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c. Are you a solo parent?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;"> 
+        <!-- Are you a member of any indigenous group? -->
+            {% if  otherinfo.indigenous == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}
+              <br>If YES, give details :<br>
+              <input type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.indigenous_detail}}" value="{{otherinfo.indigenous_detail}}"> 
+              <br>
+
+              <!-- Are you a person with disability? -->
+              {% if  otherinfo.disability == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}
+              <br>If YES, specify ID number :<br>
+              <input type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.disability_detail}}" value="{{otherinfo.disability_detail}}"> 
+              <br>
+
+              <!-- Are you a solo parent? -->
+              {% if  otherinfo.soloparent == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}
+              <br>If YES, specify ID number :<br>
+              <input type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.soloparent_detail}}" value="{{otherinfo.soloparent_detail}}"> <br><br>
+      </div>
+    </div>
+      {% else %}
+         <a href="/pds/otherinfoCreate" class="btn btn-success btn-block"><b>Update Other Info</b></a>
+         <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>34. Are you related by consanguinity or affinity to the appointing or recommending authority, or to the
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; chief of bureau or office or to the person who has immediate supervision over you in the Office, 
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bureau or Department where you will be apppointed,
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a. within the third degree?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b. within the fourth degree (for Local Government Unit - Career Employees)?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;"> 
+        <br>
+             <!-- within the third degree? -->
+            {% if  otherinfo.related_third == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" checked>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}<br><br>
+              <input disabled type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.related_detail_3}}" value="{{otherinfo.related_detail_3}}">
+              <!-- within the fourth degree? -->
+              <br>
+            {% if  otherinfo.related_fourth == "Yes"  %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}<br><br>
+              <input disabled type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.related_detail_4}}" value="{{otherinfo.related_detail_4}}">
+        </div>
+        
+    </div>
+    
+    <div class="row" >
+      <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>35. a. Have you ever been found guilty of any administrative offense?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. Have you been criminally charged before any court?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;"> 
+        <!-- Have you ever been found guilty of any administrative offense? -->
+        {% if  otherinfo.admin_offense == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}
+              <br>If YES, give detail <br>
+              <input disabled type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.admin_offense_detail}}" value="{{otherinfo.admin_offense_detail}}">
+              <br>
+              <!-- Have you been criminally charged before any court? -->
+              {% if  otherinfo.crime == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}
+              <br>If YES, give detail <br>
+              <input disabled type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.crime_detail}}" value="{{otherinfo.crime_detail}}"><br><br>
+      </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>36. Have you ever been convicted of any crime or violation of any law, decree, ordinance or
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; regulation by any court or tribunal?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;">
+        <!-- Have you ever been convicted of any crime or violation of any law, decree, ordinance or regulation by any court or tribunal? -->
+        {% if  otherinfo.convic == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}<br><br>
+              <input disabled type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.convic_detail}}" value="{{otherinfo.convic_detail}}">              
+      </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>37. Have you ever been separated from the service in any of the following modes: resignation,
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retirement, dropped from the rolls, dismissal, termination, end of term, finished contract or phased out
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (abolition) in the public or private sector?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;">
+        <!-- Have you ever been separated from the service -->
+        {% if  otherinfo.seperated == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}<br><br>
+              <input disabled type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.seperated_detail}}" value="{{otherinfo.seperated_detail}}">  
+      </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>38. a. Have you ever been a candidate in a national or local election held within the last year (except
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Barangay election)?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. Have you resigned from the government service during the three (3)-month period before the
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;last election to promote/actively campaign for a national or local candidate?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;"> 
+         <!-- Have you ever been a candidate in a national or local election held within the last year -->
+              {% if  otherinfo.candidate == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}<br><br>
+              <input disabled type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.candidate_detail}}" value="{{otherinfo.candidate_detail}}"> 
+              <br>
+
+              <!-- Have you resigned from the government service during the three (3)-month period  -->
+              {% if  otherinfo.resigned == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}<br><br>
+              <input disabled type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.resigned_detail}}" value="{{otherinfo.resigned_detail}}"> 
+        </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>39. Have you acquired the status of an immigrant or permanent resident of another country?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;"> 
+        <!-- Have you acquired the status of an immigrant or permanent resident of another country? -->
+        {% if  otherinfo.immigrant == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}<br><br>
+              <input disabled type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.immigrant_detail}}" value="{{otherinfo.immigrant_detail}}"> 
+      </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-7" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 18px;">
+        <p>40. Pursuant to: (a) Indigenous People's Act (RA 8371); (b) Magna Carta for Disabled Persons (RA
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7277); and (c) Solo Parents Welfare Act of 2000 (RA 8972), please answer the following items:
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. Are you a member of any indigenous group?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. Are you a person with disability?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c. Are you a solo parent?
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+        </p>
+      <div class="col-5" style="border-style: solid ;border-width: 1px;"> 
+        <!-- Are you a member of any indigenous group? -->
+            {% if  otherinfo.indigenous == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}<br><br>
+              <input disabled type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.indigenous_detail}}" value="{{otherinfo.indigenous_detail}}"> 
+              <br>
+
+              <!-- Are you a person with disability? -->
+              {% if  otherinfo.disability == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}<br>If YES, please specify ID No.:<br>
+              <input disabled type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.disability_detail}}" value="{{otherinfo.disability_detail}}"> 
+              <br>
+
+              <!-- Are you a solo parent? -->
+              {% if  otherinfo.soloparent == "Yes" %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% else %}
+              <div class="form-check" style="display: inline-block;">
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">Yes </label>
+                </div>
+                <div class="form-check" style="display: inline-block;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input disabled type="checkbox" class="form-check-input"  style="width:35px;height:35px;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="form-check-label" for="check2" style="font-size: 25px;">No </label>
+                </div>
+              {% endif %}<br>If YES, please specify ID No.:<br>
+              <input disabled type="text" style="border: 0; outline: 0; border-bottom: 2px solid darkblue; font-size: 1.4rem; color: #black;" name="{{otherinfo.soloparent_detail}}" value="{{otherinfo.soloparent_detail}}"> <br><br>
+      </div>
+    </div>
+      {% endif %}
+
+    <div class="row" >
+      <div class="col-8" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 16px;">
+        41. REFERENCES <span style="color:red">(Person not related by consanguinity or affinity to applicant /appointee)</span>
+      </div>
+
+      <div class="col-4" style="border-style: solid ;border-width: 1px;border-bottom: none;">   </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-8" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;  font-size: 20px;">
+        <div class="row">
+          <a href="/pds/refferencesCreate" class="btn btn-success btn-block"><h4><b><u>Click to Add</u></b></h4></a>
+          <table width="100%" >
+            <tr>
+              <th style="border: 1px solid black;text-align: center;" width="45%">NAME</th>
+              <th style="border: 1px solid black;text-align: center;" width="35%">ADDRESS</th>
+              <th style="border: 1px solid black;text-align: center;" width="12%">TEL. NO. </th>
+              <th style="border: 1px solid black;text-align: center;" width="8%">ACTION</th>
+            </tr>
+            {% if refer_count == 1 %}
+              {% for refer in refers %}
+            <tr>
+              <td style="border: 1px solid black;text-align: center;"> {{ refer.name }} </td>
+              <td style="border: 1px solid black;text-align: center;">{{ refer.address }}</td>
+              <td style="border: 1px solid black;text-align: center;">{{ refer.phone }}</td>
+              <td style="border: 1px solid black;text-align: center;">
+                <a href="/pds/refferencesEdit/{{refer.pk}}" ><i class="fas fa-edit" style="color: #e68a00"></i></a> | <a href="/pds/refferencesDelete/{{refer.pk}}" onclick="return confirm('Are you sure you want to delete {{refer.name}}');"><i class="fas fa-trash" style="color: #cc0000"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid black;text-align: center;"></td>
+              <td style="border: 1px solid black;text-align: center;"></td>
+              <td style="border: 1px solid black;text-align: center;">_ _-_ _ _</td>
+              <td style="border: 1px solid black;text-align: center;"></td>
+            </tr>
+
+            <tr>
+              <td style="border: 1px solid black;text-align: center;"></td>
+              <td style="border: 1px solid black;text-align: center;"></td>
+              <td style="border: 1px solid black;text-align: center;">_ _-_ _ _</td>
+              <td style="border: 1px solid black;text-align: center;"></td>
+            </tr>
+              {% endfor %}
+
+              {% elif refer_count == 2 %}
+                   {% for refer in refers %}
+                    <tr>
+                      <td style="border: 1px solid black;text-align: center;"> {{ refer.name }} </td>
+                      <td style="border: 1px solid black;text-align: center;">{{ refer.address }}</td>
+                      <td style="border: 1px solid black;text-align: center;">{{ refer.phone }}</td>
+                      <td style="border: 1px solid black;text-align: center;">
+                        <a href="/pds/refferencesEdit/{{refer.pk}}" ><i class="fas fa-edit" style="color: #e68a00"></i></a> | <a href="/pds/refferencesDelete/{{refer.pk}}" onclick="return confirm('Are you sure you want to delete {{refer.name}}');"><i class="fas fa-trash" style="color: #cc0000"></i></a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+
+                    <tr>
+                      <td style="border: 1px solid black;text-align: center;"></td>
+                      <td style="border: 1px solid black;text-align: center;"></td>
+                      <td style="border: 1px solid black;text-align: center;">_ _-_ _ _</td>
+                      <td style="border: 1px solid black;text-align: center;"></td>
+                    </tr>
+
+                {% elif refer_count >= 3 %}
+                      {% for refer in refers %}
+                        <tr>
+                          <td style="border: 1px solid black;text-align: center;"> {{ refer.name }} </td>
+                          <td style="border: 1px solid black;text-align: center;">{{ refer.address }}</td>
+                          <td style="border: 1px solid black;text-align: center;">{{ refer.phone }}</td>
+                          <td style="border: 1px solid black;text-align: center;">
+                            <a href="/pds/refferencesEdit/{{refer.pk}}" ><i class="fas fa-edit" style="color: #e68a00"></i></a> | <a href="/pds/refferencesDelete/{{refer.pk}}" onclick="return confirm('Are you sure you want to delete {{refer.name}}');"><i class="fas fa-trash" style="color: #cc0000"></i></a>
+                          </td>
+                        </tr>
+                      {% endfor %}
+              {% else %}
+               <tr>
+              <td style="border: 1px solid black;text-align: center;">N/A</td>
+              <td style="border: 1px solid black;text-align: center;">N/A</td>
+              <td style="border: 1px solid black;text-align: center;">N/A</td>
+              <td style="border: 1px solid black;text-align: center;"></td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid black;text-align: center;"></td>
+              <td style="border: 1px solid black;text-align: center;"></td>
+              <td style="border: 1px solid black;text-align: center;">_ _-_ _ _</td>
+              <td style="border: 1px solid black;text-align: center;"></td>
+            </tr>
+
+            <tr>
+              <td style="border: 1px solid black;text-align: center;"></td>
+              <td style="border: 1px solid black;text-align: center;"></td>
+              <td style="border: 1px solid black;text-align: center;">_ _-_ _ _</td>
+              <td style="border: 1px solid black;text-align: center;"></td>
+            </tr>
+            {% endif %}
+          </table>
+        </div>
+
+        <div class="row">
+         <p>&nbsp;&nbsp;&nbsp; 42. I declare under oath that I have personally accomplished this Personal Data Sheet which is a true, correct and
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; complete statement pursuant to the provisions of pertinent laws, rules and regulations of the Republic of the
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Philippines. I authorize the agency head/authorized representative to verify/validate the contents stated herein.    
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I  agree that any misrepresentation made in this document and its attachments shall cause the filing of
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; administrative/criminal case/s against me.
+          </p>
+        </div>
+      </div>
+      <div class="col-4" style="border-style: solid ;border-width: 1px;border-top: none;border-bottom: none;padding-left: 120px">   
+          <table align="center" width="70%" style="border: 1px solid black;text-align: center;display: inline-table">
+              <tr>
+                <!-- <td><br>
+                  ID picture taken within <br>
+                  the last  6 monthsbr <br>
+                  4.5 cm. X 3.5 cm <br>
+                  (passport size)<br><br>
+
+
+                  Computer generated <br>
+                  or photocopied picture <br>
+                  is not acceptable <br><br><br><br>
+                </td> -->
+                <td>
+                   <a href="photoUpload/{{ pds.pk }} " class="btn btn-primary btn-block"><h4><b><u>Upload Photo</u></b></h4></a>
+                   <img src="./media/{{ request.user.pds_info.photo}}"  alt="User Image" width="240px">
+                </td>
+              </tr>
+              
+              <tr style="background-color:#E6E7E6" align="center">
+                <td>
+                 Photo
+                </td>
+              </tr>      
+            </table>
+      </div>
+    </div>
+    <br><br>
+    <div class="row" >
+      <div class="col-9" style="border-style: solid ;border-width: 1px;  font-size: 16px;border-right: none;border-top: none;padding: 10px;padding-left: 20px">
+
+            <table width="48%" style="border: 1px solid black;text-align: center;display: inline-table;">
+              <tr style="background-color:#E6E7E6;" align="left">
+                <td>Government Issued ID (i.e.Passport, GSIS, SSS, PRC, Driver's License, etc.)
+                  <br>PLEASE INDICATE ID Number and Date of Issuance <br><br></td>
+              </tr>
+              <tr align="left" style="border-style: solid ;border-width: 1px;">
+                <td>
+                  Government Issued ID: 
+                </td>
+              </tr>
+              <tr align="left" >
+                <td>
+                  ID/License/Passport No.:
+                </td>
+              </tr>
+              <tr align="left"style="border-style: solid ;border-width: 1px;">
+                <td>
+                  Date/Place of Issuance:
+                </td>
+              </tr>      
+            </table>
+
+            <table width="48%" style="border: 1px solid black;text-align: center;display: inline-table">
+              <tr>
+                <td>
+                  <br>
+                  <br>
+                  <br><br>
+              </tr>
+              
+              <tr style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;" align="center">
+                <td>
+                  Signature (Sign inside the box)
+                </td>
+              </tr>
+              <tr align="center">
+                <td>
+                 <br>
+                </td>
+              </tr>
+              <tr style="background-color:#E6E7E6;" align="center">
+                <td>
+                 Date Accomplished
+                </td>
+              </tr>      
+            </table>
+      </div>
+
+      <div class="col-3" style="border-style: solid ;border-width: 1px;border-top: none;border-left: none;padding-left: 10px"> 
+          <table align="center" width="80%" style="border: 1px solid black;text-align: center;display: inline-table">
+              <tr>
+                <td>
+                  <br>
+                  <br>
+                  <br><br>
+                  <br><br>
+              </tr>
+              
+              <tr style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;" align="center">
+                <td>
+                 Right Thumbmark
+                </td>
+              </tr>      
+            </table>
+      </div>
+    </div>
+
+    <div class="row" >
+      <div class="col-12" style="border-style: solid ;border-width: 1px;  font-size: 16px;" align="center">
+        <br>
+        SUBSCRIBED AND SWORN to before me this &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ______________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, affiant exhibiting his/her validly issued government ID as indicated above. <br><br>
+
+          <table align="center" width="40%" style="border: 1px solid black;text-align: center;display: inline-table">
+              <tr>
+                <td><br>
+                  <br><br><br><br><br><br><br>
+
+              </tr>
+              
+              <tr style="background-color:#E6E7E6;border-style: solid ;border-width: 1px; align="center">
+                <td>
+                 Person Administering Oath
+                </td>
+              </tr>      
+            </table>
+            <br><br>
+      </div>
+    </div>
+
+    <div class="row" >
+      <div class="col"><p align="right"><br> CS FORM 212 (Revised 2017),  <b>Page 4 of 4</b></p></div>
+    </div>
+{% endblock %}

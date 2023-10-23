@@ -1,0 +1,856 @@
+{% extends "base.html" %}
+{% load humanize %}
+ 
+<!-- Page title goes here -->
+{% block header %}
+Account Page
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active">Account Profile</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                       src="media/{{ request.user.pds_info.photo}}"
+                       alt="User profile picture"> <a href="photoUpload/{{ pds.pk }} "><i class="fa-solid fa-pen-to-square"></i></a>
+                </div>
+
+                <h3 class="profile-username text-center">{{ pds.surname }}, {{ pds.first_name }} {{ pds.middlename }} 
+                {% if  pds.ext_name == "None" %}
+                {% else %}
+                {{ pds.ext_name}}
+                {% endif %}
+              </h3> 
+
+                <p class="text-muted text-center">Username : {{ request.user }}</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>Date of Birth</b> : {{ pds.birth_date }}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Place of Birth</b> : {{ pds.birth_place }}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Citizenship</b> : {{ pds.citizenship }}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Citizenship Detail</b> : 
+                    {% if  pds.citizen_detail == "None" %}
+                    {% else %}
+                    {{ pds.citizen_detail }}
+                    {% endif %}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Sex</b> : {{ pds.sex }}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Civil Status</b>  : {{ pds.civil_status }}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Height</b> : {{ pds.height }}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Weight</b> : {{ pds.weight }}
+                  </li>
+                  <li class="list-group-item">
+                    <b>Blood Type</b>  : {{ pds.blood_type }}
+                  </li>
+                </ul>
+                {% if pds.id %}
+				   <a href="/pds/infoEdit/{{pds.pk}}" class="btn btn-primary btn-block"><b>Edit</b></a>
+				  {% else %}
+				  
+				{% endif %}  
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- About Me Box -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Government ID</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <strong><i class="fas fa-id-card mr-1"></i> GSIS ID No.</strong>
+
+                <p class="text-muted">{{ pds.gsis }}</p>
+
+                <hr>
+
+                <strong><i class="far fa-id-card mr-1"></i> Philhealth No.</strong>
+
+                <p class="text-muted">{{ pds.philhealth }}</p>
+
+                <hr>
+
+                <strong><i class="fas fa-id-card mr-1"></i> SSS No.</strong>
+
+                <p class="text-muted">{{ pds.sss }}</p>
+
+                <hr>
+
+                <strong><i class="far fa-id-card mr-1"></i> PAG-IBIG ID</strong>
+
+                <p class="text-muted">{{ pds.pagibig }}</p>
+
+                <hr>
+
+                <strong><i class="fas fa-id-card mr-1"></i> TIN</strong>
+
+                <p class="text-muted">{{ pds.tin }}</p>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link active" href="#address" data-toggle="tab">Address</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#family" data-toggle="tab">Family Background</a></li>
+                  {% if pds.id %}
+				          <li class="nav-item"><a class="nav-link" href="#children" data-toggle="tab">Children</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#education" data-toggle="tab">Education</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#eligibility" data-toggle="tab">Eligibility</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#experience" data-toggle="tab">Experience</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#voluntary" data-toggle="tab">Voluntary</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#learning" data-toggle="tab">Learning</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#otherinfo" data-toggle="tab">Other Info</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#reffer" data-toggle="tab">References</a></li>
+				  {% else %}
+				  
+				  {% endif %}    
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="active tab-pane" id="address">
+                    <!-- Residential Address -->
+                    <div class="post">
+                      <div class="user-block">
+                      	<br><br>
+                      	<h4>Residential Address</h4>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Street Number, Name</b> : {{ pds.res_numstreet }} <br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Region</b> : {{ pds.res_region }} <br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Barangay</b> : {{ pds.res_brgy }} <br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>City</b> : {{ pds.res_city }} <br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Province</b> : {{ pds.res_province }} <br><br> 
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ZIP Code</b> : {{ pds.res_zip }} <br><br>
+                        <br><br><br>
+                      </div>
+                    </div>
+                    <!-- /.res address -->
+
+
+                    <!-- Permanent Address -->
+                    <div class="post">
+                      <div class="user-block">
+                        <h4>Permanent Address</h4>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Street Number, Name</b> : {{ pds.perma_numstreet }} <br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Barangay</b> : {{ pds.perma_brgy }} <br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>City</b> : {{ pds.perma_city }} <br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Province</b> : {{ pds.perma_province }} <br><br> 
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ZIP Code</b> : {{ pds.perma_zip }} <br><br>
+                        <br><br><br>
+
+                      </div>
+                    </div>
+                    <!-- /.per Address -->
+                  </div>
+                  <!-- /.tab-pane -->
+
+
+                  <div class="tab-pane" id="family">
+                   <!-- Spouse -->
+                    <div class="post">
+                      <div class="user-block">
+                      	<br><br>
+                      	<h4>Spouse Informaion</h4>
+                      	<br>
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Surname</b> : {{ pds.spouse_surname }} <br><br>
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>First Name</b> : {{ pds.spouse_name }} <br><br>
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Middle Name</b> : {{ pds.spouse_middle }} <br><br>
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Extension Name</b> : {{ pds.spouse_ext }} <br><br> 
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Occupation</b> : {{ pds.spouse_occupation }} <br><br>
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Employer Name</b> : {{ pds.emb_biz }} <br><br>
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Employer Address</b> : {{ pds.emb_biz_add }} <br><br> 
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Telephone Number</b> : {{ pds.phone }} <br><br>
+                      	<br><br><br>
+                      </div>
+                    </div>
+                    <!-- /spouse -->
+
+
+                    <!-- Father  -->
+                    <div class="post">
+                      <div class="user-block">
+                      	<h4>Father Information</h4>
+                      	<br>
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Surname</b> : {{ pds.dad_surname }} <br><br>
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>First Name</b> : {{ pds.dad_name }} <br><br>
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Middle Name</b> : {{ pds.dad_middle }} <br><br>
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Extension Name</b> : {{ pds.dad_ext }} <br><br> 
+                      	<br><br><br>
+                      </div>
+                    </div>
+                    <!-- /.father -->
+
+                    <!-- Mother -->
+                    <div class="post">
+                      <div class="user-block">
+                      	<h4>Mother Information</h4>
+                      	<br>
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Surname</b> : {{ pds.mom_surname }} <br><br>
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>First Name</b> : {{ pds.mom_name }} <br><br>
+                      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Middle Name</b> : {{ pds.mom_middle }} <br><br>
+                      	<br><br><br>
+                      </div>
+                    </div>
+                    <!-- /.mother -->
+
+                  </div>
+                  <!-- /.tab-pane -->
+
+<!-- Children -->
+                  <div class="tab-pane" id="children">
+                   <!-- children -->
+                    <div class="post">
+                      <div class="user-block">
+                      	<br><br>
+                      	<h4>Children</h4>
+                      	<br>
+                      	{% if pds.id %}
+				            <a href="/pds/childrenCreate" class="btn btn-app bg-success">
+			                  <i class="fas fa-child"></i> Add
+			                </a>
+				        {% else %}
+				           
+				        {% endif %}                      	
+                      	<br><br> 
+                      	<table class="table table-bordered">
+                      		<thead>
+                      			<tr>
+                      				<th>Full Name</th>
+                      				<th>Date of Birth</th>
+                              <th>action</th>
+                      			</tr>
+                      		</thead>
+                      		{% if children %}
+        					{% for child in children %}
+                      		<tbody>
+                      			<tr>
+                      				<td> {{ child.name }} </td>
+                      				<td> {{ child.birth_date }} </td>
+                              <td><a href="/pds/childEdit/{{child.pk}}"><i class="fas fa-edit"></i></a>
+                                | <a href="/pds/childDelete/{{child.pk}}" onclick="return confirm('Are you sure you want to delete {{child.name}}');"><i class="fas fa-trash"></i></a>
+                              </td>
+                      			</tr>
+                      		</tbody>
+                      		{% endfor %}
+                      		{% else %}
+            					<p>No Children</p>
+        					{% endif %}
+                      	</table>
+                      	<br><br><br>
+                      </div>
+                    </div>
+                    <!-- /children -->
+                  </div>
+                  <!-- /.tab-pane -->
+<!-- Education -->
+
+                <div class="tab-pane" id="education">
+                   <!-- children -->
+                    <div class="post">
+                      <div class="user-block">
+                        <br><br>
+                        <h4>Education</h4>
+                        <br>
+                        {% if pds.id %}
+                    <a href="/pds/educationCreate" class="btn btn-app bg-success">
+                        <i class="fas fa-school"></i> Add
+                      </a>
+                {% else %}
+                   
+                {% endif %}                       
+                        <br><br>
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th rowspan="2" width="20%">Level</th>
+                              <th rowspan="2" width="20%">Name of School</th>
+                              <th rowspan="2" width="20%">Basic Education/Degree/Course</th>
+                              <th colspan="2" width="16%">Period of Attendance</th>
+                              <th rowspan="2" width="8%">Highest Level/Units Earned</th>
+                              <th rowspan="2" width="8%">Year Graduated</th>
+                              <th rowspan="2" width="8%">Scholarship/Academic Honors Recieve</th>
+                              <th rowspan="2">Action</th>
+                            </tr>
+                            <tr>
+                              <th width="8%">From</th>
+                              <th width="8%">To</th>
+                            </tr>
+                          </thead>
+                          {% if education %}
+                  {% for edu in education %}
+                          <tbody>
+                            <tr>
+                              <td> {{ edu.level }} </td>
+                              <td> {{ edu.school }} </td>
+                              <td> {{ edu.course }} </td>
+                              <td> {{ edu.date_from }} </td>
+                              <td> {{ edu.date_to }} </td>
+                              <td> {{ edu.units }} </td>
+                              <td> {{ edu.grad_year }} </td>
+                              <td> {{ edu.honors }} </td>
+                              <td><a href="/pds/educationEdit/{{edu.id}}" ><i class="fas fa-edit"></i></a>
+                                | <a href="/pds/educationDelete/{{edu.pk}}" onclick="return confirm('Are you sure you want to delete {{edu.school}}');"><i class="fas fa-trash"></i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          {% endfor %}
+                          {% else %}
+                      <p>No Education</p>
+                  {% endif %}
+                        </table>
+                        <br><br><br>
+                      </div>
+                    </div>
+                    <!-- /children -->
+                  </div>
+                  <!-- /.tab-pane -->
+
+<!-- Eligibility -->
+
+                    <div class="tab-pane" id="eligibility">
+                   <!-- children -->
+                    <div class="post">
+                      <div class="user-block">
+                        <br><br>
+                        <h4>Eligibility</h4>
+                        <br>
+                        {% if pds.id %}
+                    <a href="/pds/eligibilityCreate" class="btn btn-app bg-success">
+                        <i class="fas fa-id-card"></i> Add
+                      </a>
+                {% else %}
+                   
+                {% endif %}                       
+                        <br><br>
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th rowspan="2">CAREER SERVICE/ RA 1080 (BOARD/ BAR) UNDER <br>SPECIAL LAWS/ CES/ CSEE <br>
+                              BARANGAY ELIGIBILITY / DRIVER'S LICENSE</th>
+                              <th rowspan="2">RATING <br>  
+                                (If Applicable)</th>
+                                <th rowspan="2"width="15%">DATE OF EXAMINATION / CONFERMENT</th>
+                                <th rowspan="2" width="20%">PLACE OF EXAMINATION / CONFERMENT</th>
+                                <th colspan="2">LICENSE (if applicable)</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                              <th width="10%">NUMBER</th>
+                              <th width="10%">Date of
+                                Validity</th>
+                            </tr>
+                          </thead>
+                          {% if eligibility %}
+                  {% for eligible in eligibility %}
+                          <tbody>
+                            <tr>
+                              <td> {{ eligible.eligibility }} </td>
+                              <td> {{ eligible.rating }} </td>
+                              <td>  {{ eligible.exam_date }} </td>
+                              <td>  {{ eligible.place }} </td>
+                              <td>  {{ eligible.lic_number }} </td>
+                              <td>  {{ eligible.validity }} </td>
+                              <td><a href="/pds/eligibilityEdit/{{eligible.pk}}"><i class="fas fa-edit"></i></a>
+                                | <a href="/pds/eligibilityDelete/{{eligible.pk}}" onclick="return confirm('Are you sure you want to delete {{eligible.eligibility}}');"><i class="fas fa-trash"></i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          {% endfor %}
+                          {% else %}
+                      <p>No Eligibility</p>
+                  {% endif %}
+                        </table>
+                        <br><br><br>
+                      </div>
+                    </div>
+                    <!-- /children -->
+                  </div>
+                  <!-- /.tab-pane -->
+
+<!-- Experience -->
+                <div class="tab-pane" id="experience">
+                   <!-- children -->
+                    <div class="post">
+                      <div class="user-block">
+                        <br><br>
+                        <h4>Work Experience</h4>
+                        <br>
+                        {% if pds.id %}
+                    <a href="/pds/experienceCreate" class="btn btn-app bg-success">
+                        <i class="fas fa-briefcase"></i> Add
+                      </a>
+                {% else %}
+                   
+                {% endif %}                       
+                        <br><br>
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th colspan="2">NCLUSIVE DATES</th>
+                              <th rowspan="2">POSITION TITLE</th>
+                              <th rowspan="2">DEPARTMENT / AGENCY / OFFICE / COMPANY</th>
+                              <th rowspan="2">MONTHLY SALARY</th>
+                              <th rowspan="2">SALARY/ JOB/ PAY GRADE</th>
+                              <th rowspan="2">STATUS OF APPOINTMENT</th>
+                              <th rowspan="2">GOV'T SERVICE</th>
+                              <th rowspan="2">Action</th>
+                            </tr>
+                            <tr>
+                              <th>FROM</th>
+                              <th>TO</th>
+                            </tr>
+                          </thead>
+                          {% if experience %}
+                  {% for exp in experience %}
+                          <tbody>
+                            <tr>
+                              <td> {{ exp.exp_from }} </td>
+                              <td> {{ exp.exp_to|default_if_none:"To Date" }} </td>
+                              <td> {{ exp.position }} </td>
+                              <td> {{ exp.department }} </td>
+                              <td> {{ exp.salary }} </td>
+                              <td> {{ exp.increment }} </td>
+                              <td> {{ exp.appointment }} </td>
+                              <td> {{ exp.govt_service }} </td>
+                              <td><a href="/pds/experienceEdit/{{exp.pk}}" ><i class="fas fa-edit"></i></a>
+                                | <a href="/pds/experienceDelete/{{exp.pk}}" onclick="return confirm('Are you sure you want to delete {{exp.position}}');"><i class="fas fa-trash"></i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          {% endfor %}
+                          {% else %}
+                      <p>No Experience</p>
+                  {% endif %}
+                        </table>
+                        <br><br><br>
+                      </div>
+                    </div>
+                    <!-- /children -->
+                  </div>
+                  <!-- /.tab-pane -->
+
+<!-- Voluntary -->
+
+                <div class="tab-pane" id="voluntary">
+                   <!-- children -->
+                    <div class="post">
+                      <div class="user-block">
+                        <br><br>
+                        <h4>VOLUNTARY WORK OR INVOLVEMENT IN CIVIL / NON-GOVERNMENT / PEOPLE / VOLUNTARY ORGANIZATION/S</h4>
+                        <br>
+                        {% if pds.id %}
+                    <a href="/pds/voluntaryCreate" class="btn btn-app bg-success">
+                        <i class="fas fa-hand-holding"></i> Add
+                      </a>
+                {% else %}
+                   
+                {% endif %}                       
+                        <br><br>
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th rowspan="2">NAME & ADDRESS OF ORGANIZATION</th>
+                              <th colspan="2">INCLUSIVE DATES</th>
+                              <th rowspan="2">NUMBER OF HOURS</th>
+                              <th rowspan="2">POSITION / NATURE OF WORK</th>
+                              <th rowspan="2">Action</th>
+                            </tr>
+                            <tr>
+                              <th>FROM</th>
+                              <th>TO</th>
+                            </tr>
+                          </thead>
+                          {% if voluntary %}
+                  {% for vol in voluntary %}
+                          <tbody>
+                            <tr>
+                              <td> {{ vol.name }} </td>
+                              <td> {{ vol.vol_from }} </td>
+                              <td> {{ vol.vol_to }} </td>
+                              <td> {{ vol.hours }} </td>
+                              <td> {{ vol.position }} </td>
+                              <td><a href="/pds/voluntaryEdit/{{vol.pk}}" ><i class="fas fa-edit"></i></a>
+                                | <a href="/pds/voluntaryDelete/{{vol.pk}}" onclick="return confirm('Are you sure you want to delete {{vol.name}}');"><i class="fas fa-trash"></i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          {% endfor %}
+                          {% else %}
+                      <p>No Voluntary</p>
+                  {% endif %}
+                        </table>
+                        <br><br><br>
+                      </div>
+                    </div>
+                    <!-- /children -->
+                  </div>
+                  <!-- /.tab-pane -->
+
+<!-- Learning -->
+
+              <div class="tab-pane" id="learning">
+                   <!-- children -->
+                    <div class="post">
+                      <div class="user-block">
+                        <br><br>
+                        <h4>LEARNING AND DEVELOPMENT (L&D) INTERVENTIONS/TRAINING PROGRAMS ATTENDED</h4>
+                        <br>
+                        {% if pds.id %}
+                    <a href="/pds/learningCreate" class="btn btn-app bg-success">
+                        <i class="fas fa-book-reader"></i> Add
+                      </a>
+                {% else %}
+                   
+                {% endif %}                       
+                        <br><br>
+                        <table class="table table-bordered" style="background-color: white">
+                          <thead>
+                            <tr>
+                              <th rowspan="2">TITLE OF LEARNING AND DEVELOPMENT INTERVENTIONS/TRAINING PROGRAMS</th>
+                              <th colspan="2">INCLUSIVE DATES OF ATTENDANCE</th>
+                              <th rowspan="2">NUMBER OF HOURS</th>
+                              <th rowspan="2">Type of LEARNING AND DEVELOPMENT</th>
+                              <th rowspan="2">CONDUCTED/ SPONSORED BY</th>
+                              <th rowspan="2">STATUS</th>
+                              <th rowspan="2">ATTACHMENT</th>
+                              <th rowspan="2">REMARKS</th>
+                              <th rowspan="2">Action</th>
+                            </tr>
+                            <tr>
+                              <th>FROM</th>
+                              <th>TO</th>
+                            </tr>
+                          </thead>
+                          {% if learning %}
+                  {% for learn in learning %}
+                          <tbody>
+                            <tr>
+                              <td> {{ learn.title }} </td>
+                              <td> {{ learn.date_from }} </td>
+                              <td> {{ learn.date_to }} </td>
+                              <td> {{ learn.training_hours }} </td>
+                              <td> {{ learn.learning_type }} </td>
+                              <td> {{ learn.conducted_by }} </td>
+                               {% if learn.is_approve == "For Review" %}
+                                 <td style="color: #FD020E"> {{ learn.is_approve }} </td>
+                               {% endif %}
+                               {% if learn.is_approve == "Disapproved" %}
+                                 <td style="color: #FD020E"> {{ learn.is_approve }} </td>
+                               {% endif %}
+                               {% if learn.is_approve == "Approved" %}
+                                 <td style="color: #098C0D"> {{ learn.is_approve }} </td>
+                               {% endif %}
+                              <td> <a href="/pds/media/{{ learn.file }}" target="_blank">{{ learn.file }}</a> </td>
+                              <td> {{ learn.remarks }} </td>
+                              <td><a href="/pds/learningEdit/{{learn.pk}}" ><i class="fas fa-edit"></i></a>
+                                | <a href="/pds/learningDelete/{{learn.pk}}" onclick="return confirm('Are you sure you want to delete {{learn.title}}');"><i class="fas fa-trash"></i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          {% endfor %}
+                          {% else %}
+                      <p>No LEARNING AND DEVELOPMENT (L&D) INTERVENTIONS/TRAINING PROGRAMS ATTENDED</p>
+                  {% endif %}
+                        </table>
+                        <br><br><br>
+                      </div>
+                    </div>
+                    <!-- /learning -->
+                  </div>
+                  <!-- /.tab-pane -->
+
+<!-- Other Info -->
+
+              <div class="tab-pane" id="otherinfo">
+                   <!-- children -->
+                    <div class="post">
+                      <div class="user-block">
+                        <br><br>
+                        <h4>Other Info</h4>
+                        <br>
+                        {% if pds.id %}
+                    <a href="/pds/otherinfoCreate" class="btn btn-app bg-success">
+                        <i class="fa fa-info"></i> Add Info
+                      </a>
+                      <a href="/pds/skillsCreate" class="btn btn-app bg-success">
+                        <i class="fas fa-drafting-compass"></i> Add Skill
+                      </a>
+                      <a href="/pds/recognitionsCreate" class="btn btn-app bg-success">
+                        <i class="fas fa-award"></i> Add Recognition
+                      </a>
+                      <a href="/pds/membershipCreate" class="btn btn-app bg-success">
+                        <i class="fa fa-id-card"></i> Add membership
+                      </a>
+                {% else %}
+                   
+                {% endif %} 
+
+                    <!-- Skills-->
+                {% if other_skills %}
+                <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>SPECIAL SKILLS and HOBBIES</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          
+                  {% for skill in other_skills %}
+                          <tbody>
+                            <tr>
+                              <td> {{ skill.skills }} </td>
+                              <td><a href="/pds/skillsEdit/{{skill.pk}}" ><i class="fas fa-edit"></i></a>
+                                | <a href="/pds/skillsDelete/{{skill.pk}}" onclick="return confirm('Are you sure you want to delete {{skill.skills}}');"><i class="fas fa-trash"></i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          {% endfor %}
+                          {% else %}
+                      <p>No SPECIAL SKILLS and HOBBIES</p>
+                  {% endif %}
+                        </table>
+                    <!-- Skills-->
+
+                        <!-- recognitions-->
+                {% if other_recognitions %}
+                <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>NON-ACADEMIC DISTINCTIONS / RECOGNITION  </th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          
+                  {% for recog in other_recognitions %}
+                          <tbody>
+                            <tr>
+                              <td> {{ recog.recognition }} </td>
+                              <td><a href="/pds/recognitionsEdit/{{recog.pk}}" ><i class="fas fa-edit"></i></a>
+                                | <a href="/pds/recognitionsDelete/{{recog.pk}}" onclick="return confirm('Are you sure you want to delete {{recog.recognition}}');"><i class="fas fa-trash"></i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          {% endfor %}
+                          {% else %}
+                      <p>No NON-ACADEMIC DISTINCTIONS / RECOGNITION  </p>
+                  {% endif %}
+                        </table>
+                    <!-- recognitions-->
+
+                        <!-- member_org-->
+                {% if other_membership %}
+                <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>MEMBERSHIP IN ASSOCIATION/ORGANIZATION </th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          
+                  {% for member in other_membership %}
+                          <tbody>
+                            <tr>
+                              <td> {{ member.member_org }} </td>
+                              <td><a href="/pds/membershipEdit/{{member.pk}}" ><i class="fas fa-edit"></i></a>
+                                | <a href="/pds/membershipDelete/{{member.pk}}" onclick="return confirm('Are you sure you want to delete {{member.member_org}}');"><i class="fas fa-trash"></i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          {% endfor %}
+                          {% else %}
+                      <p>No MEMBERSHIP IN ASSOCIATION/ORGANIZATION </p>
+                  {% endif %}
+                        </table>
+                    <!-- member_org-->
+
+                        <br><br>
+                        <table class="table table-bordered">
+                          <tr>
+                            <td style="background-color: #f2f2f2" width="60%">Are you related by consanguinity or affinity to the appointing or recommending authority, or to the <br>
+                              chief of bureau or office or to the person who has immediate supervision over you in the Office, 
+                            <br>
+                            Bureau or Department where you will be apppointed,
+                            </td>
+                            {% if otherinfo %}
+                            <td colspan="2"><a href="/pds/otherinfoEdit/{{otherinfo.pk}}" ><i class="fas fa-edit"></i></a></td>
+                            {% endif %}
+                          </tr>
+
+                          <tr>
+                            <td style="background-color: #f2f2f2" width="60%">a. within the third degree?</td>
+                            <td width="10%">{{ otherinfo.related_third }}</td>
+                            <td width="30%">{{ otherinfo.related_detail_3 }}</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #f2f2f2">b. within the fourth degree (for Local Government Unit - Career Employees)?</td>
+                            <td>{{ otherinfo.related_fourth }}</td>
+                            <td>{{ otherinfo.related_detail_4 }}</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #f2f2f2">a. Have you ever been found guilty of any administrative offense?</td>
+                            <td>{{ otherinfo.admin_offense }}</td>
+                            <td>{{ otherinfo.admin_offense_detail }}</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #f2f2f2">b. Have you been criminally charged before any court?</td>
+                            <td>{{ otherinfo.crime }}</td>
+                            <td>{{ otherinfo.crime_detail }}</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #f2f2f2">Have you ever been convicted of any crime or violation of any law, decree, ordinance or <br>regulation by any court or tribunal?</td>
+                            <td>{{ otherinfo.convic }}</td>
+                            <td>{{ otherinfo.convic_detail }}</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #f2f2f2">Have you ever been separated from the service in any of the following modes: resignation, <br>retirement, dropped from the rolls, dismissal, termination, end of term, finished contract or phased out <br> (abolition) in the public or private sector?</td>
+                            <td>{{ otherinfo.seperated }}</td>
+                            <td>{{ otherinfo.seperated_detail }}</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #f2f2f2">a. Have you ever been a candidate in a national or local election held within the last year (except Barangay election)?</td>
+                            <td>{{ otherinfo.candidate }}</td>
+                            <td>{{ otherinfo.candidate_detail }}</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #f2f2f2">b. Have you resigned from the government service during the three (3)-month period before the <br> last election to promote/actively campaign for a national or local candidate?</td>
+                            <td>{{ otherinfo.resigned }}</td>
+                            <td>{{ otherinfo.resigned_detail }}</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #f2f2f2">Have you acquired the status of an immigrant or permanent resident of another country?</td>
+                            <td>{{ otherinfo.immigrant }}</td>
+                            <td>{{ otherinfo.immigrant_detail }}</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #f2f2f2">Pursuant to: (a) Indigenous People's Act (RA 8371); (b) Magna Carta for Disabled Persons (RA 7277); <br> and (c) Solo Parents Welfare Act of 2000 (RA 8972), please answer the following items:</td>
+                            <td colspan="2"></td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #f2f2f2">Are you a member of any indigenous group?</td>
+                            <td>{{ otherinfo.indigenous }}</td>
+                            <td>{{ otherinfo.indigenous_detail }}</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #f2f2f2">Are you a person with disability?</td>
+                            <td>{{ otherinfo.disability }}</td>
+                            <td>{{ otherinfo.disability_detail }}</td>
+                          </tr>
+                          <tr>
+                            <td style="background-color: #f2f2f2">Are you a solo parent?</td>
+                            <td>{{ otherinfo.soloparent }}</td>
+                            <td>{{ otherinfo.soloparent_detail }}</td>
+                          </tr>
+                        </table>
+                        <br><br><br>
+                      </div>
+                    </div>
+                    <!-- /children -->
+                  </div>
+                  <!-- /.tab-pane -->
+
+<!-- Reference -->
+                <div class="tab-pane" id="reffer">
+                   <!-- children -->
+                    <div class="post">
+                      <div class="user-block">
+                        <br><br>
+                        <h4>Reference</h4>
+                        <br>
+                        {% if pds.id %}
+                    <a href="/pds/refferencesCreate" class="btn btn-app bg-success">
+                        <i class="fas fa-address-book"></i> Add
+                      </a>
+                {% else %}
+                   
+                {% endif %}                       
+                        <br><br>
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Full Name</th>
+                              <th>Address</th>
+                              <th>Contact</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          {% if refferences %}
+                  {% for reffer in refferences %}
+                          <tbody>
+                            <tr>
+                              <td> {{ reffer.name }} </td>
+                              <td> {{ reffer.address }} </td>
+                              <td> {{ reffer.phone }} </td>
+                              <td><a href="/pds/refferencesEdit/{{reffer.pk}}" ><i class="fas fa-edit"></i></a>
+                                | <a href="/pds/refferencesDelete/{{reffer.pk}}" onclick="return confirm('Are you sure you want to delete {{reffer.name}}');"><i class="fas fa-trash"></i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          {% endfor %}
+                          {% else %}
+                      <p>No References</p>
+                  {% endif %}
+                        </table>
+                        <br><br><br>
+                      </div>
+                    </div>
+                    <!-- /children -->
+                  </div>
+                  <!-- /.tab-pane -->
+
+
+
+                </div>
+                <!-- /.tab-content -->
+
+
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+
+
+
+
+{% endblock %}

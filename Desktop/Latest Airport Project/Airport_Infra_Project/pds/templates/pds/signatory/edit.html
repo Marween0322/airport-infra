@@ -1,0 +1,188 @@
+{% extends "base_admin.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+Signatory Update
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Signatory</a></li>
+    <li class="breadcrumb-item active">Edit Page</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Personal Information -->
+  {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+<br>
+<form method="POST" class="post-form" action="/pds/sign_update/{{data.id}}">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Name of FORM</label>
+                  <input type="text" class="form-control" name="name" required maxlength="100" value="{{ data.name }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                   <label>Certified by</label>
+                    <select class="form-control" name="pay_designate_rate" required>
+                    <option value="{{ data.pay_designate_rate }}">{{ data.pay_designate_rate }}</option>
+                    <option > AMNERIS G. GABRIEL </option>
+                    <option > WILMAR JONES N. MONTERO </option>
+                    <option > MA. DEANNA M. ESCARLAN </option>
+                    <option > JENNIFER F. PORTUGALETE </option>
+                    <option > JACQUELINE G. TIGNO </option>
+                    <option > JACQUELINE G. MALIMBAN </option>
+                    <option > ROMA RUCHELLE C.ARIAS </option>
+                    <option > ROXANNE DIANA L. JAVILLONAR </option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                   <label>Prepared by</label>
+                    <select class="form-control" name="pay_prepare" required>
+                    <option value="{{ data.pay_prepare }}">{{ data.pay_prepare }}</option>
+                    <option > LYNIE G. LARIOSA </option>
+                    <option > MARICEL S. BABEJES </option>
+                    <option > RIA MAE A. MORALES </option>
+                    <option > AMNERIS G. GABRIEL </option>
+                    <option > WILMAR JONES N. MONTERO </option>
+                    <option > MA. DEANNA M. ESCARLAN </option>
+                    <option > JENNIFER F. PORTUGALETE </option>
+                    <option > JACQUELINE G. TIGNO </option>
+                    <option > JACQUELINE G. MALIMBAN </option>
+                    <option > ROMA RUCHELLE C.ARIAS </option>
+                    <option > ROXANNE DIANA L. JAVILLONAR </option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Approved by</label>
+                    <select class="form-control" name="pay_approve" required>
+                    <option value="{{ data.pay_approve }}">{{ data.pay_approve }}</option>
+                    <option > AMNERIS G. GABRIEL </option>
+                    <option > WILMAR JONES N. MONTERO </option>
+                    <option > MA. DEANNA M. ESCARLAN </option>
+                    <option > JENNIFER F. PORTUGALETE </option>
+                    <option > JACQUELINE G. TIGNO </option>
+                    <option > JACQUELINE G. MALIMBAN </option>
+                    <option > ROMA RUCHELLE C.ARIAS </option>
+                    <option > ROXANNE DIANA L. JAVILLONAR </option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Certified by Position</label>
+                    <select class="form-control" name="pay_designate_rate_possition" required>
+                    <option value="{{ data.pay_designate_rate_possition }}">{{ data.pay_designate_rate_possition }}</option>
+                    <option > Assistant Director General I/ Acting Division Chief III </option>
+                    <option > Human Resource Management Officer IV </option>
+                    <option > Human Resource Management Officer III </option>
+                    <option > Human Resource Management Officer II </option>
+                    <option > Human Resource Management Officer I </option>
+                    <option > Human Resource Management Asisstant </option>
+                    <option > Administrative Assistant I </option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Prepared by Position</label>
+                  <select class="form-control" name="pay_prepare_possition" required>
+                    <option value="{{ data.pay_prepare_possition }}">{{ data.pay_prepare_possition }}</option>
+                    <option > Assistant Director General I/ Acting Division Chief III </option>
+                    <option > Human Resource Management Officer IV </option>
+                    <option > Human Resource Management Officer III </option>
+                    <option > Human Resource Management Officer II </option>
+                    <option > Human Resource Management Officer I </option>
+                    <option > Human Resource Management Asisstant </option>
+                    <option > Administrative Assistant I </option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Approved by Position</label>
+                  <select class="form-control" name="pay_approve_possition" required>
+                    <option value="{{ data.pay_approve_possition }}">{{ data.pay_approve_possition }}</option>
+                    <option > Assistant Director General I/ Acting Division Chief III </option>
+                    <option > Human Resource Management Officer IV </option>
+                    <option > Human Resource Management Officer III </option>
+                    <option > Human Resource Management Officer II </option>
+                    <option > Human Resource Management Officer I </option>
+                    <option > Human Resource Management Asisstant </option>
+                    <option > Administrative Assistant I </option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Childre information -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">Update</button>   | 
+    <a href="/pds/sign" class="btn btn-danger">Back</a>
+    </div>  
+  </div>
+</div>
+
+  <br><br><br>
+</form>  
+{% endblock %}

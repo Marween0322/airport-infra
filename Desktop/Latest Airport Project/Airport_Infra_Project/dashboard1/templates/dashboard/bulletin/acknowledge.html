@@ -1,0 +1,81 @@
+{% extends "base_project.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'dist/css_projects/project-table.css' %}">
+</head>
+    <header><h2 align="center" > Bulletin Acknowledge/Comments</h2> <br><br></header>
+  <a href="/dashboard/bulletinCreate" class="btn btn-app" style="background-color:#43494D; color: white"><i class="fa fa-newspaper"></i></i> Create Bulletin</a>
+    <div >
+      <section>
+        <div class="card">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Subject</th>                
+                <th style="text-align: left;">Post</th>
+                <th>Commented By</th>
+                <th>Acknowledge By</th>
+                <th>Date Posted</th>
+                <th>Status</th>
+                <th>Posted By</th>
+              </tr>
+            </thead> 
+            <tbody>
+            {% if bulletins %}
+              {% for bulletin in bulletins %}
+              <tr>
+                <td>{{ bulletin.subject }}</td>                
+                <td><a href="/dashboard/bulletinShow/{{ bulletin.id }}"> <i class="fa fa-eye"></i> view post </a></td>
+                <td>
+                  {% if bulletin.BulletinComnt %}
+                    <!-- Comments  -->
+                    <div class="card-body" style="background-color: #E3E3E3; height: 200px; overflow: auto;">
+                      {% for comm in bulletin.BulletinComnt %}
+                        <div class="col-sm-2 mt-2">
+                            <i class="fas fa-user"></i> &nbsp;&nbsp; 
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="card-body" style="background-color: #fff;">
+                              <b>{{comm.create_by}}</b><span> - {{ comm.comment_date }} </span> <br>
+                              {{ comm.comment }}
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                      </div>
+                      
+                    <!-- end comments -->
+                  {% endif %}
+                </td>
+                <td>
+                  {% if bulletin.BulletinAknldg %}  
+                    <div class="card-body" style="background-color: #E3E3E3; height: 100px; overflow: auto;">                
+                        {% for Aknldg in bulletin.BulletinAknldg %}
+                        <p>{{ Aknldg.create_by }}</p>
+                        {% endfor %}
+                    </div>
+                  {% endif %}   
+                </td>
+                <td>{{ bulletin.bulletin_date }}</td>
+                <td>{{ bulletin.status }}</td>
+                <td>{{ bulletin.create_by }}</td>                
+              </tr>
+
+              {% endfor %}
+            {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    
+    </div>
+{% endblock content %}
+

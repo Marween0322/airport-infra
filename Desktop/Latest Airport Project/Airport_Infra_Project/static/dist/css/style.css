@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,200;1,300;1,400&display=swap');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'poppins', sans-serif;
+}
+
+.showcase {
+	position: absolute;
+	right: 0;
+	width: 100%;
+	min-height: 100vh;
+	padding: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: #fff;
+	color: #111;
+	z-index: 2;
+}
+
+.showcase header{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	color: #194785;
+	padding: 40px 100px;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.logo{
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.toggle {
+	position: relative;
+	width: 60px;
+	height: 60px;
+	background: url('menu.png');
+	background-repeat: no-repeat;
+	background-size: 30px;
+	background-position: center;
+	cursor: pointer;
+}
+
+.toogle.active{
+	background: url('close.png');
+	background-repeat: no-repeat;
+	background-size: 25px;
+	background-position: center;
+}
+
+.showcase video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0.8;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #194785;
+	mix-blend-mode: overlay;
+}
+
+.text {
+	position: absolute;
+	right: 0;
+	color: #194785;
+	z-index: 10;
+	padding: 40px 100px;
+}
+
+.text_reset {
+	position: absolute;
+	left: 0;
+	z-index: 10;
+	padding: 40px 100px;
+}
+
+.showcase_reset video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0.2;
+}
+
+.showcase_reset {
+	position: absolute;
+	right: 0;
+	width: 100%;
+	min-height: 100vh;
+	padding: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: #fff;
+	color: #111;
+	z-index: 2;
+}
+
+.showcase_reset header{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 40px 100px;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+@media(max-width: 991px){
+	.showcase, 
+	.showcase header{
+		padding: 40px;
+	}
+	.text div{
+		padding: 5px;
+	}
+
+	.text h2 {
+		font-size: 3em;
+	}
+
+	.text h3 {
+		font-size: 2em;
+	}
+	.showcase video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0.2;
+	}
+	.logo{
+		font-size: 0;
+	}
+}

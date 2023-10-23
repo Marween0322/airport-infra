@@ -1,0 +1,147 @@
+{% extends "base_admin.html" %}
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+Payroll List
+{% endblock %}
+
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Personnel</a></li>
+    <li class="breadcrumb-item active">Payroll</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<a href="/pds/createBonus" class="btn btn-app" style="background-color:#43494D; color: white"><i class="fa fa-plus"></i> Bonus</a>
+
+<a href="/pds/createBonus2" class="btn btn-app" style="background-color:#D4300D; color: white"><i class="fa fa-plus"></i> Bonus no PDS</a>
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card card-primary card-outline">
+              
+              <table>
+                <tr>
+                  <td><a href="/pds/aansoo_payroll_nov">AANSOO</a></td>
+                  <td><a href="/pds/ans_payroll_nov">ANS</a></td>
+                  <td><a href="/pds/ats_payroll_nov">ATS</a></td>
+                  <td><a href="/pds/catc_payroll_nov">CATC</a></td>
+                  <td><a href="/pds/csis_payroll_nov">CSIS</a></td>
+                </tr>
+
+                <tr>
+                  <td><a href="/pds/els_payroll_nov">ELS</a></td>
+                  <td><a href="/pds/ficg_payroll_nov">FICG</a></td>
+                  <td><a href="/pds/fmd_payroll_nov">FINANCE Dept. </a></td>
+                  <td><a href="/pds/fsis_payroll_nov">FSIS</a></td>
+                  <td><a href="/pds/ias_payroll_nov">IAS</a></td>
+                </tr>
+
+                <tr>
+                  <td> <a href="/pds/odg_payroll_nov">ODG</a> </td>
+                  <td> <a href="/pds/ofsam_payroll_nov">OFSAM</a> </td>
+                  <td><a href="/pds/admin_payroll_nov">ADMIN</a></td>
+                  <td><a href="/pds/adms_payroll_nov">ADMS</a></td>                  
+                  <td><a href="/pds/bonuses">Show All</a></td>
+                </tr>
+              </table>
+              </div>
+          <div>
+      </div>
+
+<table class="table table-bordered" style="background-color: white">
+<thead style="position: sticky;top: 0;">
+  <!-- New Rate -->
+  <tr style="background-color: #C0CFD8">
+    <th  colspan="2">Username</th>
+    <th >Surname</th>
+    <th >First Name</th>    
+    <th >GROSS PAY / <br> 5-01-01-010</th>    
+    <th >Office</th>
+    <th >Mid-Year Bonus</th>
+    <th >Year-End Bouns</th>
+    <th >Cash Gift</th>
+    <th >TAX</th>
+    <th >PATCOMC</th>
+    <th >Liquidation</th>
+    <th >Status</th>
+    <th >Remarks</th>
+    <th >Action</th>
+  </tr>
+</thead>
+
+{% if bonus %}
+  {% for data in bonus %}
+  <tbody>
+    {% if data.status == 'INACTIVE' %}
+      <tr style="background-color: #DE6170;color: #fff">
+    {% else %}
+      <tr>
+    {% endif %}
+      <td> <a href="editBonus/{{ data.id }}"><i class="fa fa-edit"></i></a>
+       </td>
+       <td>
+          {% if data.bonus %}
+              {{ data.bonus }}  
+           {% else %}
+              <a href="editBonus2/{{ data.id }}"><i class="fa fa-edit"></i> No PDS</a>
+           {% endif %}
+       </td> 
+       <td>{{ data.surname|title }}</td> 
+      <td> {{ data.first_name|title }} </td>
+      {% if data.bonus == None %}        
+      <td>  </td>
+      {% else %}
+      <td> {{ data.payroll_pay.pay_701|intcomma }} </td>
+      {% endif %}
+      <td> {{ data.office }}  </td>
+      <td> {{ data.mid_year_bonus|intcomma }} </td>
+      <td> {{ data.year_end_bonus|intcomma }} </td>
+      <td> {{ data.cash_gift|intcomma }} </td>
+      <td> {{ data.tax|intcomma }} </td>
+      <td> {{ data.patcomc|intcomma }} </td>
+      <td> {{ data.liquidation|intcomma }} </td>
+      <td> {{ data.status|default_if_none:"" }} </td>
+      <td> {{ data.remarks|default_if_none:"" }} </td>
+      <td>  <a href="/pds/bonusDelete/{{data.pk}}" onclick="return confirm('Are you sure you want to delete {{ data.first_name|title }}, {{ data.surname|title }} payroll ');"><i class="fas fa-trash" style="color: #cc0000;"></i></a> </td>
+
+      
+    </tr>
+  </tbody>
+  {% endfor %}
+{% endif %}
+
+</table>
+{% endblock %}
+
+
+{% block script %}
+{% if messages %}
+        {% for message in messages %}
+            <script>
+              $(function() {
+                var Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  showConfirmButton: false,
+                  timer: 9000
+                });
+
+                
+                $('.swalDefaultInfo').ready(function() {
+                  Toast.fire({
+                    icon: 'info',
+                    title: '{{message}}'
+                  })
+                });
+              });
+            </script>
+        {% endfor %}
+    
+    {% endif %}
+{% endblock script %}

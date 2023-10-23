@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+QR Code Page - {{ office }}
+{% endblock %}
+
+{% block head %}
+{% endblock head %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">QR Code Page</a></li>
+    <li class="breadcrumb-item active">ID Profile</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+        
+        <div class="row">
+          <div class="col-md-12">
+              <div class="card card-primary card-outline">
+              
+              <table>
+                <tr>
+                  <td><a href="/pds/qr_odg">ODG</a></td>
+                  <td><a href="/pds/qr_ans">ANS</a></td>
+                  <td><a href="/pds/qr_ats">ATS</a></td>
+                </tr>
+
+                <tr>
+                  <td><a href="/pds/qr_afs">AFS</a></td>
+                  <td><a href="/pds/qr_fsis">FSIS</a></td>
+                  <td><a href="/pds/qrcode_all">Show All</a></td>
+                </tr>
+              </table>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card card-success card-outline">
+              
+              <table>
+                <tr>
+                  <td><a href="/pds/qr_area1">Area Center 01</a></td>
+                  <td><a href="/pds/qr_area2">Area Center 02</a></td>
+                  <td><a href="/pds/qr_area3">Area Center 03</a></td>
+                  <td><a href="/pds/qr_area4">Area Center 04</a></td>
+                </tr>
+
+                <tr>
+                  <td><a href="/pds/qr_area5">Area Center 05</a></td>
+                  <td><a href="/pds/qr_area6">Area Center 06</a></td>
+                  <td><a href="/pds/qr_area7">Area Center 07</a></td>
+                  <td><a href="/pds/qr_area8">Area Center 08</a></td>
+                </tr>
+                <tr>
+                  <td><a href="/pds/qr_area9">Area Center 09</a></td>
+                  <td><a href="/pds/qr_area10">Area Center 10</a></td>
+                  <td><a href="/pds/qr_area11">Area Center 11</a></td>
+                  <td><a href="/pds/qr_area12">Area Center 12</a></td>
+                </tr>
+              </table>
+              </div>
+          </div>
+      </div>
+
+        <div class="card-body">
+                <table class="table table-bordered table-striped" style="background-color: #fff">
+                  <thead style="background-color: #1175B6; color: #fff; position: sticky;top: 0;">
+                   <tr class="info">
+                    <th>#</th>
+                    <th>QR Code</th>
+                    <th>Username</th>
+                    <th>ID Number</th>
+                    <th>Surname</th>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Ext. Name</th>
+                    <th>Office</th>
+                    <th>Employee Status</th>
+                    <th>Action</th>
+                   </tr>
+                  </thead>
+              {% if record %}
+                  {% for data in record %}
+            <tbody style="background-color: #fff">
+                {% if data.emp_type == "Outsourced" %}
+                    <tr style="background-color: #DBD8D5">
+                {% else %}
+                    <tr style="background-color: #fff">
+                {% endif %}
+                    <td> {{ forloop.counter }} </td> 
+                    <td>
+                      {% if data.qr_img.unique_id %}
+                       <img src="media/qr_codes/{{ data.qr_img.unique_id }}.png" width="150" ><br>
+                         User status : <b>{{ data.UserName.is_active }}  </b>
+                      {% endif %}
+                    </td>
+                    <td> {{ data.UserName }} </td>
+                    <td> {{ data.emp_number }} </td>
+                    <td> {{ data.surname }} </td>
+                    <td> {{ data.first_name }} </td>
+                    <td> {{ data.middle_name }} </td> 
+                    {% if data.ext_name == "N/A"  %} 
+                    <td></td>
+                    {% else %}                 
+                    <td> {{ data.ext_name }} </td>
+                    {% endif %}                   
+                    <td> {{ data.office }} </td>
+                    <td> {{ data.emp_type }} </td>
+                    <td> 
+                      {% if data.qr_img.unique_id  %}
+                      <p style="color:green">QR Code Generated <i class="fa fa-qrcode" aria-hidden="true"></i> </p> 
+                      {% else %}
+                      <form method="POST" class="post-form" action="/pds/qr_code/{{data.id}}">   
+                        {% csrf_token %}
+                        <input type="hidden" name="url_name" value="misd.caaplocal.ph/dts/pdf_view/">    
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-qrcode" aria-hidden="true"></i>  Generate QR</button>  
+                      </form>
+                      {% endif %}
+                    </td>
+                </tr>
+                    </tbody>
+                  {% endfor %}
+                {% else %}
+                    <p>No List</p>
+              {% endif %}
+            
+                </table>
+              </div>
+              <!-- /.card-body -->
+
+
+{% endblock %}
+
+<!-- Java Script -->
+{% block script %}
+{% if messages %}
+        {% for message in messages %}
+            <script>
+              $(function() {
+                var Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  showConfirmButton: false,
+                  timer: 9000
+                });
+
+                
+                $('.swalDefaultInfo').ready(function() {
+                  Toast.fire({
+                    icon: 'info',
+                    title: '{{message}}'
+                  })
+                });
+              });
+            </script>
+        {% endfor %}
+    
+    {% endif %}
+
+{% endblock script %}

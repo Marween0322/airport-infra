@@ -1,0 +1,488 @@
+{% extends "base_admin2.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+Update Position of <b> {{ pds.surname }} , {{ pds.first_name }} &nbsp; {{ pds.middle_name }}</b>
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">PDS</a></li>
+    <li class="breadcrumb-item active">Position Update</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Personal Information -->
+  {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }} for {{ field.name}}</strong>
+              </div> 
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+<br>
+<form method="POST" class="post-form" action="/pds/positionUpdate/{{pds.id}}">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Personnel Item Form</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Position</label>
+                  <select class="form-control" name="position_title" required>                    
+                    <option value="1">Accident Investigation Officer I</option>
+                    <option value="2">Accident Investigation Officer II</option>
+                    <option value="3">Accountant I</option>
+                    <option value="4">Accountant II</option>
+                    <option value="5">Accountant III</option>
+                    <option value="6">Accountant IV</option>
+                    <option value="266">Accountant</option>
+                    <option value="267">Accounting Analyst</option>
+                    <option value="354">Accounting Assistant I</option>
+                    <option value="355">Accounting Assistant II</option>
+                    <option value="268">Accounting Assistant</option>
+                    <option value="269">Administrative Assistant </option>
+                    <option value="7">Administrative Assistant I</option>
+                    <option value="8">Administrative Assistant II</option>
+                    <option value="9">Administrative Assistant III</option>
+                    <option value="10">Administrative Officer I</option>
+                    <option value="11">Administrative Officer II</option>
+                    <option value="12">Administrative Officer III</option>
+                    <option value="13">Administrative Officer IV</option>
+                    <option value="293">Administrative, Accounting and Finance Consultant</option>
+                    <option value="356">ADMS Technical Aide I</option>
+                    <option value="357">ADMS Technical Aide II</option>
+                    <option value="294">Aerodrome Engineer I (Geodetic)</option>
+                    <option value="14">Aerodrome Engineer I</option>
+                    <option value="15">Aerodrome Engineer II</option>
+                    <option value="358">Aerodrome Engineer</option>
+                    <option value="16">Aerodrome Operations Aide</option>
+                    <option value="17">Air  Traffic Controller Examiner II</option>
+                    <option value="270">Air Conditioning Technician</option>
+                    <option value="18">Air Navigation Facilities Engineer I</option>
+                    <option value="19">Air Navigation Facilities Engineer II</option>
+                    <option value="295">Air Navigation Systems Specialist (ANSS) Assistant</option>
+                    <option value="20">Air Terminal Supervisor</option>
+                    <option value="296">Air Traffic Controller (ATC) Assistant</option>
+                    <option value="21">Air Traffic Controller Examiner I</option>
+                    <option value="359">Air Traffic Flow Management Assistant (ATS)</option>
+                    <option value="271">Air Traffic Flow Management Assistant</option>
+                    <option value="22">Air Traffic Management Flight Data Assistant</option>
+                    <option value="297">Air Traffic Management Officer (ATMO) Assistant</option>
+                    <option value="23">Air Traffic Management Officer I</option>
+                    <option value="24">Air Traffic Management Officer II</option>
+                    <option value="25">Air Traffic Management Officer III</option>
+                    <option value="26">Air Traffic Management Officer IV</option>
+                    <option value="27">Air Traffic Management Officer V</option>
+                    <option value="28">Air-Conditioning Technician I</option>
+                    <option value="298">Aircraft Accident/Incident Investigator</option>
+                    <option value="29">Aircraft Cabin Safety Inspector I   </option>
+                    <option value="30">Aircraft Cabin Safety Inspector II</option>
+                    <option value="299">Aircraft Cabin Safety Inspector</option>
+                    <option value="31">Aircraft Engineering Safety Inspector I</option>
+                    <option value="32">Aircraft Engineering Safety Inspector II</option>
+                    <option value="33">Aircraft Maintenance Safety Inspector I</option>
+                    <option value="34">Aircraft Maintenance Safety Inspector II</option>
+                    <option value="35">Aircraft Maintenance Specialist</option>
+                    <option value="360">Aircraft Maintenance Technical Helper</option>
+                    <option value="300">Aircraft Maintenance Technician</option>
+                    <option value="36">Aircraft Mechanic Examiner II</option>
+                    <option value="37">Aircraft Safety Avionics Inspector I</option>
+                    <option value="38">Aircraft Safety Avionics Inspector II</option>
+                    <option value="39">Aircraft Systems Specialist</option>
+                    <option value="301">Airfield Lighting and Power Technician (ALPT) Assistant</option>
+                    <option value="40">Airfield Lighting and Power Technician I</option>
+                    <option value="41">Airfield Lighting and Power Technician II</option>
+                    <option value="42">Airfield Lighting and Power Technician III</option>
+                    <option value="43">Airfield Lighting and Power Technician IV</option>
+                    <option value="361">Airfield Power Technician Assistant</option>
+                    <option value="292">Airport Facility Cleaner</option>
+                    <option value="272">Airport Firefighter</option>
+                    <option value="44">Airport Manager I</option>
+                    <option value="45">Airport Manager II</option>
+                    <option value="46">Airport Manager III</option>
+                    <option value="362">Airport Parking Attendant</option>
+                    <option value="363">Airport Security Assistant I</option>
+                    <option value="364">Airport Security Assistant II</option>
+                    <option value="365">Airport Security Screeners</option>
+                    <option value="302">Airport Technical Assistant I</option>
+                    <option value="303">Airport Technical Assistant II</option>
+                    <option value="366">Airport Terminal Aide</option>
+                    <option value="367">Airport Terminal Cleaner</option>
+                    <option value="368">Airport/Facility Cleaner I</option>
+                    <option value="369">Airport/Facility Cleaner II</option>
+                    <option value="305">Airworthiness Inspector/Spokesperson to Bureau Veritas</option>
+                    <option value="304">Airworthiness Inspector</option>
+                    <option value="370">ANSS Assistant</option>
+                    <option value="47">Antenna Rigger </option>
+                    <option value="371">Architect</option>
+                    <option value="306">Asset Management Consultant</option>
+                    <option value="48">Asset Management Officer I</option>
+                    <option value="49">Asset Management Officer II</option>
+                    <option value="372">Assistant Airworthiness Inspector </option>
+                    <option value="307">Assistant Aviation Safety Inspector</option>
+                    <option value="53">Assistant Chief Aviation Services Safety Insp.</option>
+                    <option value="308">Assistant CNS Flight Inspection Pilot</option>
+                    <option value="373">Assistant CNS Flight Inspector Pilot (FICG)</option>
+                    <option value="50">Assistant Director General I</option>
+                    <option value="51">Assistant Director General II</option>
+                    <option value="52">Assistant Director General II</option>
+                    <option value="374">Assistant Flight Inspector Pilot (FSIS)</option>
+                    <option value="375">Assistant Statistician</option>
+                    <option value="376">ATC Assistant (with ATC license)</option>
+                    <option value="377">ATMO Asssistant (with Facility Rating)</option>
+                    <option value="54">Attorney II</option>
+                    <option value="55">Attorney III</option>
+                    <option value="56">Attorney IV</option>
+                    <option value="57">Attorney V</option>
+                    <option value="378">Autocad Operator</option>
+                    <option value="379">Aviation Medical Assistant I</option>
+                    <option value="380">Aviation Medical Assistant II</option>
+                    <option value="273">Aviation Medical Assistant</option>
+                    <option value="58">Aviation Medical Examiner</option>
+                    <option value="59">Aviation Safety Analyst I</option>
+                    <option value="60">Aviation Safety Analyst II</option>
+                    <option value="309">Aviation Safety Consultant</option>
+                    <option value="310">Aviation Security Instuctor</option>
+                    <option value="381">Aviation Services Safety Inspector Assistant (AANSOO)</option>
+                    <option value="61">Aviation Services Safety Inspector I</option>
+                    <option value="62">Aviation Services Safety Inspector II</option>
+                    <option value="63">Aviation Services Safety Officer</option>
+                    <option value="64">Aviation Training Officer IV</option>
+                    <option value="65">Aviation Training Officer V</option>
+                    <option value="382">BHS Operator</option>
+                    <option value="383">BMS Technician</option>
+                    <option value="66">Board Secretary III</option>
+                    <option value="67">Board Secretary VI</option>
+                    <option value="68">Bookkeeper II</option>
+                    <option value="69">Budget Officer I</option>
+                    <option value="70">Budget Officer II</option>
+                    <option value="71">Budget Officer III</option>
+                    <option value="72">Budget Officer IV</option>
+                    <option value="274">Budgeting Analyst</option>
+                    <option value="384">Budgeting Assistant I</option>
+                    <option value="385">Budgeting Assistant II</option>
+                    <option value="275">Budgeting Assistant</option>
+                    <option value="386">Budgeting Specialist</option>
+                    <option value="387">Building And Ground Maintenance Worker I</option>
+                    <option value="388">Building And Ground Maintenance Worker II</option>
+                    <option value="276">Building Electrician</option>
+                    <option value="278">Building Maintenance Worker</option>
+                    <option value="277">Building Maintenance</option>
+                    <option value="311">Business Continuity Management Group</option>
+                    <option value="73">Business Development Analyst A</option>
+                    <option value="74">Business Development Analyst B</option>
+                    <option value="75">Business Development Chief A</option>
+                    <option value="312">Business Development Consultant</option>
+                    <option value="77">Business Development Officer A</option>
+                    <option value="76">Business Development Officer</option>
+                    <option value="78">Carpenter I</option>
+                    <option value="79">Cashier I</option>
+                    <option value="80">Cashier II</option>
+                    <option value="81">Cashier III</option>
+                    <option value="82">Cashier IV</option>
+                    <option value="83">Cashiering Assistant</option>
+                    <option value="279">CCTV Operator</option>
+                    <option value="84">Chauffeur I</option>
+                    <option value="85">Chief Accident Investigation Officer</option>
+                    <option value="86">Chief Administrative Officer</option>
+                    <option value="87">Chief Aviation Services Safety Inspector</option>
+                    <option value="88">Chief Civil Security Officer</option>
+                    <option value="89">Chief Financial Officer*</option>
+                    <option value="90">Chief Flight Inspector</option>
+                    <option value="91">Chief Flight Surgeon</option>
+                    <option value="92">Civil Aviation Area Manager</option>
+                    <option value="93">Civil Aviation Licensing Officer I</option>
+                    <option value="94">Civil Aviation Licensing Officer II</option>
+                    <option value="95">Civil Aviation Regulations Officer I</option>
+                    <option value="96">Civil Aviation Regulations Officer II</option>
+                    <option value="97">Civil Security Assistant B</option>
+                    <option value="98">Civil Security Officer A</option>
+                    <option value="99">Civil Security Officer B</option>
+                    <option value="100">Civil Security Officer C</option>
+                    <option value="101">Civil Security Officer D</option>
+                    <option value="102">Clerk III</option>
+                    <option value="313">CMA Online Framework Specialist</option>
+                    <option value="103">CNS Systems Officer I</option>
+                    <option value="104">CNS Systems Officer II</option>
+                    <option value="105">CNS Systems Officer III</option>
+                    <option value="106">CNS Systems Officer IV</option>
+                    <option value="107">CNS Systems Officer V</option>
+                    <option value="389">CNSSO Assistant</option>
+                    <option value="314">Communications Officer</option>
+                    <option value="390">Computer Maintenance Specialist I</option>
+                    <option value="391">Computer Maintenance Specialist II</option>
+                    <option value="108">Computer Maintenance Technician II</option>
+                    <option value="109">Computer Programmer II</option>
+                    <option value="280">Computer Specialist</option>
+                    <option value="315">Consultant (Engineer) COS</option>
+                    <option value="316">Corplan Consultant (IT)</option>
+                    <option value="110">Corporate Executive Officer IV</option>
+                    <option value="111">Corporate Executive Officer V</option>
+                    <option value="112">Corporate Planning Analyst A</option>
+                    <option value="113">Corporate Planning Chief</option>
+                    <option value="317">Corporate Planning Consultant</option>
+                    <option value="114">Corporate Planning Officer</option>
+                    <option value="115">Corrporate Planning Assistant A</option>
+                    <option value="318">CSIS Consultant</option>
+                    <option value="116">Dangerous Goods Safety Inspector I</option>
+                    <option value="117">Dangerous Goods Safety Inspector II</option>
+                    <option value="118">Data Analyst</option>
+                    <option value="392">Data Encoder I</option>
+                    <option value="393">Data Encoder II</option>
+                    <option value="281">Data Encoder</option>
+                    <option value="119">Data Encoder-Controller</option>
+                    <option value="120">Dentist I</option>
+                    <option value="121">Dentist II</option>
+                    <option value="122">Dentist III</option>
+                    <option value="123">Department Manager III / Non-Technical</option>
+                    <option value="124">Department Manager III / Technical</option>
+                    <option value="125">Deputy Director General</option>
+                    <option value="126">Director General</option>
+                    <option value="129">Division Chief III  (co-term)</option>
+                    <option value="127">Division Chief III / Non-Technical</option>
+                    <option value="128">Division Chief III / Technical</option>
+                    <option value="130">Division Chief IV</option>
+                    <option value="131">Dormitory Manager I</option>
+                    <option value="132">Draftsman II</option>
+                    <option value="133">Driver I</option>
+                    <option value="134">Driver II</option>
+                    <option value="135">Driver Mechanic B</option>
+                    <option value="282">Driver</option>
+                    <option value="321">Ear Nose Throat (ENT) Specialist</option>
+                    <option value="319">ECG Technician</option>
+                    <option value="320">Economic Adviser</option>
+                    <option value="322">Electrical Engineer</option>
+                    <option value="136">Electrician I</option>
+                    <option value="137">Electronics & Communication Equip. Tech. I</option>
+                    <option value="138">Engineer II</option>
+                    <option value="323">Engineer</option>
+                    <option value="139">Engineering Assistant</option>
+                    <option value="324">Engineering Technical Assistant</option>
+                    <option value="283">Equipment Maintenance Service Technician</option>
+                    <option value="140">Executive Assistant I</option>
+                    <option value="141">Executive Assistant II</option>
+                    <option value="142">Executive Assistant IV</option>
+                    <option value="143">Executive Assistant V</option>
+                    <option value="410">Senior Executive Assistant</option>
+                    <option value="394">Executive Management Assistant</option>
+                    <option value="144">Facilities Foreman</option>
+                    <option value="145">Financial Analyst I</option>
+                    <option value="146">Financial Analyst II</option>
+                    <option value="147">Financial Analyst III</option>
+                    <option value="148">Financial Analyst IV</option>
+                    <option value="149">Fire Marshall I</option>
+                    <option value="150">Fire Marshall II</option>
+                    <option value="151">Firefighter I</option>
+                    <option value="152">Firefighter II</option>
+                    <option value="153">Firefighter III</option>
+                    <option value="154">Firefighter IV</option>
+                    <option value="155">Flight Engineer Examiner I</option>
+                    <option value="395">Flight Information Display System Technician</option>
+                    <option value="325">Flight Inspection Pilot</option>
+                    <option value="156">Flight Operations Control Safety Inspector I</option>
+                    <option value="157">Flight Operations Control Safety Inspector II</option>
+                    <option value="158">Flight Operations Officer Examiner</option>
+                    <option value="160">Flight Operations Safety Inspector I   (co-term)</option>
+                    <option value="159">Flight Operations Safety Inspector I </option>
+                    <option value="162">Flight Operations Safety Inspector II    (co-term)</option>
+                    <option value="161">Flight Operations Safety Inspector II </option>
+                    <option value="326">Flight Operations Safety Inspector</option>
+                    <option value="328">Flight Safety Inspectorate Consultant</option>
+                    <option value="327">Flight Safety Investigator</option>
+                    <option value="163">Heavy Equipment Operator I</option>
+                    <option value="164">Heavy Equipment Operator II (BHS Operator)</option>
+                    <option value="165">Heavy Equipment Operator II (PBB Operator)</option>
+                    <option value="396">Heavy Equipment Operator</option>
+                    <option value="397">Horticulturist Supervisor</option>
+                    <option value="329">HR Specialist</option>
+                    <option value="398">HRM Aide I</option>
+                    <option value="399">HRM Aide II</option>
+                    <option value="330">HRM Consultant</option>
+                    <option value="166">Human Resource Management Assistant I</option>
+                    <option value="284">Human Resource Management Assistant</option>
+                    <option value="167">Human Resource Management Officer I</option>
+                    <option value="168">Human Resource Management Officer II</option>
+                    <option value="169">Human Resource Management Officer III</option>
+                    <option value="170">Human Resource Management Officer IV</option>
+                    <option value="171">Industrial Security Guard B</option>
+                    <option value="172">Industrial Security Guard C</option>
+                    <option value="173">Information Officer II</option>
+                    <option value="174">Information Officer III</option>
+                    <option value="175">Information Officer V</option>
+                    <option value="176">Information Technology Officer I</option>
+                    <option value="177">Information Technology Officer II</option>
+                    <option value="178">Intelligence Agent I</option>
+                    <option value="179">Intelligence Officer I</option>
+                    <option value="180">Intelligence Officer II</option>
+                    <option value="181">Intelligence Officer III</option>
+                    <option value="182">Intelligence Officer IV</option>
+                    <option value="331">Intelligence Operative</option>
+                    <option value="183">Internal Auditor I</option>
+                    <option value="184">Internal Auditor II</option>
+                    <option value="185">Internal Auditor III</option>
+                    <option value="186">Internal Auditor IV</option>
+                    <option value="187">International Civil Aviation Coordinator</option>
+                    <option value="400">IT Assistant I</option>
+                    <option value="401">IT Assistant II</option>
+                    <option value="285">IT Assistant</option>
+                    <option value="332">IT Consultant</option>
+                    <option value="188">Legal Assistant I</option>
+                    <option value="402">Legal Officer</option>
+                    <option value="333">Legal, Accounting and Finance Consultant</option>
+                    <option value="189">Liaison Assistant I</option>
+                    <option value="334">Liaison Officer</option>
+                    <option value="190">Librarian B</option>
+                    <option value="286">Mechanical Plant Operator</option>
+                    <option value="191">Medical Equipment Technician II</option>
+                    <option value="335">Medical Examiner</option>
+                    <option value="192">Medical Technologist III</option>
+                    <option value="193">Minutes Assistant I</option>
+                    <option value="194">Minutes Officer I</option>
+                    <option value="336">Multimedia Officer</option>
+                    <option value="195">Nurse II</option>
+                    <option value="196">Nurse III</option>
+                    <option value="287">Nurse</option>
+                    <option value="197">Nursing Attendant I</option>
+                    <option value="403">Office Assistant I</option>
+                    <option value="404">Office Assistant II</option>
+                    <option value="337">Optometriat</option>
+                    <option value="198">Optometrist II</option>
+                    <option value="338">Organizational and Management Development Consultant</option>
+                    <option value="405">Para Legal Aide I</option>
+                    <option value="406">Para Legal Aide II</option>
+                    <option value="288">Para Legal Aide</option>
+                    <option value="339">Paralegal</option>
+                    <option value="289">Parking Attendant</option>
+                    <option value="407">Parking Fee Collector </option>
+                    <option value="340">Pathologist</option>
+                    <option value="199">Pilot Examiner I</option>
+                    <option value="200">Pilot Examiner II</option>
+                    <option value="341">Pilot Examiner</option>
+                    <option value="201">Plumber I</option>
+                    <option value="342">Press Relations Officer</option>
+                    <option value="202">Private Secretary II</option>
+                    <option value="203">Procurement Analyst A</option>
+                    <option value="204">Procurement Assistant A</option>
+                    <option value="205">Procurement Officer B</option>
+                    <option value="343">Project Research Specialist</option>
+                    <option value="344">Psychiatrist</option>
+                    <option value="206">Psychologist III</option>
+                    <option value="207">Public Relations Officer I</option>
+                    <option value="208">Public Relations Officer IV</option>
+                    <option value="209">Radiologic Technologist III</option>
+                    <option value="345">Radiologist</option>
+                    <option value="210">Records Assistant</option>
+                    <option value="211">Records Officer I</option>
+                    <option value="212">Records Officer II</option>
+                    <option value="213">Records Officer III</option>
+                    <option value="214">Records Officer IV</option>
+                    <option value="346">Resident Engineer</option>
+                    <option value="290">Revenue Collection Clerk</option>
+                    <option value="215">Secretary I</option>
+                    <option value="216">Secretary II</option>
+                    <option value="217">Senior Accident Investigation Officer</option>
+                    <option value="218">Senior Aerodrome Engineer</option>
+                    <option value="219">Senior Aircraft Cabin Safety Inspector    </option>
+                    <option value="220">Senior Aircraft Engineering Safety Inspector</option>
+                    <option value="221">Senior Asset Management Officer</option>
+                    <option value="222">Senior Aviation Medical Examiner</option>
+                    <option value="223">Senior Aviation Safety Analyst</option>
+                    <option value="224">Senior Aviation Services Safety Inspector</option>
+                    <option value="225">Senior Civil Aviation Licensing Officer</option>
+                    <option value="226">Senior Civil Aviation Regulations Officer</option>
+                    <option value="227">Senior CNS Flight Inspector</option>
+                    <option value="228">Senior Corporate Planning Analyst</option>
+                    <option value="347">Senior Dangerous Goods Inspector</option>
+                    <option value="229">Senior Dangerous Goods Safety Inspector </option>
+                    <option value="230">Senior Flight Inspection Pilot</option>
+                    <option value="231">Senior Flight Operations Safety Inspector  (co-term)</option>
+                    <option value="232">Senior Pilot Examiner</option>
+                    <option value="233">Senior Systems Analyst</option>
+                    <option value="348">Special Projects Research Officer</option>
+                    <option value="349">Special Projects Researcher</option>
+                    <option value="234">Sr. Aircraft Maintenance Safety Inspector</option>
+                    <option value="235">Sr. Flight Oprtns. Control Safety Insp.</option>
+                    <option value="408">Staff Nurse</option>
+                    <option value="350">State Safety Program Consultant</option>
+                    <option value="236">Statistician A</option>
+                    <option value="237">Stenographer B</option>
+                    <option value="409">STP Operator</option>
+                    <option value="351">Strategic Planning Technical Consultant</option>
+                    <option value="238">Supervising  CNS Flight Inspector</option>
+                    <option value="240">Supervising  Flight Operations Safety Inspector (co-term)</option>
+                    <option value="239">Supervising  Flight Operations Safety Inspector </option>
+                    <option value="241">Supervising Accident Investigation Officer</option>
+                    <option value="242">Supervising Aerodrome Engineer</option>
+                    <option value="243">Supervising Aircraft Maintenance Safety Inspector</option>
+                    <option value="244">Supervising Asset Management Officer</option>
+                    <option value="245">Supervising Aviation Safety Analyst</option>
+                    <option value="246">Supervising Aviation Services Safety Inspector</option>
+                    <option value="247">Supervising Civil Aviation Licensing Officer</option>
+                    <option value="248">Supervising Civil Aviation Regulations Officer</option>
+                    <option value="249">Supervising Data Analyst</option>
+                    <option value="250">Supervising Flight Oprtns. Control Safety Insp.</option>
+                    <option value="251">Supervising Pilot Examiner</option>
+                    <option value="252">Supervising Procurement Officer</option>
+                    <option value="253">Supply Officer I</option>
+                    <option value="254">Supply Officer II</option>
+                    <option value="255">Supply Officer III</option>
+                    <option value="256">Supply Officer IV</option>
+                    <option value="257">Systems Analyst</option>
+                    <option value="258">Systems Design Officer A</option>
+                    <option value="259">Systems Researcher</option>
+                    <option value="352">Technical Assistant</option>
+                    <option value="353">Technical Consultant</option>
+                    <option value="291">Terminal Fee Collector</option>
+                    <option value="260">Terminal Operations Assistant A</option>
+                    <option value="261">Test Specialist I</option>
+                    <option value="262">Test Specialist II</option>
+                    <option value="263">Test Specialist III</option>
+                    <option value="264">Utility Worker I</option>
+                    <option value="265">Utility Worker II</option>
+                </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Item -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">Update</button>  
+    </div>  
+  </div>
+</div>
+   <div class="card-footer">
+   </div>
+ </div>
+<!-- End family Background -->
+
+  <br><br><br>
+</form>  
+{% endblock %}

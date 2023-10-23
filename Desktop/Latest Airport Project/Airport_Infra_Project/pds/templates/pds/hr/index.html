@@ -1,0 +1,1273 @@
+{% load static %}
+<!DOCTYPE html> 
+<html lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HRMD PORTAL</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free-6.0.0-web/css/all.min.css' %}">
+  <!-- IonIcons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="{% static 'plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css' %}">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="{% static 'plugins/toastr/toastr.min.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <!-- Bar Chart -->
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="{% static 'plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css' %}">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="{% static 'plugins/toastr/toastr.min.css' %}">
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{% static 'media/icons/favicon.ico' %}">
+
+<style type="text/css">
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:600');
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
+body{
+  background:#FFCC10;
+  text-align:center;
+}
+
+#nbr{ 
+  font-size:62px;
+  margin:44px 0 0 0;
+}
+
+button{
+  outline:none;
+  background:none;
+  border:2px solid #000;
+  padding:11px;
+  cursor:pointer;
+}
+
+button:active{
+  background:#000;
+  color:#FFCC10;
+}
+</style>
+<script type="text/javascript">
+  var speed = 1;
+
+/* Call this function with a string containing the ID name to
+ * the element containing the number you want to do a count animation on.*/
+function incEltNbr(id) {
+  elt = document.getElementById(id);
+  endNbr = Number(document.getElementById(id).innerHTML);
+  incNbrRec({{startTotal}}, endNbr, elt);
+}
+
+/*A recursive function to increase the number.*/
+function incNbrRec(i, endNbr, elt) {
+  if (i <= endNbr) {
+    elt.innerHTML = i;
+    setTimeout(function() {//Delay a bit before calling the function again.
+      incNbrRec(i + 1, endNbr, elt);
+    }, speed);
+  }
+}
+
+/*Function called on button click*/
+function incNbr(){
+  incEltNbr("nbr");
+}
+
+incEltNbr("nbr"); /*Call this funtion with the ID-name for that element to increase the number within*/
+</script>
+</head>
+<!--
+`body` tag options:
+
+  Apply one or more of the following classes to to the body tag
+  to get the desired effect
+
+  * sidebar-collapse
+  * sidebar-mini
+-->
+<body class="hold-transition sidebar-mini" onload="javascript:incNbr()">
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="{% static 'media/photo/caap_logo.png' %}" alt="CAAP Logo" height="320" width="480">
+  </div>
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+
+            <a href="/pds" class="nav-link">Home</a>
+
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="fas fa-users-cog"></i>
+<!--           <span class="badge badge-warning navbar-badge">15</span> -->
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right"> 
+          <span class="dropdown-header">User Accounts</span>
+          <div class="dropdown-divider"></div>
+          <a href="/accounts/logout/" class="dropdown-item">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+          <a href="/pds/settings/" class="dropdown-item">
+            <i class="fas fa-cogs"></i> Account
+          </a>
+          
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer"></a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
+            class="fas fa-th-large"></i></a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/pds/hr" class="brand-link">
+      <img src="{% static 'media/photo/caap_logo.png' %}" alt="CAAP Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">HRMD </span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+            <img src="media/{{ request.user.pds_info.photo}}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="/pds" class="d-block">{{ request.user.username}}</a>
+        </div>
+      </div>
+
+      <!-- <div >
+          <form  method="POST" class="post-form" action="/pds/saerchpermanent">
+            {% csrf_token %}
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" name="search" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i style="color: #fff;" class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div> -->
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul style="text-align:left;" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="/pds/qrcode" class="nav-link">
+            <i class="fa fa-qrcode"></i>
+              <p>
+                &nbsp;&nbsp;QR I.D. 
+              </p>
+            </a>
+          </li>
+
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <!-- <li class="nav-item has-treeview menu-open"> -->
+            <!-- <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                HRMD
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a> -->
+            <!-- <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/pds/permanent" class="nav-link">
+                  <i class="fas fa-user"></i>
+                  <p> &nbsp;&nbsp;REGULAR</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/pds/jo" class="nav-link">
+                  <i class="fas fa-user"></i>
+                  <p> &nbsp;&nbsp;JOB ORDER</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/pds/os" class="nav-link">
+                  <i class="fas fa-user"></i>
+                  <p> &nbsp;&nbsp;OUTSOURCED</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/pds/consultant" class="nav-link">
+                  <i class="fas fa-user"></i>
+                  <p> &nbsp;&nbsp;CONTRACT OF SERVICE</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/pds/separated" class="nav-link">
+                  <i class="fas fa-user"></i>
+                  <p> &nbsp;&nbsp;SEPARATED</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/pds/for-approval" class="nav-link">
+                  <i class="fas fa-user"></i>
+                  <p> &nbsp;&nbsp;FOR APPROVAL</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/pds/users_list" class="nav-link">
+                  <i class="fas fa-user"></i>
+                  <p> &nbsp;&nbsp;ACCOUNTS</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/pds/position" class="nav-link">
+                  <i class="fas fa-user"></i>
+                  <p> &nbsp;&nbsp;POSITION</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/pds/sg" class="nav-link">
+                  <i class="fa fa-peso-sign"></i>
+                  <p> &nbsp;&nbsp;SALARY TABLE</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/pds/sign" class="nav-link">
+                  <i class="fa fa-pencil"></i>
+                  <p> &nbsp;&nbsp;SIGNATORY</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/vax" class="nav-link">
+              <i class="fas fa-syringe"></i>
+              <p>
+                &nbsp;&nbsp;VACCINE
+              </p>
+            </a>
+          </li>
+
+                 
+         <li class="nav-item has-treeview menu-close">
+            <a href="#" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                PAYROLL
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+            <a href="/pds/payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;VIEW ALL
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/pds/aansoo_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;AANSOO
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/admin_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;ADMIN
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/adms_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;ADMS
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/ans_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;ANS
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/ats_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;ATS
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/catc_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;CATC
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/csis_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;CSIS
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/els_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;ELS
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/ficg_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;FICG
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/fmd_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;FMD
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/fsis_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;FSIS
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/ias_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;IAS
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/odg_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;ODG
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/pds/ofsam_payroll" class="nav-link">
+              <i class="fa fa-peso-sign"></i>
+              <p>
+                &nbsp;&nbsp;OFSAM
+              </p>
+            </a>
+          </li> 
+            </ul>
+          </li>
+
+           <li class="nav-item">
+            <a href="/pds/notify-training" class="nav-link">
+              <i class="fa fa-bell"></i>
+              <p>
+                &nbsp;&nbsp;Trainings Notifications 
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/pds/qrcode" class="nav-link">
+            <i class="fa fa-qrcode"></i>
+              <p>
+                &nbsp;&nbsp;QR I.D. 
+              </p>
+            </a>
+          </li> -->
+
+          
+<!--           <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Simple Link
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li> -->
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Admin Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            {% block breadcrumb %}
+            
+            {% endblock breadcrumb %}
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+     <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Line chart -->
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  CAAP EMPLOYEES PER AREA
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <h2> Total Employees as of {{ today }}</h2> <h1><b id="nbr" >{{total}}</b>  CAAP Personnel</h1>
+                <div id="columnchart_values" style="width: 100%; height: 300px;"></div>
+              </div>
+              <div class="card-body">
+                <h2> Male - {{ maleP }} % &nbsp;&nbsp;&nbsp;&nbsp; | Female - {{ femaleP }} % &nbsp;&nbsp;&nbsp;&nbsp;</h2>
+              </div>
+            </div>
+           <!-- /.card-body-->
+        </div>
+      </div>
+
+
+      <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{senior}}</h3>
+
+                <p>Senior Management</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user-tie"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{middle}}</h3>
+
+                <p>Middle Management</p>
+              </div>
+              <div class="icon">
+                <i class="  fas fa-user-tie"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{visor}}</h3>
+
+                <p>Professional & Supervisory</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{genstaff}}</h3>
+
+                <p>Clerical & General Staff</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-people-carry"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card card-primary card-outline">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <i class="far fa-chart-bar"></i>
+                      CAAP EMPLOYMENT STATUS PER AREA
+                    </h3>
+
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="sales-chart" height="200"></canvas>
+                  </div> 
+
+                  <div class="row">
+                    <div class="col-sm-4">
+                         Central -
+                        <i class="fas fa-square" style="color: #3B9FCD"></i> {{ perma_central }}
+                        <i class="fas fa-square" style="color: #FE7516"></i> {{ jo_central }} <br>
+
+                        Area1 -
+                        <i class="fas fa-square" style="color: #3B9FCD"></i> {{ perma_A1 }}
+                        <i class="fas fa-square" style="color: #FE7516"></i> {{ jo_A1 }} <br>
+
+                        Area 2 -
+                        <i class="fas fa-square" style="color: #3B9FCD"></i> {{ perma_A2 }}
+                        <i class="fas fa-square" style="color: #FE7516"></i> {{ jo_A2 }} <br> 
+
+                        Area 3 -
+                        <i class="fas fa-square" style="color: #3B9FCD"></i> {{ perma_A3 }}
+                        <i class="fas fa-square" style="color: #FE7516"></i> {{ jo_A3 }} <br> 
+
+                        Area 4  -
+                        <i class="fas fa-square" style="color: #3B9FCD"></i> {{ perma_A4 }}
+                        <i class="fas fa-square" style="color: #FE7516"></i> {{ jo_A4 }} <br> 
+                  </div>
+
+                  <div class="col-sm-4">
+                        Area 5 -
+                        <i class="fas fa-square" style="color: #3B9FCD"></i> {{ perma_A5 }}
+                        <i class="fas fa-square" style="color: #FE7516"></i> {{ jo_A5 }} <br> 
+
+                        Area 6 -
+                        <i class="fas fa-square" style="color: #3B9FCD"></i> {{ perma_A6 }}
+                        <i class="fas fa-square" style="color: #FE7516"></i> {{ jo_A6 }} <br> 
+
+                        Area 7 -
+                        <i class="fas fa-square" style="color: #3B9FCD"></i> {{ perma_A7 }}
+                        <i class="fas fa-square" style="color: #FE7516"></i> {{ jo_A7 }}<br> 
+
+                         Area 8 -
+                        <i class="fas fa-square" style="color: #3B9FCD"></i> {{ perma_A8 }}
+                        <i class="fas fa-square" style="color: #FE7516"></i> {{ jo_A8 }} <br> 
+                    </div>
+
+                    <div class="col-sm-4">
+                        Area 9 -
+                        <i class="fas fa-square" style="color: #3B9FCD"></i> {{ perma_A9 }}
+                        <i class="fas fa-square" style="color: #FE7516"></i> {{ jo_A9}} <br> 
+
+                        Area 10  -
+                        <i class="fas fa-square" style="color: #3B9FCD"></i> {{ perma_A10 }}
+                        <i class="fas fa-square" style="color: #FE7516"></i> {{ jo_A10 }} <br> 
+
+                        Area 11 -
+                        <i class="fas fa-square" style="color: #3B9FCD"></i> {{ perma_A11 }}
+                        <i class="fas fa-square" style="color: #FE7516"></i> {{ jo_A11 }} <br> 
+
+                        Area 12  -
+                        <i class="fas fa-square" style="color: #3B9FCD"></i> {{ perma_A12 }}
+                        <i class="fas fa-square" style="color: #FE7516"></i> {{ jo_A12 }} <br> 
+                        </div>
+                  </div>                
+
+                  <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square" style="color: #3B9FCD"></i> Regular
+                  </span>
+
+                  <span>
+                    <i class="fas fa-square" style="color: #FE7516"></i> Outsourced
+                  </span>
+                </div>
+              </div>
+          <div>
+      </div>
+
+
+        <div class="row">
+          <div class="col-md-6">
+            <!-- Line chart -->
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  CAAP EMPLOYEES Male AND FEMALE Chart
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="sex_emp" style="width:100%;max-width:600px"></canvas>
+              </div>
+              <!-- /.card-body-->
+
+              <div class="card-body">
+                <h2> Male - {{ maleP }} % &nbsp;&nbsp;&nbsp;&nbsp; | Female - {{ femaleP }} % &nbsp;&nbsp;&nbsp;&nbsp;</h2>
+              </div>
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+
+           <div class="col-md-6">
+            <!-- Line chart -->
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  CAAP Employees Civil Status Chart
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="civil" style="width:100%;max-width:600px"></canvas>
+              </div>
+              <!-- /.card-body-->
+
+              <div class="card-body">
+                <h5> Married - {{ marriedP }} % &nbsp;&nbsp; | Single - {{ singleP }} % &nbsp;&nbsp; | Widowed - {{ widowedP }} % &nbsp;&nbsp; | Annulled Mariage - {{ annulledP }} %</h5>
+              </div>
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+        </div>
+
+        <div class="row">
+
+
+           <div class="col-md-6">
+            <!-- Line chart -->
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  CAAP Employment Status Chart
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="emp_status" style="width:100%;max-width:600px"></canvas>
+                <!-- List of Employee per positions -->
+                |<b>Regular</b> : {{ permanent }} | <b>Job Order</b> : {{ joborder }} | <b>Outsourced</b> : {{ outsource }} | <b>Co-Term</b> : {{ coterm }} | <b>Consultant</b> : {{ consultant }} | <b>Total Employees</b> : {{ total }} |
+                <br><br>
+                <!-- List of Percentage -->
+                |Regular : <b>{{ permanentP }} %</b> | Job Order : <b>{{ joborderP }} %</b> | Outsourced: <b>{{ outsourceP }} %</b> | Co-Term : <b>{{ cotermP }} %</b> | Consultant : <b>{{ consultantP }} %</b>| Total <b>{{ total }}</b> |
+              </div>
+              <!-- /.card-body-->
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+
+
+
+          <div class="col-md-6">
+            <!-- Line chart -->
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  CAAP Vaccine Status Chart
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="vax_status" style="width:100%;max-width:600px"></canvas>
+                |<b>1st Vaccine</b> : {{ first_dose }} | <b>2nd Vaccine</b> : {{ second_dose }} | <b>3rd Vaccine/Booster</b> : {{ booster }} |
+              </div>
+              <!-- /.card-body-->
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <!-- Line chart -->
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  CAAP Solo Parent Chart
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="parent" style="width:100%;max-width:600px"></canvas>
+              </div>
+              <!-- /.card-body-->
+
+              <div class="card-body">
+                <h2> Solo Parent - {{ soloparentP }} % &nbsp;&nbsp;&nbsp;&nbsp; </h2>
+              </div>
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+
+           <div class="col-md-6">
+            <!-- Line chart -->
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  CAAP Employees Persons with Disability Chart
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="disability" style="width:100%;max-width:600px"></canvas>
+              </div>
+              <!-- /.card-body-->
+
+              <div class="card-body">
+                <h2> Persons with Disability - {{ disabilityP }} % &nbsp;&nbsp;&nbsp;&nbsp; </h2>
+              </div>
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+        </div>
+
+    </div>
+  </section>
+
+
+
+<!-- CAAP MALE and FEMALE Script -->
+<script>
+// Male and Female
+var xValues = ["Male", "Female"];
+var yValues = [ "{{ male }}","{{ female }}"];
+var barColors = [
+  "#b91d47",
+  "#00aba9"
+];
+
+new Chart("sex_emp", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "CAAP EMPLOYEES Male AND FEMALE"
+    }
+  }
+});
+
+// Civil Status
+var xValues = ["Married", "Single", "Widowed", "Annulled Mariage"];
+var yValues = [ "{{ married }}","{{ single }}" ,"{{ widowed }}" ,"{{ annulled }}"];
+var barColors = [
+  "#066003",
+  "#FF5733",
+  "#00aba9",
+  "#581845",
+
+];
+
+new Chart("civil", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "CAAP EMPLOYEES CIVIL STATUS"
+    }
+  }
+});
+
+// Solo Parent
+var xValues = ["Solo Parent", "Non-Solo Parent"];
+var yValues = [ "{{ soloparent }}","{{ parent }}"];
+var barColors = [
+  "#b91d47",
+  "#00aba9",
+];
+
+new Chart("parent", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "CAAP Solo Parent"
+    }
+  }
+});
+
+// Disability
+var xValues = ["Persons with Disability", "Good Health"];
+var yValues = [ "{{ disability }}","{{ good }}"];
+var barColors = [
+  "#FF5733",
+  "#066003",
+];
+
+new Chart("disability", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "CAAP Persons with Disability"
+    }
+  }
+});
+
+// Employment Status
+var xValues = ["Permanent", "Job Order", "Outsourced", "Co-term", "Consultant"];
+var yValues = ["{{ permanent }}", "{{ joborder }}","{{ outsource }}","{{ coterm }}","{{ consultant }}"];
+var barColors = ["red", "green","blue","orange","brown"];
+
+new Chart("emp_status", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "CAAP Employment Status"
+    }
+  }
+});
+
+// Vaccine Status
+var xValues = ["1st Vaccine", "2nd Vaccine", "3rd Vaccine/Booster" , "2nd Booster"];
+var yValues = ["{{ first_dose }}", "{{ second_dose }}","{{ booster }}","{{ booster2 }}"];
+var barColors = ["red", "green","blue", "orange"];
+
+new Chart("vax_status", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "CAAP Vaccination Status"
+    }
+  }
+});
+</script>
+
+<!-- Bar Chart -->
+<script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", { role: "style" } ],
+        ["Central Office", {{ central }}, "#0966A2"],
+        ["Area I", {{A1}}, "#0966A2"],
+        ["Area II", {{A2}}, "#0966A2"],
+        ["Area III", {{A3}}, "#0966A2"],
+        ["Area IV", {{A4}}, "#0966A2"],
+        ["Area V", {{A5}}, "#0966A2"],
+        ["Area VI", {{A6}}, "#0966A2"],
+        ["Area VII", {{A7}}, "#0966A2"],
+        ["Area VIII", {{A8}}, "#0966A2"],
+        ["Area IX", {{A9}}, "#0966A2"],
+        ["Area X", {{A10}}, "#0966A2"],
+        ["Area XI", {{A11}}, "#0966A2"],
+        ["Area XII", {{A12}}, "#0966A2"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "CAAP Personel Count Per Area",
+        width: 1800,
+        height: 400,
+        bar: {groupWidth: "75%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
+
+ 
+
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 3.1.0
+    </div>
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap -->
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE -->
+<script src="{% static 'dist/js/adminlte.js' %}"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="{% static 'plugins/chart.js/Chart.min.js' %}"></script>
+
+<!-- SweetAlert2 -->
+<script src="{% static 'plugins/sweetalert2/sweetalert2.min.js' %}"></script>
+<!-- Toastr -->
+<script src="{% static 'plugins/toastr/toastr.min.js' %}"></script>
+
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<!-- <script src="{% static 'dist/js/pages/dashboard3.js' %}"></script> -->
+<script >
+  /* global Chart:false */
+
+$(function () {
+  'use strict'
+
+  var ticksStyle = {
+    fontColor: '#495057',
+    fontStyle: 'bold'
+  }
+
+  var mode = 'index'
+  var intersect = true
+
+  var $salesChart = $('#sales-chart')
+  // eslint-disable-next-line no-unused-vars
+  var salesChart = new Chart($salesChart, {
+    type: 'bar',
+    data: {
+      labels: ['Central Office', 'Area 1', 'Area 2','Area 3','Area 4','Area 5','Area 6','Area 7','Area 8','Area 9','Area 10','Area 11','Area 12'],
+      datasets: [
+        {
+          backgroundColor: '#3B9FCD',
+          borderColor: '#3B9FCD',
+          data: [ {{perma_central}}, {{perma_A1}},{{perma_A2}},{{perma_A3}},{{perma_A4}},{{perma_A5}},{{perma_A6}},{{perma_A7}},{{perma_A8}},{{perma_A9}},{{perma_A10}},{{perma_A11}},{{perma_A12}} ]
+        },
+        {
+          backgroundColor: '#FE7516',
+          borderColor: '#FE7516',
+          data: [ {{jo_central}}, {{jo_A1}},{{jo_A2}},{{jo_A3}},{{jo_A4}},{{jo_A5}},{{jo_A6}},{{jo_A7}},{{jo_A8}},{{jo_A9}},{{jo_A10}},{{jo_A11}},{{jo_A12}} ]
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      tooltips: {
+        mode: mode,
+        intersect: intersect
+      },
+      hover: {
+        mode: mode,
+        intersect: intersect
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          // display: false,
+          gridLines: {
+            display: true,
+            lineWidth: '4px',
+            color: 'rgba(0, 0, 0, .2)',
+            zeroLineColor: 'transparent'
+          },
+          ticks: $.extend({
+            beginAtZero: true,
+
+            // Include a dollar sign in the ticks
+            callback: function (value) {
+              if (value >= 1000) {
+                value /= 1000
+                value += 'k'
+              }
+
+              return '' + value
+            }
+          }, ticksStyle)
+        }],
+        xAxes: [{
+          display: true,
+          gridLines: {
+            display: false
+          },
+          ticks: ticksStyle
+        }]
+      }
+    }
+  })
+
+  var $visitorsChart = $('#visitors-chart')
+  // eslint-disable-next-line no-unused-vars
+  var visitorsChart = new Chart($visitorsChart, {
+    data: {
+      labels: ['18th', '20th', '22nd', '24th', '26th', '28th', '30th'],
+      datasets: [{
+        type: 'line',
+        data: [100, 120, 170, 167, 180, 177, 160],
+        backgroundColor: 'transparent',
+        borderColor: '#007bff',
+        pointBorderColor: '#007bff',
+        pointBackgroundColor: '#007bff',
+        fill: false
+        // pointHoverBackgroundColor: '#007bff',
+        // pointHoverBorderColor    : '#007bff'
+      },
+      {
+        type: 'line',
+        data: [60, 80, 70, 67, 80, 77, 100],
+        backgroundColor: 'tansparent',
+        borderColor: '#ced4da',
+        pointBorderColor: '#ced4da',
+        pointBackgroundColor: '#ced4da',
+        fill: false
+        // pointHoverBackgroundColor: '#ced4da',
+        // pointHoverBorderColor    : '#ced4da'
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      tooltips: {
+        mode: mode,
+        intersect: intersect
+      },
+      hover: {
+        mode: mode,
+        intersect: intersect
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          // display: false,
+          gridLines: {
+            display: true,
+            lineWidth: '4px',
+            color: 'rgba(0, 0, 0, .2)',
+            zeroLineColor: 'transparent'
+          },
+          ticks: $.extend({
+            beginAtZero: true,
+            suggestedMax: 200
+          }, ticksStyle)
+        }],
+        xAxes: [{
+          display: true,
+          gridLines: {
+            display: false
+          },
+          ticks: ticksStyle
+        }]
+      }
+    }
+  })
+})
+
+// lgtm [js/unused-local-variable]
+</script>
+{% if messages %}
+        {% for message in messages %}
+            <script>
+              $(function() {
+                var Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  showConfirmButton: false,
+                  timer: 9000
+                });
+
+                
+                $('.swalDefaultInfo').ready(function() {
+                  Toast.fire({
+                    icon: 'info',
+                    title: '{{message}}'
+                  })
+                });
+              });
+            </script>
+        {% endfor %}
+    
+    {% endif %}
+</body>
+</html>

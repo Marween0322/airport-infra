@@ -1,0 +1,350 @@
+{% extends "base_admin2.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+Update Position of <b> {{ pds.surname }} , {{ pds.first_name }} &nbsp; {{ pds.middle_name }}</b>
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">PDS</a></li>
+    <li class="breadcrumb-item active">Position Update</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Personal Information -->
+  {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }} for {{ field.name}}</strong>
+              </div> 
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+<br>
+<form method="POST" class="post-form" action="/pds/officeUpdate/{{pds.id}}">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Personnel Office Form</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+                        <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                 <label>Place of Assignment</label>
+                  <select class="form-control" name="assignment"  >
+                      <option value="{{ pds.assignment }}">{{ pds.assignment }}</option>
+                      <option>Central Office</option>
+                      <option>Area 01</option>
+                      <option>Area 02</option>
+                      <option>Area 03</option>
+                      <option>Area 04</option>
+                      <option>Area 05</option>
+                      <option>Area 06</option>
+                      <option>Area 07</option>
+                      <option>Area 08</option>
+                      <option>Area 09</option>
+                      <option>Area 10</option>
+                      <option>Area 11</option>
+                      <option>Area 12</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            <div class="col-md-4">
+                <div class="form-group"> 
+                  <label>Service / Airport</label>
+                  <select class="form-control" name="service"  >
+                      <option value="{{ pds.service }}">{{ pds.service }}</option>
+                      <option>Administrative and Finance Service</option>
+                      <option>Aerodrome Development and Management Service</option>
+                      <option>Air Navigation Service</option>
+                      <option>Air Traffic Service</option>
+                      <option>Flight Standards Inspectorate Service</option>
+                      <option>Office of the Director General</option>
+                      <option>Alabat Airport</option>
+                      <option>Allah Valley Airport</option>
+                      <option>Bacolod-Silay Airport</option>
+                      <option>Bacong Airport</option>
+                      <option>Bagabag Airport</option>
+                      <option>Bagiuo Airport</option>
+                      <option>Baler Airport</option>
+                      <option>Basco Airport</option>
+                      <option>Bicol International Airport</option>
+                      <option>Biliran Airport</option>
+                      <option>Bislig Airport</option>
+                      <option>Bohol-Panglao International Airport</option>
+                      <option>Borongan Airport</option>
+                      <option>Bulan Airport</option>
+                      <option>Butuan Airport</option>
+                      <option>Cagayan de Sulu Airport</option>
+                      <option>Calapan Airport</option>
+                      <option>Calbayog Airport</option>
+                      <option>Camiguin Airport</option>
+                      <option>Catarman Airport</option>
+                      <option>Catbalogan Airport</option>
+                      <option>Caticlan Airport</option>
+                      <option>Cauayan Airport</option>
+                      <option>Clark Int'l Airport</option>
+                      <option>Cotabato Airport</option>
+                      <option>Cuyo Airport</option>
+                      <option>Daet Airport</option>
+                      <option>Davao International Airport (Security)</option>
+                      <option>Dipolog Airport</option>
+                      <option>Dumaguete (Sibulan) Airport</option>
+                      <option>Evilio B. Javier (Antique) Airport</option>
+                      <option>Francisco B. Reyes (Busuanga) Airport</option>
+                      <option>General Santos Int'l Airport</option>
+                      <option>Guiuan Airport</option>
+                      <option>Hilongos Airport</option>
+                      <option>Iba Airport</option>
+                      <option>Iligan Airport</option>
+                      <option>Iloilo Int'l Airport</option>
+                      <option>Ipil Airport</option>
+                      <option>Itbayat Airport</option>
+                      <option>Jolo Airport</option>
+                      <option>Jomalig Airport</option>
+                      <option>Kalibo Int'l Airport</option>
+                      <option>Laguindingan Airport</option>
+                      <option>Laoag International Airport</option>
+                      <option>Legazpi Airport</option>
+                      <option>Liloy Airport</option>
+                      <option>Lingayen Airport</option>
+                      <option>Lubang Airport</option>
+                      <option>Lucena Airport</option>
+                      <option>Maasin Airport</option>
+                      <option>Mactan Int'l Airport</option>
+                      <option>Malabang Airport</option>
+                      <option>Mamburao Airport</option>
+                      <option>Marinduque Airport</option>
+                      <option>Masbate Airport</option>
+                      <option>Mlang Airport</option>
+                      <option>Naga Airport</option>
+                      <option>Ormoc Airport</option>
+                      <option>Ozamiz Airport</option>
+                      <option>Pagadian Airport</option>
+                      <option>Palanan Airport</option>
+                      <option>Pinamalayan Airport</option>
+                      <option>Plaridel Airport</option>
+                      <option>Puerto Princesa Int'l Airport</option>
+                      <option>Romblon Airport</option>
+                      <option>Rosales Airport</option>
+                      <option>Rosales Airport</option>
+                      <option>Roxas Airport</option>
+                      <option>San Fernando</option>
+                      <option>San Jose Airport</option>
+                      <option>San Vicente Airport</option>
+                      <option>Sanga-Sanga Airport</option>
+                      <option>Sangley Airport</option>
+                      <option>Siargao Airport</option>
+                      <option>Siocon Airport</option>
+                      <option>Siquijor Airport</option>
+                      <option>Sorsogon Airport</option>
+                      <option>Subic Int'l Airport</option>
+                      <option>Surigao Airport</option>
+                      <option>Tacloban Airport</option>
+                      <option>Tagbilaran Airport</option>
+                      <option>Tandag Airport</option>
+                      <option>Tuguegarao Airport</option>
+                      <option>Ubay Airport</option>
+                      <option>Vigan Airport</option>
+                      <option>Virac Airport</option>
+                      <option>Wao Airport</option>
+                      <option>Wasig Airport</option>
+                      <option>Zamboanga Int'l Airport</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+
+              <div class="col-md-4">
+                <div class="form-group"> 
+                  <label>Office</label>
+                  <select class="form-control" name="office"  >
+                    <option value="{{ pds.office }}">{{ pds.office }}</option>
+                    <option value=" "> --- N/A ---- </option>
+                    <option>Administrative and Finance Service</option>
+                    <option>Administrative Department</option>
+                    <option>Administrative Department - Cashiering Division</option>
+                    <option>Administrative Department - Cashiering Division - Checking Section</option>
+                    <option>Administrative Department - Central Records and Archives Division</option>
+                    <option>Administrative Department - Facilities Maintenance Division</option>
+                    <option>Administrative Department - Facilities Maintenance Division - Building and Grounds Maintenance Section</option>
+                    <option>Administrative Department - Facilities Maintenance Division - Motorpool Section</option>
+                    <option>Administrative Department - Human Resource Management Division</option>
+                    <option>Administrative Department - Procurement Division</option>
+                    <option>Administrative Department - Procurement Division - Bids and Awards Committee (BAC)</option>
+                    <option>Administrative Department - Supply Division</option>
+                    <option>Aerodrome Development and Management Service</option>
+                    <option>Aerodrome and Air Navigation Safety Oversight Office</option>
+                    <option>Aerodrome and Air Navigation Safety Oversight Office - Aerodrome Registration, Certification and Inspection Division</option>
+                    <option>Aerodrome and Air Navigation Safety Oversight Office - Air Traffic Management Inspectorate Division</option>
+                    <option>Aerodrome and Air Navigation Safety Oversight Office - Communication Navigation Surveillance Safety Inspection Division</option>
+                    <option>Aerodrome and Air Navigation Safety Oversight Office - Regulatory Safety Standards Division</option>
+                    <option>Aerodrome Engineering Department </option>
+                    <option>Aerodrome Engineering Department - Infrastructure Development and Design Division</option>
+                    <option>Aerodrome Engineering Department - Planning and Programming Division</option>
+                    <option>Aerodrome Engineering Department - Project Management Division</option>
+                    <option>Aerodrome Engineering Department - Survey Division</option>
+                    <option>Aerodrome Operations Department</option>
+                    <option>Aerodrome Operations Department - Operational Safety Division</option>
+                    <option>Aerodrome Operations Department - Repair and Maintenance Division</option>
+                    <option>Aeronautical Information and Communication Department</option>
+                    <option>Aeronautical Information and Communication Department - Aeronautical Telecommunication Division</option>
+                    <option>Aeronautical Information and Communication Department - Aeronautical Telecommunication Division - Manila Aeronautical Data Communication Center (MADCC)</option>
+                    <option>Aeronautical Information and Communication Department - Aeronautical Telecommunication Division - Manila Aeronautical Mobile Service (MAMS)</option>
+                    <option>Aeronautical Information and Communication Department - Aeronautical Telecommunication Division - Manila Flight Service Station (MFSS)</option>
+                    <option>Aeronautical Information and Communication Department - AIS/MAPS Division</option>
+                    <option>Aeronautical Information and Communication Department - AIS/MAPS Division - Aeronautical Information Service Operations (AIS Ops)</option>
+                    <option>Aeronautical Information and Communication Department - AIS/MAPS Division - Operations Center (OPCEN)</option>
+                    <option>Aeronautical Information and Communication Department - AIS/MAPS Division - Philippine Rescue Coordination Center (PARCC)</option>
+                    <option>Air Navigation Operations Department</option>
+                    <option>Air Navigation Operations Department - Air Navigation Facilites Maintenance Division</option>
+                    <option>Air Navigation Project Implementation Department</option>
+                    <option>Air Navigation Project Implementation Department - CNS/MET Implementation Division</option>
+                    <option>Air Navigation Project Implementation Department - Electro-Mechanical Implementation Division</option>
+                    <option>Air Navigation Project Planning and Design Department</option>
+                    <option>Air Navigation Project Planning and Design Department - CNS/MET Planning Division</option>
+                    <option>Air Navigation Project Planning and Design Department - Electro-Mechanical Planning Division</option>
+                    <option>Air Navigation Quality Management Department</option>
+                    <option>Air Navigation Quality Management Department - Air Navigation Facilites Quality Assurance Division</option>
+                    <option>Air Navigation Quality Management Department - Air Navigation Facilities Quality Inspection Division</option>
+                    <option>Air Navigation Service</option>
+                    <option>Air Navigation Services Field Office</option>
+                    <option>Air Traffic Control and Airspace Management Department</option>
+                    <option>Air Traffic Control and Airspace Management Department - Aerodrome Control Division</option>
+                    <option>Air Traffic Control and Airspace Management Department - Aerodrome Control Division - Manila Control Tower</option>
+                    <option>Air Traffic Control and Airspace Management Department - Airspace and Flight Procedure Design Division</option>
+                    <option>Air Traffic Control and Airspace Management Department - Approach Control Division</option>
+                    <option>Air Traffic Control and Airspace Management Department - Approach Control Division - Air Traffic Flow Management Unit</option>
+                    <option>Air Traffic Control and Airspace Management Department - Approach Control Division - Bacolod-Kalibo Approach Cluster</option>
+                    <option>Air Traffic Control and Airspace Management Department - Approach Control Division - Mactan-Davao Approach Cluster</option>
+                    <option>Air Traffic Control and Airspace Management Department - Approach Control Division - Manila-Clark Approach Cluster</option>
+                    <option>Air Traffic Control and Airspace Management Department - Enroute Control Division</option>
+                    <option>Air Traffic Control and Airspace Management Department - Enroute Control Division - Manila Area Control Center (Manila ACC)</option>
+                    <option>Air Traffic Planning and Progression Department</option>
+                    <option>Air Traffic Planning and Progression Department - Air Traffic Planning Division</option>
+                    <option>Air Traffic Planning and Progression Department - Air Traffic Progression Division</option>
+                    <option>Air Traffic Service</option>
+                    <option>Air Traffic Service-Safety Management System</option>
+                    <option>Aircraft Accident and Inquiry Investiation Board</option>
+                    <option>Airworthiness Department</option>
+                    <option>Airworthiness Department - Commercial Air Transport Certification and Inspection Division</option>
+                    <option>Airworthiness Department - Engineering and Aircraft Registration Division</option>
+                    <option>Airworthiness Department - FSIC</option>
+                    <option>Airworthiness Department - General Aviation Certification and Inspection Division</option>
+                    <option>Airworthiness Department - OSI</option>
+                    <option>Airmen Examination Board</option>
+                    <option>CAAP Security and Intelligence Service</option>
+                    <option>CAAP Security and Intelligence Service - Civil Security Division</option>
+                    <option>CAAP Security and Intelligence Service - Intelligence Division</option>
+                    <option>CART</option>
+                    <option>Civil Aviation Training Center</option>
+                    <option>Corporate Board Secretariat</option>
+                    <option>Corporate Communications Staff</option>
+                    <option>Corporate Communications Staff - Media Communications Office</option>
+                    <option>Corporate Planning Office</option>
+                    <option>Corporate Planning Office - Asset Management Division</option>
+                    <option>Corporate Planning Office - Business Development Division</option>
+                    <option>Corporate Planning Office - Management Information System Division</option>
+                    <option>Corporate Planning Office - Strategic Planning Division</option>
+                    <option>Enforcement and Legal Service</option>
+                    <option>Finance Department</option>
+                    <option>Finance Department - Accounting Division</option>
+                    <option>Finance Department - Accounting Division - Billing Section</option>
+                    <option>Finance Department - Accounting Division - Bookkeping Section</option>
+                    <option>Finance Department - Accounting Division - Revenue Section</option>
+                    <option>Finance Department - Budget Division</option>
+                    <option>Finance Department - COA</option>
+                    <option>Finance Department - Treasury Division</option>
+                    <option>Flight Inspection and Calibration Group</option>
+                    <option>Flight Operations Department</option>
+                    <option>Flight Operations Department - Commercial Air Transport Operations Certification and Inspection Division</option>
+                    <option>Flight Operations Department - Flight Operations Control Safety Inspection Division</option>
+                    <option>Flight Operations Department - General Aviation Operations Certification and Inspection Division</option>
+                    <option>Flight Standards Inspectorate Service</option>
+                    <option>FSIS Training Office</option>
+                    <option>Gender and Development </option>
+                    <option>Hearing and Adjudication Board</option>
+                    <option>Internal Audit Service </option>
+                    <option>Internal Audit Service - Financial Audit Division</option>
+                    <option>Internal Audit Service - Operations Audit Division</option>
+                    <option>International Civil Aviation Coordinating Staff</option>
+                    <option>Licensing and Certification Department</option>
+                    <option>Licensing and Certification Department -,Airmen Licensing Division</option>
+                    <option>Licensing and Certification Department -,Proficiency Check and Skills Test Division</option>
+                    <option>Licensing and Certification Department -,Training Organization Certification and Inspection Division</option>
+                    <option>Manila CNS Facility</option>
+                    <option>Manila CNS/ATM Facility</option>                    
+                    <option>Office of the Director General</option>
+                    <option>Office of the Deputy Director General for Administration</option>
+                    <option>Office of the Deputy Director General for Operations</option>
+                    <option>Office of the Flight Surgeon</option>
+                    <option>Regulatory Standards Department</option>
+                    <option>Regulatory Standards Department - Aviation Records Management Division</option>
+                    <option>Regulatory Standards Department - Aviation Safety Analysis Division</option>
+                    <option>Regulatory Standards Department - Regulatory Standards Development Division</option>
+                    <option>Tagaytay/ Bonifacio CS Facility</option>
+                    <option>USOAP</option>
+                    <option>Office of the CAAM</option>
+                    <option>Office of the Airport Manager</option>
+                    <option>Admin</option>
+                    <option>Finance</option>
+                    <option>HR</option>
+                    <option>ARFF</option>
+                    <option>ATS</option>
+                    <option>ANS</option>
+                    <option>Buildings and Grounds Maintenance</option>
+                    <option>Legal</option>
+                    <option>Concessions</option>
+                    <option>Medical</option>
+                    <option>Airport Terminal</option>
+                    <option>Aviation Safety</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+
+
+              
+            </div>
+            <!-- /.row -->
+
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Item -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">Update</button>  
+    </div>  
+  </div>
+</div>
+   <div class="card-footer">
+   </div>
+ </div>
+<!-- End family Background -->
+
+  <br><br><br>
+</form>  
+{% endblock %}

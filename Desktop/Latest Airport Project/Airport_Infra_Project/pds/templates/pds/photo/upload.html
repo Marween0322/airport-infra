@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+Upload Photo
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">PDS</a></li>
+    <li class="breadcrumb-item active">Upload Photo</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Personal Information -->
+  {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }} for {{ field.name}}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+<br>
+<form method="POST"  enctype="multipart/form-data" action="/pds/photoUpdate/{{pds.id}}">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title"> Photo Form</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Upload Photo</label><span style = "color:#D21E1E;font-size: 20px;"> &nbsp;* (ID picture taken within the last  6 months 3.5 cm. X 4.5 cm (passport size) Maximum File size is 12 mb)
+                  </span> <br>
+                  <input type="file" name="photo" required>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+          <!-- End Status Update -->
+
+           <div class="form-group row"  align="center">  
+              <div class="col-sm-4">  
+              <button type="submit" class="btn btn-primary">Upload </button>  
+              </div>  
+            </div>
+          </div>
+
+</form>  
+{% endblock %}

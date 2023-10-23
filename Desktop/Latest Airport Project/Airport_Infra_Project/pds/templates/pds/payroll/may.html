@@ -1,0 +1,469 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load static %}
+<!-- Page title goes here -->
+{% block header %}
+Payslip
+{% endblock %}
+
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="/pds">May</a></li>
+    <li class="breadcrumb-item active">{{payroll.surname}}, {{payroll.first_name}}</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- <h4 align="center">REPUBLIC OF THE PHILIPPINES</h4>
+<h4 align="center">Department of Transportation</h4>
+<h4 align="center">CIVIL AVIATION AUTHORITY OF THE PHILIPPINES</h4> -->
+<img src="{% static 'media/photo/caap_banner.png' %}" alt="CAAP Logo" width="100%" style="align-content: center;" >
+
+<br><br>
+<h4 align="center">STATEMENT OF SALARY as of May {{ year }}</h4>
+<br><br>
+<p>NAME &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp; <b>{{pds.surname|title}}, {{pds.first_name|title}} &nbsp;&nbsp;</b>
+  {% if ext_name != "" %}
+    {% if ext_name != None %}
+      <b> {{pds.ext_name|title}} </b>
+    {% else %}
+    {% endif %}
+  {% else %}  
+  {% endif %}
+  <br>
+  POSITION &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp; {{pds.position_title}}
+  <br>
+  <br>
+  BASIC SALARY &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp; <b>{{payroll.pay_701|intcomma}}</b>
+  <br>
+  PERA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp; <b>{{payroll.pay_711|intcomma}}</b>
+  <br>
+  TOTAL SALARY &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp; <b>{{ total|intcomma}}</b>
+  <br><br>
+</p>
+<p align="center">D&nbsp;E&nbsp;D&nbsp;U&nbsp;C&nbsp;T&nbsp;I&nbsp;O&nbsp;N&nbsp;S</p>
+
+
+<table class="table table-bordered" style="background-color: white">
+  <tr>
+    <th>CODE</th>
+    <th>D&nbsp;E&nbsp;D&nbsp;U&nbsp;C&nbsp;T&nbsp;I&nbsp;O&nbsp;N&nbsp;S</th>
+    <th>AMOUNT</th>
+  </tr>
+  {% if payroll.pay_412 %}
+
+  <tr>
+    <td width="20%">412</td>
+    <td width="50%">Witholding Tax</td>
+    <td width="30%">{{ payroll.pay_412|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_413_1 %}
+  <tr>
+     <td width="20%">413-1</td>
+    <td width="50%">GSIS Life & Retirement</td>
+    <td width="30%">{{ payroll.pay_413_1|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_414_1 %}
+
+  <tr>
+    <td width="20%">414-1</td>
+    <td width="50%">PAG-IBIG Premium</td>
+    <td width="30%">{{ payroll.pay_414_1|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_415 %}
+  <tr>
+     <td width="20%">415</td>
+    <td width="50%">Philippine Health Insurance</td>
+    <td width="30%">{{ payroll.pay_415|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_439_6 %}
+
+  <tr>
+    <td width="20%">439-6</td>
+    <td width="50%">Other Payables</td>
+    <td width="30%">{{ payroll.pay_439_6|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_413_2 %}
+  <tr>
+     <td width="20%">413-2</td>
+    <td width="50%">GSIS Unlimited Optional Life Insurance</td>
+    <td width="30%">{{ payroll.pay_413_2|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_413_3%}
+
+  <tr>
+    <td width="20%">413-3</td>
+    <td width="50%">GSIS Unlimited Optional Life Insurance Loan</td>
+    <td width="30%">{{ payroll.pay_413_3|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_413_5 %}
+  <tr>
+     <td width="20%">413-5</td>
+    <td width="50%">GSIS Policy Loan</td>
+    <td width="30%">{{ payroll.pay_413_5|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_413_6 %}
+
+  <tr>
+    <td width="20%">413-6</td>
+    <td width="50%">GSIS Real State Loan</td>
+    <td width="30%">{{ payroll.pay_413_6|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_413_11e %}
+  <tr>
+     <td width="20%">413-11E</td>
+    <td width="50%">GSIS Educational Assistance</td>
+    <td width="30%">{{ payroll.pay_413_11e|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_413_14 %}
+
+  <tr>
+    <td width="20%">413-14</td>
+    <td width="50%">GSIS New Emergency Loan</td>
+    <td width="30%">{{ payroll.pay_413_14|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_413_15 %}
+  <tr>
+     <td width="20%">413-15</td>
+    <td width="50%">GSIS Consolidated Salary Loan</td>
+    <td width="30%">{{ payroll.pay_413_15|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_413_16 %}
+
+  <tr>
+    <td width="20%">413-16</td>
+    <td width="50%">GSIS E-Card Plus Cash Advance Loan</td>
+    <td width="30%">{{ payroll.pay_413_16|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_413_17%}
+  <tr>
+     <td width="20%">413-17</td>
+    <td width="50%">GSIS-HELP</td>
+    <td width="30%">{{ payroll.pay_413_17|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_413_18%}
+
+  <tr>
+    <td width="20%">413-18</td>
+    <td width="50%">GSIS-GFAL</td>
+    <td width="30%">{{ payroll.pay_413_18|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_413_19%}
+  <tr>
+     <td width="20%">413-19</td>
+    <td width="50%">GSIS-MPL</td>
+    <td width="30%">{{ payroll.pay_413_19|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+{% if payroll.pay_413_20 %}
+  <tr>
+    <td width="20%">413-20</td>
+
+
+    <td width="50%">Computer Loan</td>
+    <td width="30%">{{ payroll.pay_413_20|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_414_1A %}
+  <tr>
+     <td width="20%">414-1A</td>
+    <td width="50%">Modified Pag-ibig 2</td>
+    <td width="30%">{{ payroll.pay_414_1A|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_414_2 %}
+
+  <tr>
+    <td width="20%">414-2</td>
+    <td width="50%">HNMC Housing Loan</td>
+    <td width="30%">{{ payroll.pay_414_2|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_414_2A %}
+  <tr>
+     <td width="20%">414-2A</td>
+    <td width="50%">Pag-ibig Housing Loan</td>
+    <td width="30%">{{ payroll.pay_414_2A|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_414_3 %}
+
+  <tr>
+    <td width="20%">414-3</td>
+    <td width="50%">Pag-ibig Multi-Purpose Loan</td>
+    <td width="30%">{{ payroll.pay_414_3|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_414_3A %}
+  <tr>
+     <td width="20%">414-3A</td>
+    <td width="50%">Pag-ibig Calamity Loan</td>
+    <td width="30%">{{ payroll.pay_414_3A|intcomma}}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_439_8 %}
+
+  <tr>
+    <td width="20%">439-8</td>
+    <td width="50%">AWMSLAI (BBP)</td>
+    <td width="30%">{{ payroll.pay_439_8|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_439_9 %}
+  <tr>
+     <td width="20%">439-9</td>
+    <td width="50%">AWMSLAI (BMM)</td>
+    <td width="30%">{{ payroll.pay_439_9|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_439_10 %}
+
+  <tr>
+    <td width="20%">439-10</td>
+    <td width="50%">AWMSLAI Consumption Loan</td>
+    <td width="30%">{{ payroll.pay_439_10|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_439_10A %}
+  <tr>
+     <td width="20%">439-10A</td>
+    <td width="50%">AWMSLAI Emergency Loan</td>
+    <td width="30%">{{ payroll.pay_439_10A|intcomma}}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_439_10B %}
+
+  <tr>
+    <td width="20%">439-10B</td>
+    <td width="50%">AWMSLAI Credit Card Loan</td>
+    <td width="30%">{{ payroll.pay_439_10B|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_439_12 %}
+  <tr>
+     <td width="20%">439-12</td>
+    <td width="50%">AWMSLAI (MBF)</td>
+    <td width="30%">{{ payroll.pay_439_12|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_439_13 %}
+
+  <tr>
+    <td width="20%">439-13</td>
+    <td width="50%">ATO Multi-Purpose Coop Loan</td>
+    <td width="30%">{{ payroll.pay_439_13|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_439_16 %}
+  <tr>
+     <td width="20%">439-16</td>
+    <td width="50%">Insular Life Insurance</td>
+    <td width="30%">{{ payroll.pay_439_16|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_439_18 %}
+
+  <tr>
+    <td width="20%">439-18</td>
+    <td width="50%">Manila Bankers Hospitalization Plan</td>
+    <td width="30%">{{ payroll.pay_439_18|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_439_19 %}
+  <tr>
+     <td width="20%">439-19</td>
+    <td width="50%">Manila Bankers Life & Accident Plan</td>
+    <td width="30%">{{ payroll.pay_439_19|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_439_21 %}
+
+  <tr>
+    <td width="20%">439-21</td>
+    <td width="50%">PATCOMC Loan/Membership Premium</td>
+    <td width="30%">{{ payroll.pay_439_21|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_439_22 %}
+  <tr>
+     <td width="20%">439-22</td>
+    <td width="50%">Philamlife Insurance</td>
+    <td width="30%">{{ payroll.pay_439_22|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_439_28 %}
+
+  <tr>
+    <td width="20%">439-28</td>
+    <td width="50%">LBP Loan</td>
+    <td width="30%">{{ payroll.pay_439_28|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_439_33 %}
+  <tr>
+     <td width="20%">439-33</td>
+    <td width="50%">OPANS-EATO</td>|intcomma
+    <td width="30%">{{ payroll.pay_439_33|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_439_34%}
+
+  <tr>
+    <td width="20%">439-34</td>
+    <td width="50%">CAAP EMPC</td>
+    <td width="30%">{{ payroll.pay_439_34|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_439_35 %}
+  <tr>
+     <td width="20%">439-35</td>
+    <td width="50%">CAAP Union Dues</td>
+    <td width="30%">{{ payroll.pay_439_35|intcomma }}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_146 %}
+  <tr>
+    <td width="20%">146</td>
+    <td width="50%">Receivables-Disallowances/Charges</td>
+    <td width="30%">{{ payroll.pay_146|intcomma}}</td>
+  </tr>
+  {% endif %}
+
+
+{% if payroll.pay_148 %}
+  <tr>
+     <td width="20%">148</td>
+    <td width="50%">Advances to Officers and Employees</td>
+    <td width="30%">{{ payroll.pay_148|intcomma }}</td>
+  </tr>
+  {% endif %}
+  {% if payroll.pay_149_tax %}
+
+  <tr>
+    <td width="20%">149</td>
+    <td width="50%">Other Receivables</td>
+    <td width="30%">{{ payroll.pay_149_tax|intcomma }}</td>
+  </tr>
+  {% endif %}
+</table>
+
+<p align="center">T&nbsp;A&nbsp;K&nbsp;E&nbsp;&nbsp;H&nbsp;O&nbsp;M&nbsp;E&nbsp;&nbsp;P&nbsp;A&nbsp;Y</p>
+
+<table class="table table-bordered" style="background-color: white">
+  <tr>
+    <td colspan="4">MONTHLY BASIC SALARY:</td>
+  </tr>
+  <tr>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%">&nbsp;</td>
+    <td width="40%">FOR THE 15TH of the Month</td>
+    <td width="20%">{{ payroll.pay_15th|intcomma }}</td>
+    <td width="20%"></td>
+  </tr>
+  <tr>
+    <td width="20%">&nbsp;</td>
+    <td width="40%">FOR THE 30TH of the Month</td>
+    <td width="20%">{{ payroll.pay_30th|intcomma }}</td>
+    <td width="20%"></td>
+  </tr>
+  <tr>
+    <td width="20%">&nbsp;</td>
+    <td width="40%">NET PAY</td>
+    <td width="20%"></td>
+    <td width="20%"><b>{{ payroll.pay_111_07|intcomma }}</b></td>
+  </tr>
+  <tr>
+    <td width="20%">&nbsp;</td>
+    <td width="40%">TOTAL DEDUCTIONS</td>
+    <td width="20%">{{ payroll.deduc|intcomma }}</td>
+    <td width="20%"></td>
+  </tr>
+  <tr>
+    <td width="20%">&nbsp;</td>
+    <td width="40%">TOTAL MONTHLY SALARY</td>
+    <td width="20%"></td>
+    <td width="20%"><b>{{ total|intcomma }}</b></td>
+  </tr>
+</table>
+<p style="padding-left: 50px;padding-right: 50px;">
+  N O T E :  Sec 36 of the General Appropriations Act (GAA), provides that the monthly NET TAKE HOME PAY  of all employees in the Government sector should not be lower than FIVE THOUSAND PESOS (5,000.00), after effecting all statutory deductions and loan amortizations.
+  <br><br>
+
+  <p style="padding-left: 50px;padding-right: 50px;color: red;">
+    This is a computer generated statement and does not require signature.  </p>
+  <p style="padding-left: 50px;padding-right: 50px;">
+    For more details, contact HRM Division - HR Operations at (02)7944-2079
+    </p>
+
+<!--   CERTIFIED CORRECT : -->
+</p>
+<br><br><br><br>
+<!-- <p align="center">
+  <b>JENNIFER F. PORTUGALETE</b>
+  <br>
+  Human Resource Management Officer II
+</p> -->
+
+
+{% endblock %}

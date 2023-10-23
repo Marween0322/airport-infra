@@ -1,0 +1,65 @@
+{% extends "base2.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+OTHER INFORMATION Update Page
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">PDS</a></li>
+    <li class="breadcrumb-item active">MEMBERSHIP IN ASSOCIATION/ORGANIZATION Page</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Personal Information -->
+<br>
+<form method="POST" class="post-form" action="/pds/membershipUpdate/{{member.id}}">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">VIII.  OTHER INFORMATION (MEMBERSHIP IN ASSOCIATION/ORGANIZATION)</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>MEMBERSHIP IN ASSOCIATION/ORGANIZATION (Write in full)</label>
+                  <input type="text" class="form-control" name="member_org" required maxlength="100" value="{{ member.member_org }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Childre information -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">Submit</button>   | 
+    <a href="/pds/personalinfo3" class="btn btn-danger">Back</a>
+    </div>  
+  </div>
+</div>
+
+  <br><br><br>
+</form>  
+{% endblock %}

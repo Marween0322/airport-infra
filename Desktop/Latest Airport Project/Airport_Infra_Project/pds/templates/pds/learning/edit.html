@@ -1,0 +1,167 @@
+{% extends "base2.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+TRAINING PROGRAMS Update Page
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">PDS</a></li>
+    <li class="breadcrumb-item active">TRAINING PROGRAMS Page</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Personal Information -->
+<br>
+<form method="POST" class="post-form" action="/pds/learningUpdate/{{learn.id}}" enctype="multipart/form-data">  
+  {% csrf_token %}
+    <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Training Record Form</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Title of Learning and Development Interventions/Training Programs</label>
+                  <input type="text" class="form-control" name="title" required maxlength="100" value=" {{ learn.title }} " />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Venue</label>
+                  <input type="text" class="form-control" name="venue" required " value=" {{ learn.venue }} "/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Conducted/ Sponsored By</label>
+                  <input type="text" class="form-control" name="conducted_by" value=" {{ learn.conducted_by }} "/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->              
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Inclusive Dates of Attendance From</label>
+                  <input type="date" class="form-control" name="date_from" required value="{{ learn.date_from|date:"Y-m-d" }}"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Inclusive Dates of Attendance To</label>
+                  <input type="date" class="form-control" name="date_to" required value="{{ learn.date_to|date:"Y-m-d" }}"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->              
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Type of Learning and Development</label>
+                  <select class="form-control" name="learning_type" value=" {{ learn.learning_type }} ">
+                    <option>Supervisory</option>
+                    <option>Management</option>
+                    <option>Technical</option>
+                    <option>Others</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Classification</label>
+                  <select class="form-control" name="classification" value=" {{ learn.classification }} ">
+                    <option>Local</option>
+                    <option>International</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->              
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Number of Hours</label>
+                  <input type="number" class="form-control" name="training_hours" value="{{ learn.training_hours|default_if_none:"" }}"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Course Fee</label>
+                  <input type="number" class="form-control" name="fee" value=" {{ learn.fee|default_if_none:"" }} "/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->              
+            </div>
+            <!-- /.row -->
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="file" name="file">
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Item -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">SAVE</button>   | 
+    <a href="/pds/personalinfo3" class="btn btn-danger">Back</a>
+    </div>  
+  </div>
+</div>
+   <div class="card-footer">
+   </div>
+ </div>
+
+  <br><br><br>
+</form>  
+{% endblock %}

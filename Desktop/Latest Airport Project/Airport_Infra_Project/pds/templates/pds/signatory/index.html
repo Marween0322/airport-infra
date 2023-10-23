@@ -1,0 +1,52 @@
+{% extends "base_admin.html" %}
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+Signatory Page
+{% endblock %}
+
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Signatory</a></li>
+    <li class="breadcrumb-item active">Page</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<table class="table table-bordered" style="background-color: white">
+<thead style="position: sticky;top: 0;">
+  <!-- New Rate -->
+  <tr style="background-color: #C0CFD8">
+    <th>SIGNATORY FOR</th>
+    <th>CERTIFIED CORRECT AS TO CURRENT DESIGNATION AND RATE</th>
+    <th>CERTIFIED CORRECT POSITION</th>
+    <th>PREPARED BY</th>
+    <th>PREPARED BY POSITION</th>
+    <th>APPROVED BY</th>
+    <th>APPROVED BY POSITION</th>
+    <th>ACTION</th>
+  </tr>
+</thead>
+
+{% if data %}
+  {% for sign in data %}
+  <tbody>
+    <tr>
+      <td> <b>{{ sign.name }}</b> </td>
+      <td> {{ sign.pay_designate_rate }}</td>
+      <td> {{ sign.pay_designate_rate_possition }} </td>
+      <td> {{ sign.pay_prepare }}</td> 
+      <td> {{ sign.pay_prepare_possition }} </td>      
+      <td> {{ sign.pay_approve }}</td> 
+      <td> {{ sign.pay_approve_possition }} </td>
+      <td> <a href="/pds/sign_edit/{{ sign.id }}" ><i class="fas fa-edit" style="color: #e68a00"></i></a> UPDATE</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+{% endif %}
+
+</table>
+{% endblock %}

@@ -1,0 +1,379 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAAP Airports</title>
+  <link rel="stylesheet" href="{% static 'dist/css/styles_airports.css' %}">  
+  <link rel="stylesheet" href="{% static 'dist/css/styles_airports_area.css' %}">
+  
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>    
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+<style>
+/* Modal Styles */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 35%;
+  top: -2%;
+  width: 40%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  transition: background-color 0.3s; /* Add transition for smooth effect */
+  animation: fadeIn 0.5s; /* Fade in animation */
+}
+
+.modal:hover {
+  background-color: rgba(0, 0, 0, 0); /* Make the background clear on hover */
+}
+
+.modal.active {
+  opacity: 1; /* Show modal when it has the 'active' class */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #fdfdfd;
+  width: 50%;
+  text-align: center;
+  position: relative; /* Required for pseudo-element */
+}
+
+.modal-content::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  opacity: 0.3;
+  pointer-events: none; /* Prevents pseudo-element from capturing mouse events */
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Hover effect for the link */
+#area1 a:hover {
+  text-decoration: underline;
+}
+#area2 a:hover {
+  text-decoration: underline;
+}
+
+
+</style>
+<body style="background-color:#92B5F3;"> 
+  <div class="content">   
+    <img src="/media/areas/map.png"> 
+  </div>
+  <div class="links">
+    
+
+
+    <div id="area1">
+      <a href="/dashboard/areaC1" title="" onmouseover="showModal('myModal1')" onmouseout="closeModal('myModal1')"> AREA 1 <i class='fa fa-plane style='font-size:36px'></i></a>
+    </div>
+    
+    <!-- Modal 1 -->
+    <div id="myModal1" class="modal" onmouseover="clearAutoCloseTimer('myModal1')" onmouseout="setAutoCloseTimer('myModal1')">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal1')">&times;</span>
+        <B><H2>AREA 1</H2></B>
+        <tr>
+        <p>Laoag International Airport</p>
+        <p>Vigan Airport</p>
+        <p>Baguio Airport</p>
+        <p>Lingayen Airport</p>
+        <p>Rosales Airport</p>
+        <p>San Fernando Tower Facility</p>
+      </div></tr>
+    </div>
+
+    <div id="area2">
+      <a href="/dashboard/areaC2" title="" onmouseover="showModal('myModal2')" onmouseout="closeModal('myModal2')"> AREA 2 <i class='fa fa-plane style='font-size:36px'></i></a>
+    </div>
+    
+
+    <div id="myModal2" class="modal" onmouseover="clearAutoCloseTimer('myModal2')" onmouseout="setAutoCloseTimer('myModal2')">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal2')">&times;</span>
+        <B><H2>AREA 2</H2></B>
+        <tr>
+        <p>Tuguegarao Airport</p>
+        <p>Basco Airport</p>
+        <p>Cauayan Airport</p>
+        <p>Bagabag Airport</p>
+        <p>Itbayat Airport</p>
+        <p>Palanan Airport</p>
+      </div>
+    </div>
+
+    <div id="area3">
+      <a href="/dashboard/areaC3" title="" onmouseover="showModal('myModal3')" onmouseout="closeModal('myModal3')"> AREA 3 <i class='fa fa-plane style='font-size:36px'></i></a>
+    </div>
+    
+   
+    <div id="myModal3" class="modal" onmouseover="clearAutoCloseTimer('myModal3')" onmouseout="setAutoCloseTimer('myModal3')">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal3')">&times;</span>
+        <B><H2>AREA 3</H2></B>
+        <tr>
+        <p>Baler Airport</p>
+        <p>Iba Airport</p>
+        <p>Plaridel Airport</p>
+        <p>Casiguran Airport</p>
+        <p>Sangley Airport</p>
+        <p>Jomalig Airpor</p>
+        <p>Alabat Airport</p>
+        <p>Lubang Airport</p>
+        <p>Calapan Airport</p>
+        <p>Pinamalayan Airport</p>
+        <p>Wasig Airport</p>
+        <p>San Jose Airport</p>
+        <p>Mamburao Airport</p>
+        <p>Marinduque Airport</p>
+        <p>Romblon Airport</p>
+        
+      </div>
+    </div>
+
+    <div id="area4">
+      <a href="/dashboard/areaC4" title="" onmouseover="showModal('myModal4')" onmouseout="closeModal('myModal4')"> AREA 4 <i class='fa fa-plane style='font-size:36px'></i></a>
+    </div>
+
+    <div id="myModal4" class="modal" onmouseover="clearAutoCloseTimer('myModal4')" onmouseout="setAutoCloseTimer('myModal4')">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal4')">&times;</span>
+        <B><H2>AREA 4</H2></B>
+        <tr>
+        <p>Puerto Princesa International Airport</p>
+        <p>Francisco B. Reyes (Busuanga) Airport</p>
+        <p>Cuyo Airport </p>
+        <p>San Vicente Airport</p>
+
+        
+      </div>
+    </div>
+
+    <div id="area5">
+      <a href="/dashboard/areaC5" title="" onmouseover="showModal('myModal5')" onmouseout="closeModal('myModal5')"> AREA 5 <i class='fa fa-plane style='font-size:36px'></i></a>
+    </div>
+
+    <div id="myModal5" class="modal" onmouseover="clearAutoCloseTimer('myModal5')" onmouseout="setAutoCloseTimer('myModal5')">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal5')">&times;</span>
+        <B><H2>AREA 5</H2></B>
+        <tr>
+        <p>Legazpi Airport</p>
+        <p>Naga Airport</p>
+        <p>Virac Airport </p>
+        <p>Masbate Airport</p>
+        <p>Daet Airport</p>
+        <p>Sorsogon Airport</p>
+        <p>Bulan Airport</p>
+
+        
+      </div>
+    </div>
+
+    <div id="area6">
+      <a href="/dashboard/areaC6" title="" onmouseover="showModal('myModal6')" onmouseout="closeModal('myModal6')"> AREA 6 <i class='fa fa-plane style='font-size:36px'></i></a>
+    </div>
+
+    <div id="myModal6" class="modal" onmouseover="clearAutoCloseTimer('myModal6')" onmouseout="setAutoCloseTimer('myModal6')">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal6')">&times;</span>
+        <B><H2>AREA 6</H2></B>
+        <tr>
+        <p>Iloilo International Airport</p>
+        <p>kalibo International Airport</p>
+        <p>Bacolod-Silay Airport </p>
+        <p>Roxas Airport</p>
+        <p>Godofredo P. Ramos Airport</p>
+        <p>Antique Airport</p>
+
+        
+      </div>
+    </div>
+
+    <div id="area7">
+      <a href="/dashboard/areaC7" title="" onmouseover="showModal('myModal7')" onmouseout="closeModal('myModal7')"> AREA 7 <i class='fa fa-plane style='font-size:36px'></i></a>
+    </div>
+
+    <div id="myModal7" class="modal" onmouseover="clearAutoCloseTimer('myModal7')" onmouseout="setAutoCloseTimer('myModal7')">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal7')">&times;</span>
+        <B><H2>AREA 7</H2></B>
+        <tr>
+        <p>Bohol Panglao International Airport (BPIA)</p>
+        <p>Ubay Airport </p>
+        <p>Bantayan Airport </p>
+        <p>Roxas Airport</p>
+        <p>Dumaguete (Sibulan) Airport</p>
+        <p>Siquijor Airport</p>
+
+        
+      </div>
+    </div>
+
+    <div id="area8">
+      <a href="/dashboard/areaC8" title="" onmouseover="showModal('myModal8')" onmouseout="closeModal('myModal8')"> AREA 8 <i class='fa fa-plane style='font-size:36px'></i></a>
+    </div>
+
+    <div id="myModal8" class="modal" onmouseover="clearAutoCloseTimer('myModal8')" onmouseout="setAutoCloseTimer('myModal8')">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal8')">&times;</span>
+        <B><H2>AREA 8</H2></B>
+        <tr>
+        <p>Tacloban Airport</p>
+        <p>Ormoc Airport </p>
+        <p>Biliran Airport </p>
+        <p>Maasin Airport</p>
+        <p>Hilongos Airport</p>
+        <p>Catbalogan Airport</p>
+        <p>Borongan Airport</p>
+        <p>Guiuan Airport</p>
+        <p>Calbayog Airport</p>
+
+        
+      </div>
+    </div>
+
+    <div id="area9">
+      <a href="/dashboard/areaC9" title="" onmouseover="showModal('myModal9')" onmouseout="closeModal('myModal9')"> AREA 9 <i class='fa fa-plane style='font-size:36px'></i></a>
+    </div>
+
+    <div id="myModal9" class="modal" onmouseover="clearAutoCloseTimer('myModal9')" onmouseout="setAutoCloseTimer('myModal9')">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal9')">&times;</span>
+        <B><H2>AREA 9</H2></B>
+        <tr>
+        <p>Zamboanga International Airport</p>
+        <p>Pagadian Airport </p>
+        <p>Sanga-Sanga Airport </p>
+        <p>Dipolog Airport</p>
+        <p>Jolo Airport</p>
+        <p>Ipil Airport</p>
+        <p>Liloy Airport</p>
+        <p>Siocon Airport</p>
+        <p>Cagayan De Sulu Airport</p>
+
+        
+      </div>
+    </div>
+
+    <div id="area10">
+      <a href="/dashboard/areaC10" title="" onmouseover="showModal('myModal10')" onmouseout="closeModal('myModal10')"> AREA 10 <i class='fa fa-plane style='font-size:36px'></i></a>
+    </div>
+
+    <div id="myModal10" class="modal" onmouseover="clearAutoCloseTimer('myModal10')" onmouseout="setAutoCloseTimer('myModal10')">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal10')">&times;</span>
+        <B><H2>AREA 10</H2></B>
+        <tr>
+        <p>Laguindingan Airport</p>
+        <p>Ozamis Airport </p>
+        <p>Camiguin Airport </p>
+        <p>Iligan Airport</p>
+        <p>Malabang Airport</p>
+        <p>Wao Airport</p>
+
+        
+      </div>
+    </div>
+
+    <div id="area11">
+      <a href="/dashboard/areaC11" title="" onmouseover="showModal('myModal11')" onmouseout="closeModal('myModal11')"> AREA 11 <i class='fa fa-plane style='font-size:36px'></i></a>
+    </div>
+
+    <div id="myModal11" class="modal" onmouseover="clearAutoCloseTimer('myModal11')" onmouseout="setAutoCloseTimer('myModal11')">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal11')">&times;</span>
+        <B><H2>AREA 11</H2></B>
+        <tr>
+        <p>Davao International Airport</p>
+        <p>General Santos International Airport </p>
+        <p>Cotabato Airport </p>
+        <p>Allah Valley Airport</p>
+        <p>Mati Airport</p>
+ 
+        
+      </div>
+    </div>
+
+    <div id="area12">
+      <a href="/dashboard/areaC12" title="" onmouseover="showModal('myModal12')" onmouseout="closeModal('myModal12')"> AREA 12 <i class='fa fa-plane style='font-size:36px'></i></a>
+    </div>
+
+    <div id="myModal12" class="modal" onmouseover="clearAutoCloseTimer('myModal12')" onmouseout="setAutoCloseTimer('myModal12')">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('myModal12')">&times;</span>
+        <B><H2>AREA 12</H2></B>
+        <tr>
+        <p>Butuan Airport</p>
+        <p>Surigao Airport </p>
+        <p>Siargao Airport </p>
+        <p>Tandag Airport</p>
+        <p>Bislig Airport</p>
+
+        
+      </div>
+    </div>
+
+  
+  </div>
+
+</body>
+<script>
+var autoCloseTimers = {}; // Object to store auto-close timers for multiple modals
+
+// Function to show a modal by ID
+function showModal(modalId) {
+  var modal = document.getElementById(modalId);
+  modal.style.display = "block";
+}
+
+// Function to close a modal by ID
+function closeModal(modalId) {
+  var modal = document.getElementById(modalId);
+  modal.style.display = "none";
+}
+
+// Function to set a timer to close a modal automatically by ID
+function setAutoCloseTimer(modalId) {
+  autoCloseTimers[modalId] = setTimeout(function () {
+    closeModal(modalId);
+  }, 100000); // Change the delay (in milliseconds) as needed
+}
+
+// Function to clear the auto-close timer when the cursor is over a modal by ID
+function clearAutoCloseTimer(modalId) {
+  clearTimeout(autoCloseTimers[modalId]);
+}
+
+
+  </script>
+
+
+</html>
+

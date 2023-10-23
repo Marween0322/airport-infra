@@ -1,0 +1,169 @@
+{% extends "base_admin.html" %}
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+View Payslip for <b> {{ pds.surname  }},&nbsp; {{ pds.first_name }} &nbsp;&nbsp;{{ pds.middle_name }}</b>
+{% endblock %}
+
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="/pds/payroll">Payslip</a></li>
+    <li class="breadcrumb-item active"></li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<div class="row">
+  <div class="col-md-9">
+   <div class="card card-primary card-outline">
+    <div class="card-header">
+     <h3 class="card-title">
+     <i class="far fa-calendar"></i>
+     Monthly List of Payslip
+</h3>
+
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+         <i class="fas fa-minus"></i>
+     </button>
+   </div>
+  </div>
+<div class="card-body">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><h5><a href="/pds/hr_view_january/{{ pds.id }}">January</a></h5></td>
+      {% if jan.status == "Active" %}
+        <td style="color: green">{{ jan.status }}</td>
+      {% else %}
+        <td style="color: red">{{ jan.status }}</td>
+      {% endif %}
+    </tr>
+    <tr>
+      <td><h5><a href="/pds/hr_view_february/{{ pds.id }}">February</a></h5></td>
+      {% if feb.status == "Active" %}
+        <td style="color: green">{{ feb.status }}</td>
+      {% else %}
+        <td style="color: red">{{ feb.status }}</td>
+      {% endif %}
+    </tr>
+    <tr>
+      <td><h5><a href="/pds/hr_view_march/{{ pds.id }}">March</a></h5></td>
+      {% if march.status == "Active" %}
+        <td style="color: green">{{ march.status }}</td>
+      {% else %}
+        <td style="color: red">{{ march.status }}</td>
+      {% endif %}
+    </tr><tr>
+      <td><h5><a href="/pds/hr_view_april/{{ pds.id }}">April</a></h5></td>
+      {% if april.status == "Active" %}
+        <td style="color: green">{{ april.status }}</td>
+      {% else %}
+        <td style="color: red">{{ april.status }}</td>
+      {% endif %}
+    </tr><tr>
+      <td><h5><a href="/pds/hr_view_may/{{ pds.id }}">May</a></h5></td>
+      {% if may.status == "Active" %}
+        <td style="color: green">{{ may.status }}</td>
+      {% else %}
+        <td style="color: red">{{ may.status }}</td>
+      {% endif %}
+    </tr><tr>
+      <td><h5><a href="/pds/hr_view_june/{{ pds.id }}">June</a></h5></td>
+      {% if june.status == "Active" %}
+        <td style="color: green">{{ june.status }}</td>
+      {% else %}
+        <td style="color: red">{{ june.status }}</td>
+      {% endif %}
+    </tr><tr>
+      <td><h5><a href="/pds/hr_view_july/{{ pds.id }}">July</a></h5></td>
+      {% if july.status == "Active" %}
+        <td style="color: green">{{ july.status }}</td>
+      {% else %}
+        <td style="color: red">{{ july.status }}</td>
+      {% endif %}
+    </tr>
+      <td><h5><a href="/pds/hr_view_august/{{ pds.id }}">August</a></h5></td>
+      {% if aug.status == "Active" %}
+        <td style="color: green">{{ aug.status }}</td>
+      {% else %}
+        <td style="color: red">{{ aug.status }}</td>
+      {% endif %}
+    </tr><tr>
+      <td><h5><a href="/pds/hr_view_september/{{ pds.id }}">Septmber</a></h5></td>
+      {% if sept.status == "Active" %}
+        <td style="color: green">{{ sept.status }}</td>
+      {% else %}
+        <td style="color: red">{{ sept.status }}</td>
+      {% endif %}
+    </tr><tr>
+      <td><h5><a href="/pds/hr_view_october/{{ pds.id }}">October</a></h5></td>
+      {% if octb.status == "Active" %}
+        <td style="color: green">{{ octb.status }}</td>
+      {% else %}
+        <td style="color: red">{{ octb.status }}</td>
+      {% endif %}
+    </tr><tr>
+      <td><h5><a href="/pds/hr_view_november/{{ pds.id }}">November</a></h5></td>
+      {% if nov.status == "Active" %}
+        <td style="color: green">{{ nov.status }}</td>
+      {% else %}
+        <td style="color: red">{{ nov.status }}</td>
+      {% endif %}
+    </tr><tr>
+      <td><h5><a href="/pds/hr_view_december/{{ pds.id }}">December</a></h5></td>
+      {% if dec.status == "Active" %}
+        <td style="color: green">{{ dec.status }}</td>
+      {% else %}
+        <td style="color: red">{{ dec.status }}</td>
+      {% endif %}
+    </tr>
+  </tbody>
+</table>
+              </div>
+              <!-- /.card-body-->
+            </div>
+            <!-- /.card -->
+
+   </div>
+    <!-- /.col -->
+</div>
+
+
+{% endblock %}
+
+
+{% block script %}
+{% if messages %}
+        {% for message in messages %}
+            <script>
+              $(function() {
+                var Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  showConfirmButton: false,
+                  timer: 9000
+                });
+
+                
+                $('.swalDefaultInfo').ready(function() {
+                  Toast.fire({
+                    icon: 'info',
+                    title: '{{message}}'
+                  })
+                });
+              });
+            </script>
+        {% endfor %}
+    
+    {% endif %}
+{% endblock script %}

@@ -1,0 +1,125 @@
+{% extends "base_admin.html" %}
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+Payroll List
+{% endblock %}
+
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a target="_blank" href="/pds/payroll">Payslip</a></li>
+    <li class="breadcrumb-item active"></li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<div class="row">
+  <div class="col-md-9">
+   <div class="card card-primary card-outline">
+    <div class="card-header">
+     <h3 class="card-title">
+     <i class="fa-solid fa-peso-sign"></i>
+     Payroll List per Office
+</h3>
+
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+         <i class="fas fa-minus"></i>
+     </button>
+   </div>
+  </div>
+<div class="card-body">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Office</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><h5>AANSOO</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/aansoo_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/aansoo_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+    <tr>
+      <td><h5>ADMS</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/adms_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/adms_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+    <tr>
+      <td><h5>ADMIN</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/admin_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/admin_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+    <tr>
+      <td><h5>ANS</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/ans_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/ans_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+    <tr>
+      <td><h5>ATS</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/ats_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/ats_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+    <tr>
+      <td><h5>CATC</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/catc_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/catc_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+    <tr>
+      <td><h5>CSIS</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/csis_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/csis_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+    <tr>
+      <td><h5>ELS</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/els_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/els_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+    <tr>
+      <td><h5>FICG</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/ficg_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/ficg_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+    <tr>
+      <td><h5>FD</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/fmd_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/fmd_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+    <tr>
+      <td><h5>FSIS</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/fsis_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/fsis_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+    <tr>
+      <td><h5>IAS</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/ias_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/ias_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+    <tr>
+      <td><h5>ODG</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/odg_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/odg_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+    <tr>
+      <td><h5>OFSAM</h5></td>
+      <td style="color: green"><a target="_blank" href="/pds/ofsam_pdf_view"><i class="fa-solid fa-print"></i> A3</a></td>
+      <td style="color: green"><a target="_blank" href="/pds/ofsam_pdf_view_legal"><i class="fa-solid fa-print"></i> Legal</a></td>
+    </tr>
+  </tbody>
+</table>
+              </div>
+              <!-- /.card-body-->
+            </div>
+            <!-- /.card -->
+
+   </div>
+    <!-- /.col -->
+</div>
+
+
+{% endblock %}

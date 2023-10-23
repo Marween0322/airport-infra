@@ -1,0 +1,50 @@
+{% extends "base_admin.html" %}
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+Position List
+{% endblock %}
+
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Position</a></li>
+    <li class="breadcrumb-item active">List</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<a href="/pds/position_create" class="btn btn-app" style="background-color:#059528; color: white"><i class="fa fa-briefcase" aria-hidden="true"></i> Create</a>
+
+<table class="table table-bordered" style="background-color: white">
+<thead style="position: sticky;top: 0;">
+  <!-- New Rate -->
+  <tr style="background-color: #C0CFD8">
+    <th>Id</th>
+    <th>Position</th>
+    <th>Classification</th>
+    <th>GCG</th>
+    <th>DOTR</th>
+    <th>ACTION</th>
+  </tr>
+</thead>
+
+{% if data %}
+  {% for position in data %}
+  <tbody>
+    <tr>
+      <td> {{ position.position_id }}</td>
+      <td> {{ position.name }} </td>
+      <td> {{ position.classification }}</td> 
+      <td> {{ position.gcg }} </td>
+      <td> {{ position.dotr }} </td>      
+      <td> <a href="/pds/position_edit/{{ position.id }}" ><i class="fas fa-edit" style="color: #e68a00"></i></a> UPDATE</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+{% endif %}
+
+</table>
+{% endblock %}

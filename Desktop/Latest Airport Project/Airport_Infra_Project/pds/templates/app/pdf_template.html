@@ -1,0 +1,306 @@
+{% load humanize %}
+<head>
+<style>
+    @page {
+        size: a3 landscape;
+        @frame header_frame {           /* Static Frame */
+            -pdf-frame-content: header_content;
+            left: 16pt; width: 1160pt; top: 20pt; height: 200pt;
+        }
+        @frame content_frame {          /* Content Frame */
+            left: 20pt; width: 1500pt; top: 173pt; height: 632pt;
+        }
+        @frame footer_frame {           /* Another static Frame */
+            -pdf-frame-content: footer_content;
+            left: 20pt; width: 512pt; top: 815pt; height: 20pt;
+        }
+        @frame certified_frame {           /* Another static Frame */
+            -pdf-frame-content: certified_content;
+            left: 400pt; width: 1180pt; top: 20pt; height: 200pt;
+        }
+    }
+</style>
+</head>
+
+<body>
+    <!-- Content for Static Frame 'certified correct_frame' -->
+    <div id="certified_content">
+        <p style="font-size:14px" align="center"> CERTIFIED CORRECT AS TO CURRENT DESIGNATION AND RATE<br><br><br>
+        <b> {{ sign.pay_designate_rate }}</b> <br> {{ sign.pay_designate_rate_possition }}</p>
+    </div>
+
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <p align="center">REPUBLIC OF THE PHILIPPINES<br>            
+        CIVIL AVIATION AUTHORITY OF THE PHILIPPINES <br>
+        Pasay City, Metro Manila
+        </p>
+        <h2 align="center"><b>PAYROLL REGISTER <br> For the Month of May , 2023 </b> </h2>
+        <h2 align="left"><b>{{office}}</b> </h2>
+
+    <table style="font-size:10px">
+        <thead align="center">
+        <tr>
+            <th colspan="8"> --- </td>
+            <td colspan="4">------------------------------------DEDUCTIONS----------------------------------------</td>
+            <td colspan="3" >----------------------- EARNINGS -----------------------</td>
+            <td colspan="2" >FOR THE PAY PERIOD</td>
+        </tr>
+        <tr>
+            <th style="width:2%;white-space: nowrap;">SEQ. <br> NUM</th>
+            <th style="width:23%;white-space: nowrap;">EMPLOYEE NAME</th>
+            <td style="width:5%;white-space: nowrap;">GOV'T <br> SHARE</td>
+            <td style="width:5%;white-space: nowrap;">EMPLOYEE'S <br> COMPEN <br>SATION</td>
+            <td style="width:5%;white-space: nowrap;">PAG-IBIG <br> PREMIUM</td>
+            <td style="width:5%;white-space: nowrap;">PHILHEALTH <br> PREMIUM</td>
+            <td style="font-size:10px;width:5%;padding-right: 5px;">GROSS PAY</td>
+            <td style="font-size:10px;width:8%;padding-right: 5px;">CODE/AMOUNT</td>
+            <td style="font-size:10px;width:8%;padding-right: 5px;">CODE/AMOUNT</td>
+            <td style="font-size:10px;width:8%;padding-right: 5px;">CODE/AMOUNT</td>
+            <td style="width:5%;white-space: nowrap;">TOTAL DEDUCTIONS</td>
+            <td style="width:5%;white-space: nowrap;">NET PAY</td>
+            <td style="width:5%;white-space: nowrap;">PERA</td>
+            <td style="width:5%;white-space: nowrap;">TOTALAMT. DUE</td>
+            <td style="width:5%;white-space: nowrap;">SALARY 1-15</td>
+            <td style="width:5%;white-space: nowrap;">SALARY 16-30/31</td>
+        </tr>
+       </thead>
+    </table>
+
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">(c) - page <pdf:pagenumber>
+        of <pdf:pagecount>
+    </div>
+
+    <!-- HTML Content -->
+    
+    <hr>
+
+    <table style="font-size:11px">
+    {% if payroll %}
+     {% for pay in payroll %}
+       <tbody>
+           <tr>
+               <td style="width:2%;white-space: nowrap;">{{ forloop.counter }}</td>
+               <!-- <td>{{ pay.payroll.last_name }}, {{ pay.payroll.first_name }} &nbsp; </td> -->
+               <td style="width:15%;white-space: nowrap;font-size:12px;" >
+               <p>
+                    {{ pay.surname|title }}, {{ pay.first_name|title }} <br>
+                   {{ pay.personal.position_title }} <br>
+                   <b>{{ pay.gross|default_if_none:""|intcomma }}</b>
+               </p>
+               </td>
+               <td>{{ pay.pay_731|default_if_none:""|intcomma }}</td>
+               <td>{{ pay.pay_734|default_if_none:""|intcomma }}</td>
+               <td>{{ pay.pay_732|default_if_none:""|intcomma }}</td>
+               <td>{{ pay.pay_733|default_if_none:""|intcomma }}</td>
+               <td>{{ pay.pay_701|default_if_none:""|intcomma }}</td>
+               <!-- Deductions -->
+               
+                <td style="font-size:9px;width:6%;padding-right: 5px;">
+                    {% if pay.pay_412 %}
+                        412 &nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_412|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_413_1 %}
+                        413-1 &nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_413_1|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_414_1 %}
+                        414-1&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_414_1|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_415 %}
+                        415&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_415|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_6 %}
+                        439-6&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_6|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_413_2 %}
+                       413-2&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_413_2|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_413_3 %}
+                        413-3&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_413_3|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_413_5 %}
+                       413-5&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_413_5|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_413_6 %}
+                        413-6&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_413_6|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_413_11E %}
+                        413-11E &nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_413_11E|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_413_14 %}
+                       413-14&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_413_14|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                </td>
+
+                <td style="font-size:10px;width:6%;padding-right: 5px;">
+                    {% if pay.pay_413_15 %}
+                       413-15&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_413_15|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_413_16 %}
+                        413-16&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_413_16|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_413_17 %}
+                        413-17&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_413_17|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_413_18 %}
+                        413-18&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_413_18|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_413_19 %}
+                        413-19&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_413_19|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_413_20 %}
+                        413-20&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_413_20|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_414_1A %}
+                        414-1A&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_414_1A|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_414_2 %}
+                        414-2&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_414_2|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_414_2A %}
+                        414-2A&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_414_2A|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_414_3 %}
+                        414-3&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_414_3|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}    
+                    {% if pay.pay_414_3A %}
+                       414-3A&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_414_3A|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_8 %}
+                        439-8&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_8|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_9 %}
+                        439-9&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_9|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_10 %}
+                        439-10&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_10|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_10A %}
+                        439-10A&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_10A|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}                
+                </td>
+
+                <td style="font-size:10px;width:6%;;padding-right: 5px;">
+                    {% if pay.pay_439_10B %}
+                       439-10B&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_10B|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_12 %}
+                       439-12&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_12|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_13 %}
+                        439-13&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_13|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_16 %}
+                        439-16&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_16|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_18 %}
+                        439-18&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_18|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}      
+                    {% if pay.pay_439_19 %}
+                       439-19&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_19|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_21 %}
+                       439-21&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_21|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_22 %}
+                        439-22&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_22|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_28 %}
+                        439-28&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_28|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_33 %}
+                       439-33&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_33|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_34 %}
+                        439-34&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_34|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_439_35 %}
+                       439-35&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_439_35|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_146 %}
+                        146&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_146|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_148 %}
+                       148&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_148|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_149_TAX %}
+                        149-TAX&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_149_TAX|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                    {% if pay.pay_801 %}
+                        801&nbsp;&nbsp;-&nbsp;&nbsp;{{ pay.pay_801|default_if_none:""|intcomma }}&nbsp;&nbsp; <br>
+                    {% endif %}
+                </td>
+                
+
+               <td>{{ pay.deduc|default_if_none:""|intcomma }}</td>
+               <td>{{ pay.netpay|default_if_none:""|intcomma }}</td>
+               <td>{{ pay.pay_711|default_if_none:""|intcomma }}</td>
+               <td>{{ pay.total|default_if_none:""|intcomma }}</td>
+               <td>{{ pay.pay_15th|default_if_none:""|intcomma }}</td>
+               <td>{{ pay.pay_30th|default_if_none:""|intcomma }}</td>
+           </tr>
+                      
+           <tr>
+               <td colspan="17">
+                   <hr>   
+               </td>
+           </tr>
+       </tbody>
+      {% endfor %}
+    {% endif %}
+
+    <tfoot style="font-size:12px">
+        <tr>
+            <td colspan="23">
+                <hr>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><h2>TOTAL</h2>&nbsp;&nbsp;&nbsp;</td>
+            <td><h4>{{gov_share|default_if_none:""|intcomma }}</h4></td>
+            <td>{{emp_compen|default_if_none:""|intcomma }}</td>
+            <td><h4>{{ pagibig_prem|default_if_none:""|intcomma }}</h4></td>
+            <td>{{philhealt_prem|default_if_none:""|intcomma }}</td>
+            <td>{{mont_sal|default_if_none:""|intcomma }}</td>
+            <td><h4>{{deduc_row1|default_if_none:""|intcomma }}<h4></td>
+            <td>{{deduc_row2|default_if_none:""|intcomma }}</td>
+            <td><h4>{{deduc_row3|default_if_none:""|intcomma }}<h4></td>
+            <td><h4>{{deduc|default_if_none:""|intcomma }}<h4></td>
+            <td>{{neto|default_if_none:""|intcomma }}</td>
+            <td><h4>{{p711|default_if_none:""|intcomma }}<h4></td>
+            <td>{{total_due|default_if_none:""|intcomma }}</td>
+            <td><h4>{{p15th|default_if_none:""|intcomma }}<h4> </td>
+            <td>{{p30th|default_if_none:""|intcomma }}</td>
+        </tr>
+    </tfoot>
+    	
+    </table>
+    <hr>
+
+
+        <br><br>
+            <table>
+        <tr style="font-size:14px">
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            PREPARED BY:</td>
+            <td>APPROVED BY:</td>
+        </tr>
+
+        <tr style="font-size:14px; padding-top: 30px;">
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{ sign.pay_prepare }}</b></td>
+            <td><b>{{ sign.pay_approve }}</b></td>
+        </tr>
+        <tr style="font-size:14px">
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ sign.pay_prepare_possition }}</td>
+            <td> {{ sign.pay_approve_possition }}</td>
+        </tr>
+    </table>
+
+
+
+
+</body>
+</html>

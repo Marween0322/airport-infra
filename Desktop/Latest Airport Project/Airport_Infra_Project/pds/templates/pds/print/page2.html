@@ -1,0 +1,71 @@
+{% load humanize %}
+<head>
+<style>
+    @page {
+        size: legal portrait;
+        @frame header_frame {           /* Static Frame */
+            -pdf-frame-content: header_content;
+            left: 16pt; width: 570pt; top: 10pt; height: 930pt;
+        }
+        @frame content_frame {          /* Content Frame */
+            left: 20pt; width: 570pt; top: 20pt; height: 930pt;
+        }
+    }
+</style>
+</head>
+
+<body>
+<div >
+    <table>
+        <tr>
+            <td colspan="3"><b>CS FORM 212</b> <br><i>Revised 2017</i></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="font-size: 24px;"  align="center"><b>PERSONAL DATA SHEET</b></td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+            READ THE ATTACHED GUIDE TO FILLING OUT THE PERSONAL DATA SHEET (PDS) BEFORE ACCOMPLISHING THE PDS FORM.
+            <br>
+            WARNING: Any misrepresentation made in the Personal Data Sheet and the Work Experience Sheet shall cause the filing of administrative/criminal case/s against the person concerned.</td>
+        </tr>
+        <tr>
+            <td style="width:70%;">Print legibly. Tick appropriate boxes (     ) and use separate sheet if necessary.
+                Indicate N/A if not applicable.  <b>DO NOT ABBREVIATE.</b></td>
+            <td style="width:10%;white-space: nowrap;background-color: #94999C">1. CS ID No.</td>
+            <td style="width:20%;white-space: nowrap; border: 1px solid black;">(to be filled up by CSC)</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td colspan="3" style="font-size: 16px;width:10%;background-color: #94999C; color: #fff; border: 1px solid black;"> <b>I .PERSONAL INFORMATION</b></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td rowspan="4" style="background-color: #E4E4E4; border: 1px solid black;">
+                SURNAME <br>
+                FIRST NAME <br>
+                MIDDLE NAME
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">DUMARAOS</td>
+        </tr>
+
+        <tr>
+            <td style=" border: 1px solid black;"><br>BRET</td>
+            <td style=" border: 1px solid black;">NAME EXTENSION (JR, SR)</td>
+        </tr>
+
+        <tr>
+            <td colspan="2" style=" border: 1px solid black;"><br>SULTAN</td>
+        </tr>
+
+    </table>
+</div>
+</body>
+</html>

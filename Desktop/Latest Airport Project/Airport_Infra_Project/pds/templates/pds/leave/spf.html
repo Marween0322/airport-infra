@@ -1,0 +1,82 @@
+{% extends "base_admin2.html" %}
+
+<!-- Page title goes here -->
+{% block header %}
+Special Privilege/Forced Leave Credits
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">{{employee.surname|title}} , {{employee.first_name|title}} {{employee.middle_name|title}}</a></li>
+    <li class="breadcrumb-item active">Create Leave</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Training Create Page -->
+  {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }} for {{ field.name}}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+<br>
+<form action="" method="POST" class="post-form">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Leave Form</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Special Privilege Leave</label>
+                  <input type="text" class="form-control" name="special"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Forced Leave</label>
+                  <input type="text" class="form-control" name="force"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Item -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">SAVE</button>  
+    </div>  
+  </div>
+</div>
+   <div class="card-footer">
+   </div>
+ </div>
+
+  <br><br><br>
+</form>  
+{% endblock %}

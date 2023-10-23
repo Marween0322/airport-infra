@@ -1,0 +1,607 @@
+ {% extends "base_admin.html" %}
+{% load humanize %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+<!-- Page title goes here -->
+{% block header %}
+Create Payslip
+{% endblock %}
+
+
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Personnel</a></li>
+    <li class="breadcrumb-item active">Create Payslip</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Training Create Page -->
+  {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }} for {{ field.name}}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+<br>
+<form action="" method="POST" class="post-form">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Payslip Form</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>User ID (Ex. 123) <b style="color:red;">*</b> &nbsp;&nbsp;-&nbsp;&nbsp; <a href="/pds/users_list" target="_blank">View Users</a></label>
+                  <input type="text" class="form-control" name="payroll" />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>PDS ID (Ex. 123) <b style="color:red;">*</b> &nbsp;&nbsp;-&nbsp;&nbsp; Check on Employees List</label>
+                  <input type="text" class="form-control" name="pds" />
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Surname</label>
+                  <input type="text" class="form-control" name="surname"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" name="first_name"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Office</label>
+                  <select class="form-control" name="office">
+                    <option>ELS</option>
+                    <option>OFSAM</option>
+                    <option>IAS</option>
+                    <option>ODG</option>
+                    <option>FMD</option>
+                    <option>FSIS</option>
+                    <option>CSIS</option>
+                    <option>CATC</option>
+                    <option>ATS</option>
+                    <option>ANS</option>
+                    <option>ADMS</option>
+                    <option>ADMIN</option>
+                    <option>AANSOO</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>731 (Life and Retirement Insurance Contribution)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_731" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>732 (PAG-IBIG Contributions)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_732" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>733 (PHILHEALTH Contributions)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_733" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>734 (ECC Contributions)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_734" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row --> 
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label style="color:red;">Basic Salary <b >*</b></label>
+                  <input value="0.00" type="text" class="form-control" name="gross" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>733-A (1% Philhealth Premium) <b style="color:red;">*</b></label>
+                  <input value="0.00" type="text" class="form-control" name="pay_733_a" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>801 (Leave w/o Pay)<b style="color:red;">*</b></label>
+                  <input value="0.00" type="text" class="form-control" name="pay_801" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>415 A (1% Due to Philhealth)</label>
+                  <input value="0.00"  type="text" class="form-control" name="pay_415_a" required maxlength="100" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            <!-- /.row --> 
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>701 (Salaries and Wages )</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_701" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>412 (Due to BIR)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_412" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>413-1 (Due to GSIS)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_413_1" required maxlength="100" readonly />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>414-1 (Due to Pagibig)</label>
+                  <input value="0.00"  type="text" class="form-control" name="pay_414_1" required maxlength="100" readonly/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>415 (Due to Philhealth)</label>
+                  <input value="0.00"  type="text" class="form-control" name="pay_415" required maxlength="100" readonly/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-6 (Other Payables)</label>
+                  <input value="0.00"  type="text" class="form-control" name="pay_439_6" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>413-2 (GSIS Unlimited Optional Life Insurance)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_413_2" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>413-3 (GSIS Unlimited Optional Life Insurance Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_413_3" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>413-5 (GSIS Policy Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_413_5"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>413-6 (GSIS Real State Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_413_6"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>413-11E (GSIS Educational Assistance)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_413_11e"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>413-14 (GSIS New Emergency Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_413_14"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>413-15 (GSIS Consolidated Salary Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_413_15"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>413-16 (GSIS E-Card Plus Cash Advance Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_413_16"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>413-17 (GSIS-HELP)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_413_17"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>413-18 (GSIS-GFAL)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_413_18"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>413-19 (GSIS-MPL)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_413_19"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>413-20 (Computer Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_413_20"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>414-1A (Modified Pag-ibig 2)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_414_1a"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>414-2 (HNMC Housing Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_414_2"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>414-2A (Pag-ibig Housing Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_414_2a"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>414-3 (Pag-ibig Multi-Purpose Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_414_3"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>414-3A (Pag-ibig Calamity Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_414_3a"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-8 (AWMSLAI (BBP)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_8"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-9 (AWMSLAI (BMM)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_9"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-10 (AWMSLAI Consumption Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_10"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-10A (AWMSLAI Emergency Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_10a"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-10B (AWMSLAI Credit Card Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_10b"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-12 (AWMSLAI (MBF)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_12"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-13 (ATO Multi-Purpose Coop Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_13"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-16 (Insular Life Insurance)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_16"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-18 (Manila Bankers Hospitalization Plan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_18"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-19 (Manila Bankers Life & Accident Plan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_19"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-21 (PATCOMC Loan/Membership Premium)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_21"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-22 (Philamlife Insurance)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_22"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-28 (LBP Loan)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_28"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-33 (OPANS-EATO)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_33"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-34 (CAAP EMPC)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_34"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>439-35 (CAAP Union Dues)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_439_35"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>146 (Receivables-Disallowances/Charges)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_146"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>148 (Advances to Officers and Employees)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_148"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>149-TAX</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_149_tax"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>711 (Personnel Economic Relief Allow)</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_711"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>749-OSP</label>
+                  <input value="0.00" type="text" class="form-control" name="pay_749_osp"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Remarks</label>
+                  <textarea class="form-control" name="remarks" rows="6"></textarea>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->          
+
+
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Item -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">SAVE</button>  
+    </div>  
+  </div>
+</div>
+   <div class="card-footer">
+   </div>
+ </div>
+<!-- End family Background -->
+
+  <br><br><br>
+</form>  
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends "base_admin2.html" %}
+
+<!-- Page title goes here -->
+{% block header %}
+Create Training Record
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Personnel</a></li>
+    <li class="breadcrumb-item active">Create Trainings</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Training Create Page -->
+  {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }} for {{ field.name}}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+<br>
+<form action="" method="POST" class="post-form" enctype="multipart/form-data">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Training Record Form</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Course Title/Provider</label>
+                  <input type="text" class="form-control" name="title" required maxlength="100"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Venue</label>
+                  <input type="text" class="form-control" name="venue" required "/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Training Date</label>
+                  <input type="date" class="form-control" name="date"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->              
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Type of Learning</label>
+                  <select class="form-control" name="learning_type">
+                    <option>Supervisory</option>
+                    <option>Management</option>
+                    <option>Technical</option>
+                    <option>Others</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Classification</label>
+                  <select class="form-control" name="classification">
+                    <option>Local</option>
+                    <option>International</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->              
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Training Hours</label>
+                  <input type="number" class="form-control" name="training_hours"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Course Fee</label>
+                  <input type="text" class="form-control" name="fee"/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->              
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label>Post-Traing Report/Remarks</label>
+                  <textarea name="remarks" class="form-control" rows="5"></textarea>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->        
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="file" name="file">
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Item -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">SAVE</button>  
+    </div>  
+  </div>
+</div>
+   <div class="card-footer">
+   </div>
+ </div>
+
+  <br><br><br>
+</form>  
+{% endblock %}

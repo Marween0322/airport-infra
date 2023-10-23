@@ -1,0 +1,889 @@
+{% extends "base_pds.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">PDS</a></li>
+    <li class="breadcrumb-item active">PAGE 1</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<div class="row" >
+  <div class="col" >CS FORM 212 (Revised 2005)</div>
+</div>
+<div class="row" >
+  <div class="col" ><h2 align="center"><br><b>PERSONAL DATA SHEET</b></h2><br></div>
+</div>
+<div class="row" >
+  <div class="col" >Print legibly. Mark appropriate boxes</div>
+  <div class="col" ></div>
+  <div class="col-sm" style="background-color:gray; color:white;border-style: solid ;border-width: 2px;">1. CS ID No.</div>
+  <div class="col" style="border-style: solid ;border-width: 2px;"><p align="right">(to be filled up by CSC)</p></div>
+</div>
+<div class="row" >
+  <div class="col" style="background-color:gray;"><h3 style=" color:white;"> I. PERSONAL INFORMATION </h3></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">2. SURNAME</div>
+  <div class="col-sm-10" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.surname|upper}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">FIRST NAME</div>
+  <div class="col-sm-10" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.first_name|upper}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">MIDDLE NAME</div>
+  <div class="col-sm-5" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.middle_name|upper}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">3. NAME EXTENSION (e.g. Jr., Sr.)</div>
+  <div class="col-sm-3" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.ext_name|upper}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">DATE OF BIRTH (mm/dd/yyyy)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.birth_date|date:"m/d/Y"}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">RESIDENTIAL ADDRESS</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"><b><h3>{{pds.res_numstreet}} {{pds.res_brgy}} {{pds.res_city}} {{pds.res_province}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">Place of Birth</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.birth_place}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;"></div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">SEX</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.sex}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;"></div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">CIVIL STATUS</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.civil_status}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">ZIP CODE</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.res_zip}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">CITIZENSHIP</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.citizenship}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">PERMANENT ADDRESS</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"><b><h3>{{pds.perma_numstreet}} {{pds.perma_brgy}} {{pds.perma_city}} {{pds.perma_province}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">HEIGHT (m)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.height}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;"></div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">WEIGHT (kg)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.weight}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">ZIP CODE</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.perma_zip}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">BLOOD TYPE</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.blood_type}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">19. TELEPHONE NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.telephone}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">GSIS ID NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.gsis}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">E-MAIL ADDRESS (if any)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.email}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">PAG-IBIG ID NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.pagibig}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">CELLPHONE NO. (if any)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.mobile}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">PHILHEALTH NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.philhealth}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">AGENCY EMPLOYEE NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.emp_number}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">SSS NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.sss}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">TIN</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.tin}}</h3></b></div>
+</div>
+
+<div class="row" >
+  <div class="col" style="background-color:gray;"><h3 style=" color:white;"> I. FAMILY BACKGROUND </h3></div>
+</div>
+<div class="row" >
+  <div class="col-sm-7" >
+    <table style="width:100%">
+      <tr>
+        <!-- Wife Details -->
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">SPOUSE'S SURNAME</td>
+        <td style=";border-style: solid ;border-width: 1px;"><h3>{{pds.spouse_surname|upper}}</h3></td>
+      </tr>
+      <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">FIRST NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>{{pds.spouse_name|upper}}</h3></td>
+      </tr>
+      <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">MIDDLE NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>{{pds.spouse_middle|upper}}</h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">OCCUPATION</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>{{pds.spouse_occupation}}</h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">EMPLOYER/BUS. NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>{{pds.emb_biz}}</h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">BUSINESS ADDRESS</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>{{pds.emb_biz_add}}</h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">TELEPHONE NO.</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>{{pds.phone}}</h3></td>
+      </tr>
+      <!-- Father -->
+      <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;" colspan="2"> <p align="center" style="color: red;"><br>(Continue on seperate sheet if necessary)</p></td>
+      </tr>
+      <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">FATHER'S SURNAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>{{pds.dad_surname}}</h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">FIRST NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>{{pds.dad_name}}</h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">MIDDLE NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>{{pds.dad_middle}}</h3></td>
+      </tr>
+      <!-- Mother -->
+      <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;" colspan="2"> <p><br>MOTHER'S MAIDEN NAME</p></td>
+      </tr>
+      <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">SURNAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>{{pds.dad_surname}}</h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">FIRST NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>{{pds.mom_name}}</h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">MIDDLE NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>{{pds.mom_middle}}</h3></td>
+      </tr>
+
+    </table></div>
+      <div class="col-sm-5" >
+        <table style="width:100%">
+          <!-- children List -->
+          <tr>
+            <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"> NAME OF CHILD (Write full name and list all)</td>
+            <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"> DATE OF BIRTH (mm/dd/yyyy)</td>
+          </tr>
+          {% if children %}
+            {% for child in children %}
+          <tr>
+            <td style="border-style: solid ;border-width: 1px;">
+              <h3>{{ child.name }}</h3>
+            </td>
+            <td style="border-style: solid ;border-width: 1px;">
+               <h3>{{ child.birth_date|date:"m/d/Y" }}</h3>
+            </td>
+          </tr>
+                    {% endfor %}
+            {% else %}
+            {% endif %}
+
+            {% if childs == 0 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 1 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 2 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 3 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 4 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 5 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 6 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 7 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 8 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 9 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+          </table>
+      </div>
+    </div>
+<!-- Educational Background -->
+    <div class="row" >
+        <div class="col" style="background-color:gray;"><h3 style=" color:white;"> III.  EDUCATIONAL BACKGROUND </h3></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>LEVEL</div>
+     <div class="col-sm-4" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br> NAME OF SCHOOL</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>DEGREE COURSE</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>YEAR GRADUATED</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">HIGHEST GRADE/ LEVEL/                     UNITS EARNED  </div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">INCLUSIVE DATES OF ATTENDANCE</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">INCLUSIVE DATES OF ATTENDANCE</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">SCHOLARSHIP/ ACADEMIC HONORS RECEIVED</div>
+    </div>
+
+   {% if education %}
+      {% for edu in education %}
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4>{{edu.level}}</h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4>{{edu.school}}</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{edu.course}}</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{edu.grad_year}}</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{edu.units}}</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{edu.date_from|date:"m/d/Y" }}</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{edu.date_to|date:"m/d/Y" }}</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{edu.honors}}</h4></b></div>
+    </div>
+      {% endfor %}
+    {% else %}
+      <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4><br>ELEMENTARY</h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+
+     <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4><br>SECONDARY</h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4><br>VOCATIONAL /                                                                                                                                                                                                        TRADE COURSE</h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4><br>COLLEGE</h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4>GRADUATE STUDIES</h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    {% endif %}
+
+    {% if educs == 1 %}
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    {% endif %}
+
+    {% if educs == 2 %}
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    {% endif %}
+
+    {% if educs == 3 %}
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    {% endif %}
+
+    {% if educs == 4 %}
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    {% endif %}
+
+    <div class="row" >
+      <div class="col" style="background-color:lightgray;"><p align="center" style="color: red;"><br>(Continue on seperate sheet if necessary)</p></div>
+    </div>
+    <div class="row" >
+      <div class="col"><p align="right"><br><b>Page 1 of 4</b></p></div>
+    </div>
+{% endblock %}

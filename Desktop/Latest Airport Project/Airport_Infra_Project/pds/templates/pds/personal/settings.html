@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+<!-- Page title goes here -->
+{% block header %}
+Account Settings
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Settings</a></li>
+    <li class="breadcrumb-item active">Account Profile</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+{{ request.user.id }}
+          <div class="col-md-6">
+            <!-- Widget: user widget style 2 -->
+            <div class="card card-widget widget-user-2">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-success">
+                <div class="widget-user-image">
+                  <img class="img-circle elevation-2" src="../media/{{ request.user.pds_info.photo}}" alt="User Avatar">
+                </div>
+                <!-- /.widget-user-image -->
+                <h3 class="widget-user-username">{{ request.user.pds_info.surname}}, {{ request.user.pds_info.first_name}}</h3>
+                <h5 class="widget-user-desc">{{ request.user.pds_info.position_title}}</h5>
+              </div>
+              <div>
+                <table style="padding: 50px">
+                  <tr>
+                    <h3>Username : <b>{{ request.user.username}}</b></h3>
+                  </tr>
+                  <tr><br><br>
+                    <form action="" method="POST" class="post-form">
+                      {% csrf_token %}
+                      <h3>Email : <input type="email" name="email" value="{{ request.user.email }}"  required>
+                        <br>
+                      <h3>Password : <input type="password" name="password" required>
+
+                      <button type="submit" class="btn btn-primary">Change Password</button> 
+                    </form>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!-- /.widget-user -->
+          </div>
+          <!-- /.col -->
+{% endblock %}

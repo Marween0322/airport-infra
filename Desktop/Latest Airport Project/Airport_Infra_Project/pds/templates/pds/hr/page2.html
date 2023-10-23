@@ -1,0 +1,146 @@
+{% extends "base_admin.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">PDS</a></li>
+    <li class="breadcrumb-item active">PAGE 1</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<div class="row" >
+  <div class="col" >CS FORM 212 (Revised 2005)</div>
+</div>
+<div class="row" >
+  <div class="col" ><h2 align="center"><br><b>PERSONAL DATA SHEET</b></h2><br></div>
+</div>
+<div class="row" >
+  <div class="col" >Print legibly. Mark appropriate boxes</div>
+  <div class="col" ></div>
+  <div class="col-sm" style="background-color:gray; color:white;border-style: solid ;border-width: 2px;">1. CS ID No.</div>
+  <div class="col" style="border-style: solid ;border-width: 2px;"><p align="right">(to be filled up by CSC)</p></div>
+</div>
+<div class="row" >
+  <div class="col" style="background-color:gray;"><h3 style=" color:white;"> I. PERSONAL INFORMATION </h3></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">2. SURNAME</div>
+  <div class="col-sm-10" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.surname|upper}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">FIRST NAME</div>
+  <div class="col-sm-10" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.first_name|upper}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">MIDDLE NAME</div>
+  <div class="col-sm-5" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.middle_name|upper}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">3. NAME EXTENSION (e.g. Jr., Sr.)</div>
+  <div class="col-sm-3" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.ext_name|upper}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">DATE OF BIRTH (mm/dd/yyyy)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.birth_date}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">RESIDENTIAL ADDRESS</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;">{{pds.res_numstreet}} {{pds.res_brgy}} {{pds.res_city}} {{pds.res_province}}</div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">Place of Birth</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.birth_place}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;"></div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">SEX</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.sex}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;"></div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">CIVIL STATUS</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.civil_status}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">ZIP CODE</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;">{{pds.res_zip}}</div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">CITIZENSHIP</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.citizenship}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">PERMANENT ADDRESS</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;">{{pds.perma_numstreet}} {{pds.perma_brgy}} {{pds.perma_city}} {{pds.perma_province}}</div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">HEIGHT (m)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.height}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;"></div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">WEIGHT (kg)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.weight}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">ZIP CODE</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;">{{pds.perma_zip}}</div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">BLOOD TYPE</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.blood_type}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">19. TELEPHONE NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.telephone}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">GSIS ID NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.gsis}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">E-MAIL ADDRESS (if any)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.email}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">PAG-IBIG ID NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.pagibig}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">CELLPHONE NO. (if any)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.mobile}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">PHILHEALTH NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.philhealth}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">AGENCY EMPLOYEE NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.emp_number}}</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">SSS NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.sss}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">TIN</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.tin}}</h3></b></div>
+</div>
+
+<div class="row" >
+  <div class="col" style="background-color:gray;"><h3 style=" color:white;"> I. FAMILY BACKGROUND </h3></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">SPOUSE SURNAME</div>
+  <div class="col-sm-5" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.spouse_surname|upper}}</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">NAME OF CHILD (Write in full name and list all)</div>
+  <div class="col-sm-3" style="border-style: solid ;background-color:#E6E7E6;border-width: 2px;">DATE OF BIRTH</div>
+</div>
+
+
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">FIRST NAME</div>
+  <div class="col-sm-5" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.spouse_name|upper}}</h3></b></div>
+  <div class="col-sm-2" style="border-style: solid ;border-width: 2px;"></div>
+  <div class="col-sm-3" style="border-style: solid ;border-width: 2px;"></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">MIDDLE NAME</div>
+  <div class="col-sm-5" style="border-style: solid ;border-width: 2px;"><b><h3>{{pds.spouse_middle|upper}}</h3></b></div>
+  <div class="col-sm-2" style="border-style: solid ;border-width: 2px;"></div>
+  <div class="col-sm-3" style="border-style: solid ;border-width: 2px;"></div>
+</div>
+{% endblock %}

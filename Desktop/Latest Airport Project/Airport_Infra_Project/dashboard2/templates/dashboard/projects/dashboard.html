@@ -1,0 +1,1081 @@
+{% extends "base_project.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+    <div class="row">
+        <!-- CAAP Summary -->
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+            <a href="/dashboard/caap">
+            <div id="caap" class="small-box card1  " style="background-color: #2470CB; color: #fff">
+              <div class="inner">
+                <h3>{{ count_caap }}</h3>
+
+                <p style="font-size: 30px;">CAAP Total Projects</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i> 
+              </div>
+            </div>
+          </a>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+            <a href="/dashboard/dotr">
+            <div id="dotr" class="small-box card1  bg-danger">
+              <div class="inner">
+                <h3>{{ count_dotr }}</h3>
+
+                <p style="font-size: 30px;">DOTr Total Projects</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+            </div>
+          </a>
+          </div>
+          <!-- ./col -->
+        </div>
+        <!-- /.row -->
+
+ 
+
+    <!-- PIE CHART -->
+
+     <div class="row">
+          <div class="col-md-6">
+            <!-- Line chart -->
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  CAAP APP PROJECTS {{ last_8year }} - {{ year}}
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="caap_proj" style="width:100%;max-width:600px"></canvas>
+              </div>
+              <!-- /.card-body-->
+
+              <div class="card-body">
+              </div>
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+
+
+           <div class="col-md-6">
+            <!-- Line chart -->
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  DOTr DOWNLOADED PROJECTS {{ last_8year }} - {{ year}}
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="dotr_proj" style="width:100%;max-width:600px"></canvas>
+              </div>
+              <!-- /.card-body-->
+
+              <div class="card-body">
+              </div>
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+
+          <div class="col-md-6">
+            <!-- Line chart -->
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  PROJECTS Completed {{ last_8year }} - {{ year}}
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="barChart_completed" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body-->
+
+              <div class="card-body">
+              </div>
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+
+          <div class="col-md-6">
+            <!-- Line chart -->
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  PROJECTS On-Going {{ last_8year }} - {{ year}}
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="barChart_ongoing" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body-->
+
+              <div class="card-body">
+              </div>
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+
+          <div class="col-md-6">
+            <!-- Line chart -->
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  PROJECTS {{ last_8year }} - {{ year}}
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body-->
+
+              <div class="card-body">
+              </div>
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+        </div>
+
+
+
+
+
+
+      <!-- SUMMARY OF PROJECTS -->
+
+      <div class="row">
+        <div class="col-lg-6">
+            <div class="card ">
+              <div class="card-header border-0">
+                <h3 class="card-title" ><b> CAAP PROJECTS </b>{{ last_8year }} - {{ year}}</h3>
+                <div class="card-tools ">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                    <th>SUMMARY</th>
+                    <th>QUANTITY</th>
+                    <th>COST</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Completed Projects</td>
+                      <td> {{ caap_complete }} </td>
+                      <td> {{ caap_complete_sum|default_if_none:"-"|intcomma}} </td>
+                                      
+                    </tr>
+                    <tr>
+                      <td>On- going</td>
+                      <td> {{ caap_ongoing }} </td>
+                      <td> {{ caap_ongoing_sum|default_if_none:"-"|intcomma}} </td>
+                  
+                    </tr>
+                    <tr>                    
+                      <td>Procurement</td>
+                      <td> {{ caap_procurement }} </td>
+                      <td> {{ caap_procurement_sum|default_if_none:"-"|intcomma}} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Processing of Plans & POW</td>
+                      <td> {{ caap_processing }} </td>
+                      <td> {{ caap_processing_sum|default_if_none:"-"|intcomma}} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Detailed Engineering</td>
+                      <td> {{ caap_detailed }} </td>
+                      <td> {{ caap_detailed_sum|default_if_none:"-"|intcomma}} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Site Acquisition </td>
+                      <td> {{ caap_acquisition }} </td>
+                      <td> {{ caap_acquisition_sum|default_if_none:"-"|intcomma}} </td>
+                  
+                    </tr>
+                    <tr>
+                      <td>Others</td>
+                      <td> {{ caap_Others }} </td>
+                      <td> {{ caap_Others_sum|default_if_none:"-"|intcomma}} </td>
+                  
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title"><b> CAAP PROJECTS </b>{{ last_year}}</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                    <th>SUMMARY</th>
+                    <th>QUANTITY</th>
+                    <th>COST</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Completed Projects</td>
+                      <td> {{ caap_complete1 }} </td>
+                      <td> {{ caap_complete_sum1|default_if_none:"-"|intcomma }} </td>
+                                      
+                    </tr>
+                    <tr>
+                      <td>On- going</td>
+                      <td> {{ caap_ongoing1 }} </td>
+                      <td> {{ caap_ongoing_sum1|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                    
+                      <td>Procurement</td>
+                      <td> {{ caap_procurement1 }} </td>
+                      <td> {{ caap_procurement_sum1|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Processing of Plans & POW</td>
+                      <td> {{ caap_processing1 }} </td>
+                      <td> {{ caap_processing_sum1|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Detailed Engineering</td>
+                      <td> {{ caap_detailed1 }} </td>
+                      <td> {{ caap_detailed_sum1|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Site Acquisition </td>
+                      <td> {{ caap_acquisition1 }} </td>
+                      <td> {{ caap_acquisition_sum1|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>
+                      <td>Others</td>
+                      <td> {{ caap_Others1 }} </td>
+                      <td> {{ caap_Others_sum1|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title"><b> CAAP PROJECTS </b>{{ last_2year}} , {{ last_3year}} , {{ last_4year}}</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                    <th>SUMMARY</th>
+                    <th>QUANTITY</th>
+                    <th>COST</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Completed Projects</td>
+                      <td> {{ caap_complete2 }} </td>
+                      <td> {{ caap_complete_sum2|default_if_none:"-"|intcomma }} </td>
+                                      
+                    </tr>
+                    <tr>
+                      <td>On- going</td>
+                      <td> {{ caap_ongoing2 }} </td>
+                      <td> {{ caap_ongoing_sum2|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                    
+                      <td>Procurement</td>
+                      <td> {{ caap_procurement2 }} </td>
+                      <td> {{ caap_procurement_sum2|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Processing of Plans & POW</td>
+                      <td> {{ caap_processing2 }} </td>
+                      <td> {{ caap_processing_sum2|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Detailed Engineering</td>
+                      <td> {{ caap_detailed2 }} </td>
+                      <td> {{ caap_detailed_sum2|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Site Acquisition </td>
+                      <td> {{ caap_acquisition2 }} </td>
+                      <td> {{ caap_acquisition_sum2|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>
+                      <td>Others</td>
+                      <td> {{ caap_Others2 }} </td>
+                      <td> {{ caap_Others_sum2|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title"><b> CAAP PROJECTS </b>{{ last_5year}} , {{ last_6year}} , {{ last_7year}} , {{ last_8year}}</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                    <th>SUMMARY</th>
+                    <th>QUANTITY</th>
+                    <th>COST</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Completed Projects</td>
+                      <td> {{ caap_complete3 }} </td>
+                      <td> {{ caap_complete_sum3|default_if_none:"-"|intcomma }} </td>
+                                      
+                    </tr>
+                    <tr>
+                      <td>On- going</td>
+                      <td> {{ caap_ongoing3 }} </td>
+                      <td> {{ caap_ongoing_sum3|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                    
+                      <td>Procurement</td>
+                      <td> {{ caap_procurement3 }} </td>
+                      <td> {{ caap_procurement_sum3|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Processing of Plans & POW</td>
+                      <td> {{ caap_processing3 }} </td>
+                      <td> {{ caap_processing_sum3|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Detailed Engineering</td>
+                      <td> {{ caap_detailed3 }} </td>
+                      <td> {{ caap_detailed_sum3|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Site Acquisition </td>
+                      <td> {{ caap_acquisition3 }} </td>
+                      <td> {{ caap_acquisition_sum3|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>
+                      <td>Others</td>
+                      <td> {{ caap_Others3 }} </td>
+                      <td> {{ caap_Others_sum3|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+        <!-- /.col-md-6 -->
+        <!-- DOTR Summary-->
+        <div class="col-lg-6">
+            <div class="card ">
+              <div class="card-header border-0">
+                <h3 class="card-title" > <b> DOTR PROJECTS </b>{{ last_8year }} - {{ year}}</h3>
+                <div class="card-tools ">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                    <th>SUMMARY</th>
+                    <th>QUANTITY</th>
+                    <th>COST</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Completed Projects</td>
+                      <td> {{dotr_complete }} </td>
+                      <td> {{dotr_complete_sum|default_if_none:"-"|intcomma}} </td>
+                                      
+                    </tr>
+                    <tr>
+                      <td>On- going</td>
+                      <td> {{ dotr_ongoing }} </td>
+                      <td> {{ dotr_ongoing_sum|default_if_none:"-"|intcomma}} </td>
+                  
+                    </tr>
+                    <tr>                    
+                      <td>Procurement</td>
+                      <td> {{ dotr_procurement }} </td>
+                      <td> {{ dotr_procurement_sum|default_if_none:"-"|intcomma}} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Processing of Plans & POW</td>
+                      <td> {{ dotr_processing }} </td>
+                      <td> {{ dotr_processing_sum|default_if_none:"-"|intcomma}} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Detailed Engineering</td>
+                      <td> {{ dotr_detailed }} </td>
+                      <td> {{ dotr_detailed_sum|default_if_none:"-"|intcomma}} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Site Acquisition </td>
+                      <td> {{ dotr_acquisition }} </td>
+                      <td> {{ dotr_acquisition_sum|default_if_none:"-"|intcomma}} </td>
+                  
+                    </tr>
+                    <tr>
+                      <td>Others</td>
+                      <td> {{ dotr_Others }} </td>
+                      <td> {{ dotr_Others_sum|default_if_none:"-"|intcomma}} </td>
+                  
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title">  <b> DOTR PROJECTS </b> {{ last_year}}</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                    <th>SUMMARY</th>
+                    <th>QUANTITY</th>
+                    <th>COST</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Completed Projects</td>
+                      <td> {{ dotr_complete1 }} </td>
+                      <td> {{ dotr_complete_sum1|default_if_none:"-"|intcomma }} </td>
+                                      
+                    </tr>
+                    <tr>
+                      <td>On- going</td>
+                      <td> {{ dotr_ongoing1 }} </td>
+                      <td> {{ dotr_ongoing_sum1|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                    
+                      <td>Procurement</td>
+                      <td> {{ dotr_procurement1 }} </td>
+                      <td> {{ dotr_procurement_sum1|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Processing of Plans & POW</td>
+                      <td> {{ dotr_processing1 }} </td>
+                      <td> {{ dotr_processing_sum1|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Detailed Engineering</td>
+                      <td> {{ dotr_detailed1 }} </td>
+                      <td> {{ dotr_detailed_sum1|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Site Acquisition </td>
+                      <td> {{ dotr_acquisition1 }} </td>
+                      <td> {{ dotr_acquisition_sum1|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>
+                      <td>Others</td>
+                      <td> {{ dotr_Others1 }} </td>
+                      <td> {{ dotr_Others_sum1|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title"> <b> DOTR PROJECTS </b> {{ last_2year}} , {{ last_3year}} , {{ last_4year}}</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                    <th>SUMMARY</th>
+                    <th>QUANTITY</th>
+                    <th>COST</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Completed Projects</td>
+                      <td> {{ dotr_complete2 }} </td>
+                      <td> {{ dotr_complete_sum2|default_if_none:"-"|intcomma }} </td>
+                                      
+                    </tr>
+                    <tr>
+                      <td>On- going</td>
+                      <td> {{ dotr_ongoing2 }} </td>
+                      <td> {{ dotr_ongoing_sum2|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                    
+                      <td>Procurement</td>
+                      <td> {{ dotr_procurement2 }} </td>
+                      <td> {{ dotr_procurement_sum2|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Processing of Plans & POW</td>
+                      <td> {{ dotr_processing2 }} </td>
+                      <td> {{ dotr_processing_sum2|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Detailed Engineering</td>
+                      <td> {{ dotr_detailed2 }} </td>
+                      <td> {{ dotr_detailed_sum2|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Site Acquisition </td>
+                      <td> {{ dotr_acquisition2 }} </td>
+                      <td> {{ dotr_acquisition_sum2|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>
+                      <td>Others</td>
+                      <td> {{ dotr_Others2 }} </td>
+                      <td> {{ dotr_Others_sum2|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title"> <b> DOTR PROJECTS </b> {{ last_5year}} , {{ last_6year}} , {{ last_7year}} , {{ last_8year}}</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                    <th>SUMMARY</th>
+                    <th>QUANTITY</th>
+                    <th>COST</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Completed Projects</td>
+                      <td> {{ dotr_complete3 }} </td>
+                      <td> {{ dotr_complete_sum3|default_if_none:"-"|intcomma }} </td>
+                                      
+                    </tr>
+                    <tr>
+                      <td>On- going</td>
+                      <td> {{ dotr_ongoing3 }} </td>
+                      <td> {{ dotr_ongoing_sum3|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                    
+                      <td>Procurement</td>
+                      <td> {{ dotr_procurement3 }} </td>
+                      <td> {{ dotr_procurement_sum3|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Processing of Plans & POW</td>
+                      <td> {{ dotr_processing3 }} </td>
+                      <td> {{ dotr_processing_sum3|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Detailed Engineering</td>
+                      <td> {{ dotr_detailed3 }} </td>
+                      <td> {{ dotr_detailed_sum3|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>                      
+                      <td>Site Acquisition </td>
+                      <td> {{ dotr_acquisition3 }} </td>
+                      <td> {{ dotr_acquisition_sum3|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                    <tr>
+                      <td>Others</td>
+                      <td> {{ dotr_Others3 }} </td>
+                      <td> {{ dotr_Others_sum3|default_if_none:"-"|intcomma }} </td>
+                  
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+        <!-- /.col-md-6 -->
+
+      </div>
+
+{% endblock content %}
+
+
+{% block styles %}
+<style type="text/css">
+  :root {
+    --green: #5cb85c;
+    --blue: #3A98B9;
+    --red: #d9534f;
+    --yellow: #FFE15D;
+    --font-dark: #212A3E;
+    --font-white: #FFFF;
+    --inverse: #292b2c;
+    --faded: #f7f7f7;
+  }
+  #caap{
+    background: url('{% static 'dist/css/img/caap.png' %}') no-repeat 150% 30%;
+    background-size: 310px;
+    background-color: var(--blue);
+  }
+  #dotr{
+    background: url('{% static 'dist/css/img/dotr.png' %}') no-repeat 120% 30%;
+    background-size: 250px;
+    background-color: var(--blue);
+  }
+  #complete{
+    background: url('{% static 'dist/css/img/check.png' %}') no-repeat 124% 30%;
+    background-size: 200px;
+    background-color: var(--green);
+  }
+  #ongoing{
+    background: url('{% static 'dist/css/img/on-going.png' %}') no-repeat 150% 30%;
+    background-size: 290px;
+    background-color: var(--yellow);
+    color: var(--font-dark);
+  }
+  #proc{
+    background: url('{% static 'dist/css/img/procurment2.png' %}') no-repeat 130% 25%;
+    background-size: 250px;
+    background-color: var(--red);
+  }
+  .header{
+    color: var(--font-dark);
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .img{
+    position: absolute;
+    left: 40%;
+    width: 140px;
+    height: auto;
+  }
+  .content {
+    padding: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5vh;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  }
+
+  a:link {
+    text-decoration: none;
+    color: white;
+  }
+
+  .title {
+    font-size: 1.3rem;
+    font-family: 'Helvetica';
+    font-weight: bold;
+  }
+  
+  .card1-container {
+    text-decoration: none;
+    transition: margin 0.2s ease;
+  }
+  .card1-container:hover{
+    margin-top: -20px;
+  }
+
+  .card1:hover{
+    color: var(--font-white);
+    transform: scale(1.05);
+  }
+
+
+
+  .card1-link {
+    color: var(--font-white);
+  }
+
+  .card1-link:hover {
+    cursor: pointer;
+  }
+
+  .more-info {
+    color: white;
+    font-size: 1.1rem;
+
+  }
+
+  .more-info:hover {
+    cursor: pointer;
+    color: var(--font-dark);
+    background-color: var(--yellow);
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    transition: .4s ease;
+  }
+</style>
+{% endblock styles %} 
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<!-- Bar Chart -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="{% static 'plugins/chart.js/Chart.min.js' %}"></script>
+<script >
+ // CAAP APP Projects PIE chart
+var xValues = ["Completed {{caap_complete_percnt|floatformat:2}} %", "On-Going {{caap_ongoing_percnt|floatformat:2}} %", "Detailed Engineering {{caap_detailed_percnt|floatformat:2}} %", "Site Acquisition {{caap_acquisition_percnt|floatformat:2}} %"];
+var yValues = [ "{{caap_complete}}","{{caap_ongoing}}" ,"{{caap_detailed}}" ,"{{caap_acquisition}}"];
+var barColors = [
+  "#008000",
+  "#00aba9",
+  "#B03A2E",
+  "#D68910",
+];
+
+new Chart("caap_proj", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "CAAP APP PROJECTS"
+    }
+  }
+});
+
+ // DOTR Projects PIE chart
+var xValues = ["Completed {{dotr_complete_percnt|floatformat:2}} %", "On-Going {{dotr_ongoing_percnt|floatformat:2}} %", "Detailed Engineering {{dotr_detailed_percnt|floatformat:2}} %", "Site Acquisition {{dotr_acquisition_percnt|floatformat:2}} %"];
+var yValues = [ "{{dotr_complete}}","{{dotr_ongoing}}" ,"{{dotr_detailed}}" ,"{{dotr_acquisition}}"];
+var barColors = [
+  "#008000",
+  "#00aba9",
+  "#B03A2E",
+  "#D68910",
+];
+
+new Chart("dotr_proj", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "DOTr DOWNLOADED PROJECTS"
+    }
+  }
+});
+
+//-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    var pieData        = {
+      labels: [
+          'Completed {{count_complete_percnt|floatformat:2}} %',
+          'On-Going {{count_ongoing_percnt|floatformat:2}} %',
+          'Detailed Engineering {{count_detailed_percnt|floatformat:2}} %',
+          'Site Acquisition {{count_acquisition_percnt|floatformat:2}} %',
+      ],
+      datasets: [
+        {
+          data: [{{count_complete}},{{count_ongoing}},{{count_detailed}},{{count_acquisition}}],
+          backgroundColor : ['#00a65a', '#00c0ef', '#f39c12', '#f56954'],
+        }
+      ]
+    }
+    var pieOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: pieData,
+      options: pieOptions
+    })
+
+    //-------------
+    //- BAR CHART Completed
+    //-------------
+    var BarData = {
+      labels  : ['{{year}}', '{{last_year}}', '{{last_2year}}', '{{last_3year}}', '{{last_4year}}', '{{last_5year}}', '{{last_6year}}', '{{last_7year}}', '{{last_8year}}'],
+      datasets: [
+        {
+          label               : 'CAAP',
+          backgroundColor     : 'rgba(22, 119, 167,0.9)',
+          borderColor         : 'rgba(22, 119, 167,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(22, 119, 167,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(22, 119, 167,1)',
+          data                : [{{caap_complete_bar}}, {{caap_complete_bar1}}, {{caap_complete_bar2}}, {{caap_complete_bar3}}, {{caap_complete_bar4}}, {{caap_complete_bar5}}, {{caap_complete_bar6}}, {{caap_complete_bar7}}, {{caap_complete_bar8}}]
+        },
+        {
+          label               : 'DOTr',
+          backgroundColor     : 'rgba(181, 50, 62, 1)',
+          borderColor         : 'rgba(181, 50, 62, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(181, 50, 62, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(181, 50, 62,1)',
+          data                : [{{dotr_complete_bar}}, {{dotr_complete_bar1}}, {{dotr_complete_bar2}}, {{dotr_complete_bar3}}, {{dotr_complete_bar4}}, {{dotr_complete_bar5}}, {{dotr_complete_bar6}}, {{dotr_complete_bar7}}, {{dotr_complete_bar8}}]
+        },
+      ]
+    }
+
+    var barChartCanvas = $('#barChart_completed').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, BarData)
+    var temp0 = BarData.datasets[0]
+    var temp1 = BarData.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    new Chart(barChartCanvas, {
+      type: 'bar',
+      data: barChartData,
+      options: barChartOptions
+    })
+
+    //-------------
+    //- BAR CHART Completed
+    //-------------
+    var BarData_ongoing = {
+      labels  : ['{{year}}', '{{last_year}}', '{{last_2year}}', '{{last_3year}}', '{{last_4year}}', '{{last_5year}}', '{{last_6year}}', '{{last_7year}}', '{{last_8year}}'],
+      datasets: [
+        {
+          label               : 'CAAP',
+          backgroundColor     : 'rgba(22, 119, 167,0.9)',
+          borderColor         : 'rgba(22, 119, 167,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(22, 119, 167,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(22, 119, 167,1)',
+          data                : [{{caap_ongoing_bar}}, {{caap_ongoing_bar1}}, {{caap_ongoing_bar2}}, {{caap_ongoing_bar3}}, {{caap_ongoing_bar4}}, {{caap_ongoing_bar5}}, {{caap_ongoing_bar6}}, {{caap_ongoing_bar7}}, {{caap_ongoing_bar8}}]
+        },
+        {
+          label               : 'DOTr',
+          backgroundColor     : 'rgba(181, 50, 62, 1)',
+          borderColor         : 'rgba(181, 50, 62, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(181, 50, 62, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(181, 50, 62,1)',
+          data                : [{{dotr_ongoing_bar}}, {{dotr_ongoing_bar1}}, {{dotr_ongoing_bar2}}, {{dotr_ongoing_bar3}}, {{dotr_ongoing_bar4}}, {{dotr_ongoing_bar5}}, {{dotr_ongoing_bar6}}, {{dotr_ongoing_bar7}}, {{dotr_ongoing_bar8}}]
+        },
+      ]
+    }
+
+    var barChartCanvas = $('#barChart_ongoing').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, BarData_ongoing)
+    var temp0 = BarData_ongoing.datasets[0]
+    var temp1 = BarData_ongoing.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    new Chart(barChartCanvas, {
+      type: 'bar',
+      data: barChartData,
+      options: barChartOptions
+    })
+
+</script>
+
+{% endblock script %} 

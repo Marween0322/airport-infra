@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'dist/css/style.css' %}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+  <title>Employee Portal</title>
+</head>
+<body>
+  <section class="showcase">
+    <header>
+      <h2 class="logo">Civil Aviation Authority of the Philippines</h2>
+      <div class="toggle"></div>
+      </header>
+
+      <video src="{% static 'media/photo/backdrop.mp4' %}" muted loop autoplay></video>
+
+      <div class="overlay"></div>
+
+      <div class="text">
+        
+        {% if form.errors %}
+            <p style="color:red">Your username and password didn't match, please try again.</p>
+        {% endif %}
+        <h2>Employee Portal</h2>
+        <form action="" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <input type="text" name="username" class="form-control" placeholder="Username">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" name="password" class="form-control" placeholder="Password" id="password_input">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="showpassword" onclick="passwordFuntion()">
+              <label for="showpassword">
+                Show Password
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <p class="mb-1">
+        <a href="{% url 'password_reset' %}">I forgot my password</a>
+      </p>
+      <p class="mb-0">
+        <a href="/pds/signup" class="text-center">Register a new membership</a>
+      </p>
+
+      </div>
+
+      <!-- <ul class="links">
+        <li>DMS</li>
+        <li>CASORT</li>
+        <li>HCP</li>
+      </ul>
+
+      <div class="menu">
+        <ul>
+          <li>CAAP</li>
+          <li>CASORT</li>
+          <li>DMS</li>
+        </ul>
+      </div> -->
+    
+  </section>
+</body>
+</html>
+
+<!-- Show Password -->
+<script type="text/javascript">
+  function passwordFuntion() {
+    var x = document.getElementById('password_input');
+    if (x.type === "password") {
+      x.type = "text";
+    }
+     else{
+      x.type = "password";
+     }
+  }
+</script>
+
+<!-- jQuery -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'dist/js/adminlte.min.js' %}"></script>

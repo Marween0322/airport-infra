@@ -1,0 +1,169 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>HRMD PDS ONLINE</title>
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript">
+            function refreshPage() {
+                if (confirm("Are you sure, want to refresh?")) {
+                    location.reload();
+                }
+            }
+        </script>
+</head>
+<body class="hold-transition register-page">
+<div class="col-md-9">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="" class="h1"><b>GUIDE</b> </a>
+    </div> 
+    <div class="card-body">
+      
+      <p>
+        <h3>Personal Data Sheet</h3>
+        <ol>
+          <li>
+            <b>Residential Address </b>   <br>
+            (City) - If your city is not displaying on the list. Re-select province and choose a different option, then select your province again to display to list of city.
+            <br>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-city">
+                  Watch <i class="fa fa-video" aria-hidden="true"></i>
+            </button>
+            <br><br>
+            
+            (Barangay) - If your barangay is not displaying on the list. Re-select city and choose a different option, then select your city again to display the list of city.
+            <br>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-brgy">
+                  Watch <i class="fa fa-video" aria-hidden="true"></i>
+            </button>
+            <br><br>
+          </li>
+
+
+          <li>
+            <b>Printing</b>   <br>
+            (Personal Data Sheet)
+            <br>&nbsp;&nbsp;&nbsp;  Click Print Button
+                &nbsp;&nbsp;&nbsp; -- > Select print to Color
+                &nbsp;&nbsp;&nbsp; -- > Adjust Paper size
+                &nbsp;&nbsp;&nbsp; -- > Select option (Background graphics)
+                &nbsp;&nbsp;&nbsp; -- > Adjust scale size until page is fit
+                &nbsp;&nbsp;&nbsp; -- > Proceed to Print
+            <br>
+
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-print">
+                  Watch <i class="fa fa-video" aria-hidden="true"></i>
+            </button>
+            <br><br>
+          </li>
+          <li>
+            
+            If video is not playing reload the page <i class="fa fa-refresh fa-spin" style="font-size:24px"></i><br>
+            <input type="button" class="btn btn-default" value="Reload page " onclick="refreshPage()" /> 
+           
+          </li>
+        </ol>
+      </p>
+    
+      <a href="/pds" class="text-center">Return <i class="fa fa-home"></i></a>  &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+      <a href="/pds/faq" class="text-center">FAQ <i class="fa fa-question"></i></a>
+    </div>
+
+
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+          <!-- MODAL -->
+            <!-- CITY -->
+            <div class="modal fade" id="modal-city">
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Residential Address (City)</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <video width="100%" controls autoplay muted>
+                    <source src="https://caap.gov.ph/wp-content/uploads/2022/10/city.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  </div>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
+            <!-- Barangay -->
+            <div class="modal fade" id="modal-brgy">
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Residential Address (Barangay)</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <video width="100%" controls autoplay muted>
+                    <source src="https://caap.gov.ph/wp-content/uploads/2022/10/brgy.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  </div>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
+            <!-- psd print -->
+            <div class="modal fade" id="modal-print">
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Printing (PERSONAL DATA SHEET)</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <video width="100%" controls autoplay muted>
+                    <source src="https://caap.gov.ph/wp-content/uploads/2022/10/print_pds.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  </div>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
+
+
+<!-- jQuery -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+</body>
+</html>

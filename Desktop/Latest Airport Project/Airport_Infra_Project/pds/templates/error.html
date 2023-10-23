@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+Payslip
+{% endblock %}
+
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="/pds/payslip">Payslip</a></li>
+    <li class="breadcrumb-item active">{{payslip.surname}}, {{payslip.first_name}}</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+
+{% if message %}
+{{ message }}
+
+{% endif %}
+
+{% endblock %}

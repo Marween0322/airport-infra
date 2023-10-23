@@ -1,0 +1,77 @@
+{% extends "base3.html" %}
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+CAAP RE-ORGANIZATION Question and Answer Page
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">CAAP RE-ORGANIZATION PROJECT</a></li>
+    <li class="breadcrumb-item active">Announcement</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+
+<a href="mailto:cmt@caap.gov.ph" class="btn btn-app" style="background-color:#059528; color: white"><i class="fa fa-envelope" aria-hidden="true"></i> Send Email</a>
+
+{% if data %}
+  {% for post in data %}
+  
+    <div class="col-md-9">
+    <div class="card card-success card-outline">
+        <div class="card-header">
+        <h3 class="card-title">Post </h3>
+            <div class="card-tools">
+              <p class="btn btn-tool" style="color: black;">{{ post.post_date }}</p>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <h2>{{ post.title }}</h2>
+
+            <h4>
+              {% if post.post == "None" %}
+              {% else %}
+                {{ post.post|default_if_none:""}}
+              {% endif %}
+          </h4>
+
+            {% if post.file %}
+                {% if post.ext == "mp4" %}
+                  <video width="100%" controls autoplay muted>
+                    <source src="/media/{{ post.file }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                {% endif %}
+
+                {% if post.ext == "jpg" %}
+                  <img src="/media/{{ post.file }}" width="100%">
+                {% endif %}
+
+                {% if post.ext == "jpeg" %}
+                  <img src="/media/{{ post.file }}" width="100%">
+                {% endif %}
+
+                {% if post.ext == "png" %}
+                  <img src="/media/{{ post.file }}" width="100%">
+                {% endif %}
+
+                {% if post.ext == "gif" %}
+                  <img src="/media/{{ post.file }}" width="100%">
+                {% endif %}
+            {% endif %}
+        </div>
+        <!-- /.card-body-->
+    </div>
+    </div>
+  {% endfor %}
+{% endif %}
+ 
+{% endblock %}

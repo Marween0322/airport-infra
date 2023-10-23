@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,200;1,300;1,400&display=swap');
+
+body {
+  background-color: #92B5F3;
+}
+
+.content { 
+	position: fixed;
+	right: 0;
+	min-height: 100vh;
+	justify-content: space-between;
+	align-items: center;
+	background: #92B5F3;
+	background-color: #92B5F3;
+	color: #111;
+	z-index: 2;
+}
+
+.content img {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.links {
+	position: absolute;
+	background-color: #92B5F3;
+	right: 0;
+	z-index: 8;
+	padding: 40px 100px;
+	padding-bottom: 20%;
+}
+
+.links a{
+		color: #8C050D;
+		text-shadow: 1px 2px #fff;
+}
+
+#area1 {
+	position: fixed;
+	top: 105px;
+	left: 275px;
+	font-size: 1em;
+	font-weight: 650;
+	color: #194785;
+	line-height: 1em;
+}
+
+#area2 {
+	position: fixed;
+	top: 120px;
+	left: 370px;
+	font-size: 1em;
+	font-weight: 650;
+	color: #194785;
+	line-height: 1em;
+}
+
+#area3 {
+	position: fixed;
+	top: 220px;
+	left: 350px;
+	font-size: 1em;
+	font-weight: 650;
+	color: #194785;
+	line-height: 1em;
+}
+
+#area4 {
+	position: fixed;
+	top: 480px;
+	left: 185px;
+	font-size: 1em;
+	font-weight: 650;
+	color: #194785;
+	line-height: 1em;
+}
+
+#area5 {
+	position: fixed;
+	top: 330px;
+	left: 410px;
+	font-size: 1em;
+	font-weight: 650;
+	color: #194785;
+	line-height: 1em;
+}
+
+#area6 {
+	position: fixed;
+	top: 410px;
+	left: 370px;
+	font-size: 1em;
+	font-weight: 650;
+	color: #194785;
+	line-height: 1em;
+}
+
+#area7 {
+	position: fixed;
+	top: 450px;
+	left: 420px;
+	font-size: 1em;
+	font-weight: 650;
+	color: #194785;
+	line-height: 1em;
+}
+
+#area8 {
+	position: fixed;
+	top: 420px;
+	left: 510px;
+	font-size: 1em;
+	font-weight: 650;
+	color: #194785;
+	line-height: 1em;
+}
+
+#area9 {
+	position: fixed;
+	top: 590px;
+	left: 310px;
+	font-size: 1em;
+	font-weight: 650;
+	color: #194785;
+	line-height: 1em;
+}
+
+#area10 {
+	position: fixed;
+	top: 550px;
+	left: 480px;
+	font-size: 1em;
+	font-weight: 650;
+	color: #194785;
+	line-height: 1em;
+}
+
+#area11 {
+	position: fixed;
+	top: 610px;
+	left: 510px;
+	font-size: 1em;
+	font-weight: 650;
+	color: #194785;
+	line-height: 1em;
+}
+
+#area12 {
+	position: fixed;
+	top: 510px;
+	left: 540px;
+	font-size: 1em;
+	font-weight: 650;
+	color: #194785;
+	line-height: 1em;
+}
+
+/*Index CSS*/
+.header{
+	background-color: #26395F;
+}
+
+.container {
+ 	width: 1800px;
+  margin: 0 auto;
+}
+
+.container iframe{
+  display: block;
+  border-style:none;
+}
+
+@media(max-width: 798px){
+	.header{
+		background-color: #26395F;
+		width: 900px;
+	}
+}

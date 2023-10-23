@@ -1,0 +1,157 @@
+{% extends "base4.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="/pds">PDS</a></li>
+    <li class="breadcrumb-item active">PAGE 2</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+  {% if eligible %}
+<!-- Eligibilty -->
+    <div class="row" >
+        <div class="col" style="background-color:gray;"><h3 style=" color:white;"> IV.  CIVIL SERVICE ELIGIBILITY </h3></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-4" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>CAREER SERVICE/ RA 1080 (BOARD/ BAR) <br> UNDER SPECIAL LAWS/ CES/ CSEE</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br> RATING</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>DATE OF EXAMINATION / CONFERMENT</div>
+     <div class="col-sm-4" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>PLACE OF EXAMINATION / CONFERMENT</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><u>LICENSE (if applicable)</u><br> NUMBER  </div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><u>LICENSE (if applicable)</u><br> INCLUSIVE DATES OF ATTENDANCE</div>
+    </div>
+
+      {% for el in eligible %}
+    <div class="row" align="center">
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><br><b><h4>{{el.eligibility}}</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><br><b><h4>
+           {% if  el.rating == None %}
+            N/A
+            {% else %}
+            {{ el.rating}}
+            {% endif %}</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><br><b><h5>{{el.exam_date|date:"m/d/Y"}}</h5></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><br><b><h4>
+            {% if  el.place == None %}
+            N/A
+            {% else %}
+            {{ el.place}}
+            {% endif %}
+           </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><br><b><h5>
+        {% if  el.lic_number == None %}
+        N/A
+        {% else %}
+        {{ el.lic_number}}
+        {% endif %}
+   </h5></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><br><b><h5>{{el.validity|date:"m/d/Y"}}</h5></b></div>
+    </div>
+      {% endfor %}
+    <div class="row" align="center">
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+    </div>
+  {% endif %}
+    <br><br>
+
+<!-- EXPERIENCE -->
+  
+  {% if experience %}
+    <div class="row" >
+        <div class="col" style="background-color:gray;"><h3 style=" color:white;">V.  WORK EXPERIENCE (Include private employment.  Start from your current work)</h3></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><u>INCLUSIVE DATES</u><br> FROM</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><u>INCLUSIVE DATES</u><br> TO</div>
+     <div class="col-sm-3" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">POSITION TITLE<br>(Write in full)</div>
+     <div class="col-sm-3" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">DEPARTMENT / AGENCY / OFFICE / COMPANY   <br>(Write in full)</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>MONTHLY SALARY</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">SALARY GRADE & STEP INCREMENT <br>(Format "00-0")</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>STATUS OF APPOINTMENT</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>GOV'T SERVICE <br>(Yes / No)</div>
+    </div>
+
+      {% for exper in experience %}
+    <div class="row" align="center">
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h5>{{exper.exp_from|date:"m/d/Y"}}</h5></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h5>
+     {% if exper.exp_to == None %}
+          To date
+      {% else %}
+        {{exper.exp_to|date:"m/d/Y"}}
+      {% endif %}
+      </h5></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h5>{{exper.position}}</h5></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h5>{{exper.department}}</h5></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{exper.salary|default_if_none:"N/A"}}</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{exper.increment|default_if_none:"N/A"}}</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h5>{{exper.appointment|default_if_none:"N/A"}}</h5></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{exper.govt_service}}</h4></b></div>
+    </div>
+    {% endfor %}
+    <div class="row" align="center">
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h3>_ _ - _</h3></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h3>_ _ - _</h3></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h3></h3></b></div>
+    </div>
+    {% endif %}
+<br><br>
+
+    <div class="row" >
+      <div class="col" style="background-color:lightgray;"><p align="center" style="color: red;"><br></p></div>
+    </div>
+<div class="row" align="center">
+     <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><b><h4>SIGNATURE</h4></b></div>
+     <div class="col-sm-6" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><b><h4>DATE</h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" >
+      <div class="col"><p align="right"><br> CS FORM 212 (Revised 2017),  <b>Separate Page</b></p></div>
+    </div>
+
+<script>
+function PrintPage() {
+  window.print();
+}
+</script>
+{% endblock %}

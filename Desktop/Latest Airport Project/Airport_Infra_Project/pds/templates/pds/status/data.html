@@ -1,0 +1,683 @@
+{% extends "base_admin2.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+Update PDS of <b> {{ pds.surname }} , {{ pds.first_name }} &nbsp; {{ pds.middle_name }}</b>
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">PDS</a></li>
+    <li class="breadcrumb-item active">Item Update</li> 
+</ol>
+{% endblock breadcrumb %}
+ 
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Personal Information -->
+  {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }} for {{ field.name}}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+<br>
+
+<form method="POST" class="post-form" action="/pds/dataUpdate/{{pds.id}}">  
+  {% csrf_token %}
+
+  <div class="container-fluid">
+
+  <div class="row">
+    <!-- column -->
+    <div class="col-md-12" >
+      <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Personnel Details Form</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Surname</label>
+                    <input type="text" class="form-control" name="surname" value="{{ pds.surname }}" />
+                  </div>
+                  <!-- /.form-group -->
+                </div>
+
+                 <div class="col-md-6">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" name="first_name" value="{{ pds.first_name }}" />
+                  </div>
+                  <!-- /.form-group -->
+                 </div>
+                </div>
+                <!-- row  -->
+
+                <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Middle Name</label>
+                    <input type="text" class="form-control" name="middle_name" value="{{ pds.middle_name }}" />
+                  </div>
+                  <!-- /.form-group -->
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Ext. Name (ex. Jr)</label>
+                    <input type="text" class="form-control" name="ext_name" value="{{ pds.ext_name }}" />
+                  </div>
+                  <!-- /.form-group -->
+                </div>
+
+                 </div>
+                </div>
+                <!-- row  -->
+
+          </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- col -->
+  </div>
+  <!-- row -->
+
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-6" >
+
+      <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Personnel ID Form</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Employee Number</label>
+                  <input type="text" class="form-control" name="emp_number" value="{{ pds.emp_number }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>GSIS BP (ex. 2005040400)</label>
+                  <input type="text"  class="form-control" name="gsis"  value="{{ pds.gsis }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>PAG-IBIG ID (ex. 123456789012)</label>
+                  <input type="text" class="form-control" name="pagibig"  value="{{ pds.pagibig }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Philhealth (ex. 123456789012)</label>
+                  <input type="text"  class="form-control" name="philhealth"  value="{{ pds.philhealth }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>SSS (ex. 1234567890)</label>
+                  <input type="text" class="form-control" name="sss"  value="{{ pds.sss }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>TIN</label>
+                  <input type="text"  class="form-control" name="tin"  value="{{ pds.tin }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>UMID</label>
+                  <input type="text"  class="form-control" name="umid" value="{{ pds.umid }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Telephone Number</label>
+                  <input type="text" class="form-control" name="telephone"  value="{{ pds.telephone }}" required/>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Cellphone Number</label>
+                  <input type="text" class="form-control" name="mobile"  value="{{ pds.mobile }}" required/>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Email (Juan.delacruz@caap.gov.ph)</label>
+                  <input type="email" class="form-control" name="email"  maxlength="100" value="{{ pds.email }}" required />
+                </div>
+                <!-- /.form-group -->
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+    </div>
+
+    <!-- right column -->
+    <div class="col-md-6" >
+
+      <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Personnel Information Form</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Date of Birth</label>
+                  <input type="date" class="form-control" name="birth_date"  value="{{ pds.birth_date|date:"Y-m-d" }}"  />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Place of Birth</label>
+                  <input type="text" class="form-control" name="birth_place" maxlength="100" value="{{ pds.birth_place }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Sex</label>
+                    <select class="form-control" name="sex">
+                      <option value="{{ pds.sex }}">{{ pds.sex }}</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Civil Status</label>
+                  <select class="form-control" name="civil_status">
+                      <option value="{{ pds.civil_status }}">{{ pds.civil_status }}</option>
+                      <option>Single</option>
+                      <option>Married</option>
+                      <option>Separated</option>
+                      <option>Widowed</option>
+                      <option>Annulled</option>
+                      <option>Re-married</option>
+                      <option>Divorsed</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Height (meters)</label>
+                  <input type="text" class="form-control" name="height"  value="{{ pds.height }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Weight (kg)</label>
+                  <input type="text" class="form-control" name="weight"  value="{{ pds.weight }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Citizenship</label>
+                  <select class="form-control" name="citizenship">
+                    <option value="{{ pds.citizenship }}">{{ pds.citizenship }}</option>
+                    <option value="afghan">Afghan</option>
+                    <option value="albanian">Albanian</option>
+                    <option value="algerian">Algerian</option>
+                    <option value="american">American</option>
+                    <option value="andorran">Andorran</option>
+                    <option value="angolan">Angolan</option>
+                    <option value="antiguans">Antiguans</option>
+                    <option value="argentinean">Argentinean</option>
+                    <option value="armenian">Armenian</option>
+                    <option value="australian">Australian</option>
+                    <option value="austrian">Austrian</option>
+                    <option value="azerbaijani">Azerbaijani</option>
+                    <option value="bahamian">Bahamian</option>
+                    <option value="bahraini">Bahraini</option>
+                    <option value="bangladeshi">Bangladeshi</option>
+                    <option value="barbadian">Barbadian</option>
+                    <option value="barbudans">Barbudans</option>
+                    <option value="batswana">Batswana</option>
+                    <option value="belarusian">Belarusian</option>
+                    <option value="belgian">Belgian</option>
+                    <option value="belizean">Belizean</option>
+                    <option value="beninese">Beninese</option>
+                    <option value="bhutanese">Bhutanese</option>
+                    <option value="bolivian">Bolivian</option>
+                    <option value="bosnian">Bosnian</option>
+                    <option value="brazilian">Brazilian</option>
+                    <option value="british">British</option>
+                    <option value="bruneian">Bruneian</option>
+                    <option value="bulgarian">Bulgarian</option>
+                    <option value="burkinabe">Burkinabe</option>
+                    <option value="burmese">Burmese</option>
+                    <option value="burundian">Burundian</option>
+                    <option value="cambodian">Cambodian</option>
+                    <option value="cameroonian">Cameroonian</option>
+                    <option value="canadian">Canadian</option>
+                    <option value="cape verdean">Cape Verdean</option>
+                    <option value="central african">Central African</option>
+                    <option value="chadian">Chadian</option>
+                    <option value="chilean">Chilean</option>
+                    <option value="chinese">Chinese</option>
+                    <option value="colombian">Colombian</option>
+                    <option value="comoran">Comoran</option>
+                    <option value="congolese">Congolese</option>
+                    <option value="costa rican">Costa Rican</option>
+                    <option value="croatian">Croatian</option>
+                    <option value="cuban">Cuban</option>
+                    <option value="cypriot">Cypriot</option>
+                    <option value="czech">Czech</option>
+                    <option value="danish">Danish</option>
+                    <option value="djibouti">Djibouti</option>
+                    <option value="dominican">Dominican</option>
+                    <option value="dutch">Dutch</option>
+                    <option value="east timorese">East Timorese</option>
+                    <option value="ecuadorean">Ecuadorean</option>
+                    <option value="egyptian">Egyptian</option>
+                    <option value="emirian">Emirian</option>
+                    <option value="equatorial guinean">Equatorial Guinean</option>
+                    <option value="eritrean">Eritrean</option>
+                    <option value="estonian">Estonian</option>
+                    <option value="ethiopian">Ethiopian</option>
+                    <option value="fijian">Fijian</option>
+                    <option value="filipino">Filipino</option>
+                    <option value="finnish">Finnish</option>
+                    <option value="french">French</option>
+                    <option value="gabonese">Gabonese</option>
+                    <option value="gambian">Gambian</option>
+                    <option value="georgian">Georgian</option>
+                    <option value="german">German</option>
+                    <option value="ghanaian">Ghanaian</option>
+                    <option value="greek">Greek</option>
+                    <option value="grenadian">Grenadian</option>
+                    <option value="guatemalan">Guatemalan</option>
+                    <option value="guinea-bissauan">Guinea-Bissauan</option>
+                    <option value="guinean">Guinean</option>
+                    <option value="guyanese">Guyanese</option>
+                    <option value="haitian">Haitian</option>
+                    <option value="herzegovinian">Herzegovinian</option>
+                    <option value="honduran">Honduran</option>
+                    <option value="hungarian">Hungarian</option>
+                    <option value="icelander">Icelander</option>
+                    <option value="indian">Indian</option>
+                    <option value="indonesian">Indonesian</option>
+                    <option value="iranian">Iranian</option>
+                    <option value="iraqi">Iraqi</option>
+                    <option value="irish">Irish</option>
+                    <option value="israeli">Israeli</option>
+                    <option value="italian">Italian</option>
+                    <option value="ivorian">Ivorian</option>
+                    <option value="jamaican">Jamaican</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="jordanian">Jordanian</option>
+                    <option value="kazakhstani">Kazakhstani</option>
+                    <option value="kenyan">Kenyan</option>
+                    <option value="kittian and nevisian">Kittian and Nevisian</option>
+                    <option value="kuwaiti">Kuwaiti</option>
+                    <option value="kyrgyz">Kyrgyz</option>
+                    <option value="laotian">Laotian</option>
+                    <option value="latvian">Latvian</option>
+                    <option value="lebanese">Lebanese</option>
+                    <option value="liberian">Liberian</option>
+                    <option value="libyan">Libyan</option>
+                    <option value="liechtensteiner">Liechtensteiner</option>
+                    <option value="lithuanian">Lithuanian</option>
+                    <option value="luxembourger">Luxembourger</option>
+                    <option value="macedonian">Macedonian</option>
+                    <option value="malagasy">Malagasy</option>
+                    <option value="malawian">Malawian</option>
+                    <option value="malaysian">Malaysian</option>
+                    <option value="maldivan">Maldivan</option>
+                    <option value="malian">Malian</option>
+                    <option value="maltese">Maltese</option>
+                    <option value="marshallese">Marshallese</option>
+                    <option value="mauritanian">Mauritanian</option>
+                    <option value="mauritian">Mauritian</option>
+                    <option value="mexican">Mexican</option>
+                    <option value="micronesian">Micronesian</option>
+                    <option value="moldovan">Moldovan</option>
+                    <option value="monacan">Monacan</option>
+                    <option value="mongolian">Mongolian</option>
+                    <option value="moroccan">Moroccan</option>
+                    <option value="mosotho">Mosotho</option>
+                    <option value="motswana">Motswana</option>
+                    <option value="mozambican">Mozambican</option>
+                    <option value="namibian">Namibian</option>
+                    <option value="nauruan">Nauruan</option>
+                    <option value="nepalese">Nepalese</option>
+                    <option value="new zealander">New Zealander</option>
+                    <option value="ni-vanuatu">Ni-Vanuatu</option>
+                    <option value="nicaraguan">Nicaraguan</option>
+                    <option value="nigerien">Nigerien</option>
+                    <option value="north korean">North Korean</option>
+                    <option value="northern irish">Northern Irish</option>
+                    <option value="norwegian">Norwegian</option>
+                    <option value="omani">Omani</option>
+                    <option value="pakistani">Pakistani</option>
+                    <option value="palauan">Palauan</option>
+                    <option value="panamanian">Panamanian</option>
+                    <option value="papua new guinean">Papua New Guinean</option>
+                    <option value="paraguayan">Paraguayan</option>
+                    <option value="peruvian">Peruvian</option>
+                    <option value="polish">Polish</option>
+                    <option value="portuguese">Portuguese</option>
+                    <option value="qatari">Qatari</option>
+                    <option value="romanian">Romanian</option>
+                    <option value="russian">Russian</option>
+                    <option value="rwandan">Rwandan</option>
+                    <option value="saint lucian">Saint Lucian</option>
+                    <option value="salvadoran">Salvadoran</option>
+                    <option value="samoan">Samoan</option>
+                    <option value="san marinese">San Marinese</option>
+                    <option value="sao tomean">Sao Tomean</option>
+                    <option value="saudi">Saudi</option>
+                    <option value="scottish">Scottish</option>
+                    <option value="senegalese">Senegalese</option>
+                    <option value="serbian">Serbian</option>
+                    <option value="seychellois">Seychellois</option>
+                    <option value="sierra leonean">Sierra Leonean</option>
+                    <option value="singaporean">Singaporean</option>
+                    <option value="slovakian">Slovakian</option>
+                    <option value="slovenian">Slovenian</option>
+                    <option value="solomon islander">Solomon Islander</option>
+                    <option value="somali">Somali</option>
+                    <option value="south african">South African</option>
+                    <option value="south korean">South Korean</option>
+                    <option value="spanish">Spanish</option>
+                    <option value="sri lankan">Sri Lankan</option>
+                    <option value="sudanese">Sudanese</option>
+                    <option value="surinamer">Surinamer</option>
+                    <option value="swazi">Swazi</option>
+                    <option value="swedish">Swedish</option>
+                    <option value="swiss">Swiss</option>
+                    <option value="syrian">Syrian</option>
+                    <option value="taiwanese">Taiwanese</option>
+                    <option value="tajik">Tajik</option>
+                    <option value="tanzanian">Tanzanian</option>
+                    <option value="thai">Thai</option>
+                    <option value="togolese">Togolese</option>
+                    <option value="tongan">Tongan</option>
+                    <option value="trinidadian or tobagonian">Trinidadian or Tobagonian</option>
+                    <option value="tunisian">Tunisian</option>
+                    <option value="turkish">Turkish</option>
+                    <option value="tuvaluan">Tuvaluan</option>
+                    <option value="ugandan">Ugandan</option>
+                    <option value="ukrainian">Ukrainian</option>
+                    <option value="uruguayan">Uruguayan</option>
+                    <option value="uzbekistani">Uzbekistani</option>
+                    <option value="venezuelan">Venezuelan</option>
+                    <option value="vietnamese">Vietnamese</option>
+                    <option value="welsh">Welsh</option>
+                    <option value="yemenite">Yemenite</option>
+                    <option value="zambian">Zambian</option>
+                    <option value="zimbabwean">Zimbabwean</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Citizenship Detail</label>
+                  <input type="text" class="form-control" name="citizen_detail" maxlength="100" value="{{ pds.citizen_detail }}" />
+                </div>
+
+                 <div class="form-group">
+                  <label>Blood Type</label>
+                    <select class="form-control" name="blood_type">
+                      <option value="{{ pds.blood_type }}">{{ pds.blood_type }}</option>
+                      <option>A+</option>
+                      <option>B+</option>
+                      <option>AB+</option>
+                      <option>O+</option>
+                      <option>A-</option>
+                      <option>B-</option>
+                      <option>AB-</option>
+                      <option>O-</option>
+                    </select>
+                 </div>
+                 <!-- /.form-group -->
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+    </div>
+
+    </div>
+    <!-- Row  -->
+
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-6" >
+
+      <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">Family Background Form</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <h3>Spouse Information</h3>
+                <div class="form-group">
+                  <label>Surname</label>
+                  <input type="text" class="form-control" name="spouse_surname" maxlength="100" value="{{ pds.spouse_surname }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" name="spouse_name" maxlength="100" value="{{ pds.spouse_name }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Middle Name</label>
+                  <input type="text" class="form-control" name="spouse_middle" maxlength="100" value="{{ pds.spouse_middle }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Extension Name</label>
+                  <input type="text" class="form-control" name="spouse_ext" maxlength="100" value="{{ pds.spouse_ext }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Occupation</label>
+                  <input type="text" class="form-control" name="spouse_occupation" maxlength="100" value="{{ pds.spouse_occupation }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Employer Name</label>
+                  <input type="text" class="form-control" name="emb_biz" maxlength="100" value="{{ pds.emb_biz }}" />
+                </div>
+                <!-- /.form-group -->
+
+                 <div class="form-group">
+                  <label>Phone Number (09123456789)</label>
+                  <input type="text" class="form-control" name="phone" value="{{ pds.phone }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Employer Address</label>
+                  <input type="text" class="form-control" name="emb_biz_add" value="{{ pds.emb_biz_add }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <h3>Father Information</h3>
+                <div class="form-group">
+                  <label>Surname</label>
+                  <input type="text" class="form-control" name="dad_surname" maxlength="100" value="{{ pds.dad_surname }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" name="dad_name" maxlength="100" value="{{ pds.dad_name }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Middle Name</label>
+                <input type="text" class="form-control" name="dad_middle" maxlength="100" value="{{ pds.dad_middle }}" />
+                </div>
+                <!-- /.form-group -->
+
+                 <div class="form-group">
+                  <label>Extension Name</label>
+                  <input type="text" class="form-control" name="dad_ext" maxlength="100" value="{{ pds.dad_ext }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <h3>Mother Information (Maiden Name)</h3> 
+                <div class="form-group">
+                  <label>Surname</label>
+                  <input type="text" class="form-control" name="mom_surname" maxlength="100" value="{{ pds.mom_surname }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" name="mom_name" maxlength="100" value="{{ pds.mom_name }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Middle Name</label>
+                  <input type="text" class="form-control" name="mom_middle" maxlength="100" value="{{ pds.mom_middle }}" />
+                </div>
+                <!-- /.form-group -->
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+    </div>
+    <!-- Col -->
+
+        <!-- left column -->
+    <div class="col-md-6" >
+
+      <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">Address Form</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <h3>Residential Address</h3>
+                <div class="form-group">
+                  <label>Street No./Name/Building/Purok</label>
+                  <input type="text" class="form-control" name="res_numstreet" maxlength="100" value="{{ pds.res_numstreet }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Region</label>
+                  <input type="hidden" name="res_region" value="{{ pds.res_region }}"/>
+                  <select id="region" class="form-control"></select>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">   
+                   <label>Province</label>
+                  <input type="hidden" name="res_province"  value="{{ pds.res_province }}"/>
+                  <select id="province" class="form-control" ></select>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>City</label>
+                  <input type="hidden" name="res_city" value="{{ pds.res_city }}"/>
+                  <select id="city" class="form-control"></select>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Barangay</label>                  
+                  <input type="hidden" name="res_brgy" value="{{ pds.res_brgy }}"/>
+                  <select id="barangay"  class="form-control" ></select>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Zip Code</label>                  
+                  <input  name="res_zip" value="{{ pds.res_zip }}" class="form-control" />
+                </div>
+                <!-- /.form-group -->
+
+                <h3>Permanent Address   </h3> 
+                <div class="form-group">
+                  <label>Street No./Name/Building/Purok</label>
+                  <input type="text" class="form-control" name="perma_numstreet" maxlength="100" value="{{ pds.perma_numstreet }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Region</label>
+                  <input type="hidden" name="perma_region" value="{{ pds.perma_region }}"/>
+                  <select id="region2" class="form-control"></select>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">   
+                   <label>Province</label>
+                  <input type="hidden" name="perma_province"  value="{{ pds.perma_province }}"/>
+                  <select id="province2" class="form-control" ></select>
+                </div>
+                <!-- /.form-group -->  
+
+                 <div class="form-group">                  
+                  <label>City</label>
+                  <input type="hidden" name="perma_city" value="{{ pds.perma_city }}"/>
+                  <select id="city2" class="form-control"></select>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">                
+                  <label>Barangay</label>                  
+                  <input type="hidden" name="perma_brgy" value="{{ pds.perma_brgy }}"/>
+                  <select id="barangay2"  class="form-control" ></select>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Zip Code (1122)</label>                  
+                  <input  name="perma_zip" value="{{ pds.perma_zip }}" class="form-control" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+      </div>
+                
+
+    </div>
+    <!-- col -->
+
+  </div>
+  <!-- row -->
+
+  </div>
+  <!-- Container -->
+
+          
+
+           <div class="form-group row"  align="center">  
+              <div class="col-sm-4">  
+              <button type="submit" class="btn btn-primary">Update</button>  
+              </div>  
+            </div>
+<!-- End family Background -->
+
+  <br><br><br>
+</form>  
+{% endblock %}

@@ -1,0 +1,1543 @@
+{% extends "base.html" %}
+
+<!-- Page title goes here -->
+{% block header %}
+Personal Data Sheet Edit Page
+{% endblock %}
+
+<!-- Breadcrumb goes here --> 
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active">Edit Personal Information</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Personal Information -->
+ {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}  for {{ field.name}}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %} 
+  {% endif %}
+<br>
+<form method="POST" class="post-form" action="/pds/infoUpdate/{{pds.id}}">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">I. Personal Information</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Surname</label>
+                  <input type="text" class="form-control" name="surname" maxlength="100" value="{{ pds.surname }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" name="first_name" maxlength="100" value="{{ pds.first_name }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+          <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Middle Name</label>
+                  <input type="text" class="form-control" name="middle_name" maxlength="100" value="{{ pds.middle_name }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label>Extension Name  (JR., SR) </label>
+                  <input type="text" class="form-control" name="ext_name" maxlength="100" value="{{ pds.ext_name|default_if_none:"N/A" }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <br><br>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Date of Birth</label>
+                  <input type="date" class="form-control" name="birth_date"  value="{{ pds.birth_date|date:"Y-m-d" }}"  />
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Sex</label>
+                    <select class="form-control" name="sex">
+                      <option value="{{ pds.sex }}">{{ pds.sex }}</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                </div>
+
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Height (meters)</label>
+                  <input type="text" class="form-control" name="height"  value="{{ pds.height }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Place of Birth</label>
+                  <input type="text" class="form-control" name="birth_place" maxlength="100" value="{{ pds.birth_place }}" />
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label>Civil Status</label>
+                  <select class="form-control" name="civil_status">
+                      <option value="{{ pds.civil_status }}">{{ pds.civil_status }}</option>
+                      <option>Single</option>
+                      <option>Married</option>
+                      <option>Separated</option>
+                      <option>Widowed</option>
+                      <option>Annulled</option>
+                      <option>Re-married</option>
+                      <option>Divorced</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Weight (kg)</label>
+                  <input type="text" class="form-control" name="weight"  value="{{ pds.weight }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Citizenship</label>
+                  <select class="form-control" name="citizenship">
+                    <option value="{{ pds.citizenship }}">{{ pds.citizenship }}</option>
+                    <option value="afghan">Afghan</option>
+                    <option value="albanian">Albanian</option>
+                    <option value="algerian">Algerian</option>
+                    <option value="american">American</option>
+                    <option value="andorran">Andorran</option>
+                    <option value="angolan">Angolan</option>
+                    <option value="antiguans">Antiguans</option>
+                    <option value="argentinean">Argentinean</option>
+                    <option value="armenian">Armenian</option>
+                    <option value="australian">Australian</option>
+                    <option value="austrian">Austrian</option>
+                    <option value="azerbaijani">Azerbaijani</option>
+                    <option value="bahamian">Bahamian</option>
+                    <option value="bahraini">Bahraini</option>
+                    <option value="bangladeshi">Bangladeshi</option>
+                    <option value="barbadian">Barbadian</option>
+                    <option value="barbudans">Barbudans</option>
+                    <option value="batswana">Batswana</option>
+                    <option value="belarusian">Belarusian</option>
+                    <option value="belgian">Belgian</option>
+                    <option value="belizean">Belizean</option>
+                    <option value="beninese">Beninese</option>
+                    <option value="bhutanese">Bhutanese</option>
+                    <option value="bolivian">Bolivian</option>
+                    <option value="bosnian">Bosnian</option>
+                    <option value="brazilian">Brazilian</option>
+                    <option value="british">British</option>
+                    <option value="bruneian">Bruneian</option>
+                    <option value="bulgarian">Bulgarian</option>
+                    <option value="burkinabe">Burkinabe</option>
+                    <option value="burmese">Burmese</option>
+                    <option value="burundian">Burundian</option>
+                    <option value="cambodian">Cambodian</option>
+                    <option value="cameroonian">Cameroonian</option>
+                    <option value="canadian">Canadian</option>
+                    <option value="cape verdean">Cape Verdean</option>
+                    <option value="central african">Central African</option>
+                    <option value="chadian">Chadian</option>
+                    <option value="chilean">Chilean</option>
+                    <option value="chinese">Chinese</option>
+                    <option value="colombian">Colombian</option>
+                    <option value="comoran">Comoran</option>
+                    <option value="congolese">Congolese</option>
+                    <option value="costa rican">Costa Rican</option>
+                    <option value="croatian">Croatian</option>
+                    <option value="cuban">Cuban</option>
+                    <option value="cypriot">Cypriot</option>
+                    <option value="czech">Czech</option>
+                    <option value="danish">Danish</option>
+                    <option value="djibouti">Djibouti</option>
+                    <option value="dominican">Dominican</option>
+                    <option value="dutch">Dutch</option>
+                    <option value="east timorese">East Timorese</option>
+                    <option value="ecuadorean">Ecuadorean</option>
+                    <option value="egyptian">Egyptian</option>
+                    <option value="emirian">Emirian</option>
+                    <option value="equatorial guinean">Equatorial Guinean</option>
+                    <option value="eritrean">Eritrean</option>
+                    <option value="estonian">Estonian</option>
+                    <option value="ethiopian">Ethiopian</option>
+                    <option value="fijian">Fijian</option>
+                    <option value="filipino">Filipino</option>
+                    <option value="finnish">Finnish</option>
+                    <option value="french">French</option>
+                    <option value="gabonese">Gabonese</option>
+                    <option value="gambian">Gambian</option>
+                    <option value="georgian">Georgian</option>
+                    <option value="german">German</option>
+                    <option value="ghanaian">Ghanaian</option>
+                    <option value="greek">Greek</option>
+                    <option value="grenadian">Grenadian</option>
+                    <option value="guatemalan">Guatemalan</option>
+                    <option value="guinea-bissauan">Guinea-Bissauan</option>
+                    <option value="guinean">Guinean</option>
+                    <option value="guyanese">Guyanese</option>
+                    <option value="haitian">Haitian</option>
+                    <option value="herzegovinian">Herzegovinian</option>
+                    <option value="honduran">Honduran</option>
+                    <option value="hungarian">Hungarian</option>
+                    <option value="icelander">Icelander</option>
+                    <option value="indian">Indian</option>
+                    <option value="indonesian">Indonesian</option>
+                    <option value="iranian">Iranian</option>
+                    <option value="iraqi">Iraqi</option>
+                    <option value="irish">Irish</option>
+                    <option value="israeli">Israeli</option>
+                    <option value="italian">Italian</option>
+                    <option value="ivorian">Ivorian</option>
+                    <option value="jamaican">Jamaican</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="jordanian">Jordanian</option>
+                    <option value="kazakhstani">Kazakhstani</option>
+                    <option value="kenyan">Kenyan</option>
+                    <option value="kittian and nevisian">Kittian and Nevisian</option>
+                    <option value="kuwaiti">Kuwaiti</option>
+                    <option value="kyrgyz">Kyrgyz</option>
+                    <option value="laotian">Laotian</option>
+                    <option value="latvian">Latvian</option>
+                    <option value="lebanese">Lebanese</option>
+                    <option value="liberian">Liberian</option>
+                    <option value="libyan">Libyan</option>
+                    <option value="liechtensteiner">Liechtensteiner</option>
+                    <option value="lithuanian">Lithuanian</option>
+                    <option value="luxembourger">Luxembourger</option>
+                    <option value="macedonian">Macedonian</option>
+                    <option value="malagasy">Malagasy</option>
+                    <option value="malawian">Malawian</option>
+                    <option value="malaysian">Malaysian</option>
+                    <option value="maldivan">Maldivan</option>
+                    <option value="malian">Malian</option>
+                    <option value="maltese">Maltese</option>
+                    <option value="marshallese">Marshallese</option>
+                    <option value="mauritanian">Mauritanian</option>
+                    <option value="mauritian">Mauritian</option>
+                    <option value="mexican">Mexican</option>
+                    <option value="micronesian">Micronesian</option>
+                    <option value="moldovan">Moldovan</option>
+                    <option value="monacan">Monacan</option>
+                    <option value="mongolian">Mongolian</option>
+                    <option value="moroccan">Moroccan</option>
+                    <option value="mosotho">Mosotho</option>
+                    <option value="motswana">Motswana</option>
+                    <option value="mozambican">Mozambican</option>
+                    <option value="namibian">Namibian</option>
+                    <option value="nauruan">Nauruan</option>
+                    <option value="nepalese">Nepalese</option>
+                    <option value="new zealander">New Zealander</option>
+                    <option value="ni-vanuatu">Ni-Vanuatu</option>
+                    <option value="nicaraguan">Nicaraguan</option>
+                    <option value="nigerien">Nigerien</option>
+                    <option value="north korean">North Korean</option>
+                    <option value="northern irish">Northern Irish</option>
+                    <option value="norwegian">Norwegian</option>
+                    <option value="omani">Omani</option>
+                    <option value="pakistani">Pakistani</option>
+                    <option value="palauan">Palauan</option>
+                    <option value="panamanian">Panamanian</option>
+                    <option value="papua new guinean">Papua New Guinean</option>
+                    <option value="paraguayan">Paraguayan</option>
+                    <option value="peruvian">Peruvian</option>
+                    <option value="polish">Polish</option>
+                    <option value="portuguese">Portuguese</option>
+                    <option value="qatari">Qatari</option>
+                    <option value="romanian">Romanian</option>
+                    <option value="russian">Russian</option>
+                    <option value="rwandan">Rwandan</option>
+                    <option value="saint lucian">Saint Lucian</option>
+                    <option value="salvadoran">Salvadoran</option>
+                    <option value="samoan">Samoan</option>
+                    <option value="san marinese">San Marinese</option>
+                    <option value="sao tomean">Sao Tomean</option>
+                    <option value="saudi">Saudi</option>
+                    <option value="scottish">Scottish</option>
+                    <option value="senegalese">Senegalese</option>
+                    <option value="serbian">Serbian</option>
+                    <option value="seychellois">Seychellois</option>
+                    <option value="sierra leonean">Sierra Leonean</option>
+                    <option value="singaporean">Singaporean</option>
+                    <option value="slovakian">Slovakian</option>
+                    <option value="slovenian">Slovenian</option>
+                    <option value="solomon islander">Solomon Islander</option>
+                    <option value="somali">Somali</option>
+                    <option value="south african">South African</option>
+                    <option value="south korean">South Korean</option>
+                    <option value="spanish">Spanish</option>
+                    <option value="sri lankan">Sri Lankan</option>
+                    <option value="sudanese">Sudanese</option>
+                    <option value="surinamer">Surinamer</option>
+                    <option value="swazi">Swazi</option>
+                    <option value="swedish">Swedish</option>
+                    <option value="swiss">Swiss</option>
+                    <option value="syrian">Syrian</option>
+                    <option value="taiwanese">Taiwanese</option>
+                    <option value="tajik">Tajik</option>
+                    <option value="tanzanian">Tanzanian</option>
+                    <option value="thai">Thai</option>
+                    <option value="togolese">Togolese</option>
+                    <option value="tongan">Tongan</option>
+                    <option value="trinidadian or tobagonian">Trinidadian or Tobagonian</option>
+                    <option value="tunisian">Tunisian</option>
+                    <option value="turkish">Turkish</option>
+                    <option value="tuvaluan">Tuvaluan</option>
+                    <option value="ugandan">Ugandan</option>
+                    <option value="ukrainian">Ukrainian</option>
+                    <option value="uruguayan">Uruguayan</option>
+                    <option value="uzbekistani">Uzbekistani</option>
+                    <option value="venezuelan">Venezuelan</option>
+                    <option value="vietnamese">Vietnamese</option>
+                    <option value="welsh">Welsh</option>
+                    <option value="yemenite">Yemenite</option>
+                    <option value="zambian">Zambian</option>
+                    <option value="zimbabwean">Zimbabwean</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Citizenship Detail</label>
+                  <input type="text" class="form-control" name="citizen_detail" maxlength="100" value="{{ pds.citizen_detail }}" />
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Blood Type</label>
+                    <select class="form-control" name="blood_type">
+                      <option value="{{ pds.blood_type }}">{{ pds.blood_type }}</option>
+                      <option>A</option>
+                      <option>A+</option>
+                      <option>B</option>
+                      <option>B+</option>
+                      <option>AB+</option>
+                      <option>AB</option>
+                      <option>O+</option>
+                      <option>A-</option>
+                      <option>B-</option>
+                      <option>AB-</option>
+                      <option>O-</option>
+                      <option>O</option>
+                    </select>
+                 </div>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            <!-- /.row -->
+            <br><br>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>GSIS BP No. (ex. 2005040400)</label>
+                  <input type="text"  class="form-control" name="gsis"  value="{{ pds.gsis }}" />
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>PAG-IBIG ID no. (ex. 123456789012)</label>
+                  <input type="text" class="form-control" name="pagibig"  value="{{ pds.pagibig }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Philhealth No. (ex. 123456789012)</label>
+                  <input type="text"  class="form-control" name="philhealth"  value="{{ pds.philhealth }}" />
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>SSS no. (ex. 1234567890)</label>
+                  <input type="text" class="form-control" name="sss"  value="{{ pds.sss }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <br><br>
+
+               <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Employment Type</label>
+                    <select class="form-control" name="emp_type" required >
+                      <option value="{{ pds.emp_type }}">{{ pds.emp_type }}</option>
+                      <!-- <option>Permanent</option>
+                      <option>Presidential Appointee</option>
+                      <option>Co-terminous</option>
+                      <option>Temporary</option>
+                      <option>Job Order</option>
+                      <option value="Outsourced" >Outsourced (LSERV)</option>
+                      <option>Contract of Service</option> -->
+                    </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Position</label>
+                  <select class="form-control" name="position_title" required>
+                    <option value="{{ pds.position_id }}">{{ pds.position_title }}</option>                    
+                    <option value="1">Accident Investigation Officer I</option>
+                    <option value="2">Accident Investigation Officer II</option>
+                    <option value="3">Accountant I</option>
+                    <option value="4">Accountant II</option>
+                    <option value="5">Accountant III</option>
+                    <option value="6">Accountant IV</option>
+                    <option value="266">Accountant</option>
+                    <option value="267">Accounting Analyst</option>
+                    <option value="354">Accounting Assistant I</option>
+                    <option value="355">Accounting Assistant II</option>
+                    <option value="268">Accounting Assistant</option>
+                    <option value="269">Administrative Assistant </option>
+                    <option value="7">Administrative Assistant I</option>
+                    <option value="8">Administrative Assistant II</option>
+                    <option value="9">Administrative Assistant III</option>
+                    <option value="10">Administrative Officer I</option>
+                    <option value="11">Administrative Officer II</option>
+                    <option value="12">Administrative Officer III</option>
+                    <option value="13">Administrative Officer IV</option>
+                    <option value="293">Administrative, Accounting and Finance Consultant</option>
+                    <option value="356">ADMS Technical Aide I</option>
+                    <option value="357">ADMS Technical Aide II</option>
+                    <option value="294">Aerodrome Engineer I (Geodetic)</option>
+                    <option value="14">Aerodrome Engineer I</option>
+                    <option value="15">Aerodrome Engineer II</option>
+                    <option value="358">Aerodrome Engineer</option>
+                    <option value="16">Aerodrome Operations Aide</option>
+                    <option value="17">Air  Traffic Controller Examiner II</option>
+                    <option value="270">Air Conditioning Technician</option>
+                    <option value="18">Air Navigation Facilities Engineer I</option>
+                    <option value="19">Air Navigation Facilities Engineer II</option>
+                    <option value="295">Air Navigation Systems Specialist (ANSS) Assistant</option>
+                    <option value="20">Air Terminal Supervisor</option>
+                    <option value="296">Air Traffic Controller (ATC) Assistant</option>
+                    <option value="21">Air Traffic Controller Examiner I</option>
+                    <option value="359">Air Traffic Flow Management Assistant (ATS)</option>
+                    <option value="271">Air Traffic Flow Management Assistant</option>
+                    <option value="22">Air Traffic Management Flight Data Assistant</option>
+                    <option value="297">Air Traffic Management Officer (ATMO) Assistant</option>
+                    <option value="23">Air Traffic Management Officer I</option>
+                    <option value="24">Air Traffic Management Officer II</option>
+                    <option value="25">Air Traffic Management Officer III</option>
+                    <option value="26">Air Traffic Management Officer IV</option>
+                    <option value="27">Air Traffic Management Officer V</option>
+                    <option value="28">Air-Conditioning Technician I</option>
+                    <option value="298">Aircraft Accident/Incident Investigator</option>
+                    <option value="29">Aircraft Cabin Safety Inspector I   </option>
+                    <option value="30">Aircraft Cabin Safety Inspector II</option>
+                    <option value="299">Aircraft Cabin Safety Inspector</option>
+                    <option value="31">Aircraft Engineering Safety Inspector I</option>
+                    <option value="32">Aircraft Engineering Safety Inspector II</option>
+                    <option value="33">Aircraft Maintenance Safety Inspector I</option>
+                    <option value="34">Aircraft Maintenance Safety Inspector II</option>
+                    <option value="35">Aircraft Maintenance Specialist</option>
+                    <option value="360">Aircraft Maintenance Technical Helper</option>
+                    <option value="300">Aircraft Maintenance Technician</option>
+                    <option value="36">Aircraft Mechanic Examiner II</option>
+                    <option value="37">Aircraft Safety Avionics Inspector I</option>
+                    <option value="38">Aircraft Safety Avionics Inspector II</option>
+                    <option value="39">Aircraft Systems Specialist</option>
+                    <option value="301">Airfield Lighting and Power Technician (ALPT) Assistant</option>
+                    <option value="40">Airfield Lighting and Power Technician I</option>
+                    <option value="41">Airfield Lighting and Power Technician II</option>
+                    <option value="42">Airfield Lighting and Power Technician III</option>
+                    <option value="43">Airfield Lighting and Power Technician IV</option>
+                    <option value="361">Airfield Power Technician Assistant</option>
+                    <option value="292">Airport Facility Cleaner</option>
+                    <option value="272">Airport Firefighter</option>
+                    <option value="44">Airport Manager I</option>
+                    <option value="45">Airport Manager II</option>
+                    <option value="46">Airport Manager III</option>
+                    <option value="362">Airport Parking Attendant</option>
+                    <option value="363">Airport Security Assistant I</option>
+                    <option value="364">Airport Security Assistant II</option>
+                    <option value="365">Airport Security Screeners</option>
+                    <option value="302">Airport Technical Assistant I</option>
+                    <option value="303">Airport Technical Assistant II</option>
+                    <option value="366">Airport Terminal Aide</option>
+                    <option value="367">Airport Terminal Cleaner</option>
+                    <option value="368">Airport/Facility Cleaner I</option>
+                    <option value="369">Airport/Facility Cleaner II</option>
+                    <option value="305">Airworthiness Inspector/Spokesperson to Bureau Veritas</option>
+                    <option value="304">Airworthiness Inspector</option>
+                    <option value="370">ANSS Assistant</option>
+                    <option value="47">Antenna Rigger </option>
+                    <option value="371">Architect</option>
+                    <option value="306">Asset Management Consultant</option>
+                    <option value="48">Asset Management Officer I</option>
+                    <option value="49">Asset Management Officer II</option>
+                    <option value="372">Assistant Airworthiness Inspector </option>
+                    <option value="307">Assistant Aviation Safety Inspector</option>
+                    <option value="53">Assistant Chief Aviation Services Safety Insp.</option>
+                    <option value="308">Assistant CNS Flight Inspection Pilot</option>
+                    <option value="373">Assistant CNS Flight Inspector Pilot (FICG)</option>
+                    <option value="50">Assistant Director General I</option>
+                    <option value="51">Assistant Director General II</option>
+                    <option value="52">Assistant Director General II</option>
+                    <option value="374">Assistant Flight Inspector Pilot (FSIS)</option>
+                    <option value="375">Assistant Statistician</option>
+                    <option value="376">ATC Assistant (with ATC license)</option>
+                    <option value="377">ATMO Asssistant (with Facility Rating)</option>
+                    <option value="54">Attorney II</option>
+                    <option value="55">Attorney III</option>
+                    <option value="56">Attorney IV</option>
+                    <option value="57">Attorney V</option>
+                    <option value="378">Autocad Operator</option>
+                    <option value="379">Aviation Medical Assistant I</option>
+                    <option value="380">Aviation Medical Assistant II</option>
+                    <option value="273">Aviation Medical Assistant</option>
+                    <option value="58">Aviation Medical Examiner</option>
+                    <option value="59">Aviation Safety Analyst I</option>
+                    <option value="60">Aviation Safety Analyst II</option>
+                    <option value="309">Aviation Safety Consultant</option>
+                    <option value="310">Aviation Security Instuctor</option>
+                    <option value="381">Aviation Services Safety Inspector Assistant (AANSOO)</option>
+                    <option value="61">Aviation Services Safety Inspector I</option>
+                    <option value="62">Aviation Services Safety Inspector II</option>
+                    <option value="63">Aviation Services Safety Officer</option>
+                    <option value="64">Aviation Training Officer IV</option>
+                    <option value="65">Aviation Training Officer V</option>
+                    <option value="382">BHS Operator</option>
+                    <option value="383">BMS Technician</option>
+                    <option value="66">Board Secretary III</option>
+                    <option value="67">Board Secretary VI</option>
+                    <option value="68">Bookkeeper II</option>
+                    <option value="69">Budget Officer I</option>
+                    <option value="70">Budget Officer II</option>
+                    <option value="71">Budget Officer III</option>
+                    <option value="72">Budget Officer IV</option>
+                    <option value="274">Budgeting Analyst</option>
+                    <option value="384">Budgeting Assistant I</option>
+                    <option value="385">Budgeting Assistant II</option>
+                    <option value="275">Budgeting Assistant</option>
+                    <option value="386">Budgeting Specialist</option>
+                    <option value="387">Building And Ground Maintenance Worker I</option>
+                    <option value="388">Building And Ground Maintenance Worker II</option>
+                    <option value="276">Building Electrician</option>
+                    <option value="278">Building Maintenance Worker</option>
+                    <option value="277">Building Maintenance</option>
+                    <option value="311">Business Continuity Management Group</option>
+                    <option value="73">Business Development Analyst A</option>
+                    <option value="74">Business Development Analyst B</option>
+                    <option value="75">Business Development Chief A</option>
+                    <option value="312">Business Development Consultant</option>
+                    <option value="77">Business Development Officer A</option>
+                    <option value="76">Business Development Officer</option>
+                    <option value="78">Carpenter I</option>
+                    <option value="79">Cashier I</option>
+                    <option value="80">Cashier II</option>
+                    <option value="81">Cashier III</option>
+                    <option value="82">Cashier IV</option>
+                    <option value="83">Cashiering Assistant</option>
+                    <option value="279">CCTV Operator</option>
+                    <option value="84">Chauffeur I</option>
+                    <option value="85">Chief Accident Investigation Officer</option>
+                    <option value="86">Chief Administrative Officer</option>
+                    <option value="87">Chief Aviation Services Safety Inspector</option>
+                    <option value="88">Chief Civil Security Officer</option>
+                    <option value="89">Chief Financial Officer*</option>
+                    <option value="90">Chief Flight Inspector</option>
+                    <option value="91">Chief Flight Surgeon</option>
+                    <option value="92">Civil Aviation Area Manager</option>
+                    <option value="93">Civil Aviation Licensing Officer I</option>
+                    <option value="94">Civil Aviation Licensing Officer II</option>
+                    <option value="95">Civil Aviation Regulations Officer I</option>
+                    <option value="96">Civil Aviation Regulations Officer II</option>
+                    <option value="97">Civil Security Assistant B</option>
+                    <option value="98">Civil Security Officer A</option>
+                    <option value="99">Civil Security Officer B</option>
+                    <option value="100">Civil Security Officer C</option>
+                    <option value="101">Civil Security Officer D</option>
+                    <option value="102">Clerk III</option>
+                    <option value="313">CMA Online Framework Specialist</option>
+                    <option value="103">CNS Systems Officer I</option>
+                    <option value="104">CNS Systems Officer II</option>
+                    <option value="105">CNS Systems Officer III</option>
+                    <option value="106">CNS Systems Officer IV</option>
+                    <option value="107">CNS Systems Officer V</option>
+                    <option value="389">CNSSO Assistant</option>
+                    <option value="314">Communications Officer</option>
+                    <option value="390">Computer Maintenance Specialist I</option>
+                    <option value="391">Computer Maintenance Specialist II</option>
+                    <option value="108">Computer Maintenance Technician II</option>
+                    <option value="109">Computer Programmer II</option>
+                    <option value="280">Computer Specialist</option>
+                    <option value="315">Consultant (Engineer) COS</option>
+                    <option value="316">Corplan Consultant (IT)</option>
+                    <option value="110">Corporate Executive Officer IV</option>
+                    <option value="111">Corporate Executive Officer V</option>
+                    <option value="112">Corporate Planning Analyst A</option>
+                    <option value="113">Corporate Planning Chief</option>
+                    <option value="317">Corporate Planning Consultant</option>
+                    <option value="114">Corporate Planning Officer</option>
+                    <option value="115">Corrporate Planning Assistant A</option>
+                    <option value="318">CSIS Consultant</option>
+                    <option value="116">Dangerous Goods Safety Inspector I</option>
+                    <option value="117">Dangerous Goods Safety Inspector II</option>
+                    <option value="118">Data Analyst</option>
+                    <option value="392">Data Encoder I</option>
+                    <option value="393">Data Encoder II</option>
+                    <option value="281">Data Encoder</option>
+                    <option value="119">Data Encoder-Controller</option>
+                    <option value="120">Dentist I</option>
+                    <option value="121">Dentist II</option>
+                    <option value="122">Dentist III</option>
+                    <option value="123">Department Manager III / Non-Technical</option>
+                    <option value="124">Department Manager III / Technical</option>
+                    <option value="125">Deputy Director General</option>
+                    <option value="126">Director General</option>
+                    <option value="129">Division Chief III  (co-term)</option>
+                    <option value="127">Division Chief III / Non-Technical</option>
+                    <option value="128">Division Chief III / Technical</option>
+                    <option value="130">Division Chief IV</option>
+                    <option value="131">Dormitory Manager I</option>
+                    <option value="132">Draftsman II</option>
+                    <option value="133">Driver I</option>
+                    <option value="134">Driver II</option>
+                    <option value="135">Driver Mechanic B</option>
+                    <option value="282">Driver</option>
+                    <option value="321">Ear Nose Throat (ENT) Specialist</option>
+                    <option value="319">ECG Technician</option>
+                    <option value="320">Economic Adviser</option>
+                    <option value="322">Electrical Engineer</option>
+                    <option value="136">Electrician I</option>
+                    <option value="137">Electronics & Communication Equip. Tech. I</option>
+                    <option value="138">Engineer II</option>
+                    <option value="323">Engineer</option>
+                    <option value="139">Engineering Assistant</option>
+                    <option value="324">Engineering Technical Assistant</option>
+                    <option value="283">Equipment Maintenance Service Technician</option>
+                    <option value="140">Executive Assistant I</option>
+                    <option value="141">Executive Assistant II</option>
+                    <option value="142">Executive Assistant IV</option>
+                    <option value="143">Executive Assistant V</option>
+                    <option value="410">Senior Executive Assistant</option>
+                    <option value="394">Executive Management Assistant</option>
+                    <option value="144">Facilities Foreman</option>
+                    <option value="145">Financial Analyst I</option>
+                    <option value="146">Financial Analyst II</option>
+                    <option value="147">Financial Analyst III</option>
+                    <option value="148">Financial Analyst IV</option>
+                    <option value="149">Fire Marshall I</option>
+                    <option value="150">Fire Marshall II</option>
+                    <option value="151">Firefighter I</option>
+                    <option value="152">Firefighter II</option>
+                    <option value="153">Firefighter III</option>
+                    <option value="154">Firefighter IV</option>
+                    <option value="155">Flight Engineer Examiner I</option>
+                    <option value="395">Flight Information Display System Technician</option>
+                    <option value="325">Flight Inspection Pilot</option>
+                    <option value="156">Flight Operations Control Safety Inspector I</option>
+                    <option value="157">Flight Operations Control Safety Inspector II</option>
+                    <option value="158">Flight Operations Officer Examiner</option>
+                    <option value="160">Flight Operations Safety Inspector I   (co-term)</option>
+                    <option value="159">Flight Operations Safety Inspector I </option>
+                    <option value="162">Flight Operations Safety Inspector II    (co-term)</option>
+                    <option value="161">Flight Operations Safety Inspector II </option>
+                    <option value="326">Flight Operations Safety Inspector</option>
+                    <option value="328">Flight Safety Inspectorate Consultant</option>
+                    <option value="327">Flight Safety Investigator</option>
+                    <option value="163">Heavy Equipment Operator I</option>
+                    <option value="164">Heavy Equipment Operator II (BHS Operator)</option>
+                    <option value="165">Heavy Equipment Operator II (PBB Operator)</option>
+                    <option value="396">Heavy Equipment Operator</option>
+                    <option value="397">Horticulturist Supervisor</option>
+                    <option value="329">HR Specialist</option>
+                    <option value="398">HRM Aide I</option>
+                    <option value="399">HRM Aide II</option>
+                    <option value="330">HRM Consultant</option>
+                    <option value="166">Human Resource Management Assistant I</option>
+                    <option value="284">Human Resource Management Assistant</option>
+                    <option value="167">Human Resource Management Officer I</option>
+                    <option value="168">Human Resource Management Officer II</option>
+                    <option value="169">Human Resource Management Officer III</option>
+                    <option value="170">Human Resource Management Officer IV</option>
+                    <option value="171">Industrial Security Guard B</option>
+                    <option value="172">Industrial Security Guard C</option>
+                    <option value="173">Information Officer II</option>
+                    <option value="174">Information Officer III</option>
+                    <option value="175">Information Officer V</option>
+                    <option value="176">Information Technology Officer I</option>
+                    <option value="177">Information Technology Officer II</option>
+                    <option value="178">Intelligence Agent I</option>
+                    <option value="179">Intelligence Officer I</option>
+                    <option value="180">Intelligence Officer II</option>
+                    <option value="181">Intelligence Officer III</option>
+                    <option value="182">Intelligence Officer IV</option>
+                    <option value="331">Intelligence Operative</option>
+                    <option value="183">Internal Auditor I</option>
+                    <option value="184">Internal Auditor II</option>
+                    <option value="185">Internal Auditor III</option>
+                    <option value="186">Internal Auditor IV</option>
+                    <option value="187">International Civil Aviation Coordinator</option>
+                    <option value="400">IT Assistant I</option>
+                    <option value="401">IT Assistant II</option>
+                    <option value="285">IT Assistant</option>
+                    <option value="332">IT Consultant</option>
+                    <option value="188">Legal Assistant I</option>
+                    <option value="402">Legal Officer</option>
+                    <option value="333">Legal, Accounting and Finance Consultant</option>
+                    <option value="189">Liaison Assistant I</option>
+                    <option value="334">Liaison Officer</option>
+                    <option value="190">Librarian B</option>
+                    <option value="286">Mechanical Plant Operator</option>
+                    <option value="191">Medical Equipment Technician II</option>
+                    <option value="335">Medical Examiner</option>
+                    <option value="192">Medical Technologist III</option>
+                    <option value="193">Minutes Assistant I</option>
+                    <option value="194">Minutes Officer I</option>
+                    <option value="336">Multimedia Officer</option>
+                    <option value="195">Nurse II</option>
+                    <option value="196">Nurse III</option>
+                    <option value="287">Nurse</option>
+                    <option value="197">Nursing Attendant I</option>
+                    <option value="403">Office Assistant I</option>
+                    <option value="404">Office Assistant II</option>
+                    <option value="337">Optometriat</option>
+                    <option value="198">Optometrist II</option>
+                    <option value="338">Organizational and Management Development Consultant</option>
+                    <option value="405">Para Legal Aide I</option>
+                    <option value="406">Para Legal Aide II</option>
+                    <option value="288">Para Legal Aide</option>
+                    <option value="339">Paralegal</option>
+                    <option value="289">Parking Attendant</option>
+                    <option value="407">Parking Fee Collector </option>
+                    <option value="340">Pathologist</option>
+                    <option value="199">Pilot Examiner I</option>
+                    <option value="200">Pilot Examiner II</option>
+                    <option value="341">Pilot Examiner</option>
+                    <option value="201">Plumber I</option>
+                    <option value="342">Press Relations Officer</option>
+                    <option value="202">Private Secretary II</option>
+                    <option value="203">Procurement Analyst A</option>
+                    <option value="204">Procurement Assistant A</option>
+                    <option value="205">Procurement Officer B</option>
+                    <option value="343">Project Research Specialist</option>
+                    <option value="344">Psychiatrist</option>
+                    <option value="206">Psychologist III</option>
+                    <option value="207">Public Relations Officer I</option>
+                    <option value="208">Public Relations Officer IV</option>
+                    <option value="209">Radiologic Technologist III</option>
+                    <option value="345">Radiologist</option>
+                    <option value="210">Records Assistant</option>
+                    <option value="211">Records Officer I</option>
+                    <option value="212">Records Officer II</option>
+                    <option value="213">Records Officer III</option>
+                    <option value="214">Records Officer IV</option>
+                    <option value="346">Resident Engineer</option>
+                    <option value="290">Revenue Collection Clerk</option>
+                    <option value="215">Secretary I</option>
+                    <option value="216">Secretary II</option>
+                    <option value="217">Senior Accident Investigation Officer</option>
+                    <option value="218">Senior Aerodrome Engineer</option>
+                    <option value="219">Senior Aircraft Cabin Safety Inspector    </option>
+                    <option value="220">Senior Aircraft Engineering Safety Inspector</option>
+                    <option value="221">Senior Asset Management Officer</option>
+                    <option value="222">Senior Aviation Medical Examiner</option>
+                    <option value="223">Senior Aviation Safety Analyst</option>
+                    <option value="224">Senior Aviation Services Safety Inspector</option>
+                    <option value="225">Senior Civil Aviation Licensing Officer</option>
+                    <option value="226">Senior Civil Aviation Regulations Officer</option>
+                    <option value="227">Senior CNS Flight Inspector</option>
+                    <option value="228">Senior Corporate Planning Analyst</option>
+                    <option value="347">Senior Dangerous Goods Inspector</option>
+                    <option value="229">Senior Dangerous Goods Safety Inspector </option>
+                    <option value="230">Senior Flight Inspection Pilot</option>
+                    <option value="231">Senior Flight Operations Safety Inspector  (co-term)</option>
+                    <option value="232">Senior Pilot Examiner</option>
+                    <option value="233">Senior Systems Analyst</option>
+                    <option value="348">Special Projects Research Officer</option>
+                    <option value="349">Special Projects Researcher</option>
+                    <option value="234">Sr. Aircraft Maintenance Safety Inspector</option>
+                    <option value="235">Sr. Flight Oprtns. Control Safety Insp.</option>
+                    <option value="408">Staff Nurse</option>
+                    <option value="350">State Safety Program Consultant</option>
+                    <option value="236">Statistician A</option>
+                    <option value="237">Stenographer B</option>
+                    <option value="409">STP Operator</option>
+                    <option value="351">Strategic Planning Technical Consultant</option>
+                    <option value="238">Supervising  CNS Flight Inspector</option>
+                    <option value="240">Supervising  Flight Operations Safety Inspector (co-term)</option>
+                    <option value="239">Supervising  Flight Operations Safety Inspector </option>
+                    <option value="241">Supervising Accident Investigation Officer</option>
+                    <option value="242">Supervising Aerodrome Engineer</option>
+                    <option value="243">Supervising Aircraft Maintenance Safety Inspector</option>
+                    <option value="244">Supervising Asset Management Officer</option>
+                    <option value="245">Supervising Aviation Safety Analyst</option>
+                    <option value="246">Supervising Aviation Services Safety Inspector</option>
+                    <option value="247">Supervising Civil Aviation Licensing Officer</option>
+                    <option value="248">Supervising Civil Aviation Regulations Officer</option>
+                    <option value="249">Supervising Data Analyst</option>
+                    <option value="250">Supervising Flight Oprtns. Control Safety Insp.</option>
+                    <option value="251">Supervising Pilot Examiner</option>
+                    <option value="252">Supervising Procurement Officer</option>
+                    <option value="253">Supply Officer I</option>
+                    <option value="254">Supply Officer II</option>
+                    <option value="255">Supply Officer III</option>
+                    <option value="256">Supply Officer IV</option>
+                    <option value="257">Systems Analyst</option>
+                    <option value="258">Systems Design Officer A</option>
+                    <option value="259">Systems Researcher</option>
+                    <option value="352">Technical Assistant</option>
+                    <option value="353">Technical Consultant</option>
+                    <option value="291">Terminal Fee Collector</option>
+                    <option value="260">Terminal Operations Assistant A</option>
+                    <option value="261">Test Specialist I</option>
+                    <option value="262">Test Specialist II</option>
+                    <option value="263">Test Specialist III</option>
+                    <option value="264">Utility Worker I</option>
+                    <option value="265">Utility Worker II</option>
+                </select>
+                </div>  
+              </div>
+            </div>
+            <!-- /. row -->
+
+            <div class="row">              
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Place of Assignment</label>
+                  <select class="form-control" name="assignment"  >
+                      <option value="{{ pds.assignment }}">{{ pds.assignment }}</option>
+                      <option>Central Office</option>
+                      <option>Area 01</option>
+                      <option>Area 02</option>
+                      <option>Area 03</option>
+                      <option>Area 04</option>
+                      <option>Area 05</option>
+                      <option>Area 06</option>
+                      <option>Area 07</option>
+                      <option>Area 08</option>
+                      <option>Area 09</option>
+                      <option>Area 10</option>
+                      <option>Area 11</option>
+                      <option>Area 12</option>
+                    </select>
+                </div>  
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Service / Airport</label>
+                  <select class="form-control" name="service"  >
+                      <option value="{{ pds.service }}">{{ pds.service }}</option>
+                      <option>Administrative and Finance Service</option>
+                      <option>Aerodrome Development and Management Service</option>
+                      <option>Air Navigation Service</option>
+                      <option>Air Traffic Service</option>
+                      <option>Flight Standards Inspectorate Service</option>
+                      <option>Office of the Director General</option>
+                      <option>Alabat Airport</option>
+                      <option>Allah Valley Airport</option>
+                      <option>Bacolod-Silay Airport</option>
+                      <option>Bacong Airport</option>
+                      <option>Bagabag Airport</option>
+                      <option>Bagiuo Airport</option>
+                      <option>Baler Airport</option>
+                      <option>Basco Airport</option>
+                      <option>Bicol International Airport</option>
+                      <option>Biliran Airport</option>
+                      <option>Bislig Airport</option>
+                      <option>Bohol-Panglao International Airport</option>
+                      <option>Borongan Airport</option>
+                      <option>Bulan Airport</option>
+                      <option>Butuan Airport</option>
+                      <option>Cagayan de Sulu Airport</option>
+                      <option>Calapan Airport</option>
+                      <option>Calbayog Airport</option>
+                      <option>Camiguin Airport</option>
+                      <option>Catarman Airport</option>
+                      <option>Catbalogan Airport</option>
+                      <option>Caticlan Airport</option>
+                      <option>Cauayan Airport</option>
+                      <option>Clark Int'l Airport</option>
+                      <option>Cotabato Airport</option>
+                      <option>Cuyo Airport</option>
+                      <option>Daet Airport</option>
+                      <option>Davao International Airport (Security)</option>
+                      <option>Dipolog Airport</option>
+                      <option>Dumaguete (Sibulan) Airport</option>
+                      <option>Evilio B. Javier (Antique) Airport</option>
+                      <option>Francisco B. Reyes (Busuanga) Airport</option>
+                      <option>General Santos Int'l Airport</option>
+                      <option>Guiuan Airport</option>
+                      <option>Hilongos Airport</option>
+                      <option>Iba Airport</option>
+                      <option>Iligan Airport</option>
+                      <option>Iloilo Int'l Airport</option>
+                      <option>Ipil Airport</option>
+                      <option>Itbayat Airport</option>
+                      <option>Jolo Airport</option>
+                      <option>Jomalig Airport</option>
+                      <option>Kalibo Int'l Airport</option>
+                      <option>Laguindingan Airport</option>
+                      <option>Laoag International Airport</option>
+                      <option>Legazpi Airport</option>
+                      <option>Liloy Airport</option>
+                      <option>Lingayen Airport</option>
+                      <option>Lubang Airport</option>
+                      <option>Lucena Airport</option>
+                      <option>Maasin Airport</option>
+                      <option>Mactan Int'l Airport</option>
+                      <option>Malabang Airport</option>
+                      <option>Mamburao Airport</option>
+                      <option>Marinduque Airport</option>
+                      <option>Masbate Airport</option>
+                      <option>Mlang Airport</option>
+                      <option>Naga Airport</option>
+                      <option>Ormoc Airport</option>
+                      <option>Ozamiz Airport</option>
+                      <option>Pagadian Airport</option>
+                      <option>Palanan Airport</option>
+                      <option>Pinamalayan Airport</option>
+                      <option>Plaridel Airport</option>
+                      <option>Puerto Princesa Int'l Airport</option>
+                      <option>Romblon Airport</option>
+                      <option>Rosales Airport</option>
+                      <option>Rosales Airport</option>
+                      <option>Roxas Airport</option>
+                      <option>San Fernando</option>
+                      <option>San Jose Airport</option>
+                      <option>San Vicente Airport</option>
+                      <option>Sanga-Sanga Airport</option>
+                      <option>Sangley Airport</option>
+                      <option>Siargao Airport</option>
+                      <option>Siocon Airport</option>
+                      <option>Siquijor Airport</option>
+                      <option>Sorsogon Airport</option>
+                      <option>Subic Int'l Airport</option>
+                      <option>Surigao Airport</option>
+                      <option>Tacloban Airport</option>
+                      <option>Tagbilaran Airport</option>
+                      <option>Tandag Airport</option>
+                      <option>Tuguegarao Airport</option>
+                      <option>Ubay Airport</option>
+                      <option>Vigan Airport</option>
+                      <option>Virac Airport</option>
+                      <option>Wao Airport</option>
+                      <option>Wasig Airport</option>
+                      <option>Zamboanga Int'l Airport</option>
+                    </select>
+                </div>  
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Office</label>
+                  <select class="form-control" name="office"  >
+                    <option value="{{ pds.office }}">{{ pds.office }}</option>
+                    <option value=" "> --- N/A ---- </option>
+                    <option>Administrative and Finance Service</option>
+                    <option>Administrative Department</option>
+                    <option>Administrative Department - Cashiering Division</option>
+                    <option>Administrative Department - Cashiering Division - Checking Section</option>
+                    <option>Administrative Department - Central Records and Archives Division</option>
+                    <option>Administrative Department - Facilities Maintenance Division</option>
+                    <option>Administrative Department - Facilities Maintenance Division - Building and Grounds Maintenance Section</option>
+                    <option>Administrative Department - Facilities Maintenance Division - Motorpool Section</option>
+                    <option>Administrative Department - Human Resource Management Division</option>
+                    <option>Administrative Department - Procurement Division</option>
+                    <option>Administrative Department - Procurement Division - Bids and Awards Committee (BAC)</option>
+                    <option>Administrative Department - Supply Division</option>
+                    <option>Aerodrome Development and Management Service</option>
+                    <option>Aerodrome and Air Navigation Safety Oversight Office</option>
+                    <option>Aerodrome and Air Navigation Safety Oversight Office - Aerodrome Registration, Certification and Inspection Division</option>
+                    <option>Aerodrome and Air Navigation Safety Oversight Office - Air Traffic Management Inspectorate Division</option>
+                    <option>Aerodrome and Air Navigation Safety Oversight Office - Communication Navigation Surveillance Safety Inspection Division</option>
+                    <option>Aerodrome and Air Navigation Safety Oversight Office - Regulatory Safety Standards Division</option>
+                    <option>Aerodrome Engineering Department </option>
+                    <option>Aerodrome Engineering Department - Infrastructure Development and Design Division</option>
+                    <option>Aerodrome Engineering Department - Planning and Programming Division</option>
+                    <option>Aerodrome Engineering Department - Project Management Division</option>
+                    <option>Aerodrome Engineering Department - Survey Division</option>
+                    <option>Aerodrome Operations Department</option>
+                    <option>Aerodrome Operations Department - Operational Safety Division</option>
+                    <option>Aerodrome Operations Department - Repair and Maintenance Division</option>
+                    <option>Aeronautical Information and Communication Department</option>
+                    <option>Aeronautical Information and Communication Department - Aeronautical Telecommunication Division</option>
+                    <option>Aeronautical Information and Communication Department - Aeronautical Telecommunication Division - Manila Aeronautical Data Communication Center (MADCC)</option>
+                    <option>Aeronautical Information and Communication Department - Aeronautical Telecommunication Division - Manila Aeronautical Mobile Service (MAMS)</option>
+                    <option>Aeronautical Information and Communication Department - Aeronautical Telecommunication Division - Manila Flight Service Station (MFSS)</option>
+                    <option>Aeronautical Information and Communication Department - AIS/MAPS Division</option>
+                    <option>Aeronautical Information and Communication Department - AIS/MAPS Division - Aeronautical Information Service Operations (AIS Ops)</option>
+                    <option>Aeronautical Information and Communication Department - AIS/MAPS Division - Operations Center (OPCEN)</option>
+                    <option>Aeronautical Information and Communication Department - AIS/MAPS Division - Philippine Rescue Coordination Center (PARCC)</option>
+                    <option>Air Navigation Operations Department</option>
+                    <option>Air Navigation Operations Department - Air Navigation Facilites Maintenance Division</option>
+                    <option>Air Navigation Project Implementation Department</option>
+                    <option>Air Navigation Project Implementation Department - CNS/MET Implementation Division</option>
+                    <option>Air Navigation Project Implementation Department - Electro-Mechanical Implementation Division</option>
+                    <option>Air Navigation Project Planning and Design Department</option>
+                    <option>Air Navigation Project Planning and Design Department - CNS/MET Planning Division</option>
+                    <option>Air Navigation Project Planning and Design Department - Electro-Mechanical Planning Division</option>
+                    <option>Air Navigation Quality Management Department</option>
+                    <option>Air Navigation Quality Management Department - Air Navigation Facilites Quality Assurance Division</option>
+                    <option>Air Navigation Quality Management Department - Air Navigation Facilities Quality Inspection Division</option>
+                    <option>Air Navigation Service</option>
+                    <option>Air Navigation Services Field Office</option>
+                    <option>Air Traffic Control and Airspace Management Department</option>
+                    <option>Air Traffic Control and Airspace Management Department - Aerodrome Control Division</option>
+                    <option>Air Traffic Control and Airspace Management Department - Aerodrome Control Division - Manila Control Tower</option>
+                    <option>Air Traffic Control and Airspace Management Department - Airspace and Flight Procedure Design Division</option>
+                    <option>Air Traffic Control and Airspace Management Department - Approach Control Division</option>
+                    <option>Air Traffic Control and Airspace Management Department - Approach Control Division - Air Traffic Flow Management Unit</option>
+                    <option>Air Traffic Control and Airspace Management Department - Approach Control Division - Bacolod-Kalibo Approach Cluster</option>
+                    <option>Air Traffic Control and Airspace Management Department - Approach Control Division - Mactan-Davao Approach Cluster</option>
+                    <option>Air Traffic Control and Airspace Management Department - Approach Control Division - Manila-Clark Approach Cluster</option>
+                    <option>Air Traffic Control and Airspace Management Department - Enroute Control Division</option>
+                    <option>Air Traffic Control and Airspace Management Department - Enroute Control Division - Manila Area Control Center (Manila ACC)</option>
+                    <option>Air Traffic Planning and Progression Department</option>
+                    <option>Air Traffic Planning and Progression Department - Air Traffic Planning Division</option>
+                    <option>Air Traffic Planning and Progression Department - Air Traffic Progression Division</option>
+                    <option>Air Traffic Service</option>
+                    <option>Air Traffic Service-Safety Management System</option>
+                    <option>Aircraft Accident and Inquiry Investiation Board</option>
+                    <option>Airworthiness Department</option>
+                    <option>Airworthiness Department - Commercial Air Transport Certification and Inspection Division</option>
+                    <option>Airworthiness Department - Engineering and Aircraft Registration Division</option>
+                    <option>Airworthiness Department - FSIC</option>
+                    <option>Airworthiness Department - General Aviation Certification and Inspection Division</option>
+                    <option>Airworthiness Department - OSI</option>
+                    <option>Airmen Examination Board</option>
+                    <option>CAAP Security and Intelligence Service</option>
+                    <option>CAAP Security and Intelligence Service - Civil Security Division</option>
+                    <option>CAAP Security and Intelligence Service - Intelligence Division</option>
+                    <option>CART</option>
+                    <option>Civil Aviation Training Center</option>
+                    <option>Corporate Board Secretariat</option>
+                    <option>Corporate Communications Staff</option>
+                    <option>Corporate Communications Staff - Media Communications Office</option>
+                    <option>Corporate Planning Office</option>
+                    <option>Corporate Planning Office - Asset Management Division</option>
+                    <option>Corporate Planning Office - Business Development Division</option>
+                    <option>Corporate Planning Office - Management Information System Division</option>
+                    <option>Corporate Planning Office - Strategic Planning Division</option>
+                    <option>Enforcement and Legal Service</option>
+                    <option>Finance Department</option>
+                    <option>Finance Department - Accounting Division</option>
+                    <option>Finance Department - Accounting Division - Billing Section</option>
+                    <option>Finance Department - Accounting Division - Bookkeping Section</option>
+                    <option>Finance Department - Accounting Division - Revenue Section</option>
+                    <option>Finance Department - Budget Division</option>
+                    <option>Finance Department - COA</option>
+                    <option>Finance Department - Treasury Division</option>
+                    <option>Flight Inspection and Calibration Group</option>
+                    <option>Flight Operations Department</option>
+                    <option>Flight Operations Department - Commercial Air Transport Operations Certification and Inspection Division</option>
+                    <option>Flight Operations Department - Flight Operations Control Safety Inspection Division</option>
+                    <option>Flight Operations Department - General Aviation Operations Certification and Inspection Division</option>
+                    <option>Flight Standards Inspectorate Service</option>
+                    <option>FSIS Training Office</option>
+                    <option>Gender and Development </option>
+                    <option>Hearing and Adjudication Board</option>
+                    <option>Internal Audit Service </option>
+                    <option>Internal Audit Service - Financial Audit Division</option>
+                    <option>Internal Audit Service - Operations Audit Division</option>
+                    <option>International Civil Aviation Coordinating Staff</option>
+                    <option>Licensing and Certification Department</option>
+                    <option>Licensing and Certification Department -,Airmen Licensing Division</option>
+                    <option>Licensing and Certification Department -,Proficiency Check and Skills Test Division</option>
+                    <option>Licensing and Certification Department -,Training Organization Certification and Inspection Division</option>
+                    <option>Manila CNS Facility</option>
+                    <option>Manila CNS/ATM Facility</option>                    
+                    <option>Office of the Director General</option>
+                    <option>Office of the Deputy Director General for Administration</option>
+                    <option>Office of the Deputy Director General for Operations</option>
+                    <option>Office of the Flight Surgeon</option>
+                    <option>Regulatory Standards Department</option>
+                    <option>Regulatory Standards Department - Aviation Records Management Division</option>
+                    <option>Regulatory Standards Department - Aviation Safety Analysis Division</option>
+                    <option>Regulatory Standards Department - Regulatory Standards Development Division</option>
+                    <option>Tagaytay/ Bonifacio CS Facility</option>
+                    <option>USOAP</option>
+                    <option>Office of the CAAM</option>
+                    <option>Office of the Airport Manager</option>
+                    <option>Admin</option>
+                    <option>Finance</option>
+                    <option>HR</option>
+                    <option>ARFF</option>
+                    <option>ATS</option>
+                    <option>ANS</option>
+                    <option>Buildings and Grounds Maintenance</option>
+                    <option>Legal</option>
+                    <option>Concessions</option>
+                    <option>Medical</option>
+                    <option>Airport Terminal</option>
+                    <option>Aviation Safety</option>
+                    </select>
+                </div>  
+              </div>
+            </div>
+            <!-- /. row -->
+            <br><br>
+
+
+
+          <h5>Residential Address</h5>  <span style = "color:#D21E1E;font-size: 15px;"> <a href="/pds/help">Click for help on Address  <i class="fa fa-exclamation-circle"></i></a></span>
+          <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Street No./Name/Building/Purok</label>
+                  <input type="text" class="form-control" name="res_numstreet" maxlength="100" value="{{ pds.res_numstreet }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Region</label>
+                  <input type="text" name="res_region" value="{{ pds.res_region }}" class="form-control"/>
+                  <!-- <select id="region" class="form-control"></select> -->
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">   
+                   <label>Province</label>
+                  <input type="text" name="res_province"  value="{{ pds.res_province }}" class="form-control"/>
+                  <!-- <select id="province" class="form-control" ></select> -->
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>City</label>
+                  <input type="text" name="res_city" value="{{ pds.res_city }}" class="form-control"/>
+                  <!-- <select id="city" class="form-control"></select> -->
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Barangay</label>                  
+                  <input type="text" name="res_brgy" value="{{ pds.res_brgy }}" class="form-control"/>
+                  <!-- <select id="barangay"  class="form-control" ></select> -->
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Zip Code</label>                  
+                  <input  name="res_zip" value="{{ pds.res_zip }}" class="form-control" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+
+        <h5>Permanent Address   </h5> 
+        <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  Same as residential address : 
+                  <input type="radio" id="no" name="same_address" value="No" checked="checked">
+                  <label for="no">no</label> &nbsp;&nbsp;&nbsp;
+                  <input type="radio" id="yes" name="same_address" value="Yes">
+                  <label for="yes">yes</label>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+          </div>
+            <!-- /.row -->
+
+                   <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Street No./Name/Building/Purok</label>
+                  <input type="text" class="form-control" name="perma_numstreet" maxlength="100" value="{{ pds.perma_numstreet }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Region</label>
+                  <input type="text" name="perma_region" value="{{ pds.perma_region }}" class="form-control"/>
+                  <!-- <select id="region2" class="form-control"></select> -->
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">   
+                   <label>Province</label>
+                  <input type="text" name="perma_province"  value="{{ pds.perma_province }}" class="form-control"/>
+                  <!-- <select id="province2" class="form-control" ></select> -->
+                </div>
+                <!-- /.form-group --> 
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">                  
+                  <label>City</label>
+                  <input type="text" name="perma_city" value="{{ pds.perma_city }}" class="form-control"/>
+                  <!-- <select id="city2" class="form-control"></select> -->
+                </div>
+                <!-- /.form-group --> 
+              </div>
+
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">                
+                  <label>Barangay</label>                  
+                  <input type="text" name="perma_brgy" value="{{ pds.perma_brgy }}" class="form-control"/>
+                  <!-- <select id="barangay2"  class="form-control" ></select> -->
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Zip Code (1122)</label>                  
+                  <input  name="perma_zip" value="{{ pds.perma_zip }}" class="form-control" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Telephone (7944 2081)</label>
+                  <input type="text" class="form-control" name="telephone"   value="{{ pds.telephone }}" />
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Employee Number</label>
+                  <input type="text" class="form-control" name="emp_number" value="{{ pds.emp_number }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Email (Juan.delacruz@caap.gov.ph)</label>
+                  <input type="email" class="form-control" name="email"  maxlength="100" value="{{ pds.email }}" required />
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>TIN (432 456 321)</label>
+                  <input type="text" class="form-control" name="tin"   value="{{ pds.tin }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Cellphone Number</label>
+                  <input type="text" class="form-control" name="mobile"  value="{{ pds.mobile }}" required/>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- Contact Person -->
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label>Emergency Contact Person</label>
+                  <input type="text" class="form-control" name="contact_person" value="{{ pds.contact_person }}" required />
+                </div>
+                <!-- /.form-group -->
+                
+              </div>
+              <!-- /.col -->              
+            </div>
+            <!-- /.row -->
+
+            <div class="row">              
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Emergency Contact Person Number</label>
+                  <input type="number" class="form-control" name="contact_person_number" value="{{ pds.contact_person_number }}"  required />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Emergency Contact Person Relationship</label>
+                  <select class="form-control" name="contact_relation"  required>
+                      <option value="{{ pds.contact_relation }}">{{ pds.contact_relation }}</option>
+                      <option>Spouse</option>
+                      <option>Father</option>
+                      <option>Mother</option>
+                      <option>Brother</option>
+                      <option>Sister</option>                      
+                      <option>Son</option>
+                      <option>Daughter</option>
+                      <option>Cousin</option>
+                      <option>Aunt</option>
+                      <option>Uncle</option>
+                      <option>Niece</option>
+                      <option>Nephew</option>
+                      <option>Partner</option>
+                      <option>Legal Guardian</option>
+                      <option>Father-in-law</option>
+                      <option>Mother-in-law</option>
+                      <option>Sister-in-law</option>
+                      <option>Brother-in-law</option>
+                      <option>Grandparent</option>
+                      <option>Grandchild</option>
+                      <option>Friend</option>
+                      <option>Stepchild</option>
+                      <option>Stepparent</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Personal information -->
+
+<!-- Family Backgroud -->
+
+ <div class="card card-default">
+    <div class="card-header">
+      <h3 class="card-title">II. Family Background</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <!-- /.card-header -->
+       <div class="card-body">
+        <h6>Spouse Information</h6> 
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Surname</label>
+                  <input type="text" class="form-control" name="spouse_surname" maxlength="100" value="{{ pds.spouse_surname }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" name="spouse_name" maxlength="100" value="{{ pds.spouse_name }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Middle Name</label>
+                  <input type="text" class="form-control" name="spouse_middle" maxlength="100" value="{{ pds.spouse_middle }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label>Extension Name</label>
+                  <input type="text" class="form-control" name="spouse_ext" maxlength="100" value="{{ pds.spouse_ext }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Occupation</label>
+                  <input type="text" class="form-control" name="spouse_occupation" maxlength="100" value="{{ pds.spouse_occupation }}" />
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Employer Name</label>
+                  <input type="text" class="form-control" name="emb_biz" maxlength="100" value="{{ pds.emb_biz }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Phone Number (09123456789)</label>
+                  <input type="text" class="form-control" name="phone"  value="{{ pds.phone }}" />
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Employer Address</label>
+                  <input type="text" class="form-control" name="emb_biz_add" value="{{ pds.emb_biz_add }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <h6>Father Information</h6> 
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Surname</label>
+                  <input type="text" class="form-control" name="dad_surname" maxlength="100" value="{{ pds.dad_surname }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" name="dad_name" maxlength="100" value="{{ pds.dad_name }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Middle Name</label>
+                <input type="text" class="form-control" name="dad_middle" maxlength="100" value="{{ pds.dad_middle }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label>Extension Name</label>
+                  <input type="text" class="form-control" name="dad_ext" maxlength="100" value="{{ pds.dad_ext }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <h6>Mother Information (Maiden Name)</h6> 
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Surname</label>
+                  <input type="text" class="form-control" name="mom_surname" maxlength="100" value="{{ pds.mom_surname }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" name="mom_name" maxlength="100" value="{{ pds.mom_name }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Middle Name</label>
+                  <input type="text" class="form-control" name="mom_middle" maxlength="100" value="{{ pds.mom_middle }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+      </div>
+      <!-- /.card-body -->
+   <div class="card-footer">
+   </div>
+ </div>
+<!-- End family Background -->
+
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">Submit</button>  
+    </div>  
+  </div>
+
+  <br><br><br>
+</form>  
+{% endblock %}

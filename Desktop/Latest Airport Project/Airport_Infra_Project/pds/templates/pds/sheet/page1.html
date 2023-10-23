@@ -1,0 +1,1524 @@
+{% extends "base4.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="/pds">PDS</a></li>
+    <li class="breadcrumb-item active">PAGE 1</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<div class="row">
+  <div class="col" ><b>CS FORM 212</b> <br><i>Revised 2017</i></div>
+</div>
+
+<div class="row" >
+  <div class="col" ><h1 align="center"><br><b>PERSONAL DATA SHEET</b></h1><br></div>
+</div>
+<div class="row" >
+  <div class="col" ><b>WARNING: Any misrepresentation made in the Personal Data Sheet and the Work Experience Sheet shall cause the filing of administrative/criminal case/s against the person concerned.</b></div>
+</div>
+<div class="row" >
+  <div class="col" ><b>READ THE ATTACHED GUIDE TO FILLING OUT THE PERSONAL DATA SHEET (PDS) BEFORE ACCOMPLISHING THE PDS FORM.</b></div>
+</div>
+
+<div class="row" >
+  <div class="col" >Indicate N/A if not applicable.  DO NOT ABBREVIATE.</div>
+  
+</div>
+<div class="row" >
+  <div class="col" style="background-color:gray;"><h3 style=" color:white;"> I. PERSONAL INFORMATION </h3></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">2. SURNAME</div>
+  <div class="col-sm-10" style="border-style: solid ;border-width: 2px;"><b><h3>
+  {% if  pds.surname %}
+      {% if  pds.surname != "None" %}
+      {{ pds.surname|title}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">FIRST NAME</div>
+  <div class="col-sm-5" style="border-style: solid ;border-width: 2px;"><b><h3>
+  {% if  pds.first_name %}
+      {% if  pds.first_name != "None" %}
+      {{ pds.first_name|title}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+
+  </h3></b></div>  
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">3. NAME EXTENSION (e.g. Jr., Sr.)</div>
+  <div class="col-sm-3" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.ext_name %}
+      {% if  pds.ext_name != None %}
+      {{ pds.ext_name}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">MIDDLE NAME</div>
+  <div class="col-sm-10" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.middle_name %}
+      {% if  pds.middle_name != "None" %}
+      {{ pds.middle_name|title}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">DATE OF BIRTH (mm/dd/yyyy)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+
+  {% if  pds.birth_date %}
+      {% if  pds.birth_date != "None" %}
+      {{pds.birth_date|date:"m/d/Y"}}
+      {% else %}
+       mm/dd/yyyy
+      {% endif %}
+  {% else %}
+   mm/dd/yyyy
+  {% endif %}
+</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">CITIZENSHIP</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"><b><h3>
+  
+  {% if  pds.citizenship %}
+      {% if  pds.citizenship != "None" %}
+      {{ pds.citizenship|title}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">Place of Birth</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.birth_place %}
+      {% if  pds.birth_place != "None" %}
+      {{ pds.birth_place|title}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+  </h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">If holder of  dual citizenship, </div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">SEX</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.sex %}
+  {{ pds.sex|title}}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">please indicate the details.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"><b><h3>
+  
+  {% if  pds.citizen_detail %}
+      {% if  pds.citizen_detail != "None" %}
+      {{ pds.citizen_detail|title}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+  </h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">CIVIL STATUS</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.civil_status %}
+      {% if  pds.civil_status != "None" %}
+      {{ pds.civil_status|title}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">RESIDENTIAL ADDRESS</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"><b><h3>
+
+  {% if  pds.res_numstreet %}
+      {% if  pds.res_numstreet != "None" %}
+      {{ pds.res_numstreet|title}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+
+  {% if  pds.res_brgy %}
+      {% if  pds.res_brgy != "None" %}
+      {{ pds.res_brgy|title}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">HEIGHT (m)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.height %}
+      {% if  pds.height != "None" %}
+      {{ pds.height}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+
+</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;"></div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"><b><h3>
+
+  {% if  pds.res_city %}
+      {% if  pds.res_city != "None" %}
+      {{ pds.res_city|title}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+
+  {% if  pds.res_province %}
+      {% if  pds.res_province != "None" %}
+      {{ pds.res_province|title}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">WEIGHT (kg)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.weight %}
+      {% if  pds.weight != "None" %}
+      {{ pds.weight}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">ZIP CODE</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.res_zip %}
+      {% if  pds.res_zip != "None" %}
+      {{ pds.res_zip}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+    </h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">BLOOD TYPE</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.blood_type %}
+      {% if  pds.blood_type != "None" %}
+      {{ pds.blood_type}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+    <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;"></div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"><b><h3></h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">GSIS ID NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.gsis %}
+      {% if  pds.gsis != "None" %}
+      {{ pds.gsis}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">PERMANENT ADDRESS</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"><b><h3>
+
+  {% if  pds.perma_numstreet %}
+      {% if  pds.perma_numstreet != "None" %}
+      {{ pds.perma_numstreet|title}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+
+  {% if  pds.perma_brgy %}
+      {% if  pds.perma_brgy != "None" %}
+      {{ pds.perma_brgy|title}}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+
+</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">PAG-IBIG ID NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.pagibig %}
+      {% if  pds.pagibig != "None" %}
+      {{ pds.pagibig }}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+  </h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">PERMANENT ADDRESS</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 0px;"><b><h3>{{pds.perma_city}}
+
+  {% if  pds.perma_brgy %}
+      {% if  pds.perma_brgy != "None" %}
+      {{ pds.perma_brgy|title }}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+
+  {% if  pds.perma_province %}
+      {% if  pds.perma_province != "None" %}
+      {{ pds.perma_province|title }}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+
+</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">PHILHEALTH NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.philhealth %}
+      {% if  pds.philhealth != "None" %}
+      {{ pds.philhealth }}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+    <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 0px;">ZIP CODE</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.perma_zip %}
+      {% if  pds.perma_zip != "None" %}
+      {{ pds.perma_zip }}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+  </h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">SSS NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.sss %}
+      {% if  pds.sss != "None" %}
+      {{ pds.sss }}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">19. TELEPHONE NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.telephone %}
+      {% if  pds.telephone != "None" %}
+      {{ pds.telephone }}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+</div>
+<div class="row" >
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">TIN</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.tin %}
+      {% if  pds.tin != "None" %}
+      {{ pds.tin }}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>  
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">CELLPHONE NO. (if any)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+ 
+  {% if  pds.mobile %}
+      {% if  pds.mobile != "None" %}
+      {{ pds.mobile }}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+</div>
+<div class="row" >  
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">AGENCY EMPLOYEE NO.</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.emp_number %}
+      {% if  pds.emp_number != "None" %}
+      {{ pds.emp_number }}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+  <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 2px;">E-MAIL ADDRESS (if any)</div>
+  <div class="col-sm-4" style="border-style: solid ;border-width: 2px;"><b><h3>
+
+  {% if  pds.email %}
+      {% if  pds.email != "None" %}
+      {{ pds.email }}
+      {% else %}
+      N/A
+      {% endif %}
+  {% else %}
+  N/A
+  {% endif %}
+</h3></b></div>
+</div>
+
+<div class="row" >
+  <div class="col" style="background-color:gray;"><h3 style=" color:white;"> I. FAMILY BACKGROUND </h3></div>
+</div>
+<div class="row" >
+  <div class="col-sm-7" >
+    <table style="width:100%">
+      <tr>
+        <!-- Wife Details -->
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">SPOUSE'S SURNAME</td>
+        <td style=";border-style: solid ;border-width: 1px;"><h3>
+
+        {% if  pds.spouse_surname %}
+            {% if  pds.spouse_surname != "None" %}
+            {{ pds.spouse_surname|title }}
+            {% else %}
+            N/A
+            {% endif %}
+        {% else %}
+        N/A
+        {% endif %}
+      </h3></td>
+      </tr>
+      <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">FIRST NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>
+      
+        {% if  pds.spouse_name %}
+            {% if  pds.spouse_name != "None" %}
+            {{ pds.spouse_name|title }}
+            {% else %}
+            N/A
+            {% endif %}
+        {% else %}
+        N/A
+        {% endif %}
+      </h3></td>
+      </tr>
+      <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">MIDDLE NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>
+        
+        {% if  pds.spouse_middle %}
+            {% if  pds.spouse_middle != "None" %}
+            {{ pds.spouse_middle|title }}
+            {% else %}
+            N/A
+            {% endif %}
+        {% else %}
+        N/A
+        {% endif %}
+      </h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">OCCUPATION</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>
+        
+        {% if  pds.spouse_occupation %}
+            {% if  pds.spouse_occupation != "None" %}
+            {{ pds.spouse_occupation|title }}
+            {% else %}
+            N/A
+            {% endif %}
+        {% else %}
+        N/A
+        {% endif %}
+        </h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">EMPLOYER/BUS. NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>
+
+        {% if  pds.emb_biz %}
+            {% if  pds.emb_biz != "None" %}
+            {{ pds.emb_biz|title }}
+            {% else %}
+            N/A
+            {% endif %}
+        {% else %}
+        N/A
+        {% endif %}
+        </h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">BUSINESS ADDRESS</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>
+
+        {% if  pds.emb_biz_add %}
+            {% if  pds.emb_biz_add != "None" %}
+            {{ pds.emb_biz_add|title }}
+            {% else %}
+            N/A
+            {% endif %}
+        {% else %}
+        N/A
+        {% endif %}
+        </h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">TELEPHONE NO.</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>
+        
+        {% if  pds.phone %}
+            {% if  pds.phone != "None" %}
+            {{ pds.phone}}
+            {% else %}
+            N/A
+            {% endif %}
+        {% else %}
+        N/A
+        {% endif %}
+        </h3></td>
+      </tr>
+      <!-- Father -->
+      <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;" colspan="2"> <p align="center" style="color: red;"><br>(Continue on separate sheet if necessary)</p></td>
+      </tr>
+      <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">FATHER'S SURNAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>
+      
+        {% if  pds.dad_surname %}
+            {% if  pds.dad_surname != "None" %}
+            {{ pds.dad_surname|title }}
+            {% else %}
+            N/A
+            {% endif %}
+        {% else %}
+        N/A
+        {% endif %}
+        </h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">FIRST NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>
+        
+        {% if  pds.dad_name %}
+            {% if  pds.dad_name != "None" %}
+            {{ pds.dad_name|title }}
+            {% else %}
+            N/A
+            {% endif %}
+        {% else %}
+        N/A
+        {% endif %}
+        </h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">MIDDLE NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>
+       
+        {% if  pds.dad_middle %}
+            {% if  pds.dad_middle != "None" %}
+            {{ pds.dad_middle|title }}
+            {% else %}
+            N/A
+            {% endif %}
+        {% else %}
+        N/A
+        {% endif %}
+        </h3></td>
+      </tr>
+      <!-- Mother -->
+      <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;" colspan="2"> <p><br>MOTHER'S MAIDEN NAME</p></td>
+      </tr>
+      <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">SURNAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>
+        
+        {% if  pds.mom_surname %}
+            {% if  pds.mom_surname != "None" %}
+            {{ pds.mom_surname|title }}
+            {% else %}
+            N/A
+            {% endif %}
+        {% else %}
+        N/A
+        {% endif %}
+        </h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">FIRST NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>
+        
+        {% if  pds.mom_name %}
+            {% if  pds.mom_name != "None" %}
+            {{ pds.mom_name|title }}
+            {% else %}
+            N/A
+            {% endif %}
+        {% else %}
+        N/A
+        {% endif %}
+        </h3></td>
+      </tr>
+       <tr>
+        <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">MIDDLE NAME</td>
+        <td style="border-style: solid ;border-width: 1px;"><h3>
+        
+        {% if  pds.mom_middle %}
+            {% if  pds.mom_middle != "None" %}
+            {{ pds.mom_middle|title }}
+            {% else %}
+            N/A
+            {% endif %}
+        {% else %}
+        N/A
+        {% endif %}
+        </h3></td>
+      </tr>
+
+    </table></div>
+      <div class="col-sm-5" >
+        <table style="width:100%">
+          <!-- children List -->
+          <tr>
+            <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"> NAME OF CHILD (Write full name and list all)</td>
+            <td style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"> DATE OF BIRTH (mm/dd/yyyy)</td>            
+          </tr>
+          {% if children %}
+            {% for child in children %}
+          <tr>
+            <td style="border-style: solid ;border-width: 1px;">
+              <h3>
+
+              {% if  child.name %}
+                  {% if  child.name != "None" %}
+                  {{ child.name|title }}
+                  {% else %}
+                  N/A
+                  {% endif %}
+              {% else %}
+              N/A
+              {% endif %}
+
+            </h3>
+            </td>
+            <td style="border-style: solid ;border-width: 1px;">
+               <h3>
+
+              {% if  child.birth_date %}
+                  {% if  child.birth_date != "None" %}
+                  {{ child.birth_date }}
+                  {% else %}
+                  -- /-- / ----
+                  {% endif %}
+              {% else %}
+              -- /-- / ----
+              {% endif %}
+            </h3>
+            </td>
+          </tr>
+                    {% endfor %}
+            {% else %}
+            {% endif %}
+
+            {% if childs == 0 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;">N/A</td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 1 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 2 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 3 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 4 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 5 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 6 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 7 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 8 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+            {% if childs == 9 %}
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              <tr>
+                <td style="border-style: solid ;border-width: 1px;"> </td>
+                <td style="border-style: solid ;border-width: 1px;"><h3> -- /-- / ---- </h3></td>
+              </tr>
+              {% endif %}
+
+          </table>
+      </div>
+    </div>
+<!-- Educational Background -->
+    <div class="row" >
+        <div class="col" style="background-color:gray;"><h3 style=" color:white;"> III.  EDUCATIONAL BACKGROUND </h3></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>LEVEL</div>
+     <div class="col-sm-3" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br> NAME OF SCHOOL</div>
+     <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>DEGREE COURSE</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>YEAR GRADUATED</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">HIGHEST GRADE/ LEVEL/                     UNITS EARNED  </div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">INCLUSIVE DATES OF ATTENDANCE</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">INCLUSIVE DATES OF ATTENDANCE</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;">SCHOLARSHIP/ ACADEMIC HONORS RECEIVED</div>
+    </div>
+
+   {% if education %}
+      {% for edu in education %}
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4>{{edu.level}}</h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4>
+     
+      {% if  edu.school %}
+          {% if  edu.school != "None" %}
+            {{ edu.school|title }}
+          {% else %}
+             N/A
+          {% endif %}
+      {% else %}
+        N/A
+      {% endif %}
+
+    </h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4>
+     
+      {% if  edu.course %}
+          {% if  edu.course != "None" %}
+            {{ edu.course|title }}
+          {% else %}
+             N/A
+          {% endif %}
+      {% else %}
+        N/A
+      {% endif %}
+
+    </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>
+     
+      {% if  edu.grad_year %}
+          {% if  edu.grad_year != "None" %}
+            {{ edu.grad_year }}
+          {% else %}
+             N/A
+          {% endif %}
+      {% else %}
+        N/A
+      {% endif %}
+
+    </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>
+      
+      {% if  edu.units %}
+          {% if  edu.units != "None" %}
+            {{ edu.units }}
+          {% else %}
+             N/A
+          {% endif %}
+      {% else %}
+        N/A
+      {% endif %}
+
+    </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>
+     
+      {% if  edu.date_from %}
+          {% if  edu.date_from != "None" %}
+            {{ edu.date_from }}
+          {% else %}
+             N/A
+          {% endif %}
+      {% else %}
+        N/A
+      {% endif %}
+    </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>
+     
+      {% if  edu.date_to %}
+          {% if  edu.date_to != "None" %}
+            {{ edu.date_to }}
+          {% else %}
+             N/A
+          {% endif %}
+      {% else %}
+        N/A
+      {% endif %}
+    </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>
+     
+      {% if  edu.honors %}
+          {% if  edu.honors != "None" %}
+            {{ edu.honors }}
+          {% else %}
+             N/A
+          {% endif %}
+      {% else %}
+        N/A
+      {% endif %}
+
+    </h4></b></div>
+    </div>
+      {% endfor %}
+    {% else %}
+      <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4><br>ELEMENTARY</h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4>N/A</h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4>N/A</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>N/A</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>N/A</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>N/A</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>N/A</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>N/A</h4></b></div>
+    </div>
+
+     <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4><br>SECONDARY</h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4><br>VOCATIONAL /                                                                                                                                                                                                        TRADE COURSE</h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4><br>COLLEGE</h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4>GRADUATE STUDIES</h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    {% endif %}
+
+    {% if educs == 1 %}
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     
+    </div>
+    {% endif %}
+
+    {% if educs == 2 %}
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     
+    </div>
+    {% endif %}
+
+    {% if educs == 3 %}
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     
+    </div>
+    {% endif %}
+
+    {% if educs == 4 %}
+    <div class="row" align="center">
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-2" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4> -- /-- / ---- </h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     
+    </div>
+    {% endif %}
+
+    <div class="row" >
+      <div class="col" style="background-color:lightgray;"><p align="center" style="color: red;"><br>(Continue on separate sheet if necessary)</p></div>
+    </div>
+
+    <div class="row" align="center">
+     <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><b><h4>SIGNATURE</h4></b></div>
+     <div class="col-sm-6" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><b><h4>DATE</h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    
+    <div class="row" >
+      <div class="col"><p align="right"><br> CS FORM 212 (Revised 2017),  <b>Page 1 of 4</b></p></div>
+    </div>
+
+<script>
+function PrintPage() {
+  window.print();
+}
+</script>
+{% endblock %}

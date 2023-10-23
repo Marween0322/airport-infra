@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+<!-- Page title goes here -->
+{% block header %}
+Available Leave Credits
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">{{pds.surname|title}} , {{pds.first_name|title}} {{pds.middle_name|title}}</a></li>
+    <li class="breadcrumb-item active">Leave Credits</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+  {% if message %}
+  {% endif %}
+    {% if leave %}
+              <div class="row">
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-umbrella-beach"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Vacation Leave</span>
+                <span class="info-box-number">
+                  {{leave.vacation_balance}}
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-head-side-mask"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Sick Leave</span>
+                <span class="info-box-number">{{leave.sick_balance}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-gifts"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Special Privilege Leave</span>
+                <span class="info-box-number">{{spfleave.special}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-bed"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Forced Leave</span>
+                <span class="info-box-number">{{spfleave.force}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    {% else %}
+      <h3 style="color:red">Not yet available</h3>
+      <p>We are currently updating your leave credits.</p>
+    {% endif %}
+{% endblock %}

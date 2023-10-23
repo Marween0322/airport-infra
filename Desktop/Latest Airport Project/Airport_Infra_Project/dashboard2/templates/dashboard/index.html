@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+Bulletin Board
+{% endblock %}
+
+{% block styles %}
+<style>
+.dropbtn {
+  background-color: #red;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
+{% endblock styles %} 
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+    <li class="breadcrumb-item active">Bulletin</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+
+
+
+<div class="row">
+    <div class="col-md-9">
+      {% if data %}
+  {% for bulletin in data %}
+    <div class="card card-success card-outline">
+        <div class="card-header">
+        <h3 class="card-title">{{ bulletin.subject }} </h3>
+            <div class="card-tools">
+              <p class="btn btn-tool" style="color: black;">{{ bulletin.bulletin_date }}</p>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <h4>
+              {% if bulletin.body == "None" %}
+              {% else %}
+                {{ bulletin.body|default_if_none:""|safe }}
+              {% endif %}
+          </h4>
+
+          {% if bulletin.BulletinImgs %}
+              <div class="row">
+
+                  {% for img in bulletin.BulletinImgs %}
+                      {% if bulletin.BulletinImgs|length == 2 %}
+                          {% if img.ext == "jpg" or img.ext == "jpeg" or img.ext == "png" or img.ext == "gif"%}
+                              <div class="col-sm-6"> 
+                                <a href="/media/{{img.images}}" data-toggle="lightbox" data-title="{{img.images}}" data-gallery="gallery">
+                                  <img src="/media/{{img.images}}" class="img-fluid mb-2" alt="{{img.images}}"/>
+                                </a>
+                              </div>
+                            {% endif %}
+
+                      {% elif bulletin.BulletinImgs|length > 2 %}
+                          {% if img.ext == "jpg" or img.ext == "jpeg" or img.ext == "png" or img.ext == "gif"%}
+                              <div class="col-sm-4"> 
+                                <a href="/media/{{img.images}}" data-toggle="lightbox" data-title="{{img.images}}" data-gallery="gallery">
+                                  <img src="/media/{{img.images}}" class="img-fluid mb-2" alt="{{img.images}}"/>
+                                </a>
+                              </div>
+                            {% endif %}
+
+                      {% elif bulletin.BulletinImgs|length == 1 %}
+                          {% if img.ext == "jpg" or img.ext == "jpeg" or img.ext == "png" or img.ext == "gif"%}
+                              <div class="col-sm-12"> 
+                                <a href="/media/{{img.images}}" data-toggle="lightbox" data-title="{{img.images}}" data-gallery="gallery">
+                                  <img src="/media/{{img.images}}"  alt="{{img.images}}"/>
+                                </a>
+                              </div>
+                            {% endif %}
+
+                      {% else %}
+                      {% endif %}
+
+                  {% endfor %}
+              </div>
+              <!-- Gallery -->              
+            {% endif %}
+
+            <div class="row">
+                <br>
+                <hr>
+                <br>
+                <p>                        
+                  
+                  <div class="dropdown">
+                    <a href="/dashboard/bulletinaknldg/{{ bulletin.id }}" class="link-black text-lg"><i class="far fa-thumbs-up mr-1"></i> Aknowledge ( {{ bulletin.BulletinAknldg|length }} )</a>
+                    <div class="dropdown-content" style="height: 150px; overflow: auto">
+                      {% if bulletin.BulletinAknldg %}                      
+                        {% for Aknldg in bulletin.BulletinAknldg %}
+                        <p>{{ Aknldg.create_by }}</p>
+                        {% endfor %}
+                      {% endif %}   
+                    </div>
+                  </div>
+                   &nbsp;&nbsp;&nbsp;&nbsp;
+                  <span class="float-right">
+                  <a href="/dashboard/bulletincomnt" class="link-black text-lg">
+                      <i class="far fa-comments mr-1"></i> Comments ( {{ bulletin.BulletinComnt|length }} )
+                          </a>
+                  </span>                  
+                </p>
+
+              </div>
+                <!-- Buttons -->
+              <form method="POST" action="/dashboard/bulletincomment/{{bulletin.id}}" class="form-horizontal mt-4">
+                {% csrf_token %}
+                        <div class="input-group input-group-sm mb-0">
+                          <input class="form-control" name="comment" placeholder="Type a comment" required>
+                          <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</button>
+                          </div>
+                        </div>
+              </form>
+              {% if bulletin.BulletinComnt %}
+                <!-- Comments  -->
+                <div class="card-body" style="background-color: #E3E3E3; height: 200px; overflow: auto;">
+                  {% for comm in bulletin.BulletinComnt %}
+                    <div class="col-sm-2 mt-2">
+                        <i class="fas fa-user"></i> &nbsp;&nbsp; 
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="card-body" style="background-color: #fff;">
+                          <b>{{comm.create_by}}</b><span> - {{ comm.comment_date }} </span> <br>
+                          {{ comm.comment }}
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                  </div>
+                  
+                <!-- end comments -->
+              {% endif %}
+        </div>
+        <!-- /.card-body-->
+    </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+</div>
+ 
+{% endblock %}
+
+{% block script %}
+<script>
+  $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+      });
+    });
+
+    $('.filter-container').filterizr({gutterPixels: 3});
+    $('.btn[data-filter]').on('click', function() {
+      $('.btn[data-filter]').removeClass('active');
+      $(this).addClass('active');
+    });
+  })
+</script>
+
+{% endblock script %}
+

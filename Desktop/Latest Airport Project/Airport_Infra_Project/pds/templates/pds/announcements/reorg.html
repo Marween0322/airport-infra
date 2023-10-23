@@ -1,0 +1,135 @@
+{% extends "base3.html" %}
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+CAAP RE-ORGANIZATION PROJECT
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">CAAP RE-ORGANIZATION PROJECT</a></li>
+    <li class="breadcrumb-item active">Announcement</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+
+<a href="mailto:cmt@caap.gov.ph" class="btn btn-app" style="background-color:#059528; color: white"><i class="fa fa-envelope" aria-hidden="true"></i> Send Email</a>
+
+
+<div class="row">
+    <div class="col-md-9">
+      {% if data %}
+  {% for post in data %}
+    <div class="card card-success card-outline">
+        <div class="card-header">
+        <h3 class="card-title">Post </h3>
+            <div class="card-tools">
+              <p class="btn btn-tool" style="color: black;">{{ post.post_date }}</p>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <h2>{{ post.title }}</h2>
+
+            <h4>
+              {% if post.post == "None" %}
+              {% else %}
+                {{ post.post|default_if_none:""}}
+              {% endif %}
+          </h4>
+
+            {% if post.file %}
+                {% if post.ext == "mp4" %}
+                  <video width="100%" controls autoplay muted>
+                    <source src="/media/{{ post.file }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                {% endif %}
+
+                {% if post.ext == "jpg" %}
+                  <img src="/media/{{ post.file }}" width="100%">
+                {% endif %}
+
+                {% if post.ext == "jpeg" %}
+                  <img src="/media/{{ post.file }}" width="100%">
+                {% endif %}
+
+                {% if post.ext == "png" %}
+                  <img src="/media/{{ post.file }}" width="100%">
+                {% endif %}
+
+                {% if post.ext == "gif" %}
+                  <img src="/media/{{ post.file }}" width="100%">
+                {% endif %}
+            {% endif %}
+        </div>
+        <!-- /.card-body-->
+    </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+
+
+    <div class="col-md-3">
+    <div class="card card-success card-outline">
+        <div class="card-header">
+        <h3 class="card-title">Question And Answer </h3>
+            <div class="card-tools">
+              <p class="btn btn-tool" style="color: black;">{{ post.post_date }}</p>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <h2></h2>
+
+            <h4>
+              {% if qna.post == "None" %}
+              {% else %}
+                {{ qna.post|default_if_none:""}}
+              {% endif %}
+          </h4>
+
+            {% if qna.file %}
+                {% if qna.ext == "mp4" %}
+                  <video width="100%" controls autoplay muted>
+                    <source src="/media/{{ qna.file }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                {% endif %}
+
+                {% if qna.ext == "jpg" %}
+                  <img src="/media/{{ qna.file }}" width="100%">
+                {% endif %}
+
+                {% if qna.ext == "jpeg" %}
+                  <img src="/media/{{ qna.file }}" width="100%">
+                {% endif %}
+
+                {% if qna.ext == "png" %}
+                  <img src="/media/{{ qna.file }}" width="100%">
+                {% endif %}
+
+                {% if qna.ext == "gif" %}
+                  <img src="/media/{{ qna.file }}" width="100%">
+                {% endif %}
+
+                <a href="/pds/qna" class="btn btn-primary">View All - ></a>
+            {% endif %}
+        </div>
+        <!-- /.card-body-->
+    </div>
+    </div>
+    <!-- /.col   -->
+</div>
+ 
+{% endblock %}

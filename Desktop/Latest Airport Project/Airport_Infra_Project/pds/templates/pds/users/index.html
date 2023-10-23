@@ -1,0 +1,55 @@
+{% extends "base_admin.html" %}
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+Users List
+{% endblock %}
+
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Users</a></li>
+    <li class="breadcrumb-item active">List</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<table class="table table-bordered" style="background-color: white">
+<thead style="position: sticky;top: 0;">
+  <!-- New Rate -->
+  <tr style="background-color: #C0CFD8">
+    <th>User ID</th>
+    <th>Uername</th>
+    <th>Last Name</th>
+    <th>First Name</th>
+    <th>Email</th>
+    <th>Active Status</th>
+  </tr>
+</thead>
+
+{% if users %}
+  {% for user in users %}
+  <tbody>
+    <tr>
+      <td> {{ user.id }}</td>
+      <td> {{ user.username }} </td>
+      <td> {{ user.last_name|title }} &nbsp; &nbsp;
+        {% if perma.ext_name == "N/A"  %} 
+          {% else %}                 
+              {{ perma.ext_name }} 
+          {% endif %}
+      </td> 
+      <td> {{ user.first_name|title }} </td>
+      <td> {{ user.email }}  </td>
+      <td><a href="/pds/usersEdit/{{ user.id }}">{{ user.is_active }} </a> </td>
+    </tr>
+  </tbody>
+  {% endfor %}
+{% endif %}
+
+
+
+</table>
+{% endblock %}

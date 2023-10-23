@@ -1,0 +1,135 @@
+{% extends "base4.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="/pds">PDS</a></li>
+    <li class="breadcrumb-item active">PAGE 2</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+  <!-- VOLUNTARY -->
+  {% if voluntary %}
+    <div class="row" >
+        <div class="col" style="background-color:gray;"><h3 style=" color:white;">VI. VOLUNTARY WORK OR INVOLVEMENT IN CIVIC / NON-GOVERNMENT / PEOPLE / VOLUNTARY ORGANIZATION/S</h3></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>NAME & ADDRESS OF ORGANIZATION (Write in full)</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br> <u>INCLUSIVE DATES</u><br> FROM</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br><u>INCLUSIVE DATES</u><br> TO</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>NUMBER OF HOURS</div>
+     <div class="col-sm-4" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>POSITION / NATURE OF WORK</div>
+    </div>
+
+      {% for Vol in voluntary %}
+            <div class="row" align="center">
+             <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4>{{Vol.name}}</h4></b></div>
+             <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{Vol.vol_from}}</h4></b></div>     
+             <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{Vol.vol_to}}</h4></b></div>
+             <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{Vol.position}}</h4></b></div>
+             <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4>{{Vol.hours}}</h4></b></div>
+            </div>
+      {% endfor %}
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+  {% endif %}
+
+<!-- LEARNING -->
+  {% if learning %}
+  <br><br>
+    <div class="row" >
+        <div class="col" style="background-color:gray;"><h3 style=" color:white;">VII.{{ learn }}  LEARNING AND DEVELOPMENT (L&D) INTERVENTIONS/TRAINING PROGRAMS ATTENDED</h3></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>TITLE OF LEARNING AND DEVELOPMENT INTERVENTIONS/TRAINING PROGRAMS <br> (Write in full)</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br> <u>INCLUSIVE DATES</u><br> FROM</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br><u>INCLUSIVE DATES</u><br> TO</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>NUMBER OF HOURS</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>Type of LD <br>   ( Managerial/ Supervisory/Technical/etc) </div>
+     <div class="col-sm-3" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>CONDUCTED/ SPONSORED BY <br> (Write in full)</div>
+    </div>
+
+
+      {% for learns in learning %}
+        <div class="row" align="center">
+         <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4>{{learns.title}}</h4></b></div>
+         <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{learns.date_from}}</h4></b></div>     
+         <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{learns.date_to}}</h4></b></div>
+         <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{learns.training_hours}}</h4></b></div>
+         <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{learns.learning_type}}</h4></b></div>
+         <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4>{{learns.conducted_by}}</h4></b></div>
+        </div>  
+      {% endfor %}
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    {% endif %}
+
+    <div class="row" >
+      <div class="col" style="background-color:lightgray;"><p align="center" style="color: red;"><br></p></div>
+    </div>
+<div class="row" align="center">
+     <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><b><h4>SIGNATURE</h4></b></div>
+     <div class="col-sm-6" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><b><h4>DATE</h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" >
+      <div class="col"><p align="right"><br> CS FORM 212 (Revised 2017),  <b>Separate Page</b></p></div>
+    </div>
+
+<script>
+function PrintPage() {
+  window.print();
+}
+</script>
+{% endblock %}

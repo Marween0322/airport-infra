@@ -1,0 +1,122 @@
+{% extends "base_admin2.html" %}
+
+<!-- Page title goes here -->
+{% block header %}
+Training Record Summary
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Personnel</a></li>
+    <li class="breadcrumb-item active">Trainings</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- <a href="/pds/createTrainings/{{personal.pk }}" class="btn btn-app" style="background-color:#43494D; color: white"><i class="fa fa-plus"></i> Training</a> -->
+
+<table class="table table-bordered" style="background-color: white">
+  <tr>
+    <td width="20%" colspan="2" align="center"><img src="/static/media/photo/caap_logo.png" alt="caap_logo" width="50%"></td>
+    <td colspan="14"><h4 align="center">Civil Aviation Authority of the Philippines
+      <br><strong>Training Record Summary</strong></h4>
+    </td>
+  </tr>
+  <tr>
+    <td width="20%" colspan="2">NAME</td>
+    <td colspan="14"><strong>{{ personal.surname }} ,&nbsp; {{ personal.first_name }} &nbsp;&nbsp;&nbsp;{{ personal.middle_name }}<strong></td>
+  </tr>
+  <tr>
+    <td width="20%" colspan="2">POSITION</td>
+    <td colspan="14">{{ personal.position_title }}</td>
+  </tr>
+  <tr>
+    <td width="20%" colspan="2">PLACE OF ASSIGNMENT</td>
+    <td  colspan="14">{{ personal.office }}</td>
+  </tr>
+  <tr>
+    <td rowspan="2">No.</td>
+    <td rowspan="2">Course Title/Provider</td>
+    <td rowspan="2">Venue</td>
+    <td rowspan="2">Date</td>
+    <td colspan="4"  align="center">Type of Learning</td>
+    <td colspan="2">Classification</td>
+    <td rowspan="2">Training <br> Hours</td>
+    <td rowspan="2">Course <br> Fee</td>
+    <td rowspan="2">Post-Training <br> Report/Remarks</td>
+    <td rowspan="2">Status</td>
+    <td rowspan="2">Certificate</td>
+    <td rowspan="2">Remarks</td>
+    <td rowspan="2" colspan="2"> Action </td>
+  </tr>
+  <tr>
+    <td>Supervisory</td>
+    <td>Management</td>
+    <td>Technical</td>
+    <td>Others</td>
+    <td>Local</td>
+    <td>Int'l</td>
+  </tr>
+{% if trainings %}
+  {% for training in trainings %}
+  <tr>
+    <td> {{ forloop.counter }} </td> 
+    <td> {{ training.title }} </td>
+    <td> {{ training.venue }} </td>
+    <td> 
+      <b>TO : </b>{{ training.date_from }} <br>
+      <b>FROM : </b>{{ training.date_to }} 
+    </td>
+    <td> {% if training.learning_type == 'Supervisory' %}
+      <i class="fa fa-check" aria-hidden="true"></i>
+      {% endif %}
+    </td>
+    <td> {% if training.learning_type == 'Management' %}
+      <i class="fa fa-check" aria-hidden="true"></i>
+      {% endif %}
+    </td>
+    <td> {% if training.learning_type == 'Technical' %}
+      <i class="fa fa-check" aria-hidden="true"></i>
+      {% endif %}
+    </td>
+    <td> {% if training.learning_type == 'Others' %}
+      <i class="fa fa-check" aria-hidden="true"></i>
+      {% endif %}
+    </td>
+    <td> {% if training.classification == 'Local' %}
+      <i class="fa fa-check" aria-hidden="true"></i>
+      {% endif %}
+    </td>
+    <td> {% if training.classification == 'International' %}
+      <i class="fa fa-check" aria-hidden="true"></i>
+      {% endif %}
+    </td>
+    <td> {{ training.training_hours }} </td>
+    <td> {{ training.fee }} </td>
+    <td> {{ training.remarks }} </td>
+    {% if training.is_approve == "For Review" %}
+      <td style="color: #FD020E"> {{ training.is_approve }} </td>
+    {% endif %}
+    {% if training.is_approve == "Disapproved" %}
+      <td style="color: #FD020E"> {{ training.is_approve }} </td>
+    {% endif %}
+    {% if training.is_approve == "Approved" %}
+      <td style="color: #098C0D"> {{ training.is_approve }} </td>
+    {% endif %}
+    <td>
+     <a href="/pds/media/{{ training.file }}" target="_blank">{{ training.file }}</a> </td>
+    <td>{{ training.remarks }}</a> </td>
+    <td> <a href="/pds/editTrainings/{{ training.pk }}"><i class="fa fa-edit"></i></a> </td>
+<!--     <td> <a href="/pds/deleteTrainings/{{ training.pk }}" onclick="return confirm_delete('Are you sure you want to DELETE?')" ><i class="fa fa-trash"></i></a></td> -->
+  </tr> 
+  {% endfor %}
+{% else %}
+<tr>
+  <td colspan="13" ><b style="color: red;">No Training Record</b></td>
+</tr>
+{% endif %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,474 @@
+{% extends "base_project.html" %}
+ 
+{% block header %} <b>Edit</b> Airport Profile{% endblock header %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="/dashboard/airportlist">Airport Profile</a></li>
+    <li class="breadcrumb-item active">
+        Airport Edit
+    </li>
+</ol>
+{% endblock breadcrumb %} 
+
+
+{% block content %}
+
+{% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }} for {{ field.name}} </strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+    <div class="card-body">
+        <form method="POST" class="post-form" enctype="multipart/form-data" action="/dashboard/airportupdate/{{airport.id}}">
+            {% csrf_token %}
+            
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Airport Information</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Airport ID</label>                  
+                  <input type="text" name="airportuid" value=" {{ airport.airportuid }} " class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Airport Name</label>                  
+                  
+                  <input type="text" name="name" value=" {{ airport.name }} " class="form-control">
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Category</label>                  
+                  <select name="category" class="custom-select form-control" id="exampleSelectBorder">
+                    <option>{{ airport.category }}</option>
+
+                    {% if categorylist %}
+                        {% for cat in  categorylist %}
+                            <option>{{ cat }}</option>      
+                        {% endfor %}
+                    {% endif %}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Critical Aircraft</label>                  
+                  
+                  <input type="text" name="crit_aircraft" value=" {{ airport.crit_aircraft }} " class="form-control">
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>ICAO Code</label>                  
+                  
+                  <input type="text" name="icao_code" value=" {{ airport.icao_code }} " class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Designation</label>                  
+                  
+                  <input type="text" name="designation" value=" {{ airport.designation }} " class="form-control">
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Nearest Equivalent or Higher Category Airport</label>                  
+                  
+                  <input type="text" name="nehca" value=" {{ airport.nehca }} " class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Tower</label>                  
+                  
+                  <input type="text" name="tower" value=" {{ airport.tower }} " class="form-control">
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+
+               <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Commercial Flight</label>                  
+                  <select name="com_flight" class="custom-select form-control" id="exampleSelectBorder">
+                    <option>{{ airport.com_flight }}</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Operation Hours</label>                  
+                  
+                  <input type="text" name="operation_hours" value=" {{ airport.operation_hours }} " class="form-control">
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Number of Firetruck</label>                  
+                  
+                  <input type="text" name="firetruck" value=" {{ airport.firetruck }} " class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Navigational aids</label>                  
+                  
+                  <input type="text" name="nav_iads" value=" {{ airport.nav_iads }} " class="form-control">
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Night Rating</label>                  
+                  <select name="night_rating" class="custom-select form-control" id="exampleSelectBorder">
+                    <option>{{ airport.night_rating }}</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Airport Manager/Contact (ex. Manager Name/7944-2087, 0978563421)</label>                  
+                  
+                  <input type="text" name="airport_contact" value=" {{ airport.airport_contact }} " class="form-control">
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group ">
+                  <label>Notes/Remarks</label>                  
+                  <textarea name="note" class="form-control">{{ airport.note }} </textarea>
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+        </div>
+    </div>
+
+
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Runway Information</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Runway Dimension</label>                  
+                  
+                  <input type="text" name="runway_dimension" value=" {{ airport.runway_dimension }} " class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Runway Surface</label>                  
+                  
+                  <input type="text" name="runway_surface" value=" {{ airport.runway_surface }} " class="form-control">
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Runway Obstacles</label>    
+                  <textarea name="runway_obstacles" class="form-control">{{ airport.runway_obstacles }}</textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Runway Remarks</label>     
+                  <textarea name="runway_remarks" class="form-control">{{ airport.runway_remarks }}</textarea>
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+
+            </div>
+        </div>
+
+
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Taxiway Information</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Taxiway Dimension</label>                  
+                  
+                  <input type="text" name="taxiway_dimension" value=" {{ airport.taxiway_dimension }} " class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Taxiway Surface</label>                  
+                  
+                  <input type="text" name="taxiway_surface" value=" {{ airport.taxiway_surface }} " class="form-control">
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Taxiway Num</label>                  
+                  
+                  <input type="text" name="taxiway_num" value=" {{ airport.taxiway_num }} " class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Taxiway Description</label>                  
+                  
+                  <input type="text" name="taxiway_description" value=" {{ airport.taxiway_description }} " class="form-control">
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+
+            </div>
+        </div>
+
+
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Apron Information</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Apron Dimension</label>                  
+                  
+                  <input type="text" name="apron_dimension" value=" {{ airport.apron_dimension }} " class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Apron Surface</label>                  
+                  
+                  <input type="text" name="apron_surface" value=" {{ airport.apron_surface }} " class="form-control">
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+
+            
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group ">
+                  <label>No. Of Parking Bay  for wide body, medium body, Turbo or gen av</label>  
+                  <textarea name="apron_num" class="form-control">{{ airport.apron_num }} </textarea>               
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+
+            </div>
+        </div>
+
+
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Passenger Terminal Building Information</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Terminal Dimension</label>                  
+                  
+                  <input type="text" name="ptb_dimension" value=" {{ airport.ptb_dimension }} " class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Aircon (Aircon Capacity and number)</label>                  
+                  
+                  <input type="text" name="ptb_aircon" value=" {{ airport.ptb_aircon }} " class="form-control">
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Number of Toilets</label>                  
+                  
+                  <input type="text" name="ptb_toilet" value=" {{ airport.ptb_toilet }} " class="form-control">
+                </div>
+              </div>
+              
+            </div>
+            <!-- /.row -->
+
+           </div>
+        </div>
+
+
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Photo Upload</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Airport Photo</label> <br>                  
+                  
+                  <input type="file" name="profile_photo" value=" {{ airport.ptb_toilet }} " >
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Runway Photo</label> <br>                  
+                  
+                  <input type="file" name="profile_runway" value=" {{ airport.ptb_toilet }} " >
+                </div>
+              </div>              
+            </div>
+            <!-- /.row -->
+
+             <div class="row">
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Apron Photo</label> <br>                  
+                  
+                  <input type="file" name="profile_apron" value=" {{ airport.ptb_toilet }} " >
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>PTB Photo</label> <br>                  
+                  
+                  <input type="file" name="profile_ptb" value=" {{ airport.ptb_toilet }} " >
+                </div>
+              </div>              
+            </div>
+            <!-- /.row -->
+
+        
+
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            <button>Submit</button>
+          </div>
+        </div>
+        <!-- /.card -->
+
+        </form>
+    </div>
+    <!-- /.card-body -->
+{% endblock content %}   

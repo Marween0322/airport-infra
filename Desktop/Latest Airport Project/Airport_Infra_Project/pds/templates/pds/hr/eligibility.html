@@ -1,0 +1,53 @@
+{% extends "base_admin2.html" %}
+
+<!-- Page title goes here -->
+{% block header %}
+Training Record Summary
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Personnel</a></li>
+    <li class="breadcrumb-item active">Trainings</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- <a href="/pds/createTrainings/{{personal.pk }}" class="btn btn-app" style="background-color:#43494D; color: white"><i class="fa fa-plus"></i> Training</a> -->
+
+<table class="table table-bordered" style="background-color: white">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th rowspan="2">CAREER SERVICE/ RA 1080 (BOARD/ BAR) UNDER <br>SPECIAL LAWS/ CES/ CSEE <br>
+                              BARANGAY ELIGIBILITY / DRIVER'S LICENSE</th>
+        <th>RATING <br>  
+                                (If Applicable)</th>
+        <th width="15%">DATE OF EXAMINATION / CONFERMENT</th>
+        <th width="20%">PLACE OF EXAMINATION / CONFERMENT</th>
+        <th>LICENSE Number <br>(if applicable)</th>
+        <th width="10%">Date of Validity <br> (if applicable)</th>
+     </tr>
+   </thead> 
+{% if eligibility %}
+  {% for eligibile in eligibility %}
+  <tr>
+    <td> {{ forloop.counter }} </td> 
+    <td> {{ eligibile.eligibility }} </td>
+    <td> {{ eligibile.rating }} </td>
+    <td> {{ eligibile.exam_date }}</td>
+    <td> {{ eligibile.place }}</td>
+    <td> {{ eligibile.lic_number }}</td>
+    <td> {{ eligibile.validity }}</td>
+  </tr> 
+  {% endfor %}
+{% else %}
+<tr>
+  <td colspan="13" ><b style="color: red;">No Training Record</b></td>
+</tr>
+{% endif %}
+</table>
+
+{% endblock %}

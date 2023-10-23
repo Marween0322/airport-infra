@@ -1,0 +1,90 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>HRMD PDS ONLINE</title>
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="" class="h1"><b>HRMD</b> CAAP</a>
+    </div> 
+    <div class="card-body">
+      <p class="login-box-msg">Register a new membership</p>
+      {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+      <form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Sign up">
+	</form>
+    
+      <a href="/pds" class="text-center">I already have a membership</a>
+
+      <br><br>
+
+      <a href="/pds/privacy" class="text-center">CAAP Privacy Notice</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+            <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title">DATA PRIVACY NOTICE</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>The Civil Aviation Authority of the Philippines (CAAP), in line with <b>Republic Act 10173</b> or the <b> Data Privacy Act of 2012</b>, is committed to protect and secure personal information obtained from this portal.
+                    </p>
+
+                    <p>
+                      In compliance with the requirements of Data Privacy Act of 2012, the CAAP commits to ensure that all personal information obtained will be secured and remain confidential. Collected personal information will only be utilized for purposes of processing of applications, documentation, research, if applicable, and facilitation of future transaction. The personal information shall not be shared or disclosed with parties without consent unless the disclosure is required by, or in compliance with applicable laws and regulations.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+  $('#myModal').modal('show');
+  });
+</script>
+</body>
+</html>

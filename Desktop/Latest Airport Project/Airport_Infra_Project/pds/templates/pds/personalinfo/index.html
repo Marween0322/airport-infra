@@ -1,0 +1,529 @@
+{% extends "base_home.html" %}
+
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+Home Page
+{% endblock %}
+
+<!-- {% block styles %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+{% endblock styles %}  -->
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active">Home Profile</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+  {% if message %}
+  {% endif %}
+
+    {% if pds.id %}
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+         {% if pds.status == "Approved" %}  
+ 
+            <div class="row">
+              <div class="col-md-12">
+                  <!-- Widget: user widget style 1 -->
+                  <div class="card card-widget widget-user">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header bg-secondary">
+                      <h3 class="widget-user-username">{{ pds.first_name|title }} &nbsp;&nbsp;{{ pds.surname|title }}</h3>
+                      <h5 class="widget-user-desc">{{ pds.position_title }}</h5>
+
+                    </div>
+                    <div class="widget-user-image">
+                        <img src="media/{{ request.user.pds_info.photo}}" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="card-footer">
+                      <div class="row">
+                        <div class="col-sm-4 border-right">
+                          <div class="description-block">
+                            <h5 class="description-header">{{ pds.office }}</h5>
+                            <span class="description-text">Office</span>
+                          </div>
+                          <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-4 border-right">
+                          <div class="description-block">
+                            <h5 class="description-header">{{ pds.service }}</h5>
+                            <span class="description-text">Service</span>
+                          </div>
+                          <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-4">
+                          <div class="description-block">
+                            <h5 class="description-header">{{ pds.assignment }}</h5>
+                            <span class="description-text">Place of Assignment</span>
+                          </div>
+                          <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+                    </div>
+                  </div>
+                  <!-- /.widget-user -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- / row -->
+
+
+      <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <a href="personalinfo">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>Personal Data Sheet</h3>
+
+                <p>&nbsp;</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user-tie"></i>
+              </div>
+            </div>
+            </a>
+          </div>
+          <!-- ./col -->
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <a href="view_payslip">
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>Payslip</h3>
+
+                <p>&nbsp;</p>
+              </div>
+              <div class="icon">
+                <i class="fa-solid fa-peso-sign"></i>
+              </div>
+            </div>
+            </a>
+          </div>
+          <!-- ./col -->
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <a href="reorg">
+            <div class="small-box " style="background-color: #183C74   ; color: #FEFEFE;">
+              <div class="inner">
+                
+                <img src="/media/icons/reorg.png" width="175px">
+              </div>
+              <div class="icon">
+              </div>
+            </div>
+            </a>
+          </div>
+          <!-- ./col -->
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <a href="leavecredits">
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>Leave Credits</h3>
+
+                <p>&nbsp;</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-suitcase-rolling"></i>
+              </div>
+            </div>
+            </a>
+          </div>
+          <!-- ./col -->
+        </div>
+
+  <div class="row">
+          <div class="col-md-3">
+          {% if group_odg == "yes"  %}
+          <div >
+            <!-- small box -->
+            <a href="/dashboard">
+            <div class="small-box " style="background-color: #2874A6   ; color: #FEFEFE;">
+              <div class="inner">
+                <h3>Airport Infra Profile</h3>
+
+                <p>&nbsp;</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-plane-departure"></i>
+              </div>
+            </div>
+            </a>
+          </div>
+          <!-- ./col -->
+          {% endif %}
+          {% if group_memo == "yes"  %}
+          <div >
+            <!-- small box -->
+            <a href="/dashboard/bulletin">
+            <div class="small-box " style="background-color: #2874A6   ; color: #FEFEFE;">
+              <div class="inner">
+                <h3>Memo Page</h3>
+
+                <p>&nbsp;</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-file-text"></i>
+              </div>
+            </div>
+            </a>
+          </div>
+          <!-- ./col -->
+          {% endif %}
+
+            <div class="card card-default">
+              <div class="card-header" style="background-color: #F5590A; color: #fff">
+                <h5 >
+                  <i class="fa-solid fa-user-clock" style="font-size: 20px"></i>
+                     Work From Home Attendance Links
+                </h5>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                  <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
+                      <li class="nav-item has-treeview menu-open">         
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeCxj8XMkxgkTuART7BFNh8w34HkmByyJgLExiOA6i8KjXVJQ/formResponse" target="_blank" class="nav-link">
+                              <i class="fa-solid fa-user-clock" style="font-size: 25px"></i>
+                              <p style="font-size: 25px"> &nbsp;&nbsp; Central Office</p>
+                              <i class="fa fa-link"></i>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJwKzntlo3vc266SLuNMusVaXbwJn513CeQfyrPKJKwk2QCQ/viewform?usp=share_link" target="_blank" class="nav-link">
+                              <i class="fa-solid fa-user-clock" style="font-size: 25px"></i>
+                              <p style="font-size: 25px"> &nbsp;&nbsp; Area Center 1 </p>
+                              <i class="fa fa-link"></i>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvXHkEy90JeZxxR7xpyu27Fik8JRzQeBoEL9ByjbewnYFwEw/viewform?usp=share_link" target="_blank" class="nav-link">
+                              <i class="fa-solid fa-user-clock" style="font-size: 25px"></i>
+                              <p style="font-size: 25px"> &nbsp;&nbsp; Area Center 2 </p>
+                              <i class="fa fa-link"></i>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScZrk7_8msYGo6pkBqxbXHlflu-cHBDSbNQgeYyqIK_v-wf1w/viewform?usp=share_link" target="_blank" class="nav-link">
+                              <i class="fa-solid fa-user-clock" style="font-size: 25px"></i>
+                              <p style="font-size: 25px"> &nbsp;&nbsp; Area Center 3 </p>
+                              <i class="fa fa-link"></i>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScvS09znzPl51lzoH8t_jRN8rxcUgvX2QN3uT5fTORNUAD8yw/viewform?usp=share_link" target="_blank" class="nav-link">
+                              <i class="fa-solid fa-user-clock" style="font-size: 25px"></i>
+                              <p style="font-size: 25px"> &nbsp;&nbsp; Area Center 4 </p>
+                              <i class="fa fa-link"></i>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScvEpCEz9broYz8SGkfkhRLHYIO5twRpqOJn5idZm3WsbxgPg/viewform?usp=share_link" target="_blank" class="nav-link">
+                              <i class="fa-solid fa-user-clock" style="font-size: 25px"></i>
+                              <p style="font-size: 25px"> &nbsp;&nbsp; Area Center 5 </p>
+                              <i class="fa fa-link"></i>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-lMOIUGHCQTX93-rBTXldeqDjj04KY3uyFDN0ScgkoIscmg/viewform?usp=share_link" target="_blank" class="nav-link">
+                              <i class="fa-solid fa-user-clock" style="font-size: 25px"></i>
+                              <p style="font-size: 25px"> &nbsp;&nbsp; Area Center 6 </p>
+                              <i class="fa fa-link"></i>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvqX0DPf848fk8KBcPtisQRnPMuuDdb4GvB5gwiseCyVTlbA/viewform?usp=share_link" target="_blank" class="nav-link">
+                              <i class="fa-solid fa-user-clock" style="font-size: 25px"></i>
+                              <p style="font-size: 25px"> &nbsp;&nbsp; Area Center 7 </p>
+                              <i class="fa fa-link"></i>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSci_ql0_DYDyOvvXFIKNLBB_2f3PeGTkjWk-Y2mbqXEXxWL0A/viewform?usp=share_link" target="_blank" class="nav-link">
+                              <i class="fa-solid fa-user-clock" style="font-size: 25px"></i>
+                              <p style="font-size: 25px"> &nbsp;&nbsp; Area Center 8 </p>
+                              <i class="fa fa-link"></i>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfzEXkTXWTUjSAjtNdekCAuG68BjPV1QI1rTGHE8AD_Gu2GuA/viewform?usp=share_link" target="_blank" class="nav-link">
+                              <i class="fa-solid fa-user-clock" style="font-size: 25px"></i>
+                              <p style="font-size: 25px"> &nbsp;&nbsp; Area Center 9 </p>
+                              <i class="fa fa-link"></i>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfgFbg6g7qL9Bxpbp5HAnajZ1cMTwflP4aeejiGPGK0BQbXIw/viewform?usp=share_link" target="_blank" class="nav-link">
+                              <i class="fa-solid fa-user-clock" style="font-size: 25px"></i>
+                              <p style="font-size: 25px"> &nbsp;&nbsp; Area Center 10 </p>
+                              <i class="fa fa-link"></i>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc55cf5YQ1zow1TASxFx9DzGuMXU6Huj4A3pxXXLFjGuNlzAQ/viewform?usp=share_link" target="_blank" class="nav-link">
+                              <i class="fa-solid fa-user-clock" style="font-size: 25px"></i>
+                              <p style="font-size: 25px"> &nbsp;&nbsp; Area Center 11 </p>
+                              <i class="fa fa-link"></i>
+                            </a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeLcXk5cPtBx02mpEhmAe5dM_bANHQo6HtEFurLoniRO4ITEA/viewform?usp=share_link" target="_blank" class="nav-link">
+                              <i class="fa-solid fa-user-clock" style="font-size: 25px"></i>
+                              <p style="font-size: 25px"> &nbsp;&nbsp; Area Center 12 </p>
+                              <i class="fa fa-link"></i>
+                            </a>
+                          </li>
+                        </ul>       
+                      </li>
+                    </ul>
+                  </nav>
+
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-md-9">
+            <div class="card card-default">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-bullhorn"></i>
+                  Announcement
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+
+  {% if data %}
+  {% for post in data %}
+  
+    <div class="col-md-12">
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+        <h3 class="card-title">Post </h3>
+            <div class="card-tools">
+              <p class="btn btn-tool" style="color: black;">{{ post.post_date }}</p>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <h2>{{ post.title }}</h2>
+            {% if post.imgs %}
+            <div class="col-12">
+            <div class="card card-primary">
+              <div class="card-body">
+                <div class="row">
+                  {% for post in post.imgs %}
+                  <div class="col-sm-4">
+                    <a href="/media/{{post.images}}" data-toggle="lightbox" data-title="{{post.images}}" data-gallery="gallery">
+                      <img src="/media/{{post.images}}" class="img-fluid mb-2" alt="{{post.images}}"/>
+                    </a>
+                  </div>
+                  {% endfor %}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            {% if post.ext == "mp4" %}
+                  <video width="100%" controls autoplay muted>
+                    <source src="/media/{{ post.file }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+            {% endif %}
+
+            {% if post.ext == "pdf" %}
+                 <a href="/media/{{ post.file }}" download class="btn btn-app" style="background-color:#43494D; color: white"> <i class="fa fa-download" aria-hidden="true"></i> Download</a>
+            {% endif %}
+        </div>
+        <!-- /.card-body-->
+    </div>
+    </div>
+
+
+  {% endfor %}
+{% endif %}
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+
+
+
+
+    {% if data %}
+  {% for post in data %}
+    <div class="col-lg-9 col-md-9">
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+        <h3 class="card-title">Post </h3>
+            <div class="card-tools">
+              <p class="btn btn-tool" style="color: black;">{{ post.post_date }}</p>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <h2>{{ post.title }}
+              <br></h2>
+              
+              <a href="/media/{{ post.file }}" download  > {{ post.file }}</a>
+             
+            {% if post.imgs %}
+              <div class="row">
+                <div >
+
+                  {% for post in post.imgs %}
+                  <picture>
+                    <a href="/media/{{post.images}}" data-toggle="lightbox" data-title="{{post.images}}" data-gallery="gallery">
+                      <source srcset="/media/{{post.images}}" type="image/svg+xml">
+                      <img src="/media/{{post.images}}" class="img-fluid img-thumbnail" alt="..." width="49%">      
+                    </a>
+                  </picture>
+                  {% endfor %}
+                </div>
+
+              </div>
+              <!-- Gallery -->
+            {% endif %}
+
+        </div>
+        <!-- /.card-body-->
+    </div>
+    </div>
+  {% endfor %}
+{% endif %}
+
+      </div>
+     <!-- /.row -->
+
+
+    {% else%}
+          <h2 style="color: Green;"> You Have successfully created your Personal Data Sheet!</h2>
+          <h4> Please wait for HRMD's approval to further access your portal account.</h4>
+    {% endif %}
+
+            
+
+      </div><!-- /.container-fluid -->
+
+
+
+
+
+    {% else %}
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">  <i class="fa-regular fa-file-circle-plus"></i>
+              <div class="inner">
+                <h3><i class="fa-solid fa-file-lines" style="font-size:85px;color:white"></i>
+                  <i class="fa fa-plus" style="font-size:45px;color:white"></i>
+                </h3>
+                <p>ADD Personnal Information</p>
+              </div>
+              <div class="icon">
+                </div>
+              <a href="/pds/infoCreate" class="small-box-footer">Create PDS <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    {% endif %}
+
+    
+{% endblock %}
+
+
+{% block script %}
+<script>
+  $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+      });
+    });
+
+    $('.filter-container').filterizr({gutterPixels: 3});
+    $('.btn[data-filter]').on('click', function() {
+      $('.btn[data-filter]').removeClass('active');
+      $(this).addClass('active');
+    });
+  })
+</script>
+{% if messages %}
+        {% for message in messages %}
+            <script>
+              $(function() {
+                var Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top',
+                  showConfirmButton: false,
+                  timer: 9000
+                });
+
+                
+                $('.swalDefaultInfo').ready(function() {
+                  Toast.fire({
+                    icon: 'info',
+                    title: '{{message}}'
+                  })
+                });
+              });
+            </script>
+        {% endfor %}
+    
+    {% endif %}
+
+{% endblock script %}

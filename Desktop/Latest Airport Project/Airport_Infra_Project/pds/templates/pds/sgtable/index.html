@@ -1,0 +1,50 @@
+{% extends "base_admin.html" %}
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+Salary Grade List
+{% endblock %}
+
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Salary Grade</a></li>
+    <li class="breadcrumb-item active">List</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<a href="/pds/sg_create" class="btn btn-app" style="background-color:#059528; color: white"><i class="fa fa-peso-sign" aria-hidden="true"></i> Create</a>
+
+<table class="table table-bordered" style="background-color: white">
+<thead style="position: sticky;top: 0;">
+  <!-- New Rate -->
+  <tr style="background-color: #C0CFD8">
+    <th>Salary Id</th>
+    <th>Salary Grade</th>
+    <th>Step Increment</th>
+    <th>Monthly Salary</th>
+    <th>ACTION</th>
+  </tr>
+</thead>
+
+{% if salary_grade %}
+  {% for sg in salary_grade %}
+  <tbody>
+    <tr>
+      <td> {{ sg.salary_id }}</td>
+      <td> {{ sg.grade }} </td>
+      <td> {{ sg.step }}</td> 
+      <td> {{ sg.rate|intcomma }} </td>
+      <td> <a href="/pds/sg_edit/{{ sg.id }}" ><i class="fas fa-edit" style="color: #e68a00"></i></a> UPDATE</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+{% endif %}
+
+
+
+</table>
+{% endblock %}

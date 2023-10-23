@@ -1,0 +1,106 @@
+{% extends "base3.html" %}
+
+<!-- Page title goes here -->
+{% block header %}
+Vaccine Page
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Vaccine</a></li>
+    <li class="breadcrumb-item active">List</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<br>
+{% if vaccine %}
+
+{% else %}
+<a align="left" class="btn btn-primary btn-sm" href="/pds/vaxCreate"><i class="fas fa-syringe" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp; Submit Vaccine</a>
+{% endif %}
+<br>
+<br>
+
+<table class="table table-striped">
+            <thead>
+                <tr>
+                    <th colspan="5">First Dose</th>
+                    <th colspan="4">Second Dose</th>
+                    <th colspan="4">Booster</th>
+                    <th colspan="5">Second Booster</th>
+                </tr>
+                <tr class="info">
+                    <th>Name</th>    
+                    <th>Vaccine Manufacturer</th>
+                    <th>Date of Vaccine</th>
+                    <th>Place of Vaccine</th>
+                    <th>Uploaded Image</th>
+                    <th>Vaccine Manufacturer</th>
+                    <th>Date of Vaccine</th>
+                    <th>Place of Vaccine</th>
+                    <th>Uploaded Image</th>
+                    <th>Vaccine Manufacturer</th>
+                    <th>Date of Vaccine</th>
+                    <th>Place of Vaccine</th>
+                    <th>Uploaded Image</th>
+                    <th>Vaccine Manufacturer</th>
+                    <th>Date of Vaccine</th>
+                    <th>Place of Vaccine</th>
+                    <th>Uploaded Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+        {% if vaccine %}
+        {% for vac in vaccine %}
+            <tbody>
+                <tr>
+                    <td> {{ vac.vax.first_name }} &nbsp;&nbsp; {{ vac.vax.last_name }} </td>
+                    <td> {{ vac.name1 }} </td>
+                    <td> {{ vac.date1 }} </td>
+                    <td> {{ vac.place1 }} </td>
+                    <td>
+                        {% if vac.file1 %}
+                        <a href="media/{{ vac.file1 }}" target="_blank">View Uploaded Vaccine</a>
+                        {% else %}
+                        {% endif %}
+                    </td>
+                    <td> {{ vac.name2 }} </td>
+                    <td> {{ vac.date2 }} </td>
+                    <td> {{ vac.place2 }} </td>
+                    <td>
+                         {% if vac.file2 %}
+                        <a href="media/{{ vac.file2 }}" target="_blank">View Uploaded Vaccine</a>
+                        {% else %}
+                        {% endif %}
+                    </td>
+                    <td> {{ vac.name3 }} </td>
+                    <td> {{ vac.date3 }} </td>
+                    <td> {{ vac.place3 }} </td>
+                    <td>
+                        {% if vac.file3 %}
+                        <a href="media/{{ vac.file3 }}" target="_blank">View Uploaded Vaccine</a>
+                        {% else %}
+                        {% endif %}
+                    </td>
+                    <td> {{ vac.name4 }} </td>
+                    <td> {{ vac.date4 }} </td>
+                    <td> {{ vac.place4 }} </td>
+                    <td>
+                         {% if vac.file4 %}
+                        <a href="media/{{ vac.file4 }}" target="_blank">View Uploaded Vaccine</a>
+                        {% else %}
+                        {% endif %}
+                    </td>
+                    <td><a href="updateVax/{{ vac.pk }}"> <button class="btn btn-warning">Update</button>  </a> </td>
+                </tr>
+            </tbody>
+                {% endfor %}
+        {% else %}
+            <p>No List</p>
+        {% endif %}
+        </table>
+{% endblock %}

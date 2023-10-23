@@ -1,0 +1,120 @@
+:root {
+    --green: #5cb85c;
+    --blue: #3A98B9;
+    --red: #d9534f;
+    --yellow: #FFE15D;
+    --font-dark: #212A3E;
+    --font-white: #FFFF;
+    --inverse: #292b2c;
+    --faded: #f7f7f7;
+  }
+  #caap{
+    background: url('./img/caap.png') no-repeat 150% 30%;
+    background-size: 250px;
+    background-color: var(--blue);
+  }
+  #dotr{
+    background: url('./img/dotr.png') no-repeat 120% 30%;
+    background-size: 250px;
+    background-color: var(--blue);
+  }
+  #complete{
+    background: url('./img/check.png') no-repeat 124% 30%;
+    background-size: 200px;
+    background-color: var(--green);
+  }
+  #ongoing{
+    background: url('./img/on-going.png') no-repeat 150% 30%;
+    background-size: 250px;
+    background-color: var(--yellow);
+    color: var(--font-dark);
+  }
+  #proc{
+    background: url('./img/procurment2.png') no-repeat 130% 25%;
+    background-size: 250px;
+    background-color: var(--red);
+  }
+  .header{
+    color: var(--font-dark);
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .img{
+    position: absolute;
+    left: 70%;
+    width: 140px;
+    height: auto;
+  }
+  .content {
+    padding: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5vh;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  }
+
+  a:link {
+    text-decoration: none;
+    color: white;
+  }
+  .flexbox{
+    display: flex;
+    gap: 5vh;
+  }
+
+  .title {
+    font-size: 1.3rem;
+    font-family: 'Helvetica';
+    font-weight: bold;
+  }
+  
+  .card-container {
+    text-decoration: none;
+    transition: margin 0.2s ease;
+  }
+  .card-container:hover{
+    margin-top: -20px;
+  }
+
+  .card{
+    color: var(--font-white);
+    text-decoration: none;
+    height: 10%;
+    width: 500px;
+    padding: 5vh;
+    margin-top: 20px;
+    transition: .3s ease;
+  }
+  .card:hover{
+    color: var(--font-white);
+    transform: scale(1.2);
+  }
+
+
+
+  .card-link {
+    color: var(--font-white);
+  }
+
+  .card-link:hover {
+    cursor: pointer;
+  }
+
+  .more-info {
+    color: white;
+    font-size: 1.1rem;
+
+  }
+
+  .more-info:hover {
+    cursor: pointer;
+    color: var(--font-dark);
+    background-color: var(--yellow);
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    transition: .4s ease;
+  }

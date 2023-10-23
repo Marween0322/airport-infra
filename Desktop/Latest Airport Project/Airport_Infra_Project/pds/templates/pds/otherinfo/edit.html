@@ -1,0 +1,357 @@
+{% extends "base2.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+OTHER INFORMATION Update Page
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active">OTHER INFORMATION Page</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Other Information -->
+  {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+<br>
+<form method="POST" class="post-form" enctype="multipart/form-data" action="/pds/otherinfoUpdate/{{other.id}}">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">VIII.  OTHER INFORMATION</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            
+            <div class="row">
+              <div class="col-md-6">
+                <h6>
+                <br><br>
+               34 . Are you related by consanguinity or affinity to the appointing or recommending authority, or to the
+              chief of bureau or office or to the person who has immediate supervision over you in the Office,
+              Bureau or Department where you will be apppointed,
+                <br><br>
+              </h6>
+                <div class="form-group">
+                  <label>a. Within the third degree?</label>
+                    <select class="form-control" name="related_third">
+                      <option value="{{ other.related_third }}">{{ other.related_third }}</option>
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                 </div>
+                <!-- /.form-group -->
+                
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                
+                <div class="form-group"><br><br><br><br>
+                  <label>If YES, give details:</label>
+                  <input type="text" class="form-control" name="related_detail_3" required maxlength="100" value="{{ other.related_detail_3 }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+               <div class="form-group">
+                  <label>b. within the fourth degree (for Local Government Unit - Career Employees)?</label>
+                    <select class="form-control" name="related_fourth" >
+                      <option value="{{ other.related_fourth }}">{{ other.related_fourth }}</option>
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                 </div>
+                <!-- /.form-group -->
+                  <!-- /.col -->
+                </div>
+
+                <div class="col-md-6">
+                <div class="form-group">
+                   <label>If YES, give details:</label>
+                  <input type="text" class="form-control" name="related_detail_4" required maxlength="100" value="{{ other.related_detail_4 }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                 <label>35. a. Have you ever been found guilty of any administrative offense?</label>
+                    <select class="form-control" name="admin_offense" value="{{ other.admin_offense }}">
+                      <option value="{{ other.admin_offense }}">{{ other.admin_offense }}</option>
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label>If YES, give details :</label>
+                  <input type="text" class="form-control" name="admin_offense_detail" required maxlength="100" value="{{ other.admin_offense_detail }}" />
+                    </div>
+                    <!-- /.form-group -->
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>b. Have you been criminally charged before any court?</label>
+                    <select class="form-control" name="crime">
+                      <option value="{{ other.crime }}">{{ other.crime }}</option>
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+              </div>
+
+              <div class="col-md-6">                
+                 <div class="form-group">
+                       <label>If YES, give details Status of Case/s:</label>
+                  <input type="text" class="form-control" name="crime_detail" required maxlength="100" value="{{ other.crime_detail }}" />
+                    </div>
+                    <!-- /.form-group -->
+                  <div class="form-group">
+                       <label>Date Filed:</label>
+                  <input type="text" class="form-control" name="crime_date" required maxlength="100" value="{{ other.crime_date }}" />
+                    </div>
+                    <!-- /.form-group -->
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group"><br>
+                  <label>36. Have you ever been convicted of any crime or violation of any law, decree, ordinance or
+        regulation by any court or tribunal?</label>
+                    <select class="form-control" name="convic">
+                      <option value="{{ other.convic }}">{{ other.convic }}</option>
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group"><br>
+                  <label>If YES, give details:</label>
+                  <input type="text" class="form-control" name="convic_detail" required maxlength="100" value="{{ other.convic_detail }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                 <div class="form-group">
+                  <label>37. Have you ever been separated from the service in any of the following modes: resignation,
+        retirement, dropped from the rolls, dismissal, termination, end of term, finished contract or phased out
+        (abolition) in the public or private sector?</label>
+                    <select class="form-control" name="seperated">
+                      <option value="{{ other.seperated }}">{{ other.seperated }}</option>
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group"><br>
+                    <label>If YES, give details:</label>
+                  <input type="text" class="form-control" name="seperated_detail" required maxlength="100" value="{{ other.seperated_detail }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                 <div class="form-group">
+                  <label>38. a. Have you ever been a candidate in a national or local election held within the last year (except
+        Barangay election)?</label>
+                    <select class="form-control" name="candidate">
+                      <option value="{{ other.candidate }}">{{ other.candidate }}</option>
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>If YES, give details:</label>
+                  <input type="text" class="form-control" name="candidate_detail" required maxlength="100" value="{{ other.candidate_detail }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                 <label> b. Have you resigned from the government service during the three (3)-month period before the
+       last election to promote/actively campaign for a national or local candidate?</label>
+                    <select class="form-control" name="resigned">
+                      <option value="{{ other.resigned }}">{{ other.resigned }}</option>
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="form-group"><br>
+                  <label>If YES, give details:</label>
+                  <input type="text" class="form-control" name="resigned_detail" required maxlength="100" value="{{ other.resigned_detail }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+          </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                 <label>39. Have you acquired the status of an immigrant or permanent resident of another country?</label>
+                    <select class="form-control" name="immigrant">
+                      <option value="{{ other.immigrant }}">{{ other.immigrant }}</option>
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                 <div class="form-group">
+                   <label>If YES, give details (Country):</label>
+                  <input type="text" class="form-control" name="immigrant_detail"  maxlength="100" value="{{ other.immigrant_detail }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                 <div class="form-group">
+
+                <b>40. Pursuant to: (a) Indigenous People's Act (RA 8371); (b) Magna Carta for Disabled Persons (RA
+        7277); and (c) Solo Parents Welfare Act of 2000 (RA 8972), please answer the following items:</b>
+                <br><br> 
+                  <label>a. Are you a member of any indigenous group?</label>
+                    <select class="form-control" name="indigenous">
+                      <option value="{{ other.indigenous }}">{{ other.indigenous }}</option>
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <br>
+                <br><br> 
+                 <label>If YES, give details:</label>
+                  <input type="text" class="form-control" name="indigenous_detail"  maxlength="100" value="{{ other.indigenous_detail }}" />
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                 <label>a Are you differently abled?</label>
+                    <select class="form-control" name="disability">
+                      <option value="{{ other.disability }}">{{ other.disability }}</option>
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>If YES, specify ID number and upload certificate:</label>
+                  <input type="text" class="form-control" name="disability_detail"  maxlength="100" value="{{ other.disability_detail }}" />
+                  <input type="file" name="disability_image">
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <br><br>
+                  <label>c. Are you a solo parent?</label>
+                    <select class="form-control" name="soloparent">
+                      <option value="{{ other.soloparent }}">{{ other.soloparent }}</option>
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>If YES, specify ID number and upload certificate:</label>
+                  <input type="text" class="form-control" name="soloparent_detail"  maxlength="100" value="{{ other.soloparent_detail }}" />
+                  <input type="file" name="soloparent_image">
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            
+
+        
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Other information -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">Submit</button>  
+    </div>  
+  </div>
+</div>
+
+  <br><br><br>
+</form>  
+{% endblock %}

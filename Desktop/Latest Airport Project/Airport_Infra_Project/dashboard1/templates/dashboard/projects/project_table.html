@@ -1,0 +1,220 @@
+{% extends "base_project.html" %}
+{% load static %}
+{% load humanize %}
+{% block title %}Airport Project Records{% endblock title %}
+
+{% block content %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'dist/css_projects/project-table.css' %}">
+</head>
+
+<style>
+  .form-inline {
+    display: inline-block;
+  }
+  .icon2 {
+    display: inline-flex;
+    padding-left: 65%;
+  }
+
+
+
+</style>
+
+    <header><h2 align="center" > {{name}} Projects</h2> <br><br></header>
+  <a href="/dashboard/add_project" class="btn btn-app" style="background-color:#43494D; color: white"><i class="fa fa-plus"></i> Projects</a>
+  
+  <div class="icon2 justify-content-end">
+    <div class="col-auto mr-aut">
+      <!-- small box -->
+      <a href="/dashboard/complete">
+      <div id="complete" class="small-box card1  bg-info">
+        <div class="inner">
+          <h3>{{ count_complete }}</h3>
+
+          <p style="font-size: 14.5px;"><b>Complete Projects</b></p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+      </div>
+    </a>
+    </div>
+    <!-- ./col -->
+    <div class="col-auto mr-aut">
+      <!-- small box -->
+      <a href="/dashboard/ongoing">
+      <div id="ongoing" class="small-box card1  bg-warning">
+        <div class="inner">
+          <h3>{{ count_ongoing }}</h3>
+
+          <p style="font-size: 14.5px;"><b>Ongoing Projects</b></p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-person-add"></i>
+        </div>
+      </div>
+    </a>
+    </div>
+    <!-- ./col -->
+    <div class="col-auto">
+      <!-- small box -->
+      <a href="/dashboard/procurement">
+      <div id="proc" class="small-box card1  bg-danger">
+        <div class="inner">
+          <h3>{{ count_procurement }}</h3>
+
+          <p style="font-size: 15px;"><b>Under Procurement Projects</b></p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-pie-graph"></i>
+        </div>
+      </div>
+    </a>
+    </div>
+    <!-- ./col -->
+  </div>
+
+
+    <div class="section-block">
+      <section class="project-sect1">
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+    <div class="row">
+          <div class="container-fluid">
+            <h2 class="text-center display-6">Search</h2>
+            <form method="POST" action="/dashboard/project_search">
+              {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label>Sort Order:</label>
+                                    <select name="search_order" class="select2 form-control form-control-lg" style="width: 100%;">
+                                        <option value="title" selected>Project Name</option>
+                                        <option value="location">Airport</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label>Agency:</label>
+                                    <select name="search_agency" class="select2 form-control form-control-lg" style="width: 100%;">
+                                        <option selected>{{name}}</option>
+                                        <option>CAAP</option>
+                                        <option>DOTr</option>
+                                    </select>
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <input type="search" name="search_project" class="form-control form-control-lg" placeholder="Type your project name here" value="{{value_project}}">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-lg btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+        <!-- /.row -->
+
+        <hr><br>
+
+
+        <div class="card">
+          <table class="card-table">
+            <table class="table table-bordered p-1">
+            <thead>
+              <tr>
+                <th>ID #</th>
+                <th style="text-align: left;">Project Name</th>
+                <th>Location</th>
+                <th>Contractor</th>
+                <th>Project Progress</th>
+                <th>Current Status</th>
+                <th>Action</th>
+              </tr>
+            </thead> 
+            <tbody>
+              {% for project in projects %}
+              <tr>
+                <!-- ID NUMBER -->
+                <td class="pid">{{ project.id }}</td>
+
+                <!-- PROJECT NAME -->
+                
+                <td class="pname"><a  class="pname-link" href="view/{{ project.id }} "> {{ project.title|safe}}</a></td>
+
+                <!-- PROJECT LOCATION -->
+                
+                <td ><b> {{ project.location|title}} </b></td>
+                <td > {{ project.contract_contractor|title}} </td>
+
+                <!-- PROJECT PROGRESS -->
+                <td class="">
+                  <div id="" class="progress progress-sm">
+                    <!-- change color based on percentage -->
+                    {% if project.progress >= 90 and project.progress <= 100 %}
+                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.progress }}%">
+                      </div>
+                    {% endif %}
+                    {% if project.progress >= 75 and project.progress <= 89  %}
+                      <div class="progress-bar" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.progress }}%">
+                      </div>
+                    {% endif %}
+                    {% if project.progress >= 30 and project.progress <= 74  %}
+                      <div class="progress-bar bg-yellow" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.progress }}%">
+                      </div>
+                    {% endif %}
+                    {% if project.progress >= 0 and project.progress <= 29 %}
+                      <div class="progress-bar bg-red" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.progress }}%">
+                      </div>
+                    {% endif %}
+                  </div>
+                  <p>{{ project.progress }}% Complete</p>
+
+                </td>
+           
+                {% if "Project completed" in project.status or "Completed" in project.status %}
+                <td class="pstatus"><button type="button" class="btn btn-success btn-sm">Complete</button> </td>                
+                {% elif "On- going" in project.status %}
+                <td class="pstatus"><button type="button" class="btn btn-primary btn-sm">On-Going</button> </td>
+
+                {% elif "SAC" in project.status %}
+                <td class="pstatus"><button type="button" class="btn btn-warning btn-sm">SAC</button> </td>
+                {% elif "under procurement" in project.status or "Under procurement" in project.status %}
+                <td class="pstatus"><button type="button" class="btn btn-danger btn-sm">Under procurement</button> </td>
+                {% else %}
+                <td class="pstatus"><button type="button" class="btn btn-secondary btn-sm">{{ project.status }}</button></td>
+
+                {% endif %}
+                
+                  
+                  <th class="col-auto mr-auto"><a href="/dashboard/edit/{{ project.id }}" class="btn btn-block btn-outline-primary" ><span class="fa fa-edit"> </span></a></th>
+                  <th class="col-auto mr-auto"><a href="/dashboard/delete/{{ project.id }}" class="btn btn-block btn-outline-danger" ><span class="fa fa-trash"> </span></a></th>
+                
+
+
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </table>
+        </div>
+      </section>
+    
+    </div>
+{% endblock content %}
+

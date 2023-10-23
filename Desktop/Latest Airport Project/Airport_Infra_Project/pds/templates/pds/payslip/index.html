@@ -1,0 +1,241 @@
+{% extends "base_admin.html" %}
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+Payslip List
+{% endblock %}
+
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Personnel</a></li>
+    <li class="breadcrumb-item active">Payslip</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<a href="/pds/createPayslip" class="btn btn-app" style="background-color:#43494D; color: white"><i class="fa fa-plus"></i> Payslip</a>
+
+<a href="/pds/exportPayslip" class="btn btn-app" style="background-color:#076CAA; color: white"><i class="fa fa-download" aria-hidden="true"></i> Export .xls</a>
+
+<a href="/pds/exportPayslip2" class="btn btn-app" style="background-color:#04B451; color: white"><i class="fa fa-download" aria-hidden="true"></i> Export Per Office .xls</a>
+
+<a href="/pds/createPayslip2" class="btn btn-app" style="background-color:#43494D; color: white"><i class="fa fa-plus"></i> Payslip no PDS</a>
+
+<table class="table table-bordered" style="background-color: white">
+<thead style="position: sticky;top: 0;">
+  <!-- New Rate -->
+  <tr style="background-color: #C0CFD8">
+    <th rowspan="3" >Username</th>
+    <th rowspan="3" colspan="2">Surname</th>
+    <th rowspan="3">First Name</th>
+    <th rowspan="3">Office</th>
+    <th>5-01-03-010</th>
+    <th>5-01-03-020</th>
+    <th>5-01-03-030</th>
+    <th>5-01-03-040</th>
+    <th>5-01-01-010</th>
+    <th>2-02-01-010-1</th>
+    <th>2-02-01-020-1</th>
+    <th>2-02-01-020-1A</th>
+    <th>2-02-01-030-1</th>
+    <th>2-02-01-040</th>
+    <th>2-99-99-990-6</th>
+    <th>2-02-01-020-2</th>
+    <th>2-02-01-020-3</th>
+    <th>2-02-01-020-5</th>
+    <th>2-02-01-020-6</th>
+    <th>2-02-01-020-11E</th>
+    <th>2-02-01-020-14</th>
+    <th>2-02-01-020-15</th>
+    <th>2-02-01-020-16</th>
+    <th>2-02-01-020-17</th>
+    <th>2-02-01-020-18</th>
+    <th>2-02-01-020-19</th>
+    <th>2-02-01-020-20</th>
+    <th>2-02-01-030-1A</th>
+    <th>2-02-01-030-2</th>
+    <th>2-02-01-030-2A</th>
+    <th>2-02-01-030-3</th>
+    <th>2-02-01-030-3A</th>
+    <th>2-99-99-990-8</th>
+    <th>2-99-99-990-9</th>
+    <th>2-99-99-990-10</th>
+    <th>2-99-99-990-10A</th>
+    <th>2-99-99-990-10B</th>
+    <th>2-99-99-990-12</th>
+    <th>2-99-99-990-13</th>
+    <th>2-99-99-990-16</th>
+    <th>2-99-99-990-18</th>
+    <th>2-99-99-990-19</th>
+    <th>2-99-99-990-21</th>
+    <th>2-99-99-990-22</th>
+    <th>2-99-99-990-28</th>
+    <th>2-99-99-990-33</th>
+    <th>2-99-99-990-34</t>
+    <th>2-99-99-990-35</th>
+    <th>1-03-05-010</th>
+    <th>1-99-01-040</th>
+    <th>1-03-05-990</th>
+    <th rowspan="3" id="redColor">Deductions</th>
+    <th rowspan="2">5-01-02-010</th>
+    <th rowspan="2">5-01-04-990 </th>
+    <th rowspan="3" id="greenColor">Net Pay</th>
+    <th rowspan="3">111-07</th>
+    <th rowspan="3">15th</th>
+    <th rowspan="3">30th</th>
+    <th rowspan="3">Total</th>
+    <th rowspan="3">Status</th>
+    <th rowspan="3">Remarks</th>
+  </tr>
+  <!-- Title -->
+  <tr>
+    <th id="greenColor">
+      GOVT. SHARE
+    </th>
+    <th id="greenColor">
+      EMPLOYEE'S COMPENSATION
+    </th>
+    <th id="greenColor">
+      PAGI-IBIG PREMIUM
+    </th>
+    <th id="greenColor">
+      PHILHEALT PREMIUM
+    </th>
+    <th id="greenColor">
+      GROSS PAY
+    </th>
+    <th id="redColor" colspan="42">
+      DEDUCTIONS
+    </th>
+  </tr>
+  <!-- Old Rate -->
+  <tr>
+    <th id="greenColor">731</th>
+    <th id="greenColor">732</th>
+    <th id="greenColor">733</th>
+    <th id="greenColor">734</th>
+    <th id="greenColor">701</th>
+    <th id="redColor">412</th>
+    <th  id="redColor">413-1</th>
+    <th  id="redColor">413-1A</th>
+    <th  id="redColor">414-1</th>
+    <th  id="redColor">415</th>
+    <th  id="redColor">439-6</th>
+    <th  id="redColor">413-2</th>
+    <th  id="redColor">413-3</th>
+    <th  id="redColor">413-5</th>
+    <th  id="redColor">413-6</th>
+    <th  id="redColor">413-11E</th>
+    <th  id="redColor">413-14</th>
+    <th  id="redColor">413-15</th>
+    <th  id="redColor">413-16</th>
+    <th  id="redColor">413-17</th>
+    <th  id="redColor">413-18</th>
+    <th  id="redColor">413-19</th>
+    <th  id="redColor">413-20</th>
+    <th  id="redColor">414-1A</th>
+    <th  id="redColor">414-2</th>
+    <th  id="redColor">414-2A</th>
+    <th  id="redColor">414-3</th>
+    <th  id="redColor">414-3A</th>
+    <th  id="redColor">439-8</th>
+    <th  id="redColor">439-9</th>
+    <th  id="redColor">439-10</th>
+    <th  id="redColor">439-10A</th>
+    <th  id="redColor">439-10B</th>
+    <th  id="redColor">439-12</th>
+    <th  id="redColor">439-13</th>
+    <th  id="redColor">439-16</th>
+    <th  id="redColor">439-18</th>
+    <th  id="redColor">439-19</th>
+    <th  id="redColor">439-21</th>
+    <th  id="redColor">439-22</th>
+    <th  id="redColor">439-28</th>
+    <th  id="redColor">439-33</th>
+    <th  id="redColor">439-34</th>
+    <th  id="redColor">439-35</th>
+    <th  id="redColor">146</th>
+    <th  id="redColor">148</th>
+    <th  id="redColor">149-TAX</th>
+    <th id="greenColor">711</th>
+    <th id="greenColor">749-OSP</th>
+  </tr>
+</thead>
+
+{% if payslip %}
+  {% for pay in payslip %}
+  <tbody>
+    <tr>
+      <td> <a href="editPayslip/{{ pay.id }}"><i class="fa fa-edit"></i></a>
+       </td>
+       <td>{{ pay.payslip }}</td>
+       <td>{{ pay.surname }}</td> 
+      <td> {{ pay.first_name }} </td>
+      <td> {{ pay.office }}  </td>
+      <td> {{ pay.pay_731|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_732|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_733|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_734|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_701|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_412|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_413_1|default_if_none:""|intcomma}} </td>
+      <td> {{ pay.pay_414_1|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_415|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_6|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_413_2|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_413_3|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_413_5|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_413_6|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_413_11e|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_413_14|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_413_15|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_413_16|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_413_17|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_413_18|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_413_19|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_413_20|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_414_1a|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_414_2|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_414_2a|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_414_3|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_414_3a|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_8|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_9|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_10|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_10a|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_10b|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_12|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_13|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_16|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_18|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_19|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_21|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_22|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_28|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_33|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_34|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_439_35|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_146|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_148|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_149_tax|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.deduc|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_711|default_if_none:"" |intcomma}} </td>
+      <td> {{ pay.pay_749_osp|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.netpay|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_111_07|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_15th|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.pay_30th|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.total|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.status|default_if_none:""|intcomma }} </td>
+      <td> {{ pay.remarks|default_if_none:""|intcomma }} </td>
+    </tr>
+  </tbody>
+  {% endfor %}
+{% endif %}
+
+</table>
+{% endblock %}

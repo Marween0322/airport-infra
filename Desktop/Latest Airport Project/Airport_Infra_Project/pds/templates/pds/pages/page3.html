@@ -1,0 +1,1334 @@
+ {% extends "base_admin3.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="/pds">PDS</a></li>
+    <li class="breadcrumb-item active">PAGE 3</li>
+</ol>
+{% endblock breadcrumb %}
+
+{% block menu %}
+<li class="nav-item">
+   <a href="/pds/page1/{{pds.id}}" class="nav-link">
+    <i class="fas fa-user"></i>
+    <p> &nbsp;&nbsp;Page 1</p>
+  </a>
+</li>
+<li class="nav-item">
+   <a href="/pds/page2/{{pds.id}}" class="nav-link">
+    <i class="fas fa-user"></i>
+    <p> &nbsp;&nbsp;Page 2</p>
+  </a>
+</li>
+<li class="nav-item">
+   <a href="/pds/page3/{{pds.id}}" class="nav-link">
+    <i class="fas fa-user"></i>
+    <p> &nbsp;&nbsp;Page 3</p>
+  </a>
+</li>
+<li class="nav-item">
+   <a href="/pds/page4/{{pds.id}}" class="nav-link">
+    <i class="fas fa-user"></i>
+    <p> &nbsp;&nbsp;Page 4</p>
+  </a>
+</li>
+{% endblock menu %}
+
+<!-- Page Content goes here -->
+{% block content %} 
+<!-- VOLUNTARY -->
+    <div class="row" >
+        <div class="col" style="background-color:gray;"><h3 style=" color:white;">VI. VOLUNTARY WORK OR INVOLVEMENT IN CIVIC / NON-GOVERNMENT / PEOPLE / VOLUNTARY ORGANIZATION/S</h3></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>NAME & ADDRESS OF ORGANIZATION (Write in full)</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br> <u>INCLUSIVE DATES</u><br> FROM</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br><u>INCLUSIVE DATES</u><br> TO</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>NUMBER OF HOURS</div>
+     <div class="col-sm-4" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>POSITION / NATURE OF WORK</div>
+    </div>
+
+  {% if voluntary %}
+      {% for Vol in voluntary %}
+            <div class="row" align="center">
+             <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4>{{Vol.name}}</h4></b></div>
+             <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{Vol.vol_from}}</h4></b></div>     
+             <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{Vol.vol_to}}</h4></b></div>
+             <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{Vol.position}}</h4></b></div>
+             <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4>{{Vol.hours}}</h4></b></div>
+            </div>
+      {% endfor %}
+  {% else %}
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4>N/A</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>N/A</h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4>N/A</h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+  {% endif %}
+
+    {% if volun == 1 %}   
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+     {% endif %}
+
+     {% if volun == 2 %}   
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+     {% endif %}
+
+     {% if volun == 3 %}   
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+     {% endif %}
+
+     {% if volun == 4 %}   
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>-- /-- / ----</h4></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+    </div>
+     {% endif %}
+
+
+
+    <div class="row" >
+      <div class="col" style="background-color:lightgray;"><p align="center" style="color: red;">(Continue on separate sheet if necessary)</p></div>
+    </div>
+
+<!-- LEARNING -->
+    <div class="row" >
+        <div class="col" style="background-color:gray;"><h3 style=" color:white;">VII.  LEARNING AND DEVELOPMENT (L&D) INTERVENTIONS/TRAINING PROGRAMS ATTENDED</h3></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>TITLE OF LEARNING AND DEVELOPMENT INTERVENTIONS/TRAINING PROGRAMS <br> (Write in full)</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br> <u>INCLUSIVE DATES</u><br> FROM</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br><u>INCLUSIVE DATES</u><br> TO</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>NUMBER OF HOURS</div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>Type of LD <br>   ( Managerial/ Supervisory/Technical/etc) </div>
+     <div class="col-sm-3" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>CONDUCTED/ SPONSORED BY <br> (Write in full)</div>
+    </div>
+
+     {% if learning %}
+      {% for learns in learning %}
+        <div class="row" align="center">
+         <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h4>{{learns.title}}</h4></b></div>
+         <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{learns.date_from|date:"m/d/Y"}}</h4></b></div>     
+         <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{learns.date_to|date:"m/d/Y"}}</h4></b></div>
+         <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{learns.training_hours}}</h4></b></div>
+         <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h4>{{learns.learning_type}}</h4></b></div>
+         <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h4>{{learns.conducted_by}}</h4></b></div>
+        </div>  
+      {% endfor %}
+    {% else %}
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2>N/A</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>N/A</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>N/A</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>N/A</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>N/A</h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2>N/A</h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    {% endif %}
+
+    {% if learn == 1 %}
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>           
+     {% endif %}
+
+     {% if learn == 2 %}
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>       
+     {% endif %}
+     {% if learn == 3 %}
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>       
+     {% endif %}
+     {% if learn == 4 %}
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>       
+     {% endif %}
+     {% if learn == 5 %}
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>     
+     {% endif %}
+
+      {% if learn == 6 %}
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>     
+     {% endif %}
+     {% if learn == 7 %}
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>     
+     {% endif %}
+     {% if learn == 8 %}
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>     
+     {% endif %}
+     {% if learn == 9 %}
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>     
+     {% endif %}
+     {% if learn == 10 %}
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>     
+     {% endif %}
+     {% if learn == 11 %}     
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>     
+     {% endif %}
+     {% if learn == 12 %}   
+     <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>     
+     {% endif %}
+     {% if learn == 13 %}   
+    <div class="row" align="center">
+     <div class="col-sm-5" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>     
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2>-- /-- / ----</h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-1" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2></h2></b></div>
+    </div>     
+     {% endif %}
+
+
+    <div class="row" >
+      <div class="col" style="background-color:lightgray;"><p align="center" style="color: red;">(Continue on separate sheet if necessary)</p></div>
+    </div>
+
+
+    <!--  OTHER INFORMATION -->
+    <div class="row" >
+        <div class="col" style="background-color:gray;"><h3 style=" color:white;">VIII.  OTHER INFORMATION</h3></div>
+    </div>
+    <div class="row" align="center">
+     <div class="col-sm-4" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>SPECIAL SKILLS and HOBBIES</div>
+     <div class="col-sm-4" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>NON-ACADEMIC DISTINCTIONS / RECOGNITION <br>(Write in full)</div>
+     <div class="col-sm-4" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><br>MEMBERSHIP IN ASSOCIATION/ORGANIZATION <br>(Write in full)</div>
+    </div>
+
+    <div class="row" align="center">
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;">
+          <table  width="100%">
+            <tr>
+              <td class="col-6">
+                {% if other_skills %}
+                  {% for skill in other_skills %}
+                    <div class="row" align="center">
+                     <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4>{{skill.skills}}</h4></b></div>
+                    </div>  
+                  {% endfor %}
+                {% else %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> N/A </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>  
+                {% endif %}
+                {% if skills == 1 %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>                
+                {% endif %}
+                 {% if skills == 2 %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>                
+                {% endif %}
+                 {% if skills == 3 %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>                
+                {% endif %}
+                {% if skills == 4 %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>                
+                {% endif %}
+              </td>
+            </tr>
+          </table>
+     </div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;">
+          <table width="100%">
+            <tr>
+              <td class="col-6">
+                {% if other_recognitions %}
+                  {% for recog in other_recognitions %}
+                    <div class="row" align="center">
+                     <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4>{{recog.recognition}}</h4></b></div>
+                    </div>  
+                  {% endfor %}
+                {% else %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> N/A </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>     
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>     
+                {% endif %}
+
+                {% if recognitions == 1 %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>                
+                {% endif %}
+                 {% if recognitions == 2 %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>                
+                {% endif %}
+                 {% if recognitions == 3 %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>                
+                {% endif %}
+                {% if recognitions == 4 %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>                
+                {% endif %}
+
+              </td>
+            </tr>
+          </table>
+     </div>
+     <div class="col-sm-4" style="border-style: solid ;border-width: 1px;">
+          <table  width="100%">
+            <tr>
+              <td class="col-6">
+                {% if other_membership %}
+                  {% for member in other_membership %}
+                    <div class="row" align="center">
+                     <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4>{{member.member_org}}</h4></b></div>
+                    </div>  
+                  {% endfor %}
+                {% else %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> N/A </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>  
+                {% endif %}
+
+                {% if membership == 1 %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>                
+                {% endif %}
+                 {% if membership == 2 %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>                
+                {% endif %}
+                 {% if membership == 3 %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>   
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>                
+                {% endif %}
+                {% if membership == 4 %}
+                <div class="row" align="center">
+                 <div class="col-sm-12" style="border-style: solid ;border-width: 1px;"><b><h4> - </h4></b></div>
+                </div>                
+                {% endif %}
+                
+              </td>
+            </tr>
+          </table>
+     </div>
+    </div>
+  
+    <div class="row" >
+      <div class="col" style="background-color:lightgray;"><p align="center" style="color: red;">(Continue on separate sheet if necessary)</p></div>
+    </div>
+<div class="row" align="center">
+     <div class="col-sm-2" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><b><h4>SIGNATURE</h4></b></div>
+     <div class="col-sm-6" style="border-style: solid ;border-width: 1px;"><b><h4></h4></b></div>
+     <div class="col-sm-1" style="background-color:#E6E7E6;border-style: solid ;border-width: 1px;"><b><h4>DATE</h4></b></div>
+     <div class="col-sm-3" style="border-style: solid ;border-width: 1px;"><b><h2>{{today}}</h2></b></div>
+    </div>
+    <div class="row" >
+      <div class="col"><p align="right"><br> CS FORM 212 (Revised 2017),  <b>Page 3 of 4</b></p></div>
+    </div>
+{% endblock %}

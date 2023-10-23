@@ -1,0 +1,327 @@
+{% extends "base2.html" %}
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+
+<!-- Page title goes here -->
+{% block header %}
+OTHER INFORMATION Create Page
+{% endblock %}
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="/pds">Home</a></li>
+    <li class="breadcrumb-item active">OTHER INFORMATION Page</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<!-- Other Information -->
+  {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %} 
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+    {% endif %}
+<br>
+<form method="POST" class="post-form" enctype="multipart/form-data" action="/pds/otherinfoCreate">  
+  {% csrf_token %}
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">VIII.  OTHER INFORMATION</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <h6>
+                <br><br>
+               Are you related by consanguinity or affinity to the appointing or recommending authority, or to the
+              chief of bureau or office or to the person who has immediate supervision over you in the Office,
+              Bureau or Department where you will be apppointed,
+                <br><br>
+                <div class="form-group">
+                  <label>a. Within the third degree?</label>
+                    <select class="form-control" name="related_third">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                 </div>
+                <!-- /.form-group -->
+                
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                
+                <div class="form-group"><br><br><br><br>
+                  {{ form.related_detail_3|bootstrap }}
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+               <div class="form-group">
+                  <label>b. within the fourth degree (for Local Government Unit - Career Employees)?</label>
+                    <select class="form-control" name="related_fourth" >
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                 </div>
+                <!-- /.form-group -->
+                  <!-- /.col -->
+                </div>
+
+                <div class="col-md-6">
+                <div class="form-group">
+                  {{ form.related_detail_4|bootstrap }}
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>35. a. Have you ever been found guilty of any administrative offense?</label>
+                    <select class="form-control" name="admin_offense">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                     {{ form.admin_offense_detail|bootstrap }}
+                    </div>
+                    <!-- /.form-group -->
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>b. Have you been criminally charged before any court?</label>
+                    <select class="form-control" name="crime">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+              </div>
+
+              <div class="col-md-6">                
+                 <div class="form-group">
+                      {{ form.crime_detail|bootstrap }}
+                    </div>
+                    <!-- /.form-group -->
+                  <div class="form-group">
+                      {{ form.crime_date|bootstrap }}
+                    </div>
+                    <!-- /.form-group -->
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>36. Have you ever been convicted of any crime or violation of any law, decree, ordinance or
+        regulation by any court or tribunal?</label>
+                    <select class="form-control" name="convic">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group"><br>
+                  {{ form.convic_detail|bootstrap }}
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                 <div class="form-group">
+                  <label>37 .Have you ever been separated from the service in any of the following modes: resignation, retirement, dropped from the rolls, dismissal, termination, end of term, finished contract or phased out (abolition) in the public or private sector?</label>
+                    <select class="form-control" name="seperated">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group"><br>
+                  {{ form.seperated_detail|bootstrap }}
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                 <div class="form-group">
+                  <label>38. a. Have you ever been a candidate in a national or local election held within the last year (except
+        Barangay election)?</label>
+                    <select class="form-control" name="candidate">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form.candidate_detail|bootstrap }}
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>b. Have you resigned from the government service during the three (3)-month period before the
+       last election to promote/actively campaign for a national or local candidate?</label>
+                    <select class="form-control" name="resigned">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group"><br>
+                  {{ form.resigned_detail|bootstrap }}
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>39. Have you acquired the status of an immigrant or permanent resident of another country?</label>
+                    <select class="form-control" name="immigrant">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                 <div class="form-group">
+                  {{ form.immigrant_detail|bootstrap }}
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                 <div class="form-group">
+
+                <b> 40. Pursuant to: (a) Indigenous People's Act (RA 8371); (b) Magna Carta for Disabled Persons (RA
+        7277); and (c) Solo Parents Welfare Act of 2000 (RA 8972), please answer the following items: </b>
+                <br><br> 
+                  <label>a. Are you a member of any indigenous group?</label>
+                    <select class="form-control" name="indigenous">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <br>
+                <br><br> 
+                  {{ form.indigenous_detail|bootstrap }}
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>a Are you differently abled?</label>
+                    <select class="form-control" name="disability">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form.disability_detail|bootstrap }}
+
+                   <input type="file" name="disability_image">
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <br><br>
+                  <label>c. Are you a solo parent?</label>
+                    <select class="form-control" name="soloparent">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form.soloparent_detail|bootstrap }}
+                  <input type="file" name="soloparent_image">
+                </div>
+                <!-- /.form-group -->
+              </div>
+            </div>
+            
+
+        
+          <!-- /.card-body -->
+          <div class="card-footer">
+            
+          </div>
+        </div>
+<!-- End Other information -->
+
+ <div class="form-group row"  align="center">  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-primary">Submit</button>  
+    </div>  
+  </div>
+</div>
+
+  <br><br><br>
+</form>  
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base_admin.html" %}
+{% load humanize %}
+<!-- Page title goes here -->
+{% block header %}
+Training Notification List
+{% endblock %}
+
+
+<!-- Breadcrumb goes here -->
+{% block breadcrumb %}
+<ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="#">Users</a></li>
+    <li class="breadcrumb-item active">List</li>
+</ol>
+{% endblock breadcrumb %}
+
+<!-- Page Content goes here -->
+{% block content %}
+<table class="table table-bordered" style="background-color: white">
+<thead style="position: sticky;top: 0;">
+  <!-- New Rate -->
+  <tr style="background-color: #C0CFD8">
+    <th>Notification</th>
+    <th>Submitted By</th>
+    <th>Date Submitted</th>
+    <th>Action</th>
+  </tr>
+</thead>
+
+{% if data %}
+  {% for training in data %}
+  <tbody>
+    <tr>
+      <td> {{ training.status }}</td>
+      <td> {{ training.date_created }} </td>
+      <td> {{ training.notify.first_name|title }} &nbsp{{ training.notify.surname|title }}</td>
+      <td> <a href="trainings/{{ training.notify_id }}">View</a></td>
+    </tr>
+  </tbody>
+  {% endfor %}
+{% endif %}
+
+
+
+</table>
+{% endblock %}
